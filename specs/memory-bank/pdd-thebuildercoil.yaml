@@ -1,0 +1,625 @@
+pdd:
+  meta:
+    name: "Chronomation – Content Engine"
+    code_name: "chronomation_core"
+    owner:
+      individual: "Nicolas Brulay"
+      company: "Ball Lightning AB"
+    products:
+      chronomation:
+        description: "Multi-tenant backend + admin + marketing site for activity → narrative content and social sharing."
+        domain: "https://chronomation.com"
+      the_builder_coil:
+        description: "First Chronomation tenant; public builder’s log for Ball Lightning AB."
+        domain: "https://thebuildercoil.com"
+      ball_lightning:
+        description: "Primary company site for Ball Lightning AB (consulting, booking, etc.)."
+        domain: "https://balllightning.cloud"
+    repos:
+      chronomation_core: "private repo – Chronomation backend + admin + marketing"
+      tbc_site_frontend: "private repo – TBCsite frontend, consuming Chronomation API"
+    stack:
+      chronomation_backend:
+        framework: "TanStack Start (Router + Loaders + Server Functions)"
+        runtime: "Vercel (Node/Edge where appropriate)"
+        language: "TypeScript"
+        auth:
+          library: "Better Auth"
+        db:
+          provider: "Neon Postgres"
+          orm: "Drizzle ORM"
+        email:
+          provider: "Resend"
+        styling:
+          css: "TailwindCSS"
+          ui_blocks:
+            - "shadcn/ui"
+            - "Efferd blocks"
+            - "Tailark blocks"
+            - "Kibo UI"
+      tbc_site_frontend:
+        framework: "TanStack Start or TanStack Router + Vite (frontend app)"
+        note: "Frontend-only from a data POV: all content comes from Chronomation’s HTTP API."
+        styling:
+          css: "TailwindCSS"
+          ui_blocks:
+            - "shadcn/ui"
+            - "Shared design system (Chronomation-compatible)"
+      tooling:
+        lint_format:
+          - "Biome"
+          - "Ultracite"
+        hosting:
+          - "Vercel for Chronomation"
+          - "Vercel (or similar) for TBCsite"
+        payments_future:
+          provider: "Polar"
+  
+design:
+  shared:
+    typography:
+      sans:
+        css_var: "--font-sans"
+        stack: "Montserrat, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+      serif:
+        css_var: "--font-serif"
+        stack: "Lora, 'Times New Roman', ui-serif, Georgia, serif"
+      mono:
+        css_var: "--font-mono"
+        stack: "'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace"
+      usage:
+        headings: "Lora for H1–H2 (tome / grimoire feeling), Montserrat for H3+"
+        body: "Montserrat for paragraphs, lists, UI copy"
+        code: "JetBrains Mono for code, IDs, commit snippets"
+    backgrounds:
+      dark_base: "#05070A"      # shared dark "void" background for all brands
+      dark_elevated: "#0A1014"  # cards / panels on dark
+      dark_subtle: "#111827"    # inputs, subtle surfaces
+      light_base: "#F5E6D3"     # warm cream light-mode background
+      light_elevated: "#F9F3E8" # slightly lighter cards on cream
+    shared_colors:
+      cream_main: "#F5E6D3"     # primary cream (logo ink on dark, light backgrounds)
+      cream_soft: "#F9F3E8"     # softer cream (light cards, highlights)
+      dark_ink: "#111827"       # main dark text on cream
+      light_ink: "#F9FAFB"      # main light text on dark
+      body_on_dark: "#E5E7EB"   # paragraph text on dark
+      muted_on_dark: "#9CA3AF"
+
+  brands:
+    the_builder_coil:
+      description: >
+        Arcane engineering / builder’s grimoire. Dark void background with cream
+        ink and selective teal/violet energy as accents. Feels like a spellbook
+        for modern dev work, but still readable and practical.
+      scheme:
+        dark:
+          background:
+            base: "#05070A"
+            elevated: "#0A1014"
+            subtle: "#111827"
+          foreground:
+            body: "#E5E7EB"
+            muted: "#9CA3AF"
+            heading_cream: "#F5E6D3"   # H1/H2, key labels, nav brand text
+          logo:
+            ink: "#F5E6D3"             # circle, coil, book in dark mode
+          surfaces:
+            card_default: "#0A1014"
+            card_border_cream: "#F5E6D3"
+            tag_bg_cream_soft: "rgba(245,230,211,0.06)"
+            tag_text_cream: "#F5E6D3"
+          primaries:
+            teal: "#23F0FF"            # electric teal highlights
+            teal_hover: "#4FF6FF"
+            teal_soft: "rgba(35,240,255,0.18)"
+            violet: "#8B5CFF"          # arcane violet accents
+            violet_hover: "#A78BFA"
+            violet_soft: "rgba(139,92,255,0.16)"
+          accent:
+            ember: "#FFDCA8"           # warm highlight tying into cream
+            success: "#4ADE80"
+            warning: "#FBBF24"
+            danger: "#F97373"
+          neutrals:
+            border_subtle: "rgba(148,163,184,0.35)"
+            border_strong: "rgba(148,163,184,0.6)"
+        light:
+          background:
+            base: "#F5E6D3"            # cream base
+            elevated: "#F9F3E8"
+          foreground:
+            primary: "#111827"
+            muted: "#4B5563"
+            heading_ink: "#111827"
+          logo:
+            ink: "#111827"             # circle, coil, book in light mode
+          primaries:
+            teal: "#23F0FF"
+            violet: "#8B5CFF"
+          accent:
+            ember: "#C05621"           # slightly darker ember for text/icons
+            success: "#15803D"
+            warning: "#B45309"
+            danger: "#B91C1C"
+
+    chronomation:
+      description: >
+        Automation engine / control center. Same void/cream foundations, but
+        calmer teal/blue accents and a more utilitarian SaaS feel. Feels like a
+        reliable control room for orchestrating workflows behind the scenes.
+      scheme:
+        dark:
+          background:
+            base: "#05070A"
+            elevated: "#0A1014"
+            subtle: "#111827"
+          foreground:
+            body: "#E5E7EB"
+            muted: "#9CA3AF"
+            heading_cream: "#F5E6D3"   # headings, key status labels
+          logo:
+            ink: "#F5E6D3"             # Chronomation mark on dark
+          surfaces:
+            card_default: "#0A1014"
+            card_border_cream: "#F5E6D3"
+            tag_bg_cream_soft: "rgba(245,230,211,0.06)"
+          primaries:
+            teal: "#12B8C4"            # calmer teal than TBC
+            teal_hover: "#22D3EE"
+            teal_soft: "rgba(34,211,238,0.18)"
+            sky: "#38BDF8"
+            sky_hover: "#60A5FA"
+          accent:
+            action: "#FACC15"          # sharp yellow CTAs
+            success: "#22C55E"
+            warning: "#EAB308"
+            danger: "#F97373"
+          neutrals:
+            border_subtle: "rgba(148,163,184,0.30)"
+            border_strong: "rgba(148,163,184,0.55)"
+        light:
+          background:
+            base: "#F5E6D3"
+            elevated: "#F9F3E8"
+          foreground:
+            primary: "#111827"
+            muted: "#4B5563"
+          logo:
+            ink: "#111827"
+          primaries:
+            teal: "#12B8C4"
+            sky: "#38BDF8"
+
+    ball_lightning:
+      description: >
+        Parent brand. Shares the same dark/cream foundations but switches to
+        molten red/orange energy with a slightly more aggressive, playful feel.
+        Represents the studio behind Chronomation and The Builder Coil.
+      scheme:
+        dark:
+          background:
+            base: "#05070A"
+            elevated: "#0A1014"
+            subtle: "#111827"
+          foreground:
+            body: "#E5E7EB"
+            muted: "#9CA3AF"
+            heading_cream: "#F5E6D3"   # headings and key brand marks
+          logo:
+            ink: "#F5E6D3"             # BL wordmark / icon on dark
+          surfaces:
+            card_default: "#0A1014"
+            card_border_cream: "#F5E6D3"
+            tag_bg_cream_soft: "rgba(245,230,211,0.06)"
+          primaries:
+            deep_molten: "#9C1B12"
+            mid_red: "#DD3A28"
+          accent:
+            warm_rose: "#FF7268"
+            pale_ember: "#FFD4C9"
+          neutrals:
+            surface: "#1B181C"
+            soft_light: "#E8E5E6"
+        light:
+          background:
+            base: "#F5E6D3"
+            elevated: "#F9F3E8"
+          foreground:
+            primary: "#111827"
+            muted: "#4B5563"
+          logo:
+            ink: "#111827"
+          primaries:
+            deep_molten: "#9C1B12"
+            mid_red: "#DD3A28"
+          accent:
+            warm_rose: "#FF7268"
+            pale_ember: "#FFD4C9"
+
+        relationship_notes:
+          - "Chronomation and TBC share the same typography and core component language as Ball Lightning."
+          - "TBC leans into teal/violet arcane; Chronomation leans into teal/blue lab; Ball Lightning leans into molten red/orange."
+          - "It should feel like one universe: same fonts and component shapes, different color temperatures and attitude."
+
+  product:
+    vision: |
+      Chronomation is a multi-tenant content engine that turns raw work artifacts
+      (commits, notes, emails, etc.) into structured blog posts and social content
+      for SMBs, creators, and influencers.
+
+      The Builder Coil (TBC) is the first tenant and public case study: a builder’s
+      log for Ball Lightning AB, powered entirely by Chronomation’s API.
+    primary_objectives:
+      chronomation:
+        - Multi-tenant data model: tenants, channels, projects, feed items, posts, social channels.
+        - Activity ingestion:
+          - GitHub (changelog/commits via Actions)
+          - Email (Resend inbound webhooks)
+          - Manual notes (admin UI)
+        - Narrative generation:
+          - Daily or ad-hoc posts per tenant + channel.
+          - Retroactive posts from historical activity.
+        - Admin UI:
+          - Tenant-aware dashboard for projects, feed, posts, social, and settings.
+        - Public API:
+          - Read-only endpoints for posts and feeds per tenant/channel.
+      tbc_site:
+        - Frontend that consumes Chronomation’s public API for:
+          - blog index and post pages
+          - “news” subset
+          - mini “about” + contact form (no booking)
+        - Later: merch section using same design system.
+        - Serve as a boilerplate/blog package for future Chronomation customers.
+      ball_lightning_site:
+        - Use Chronomation feeds to show latest TBC posts.
+        - Own booking and calendar (Cal.com).
+        - Be linked from Chronomation.com as the company behind the product.
+
+    secondary_objectives:
+      - Make features generic enough for other SMBs/influencers to adopt with minimal customization.
+      - Use TBC as the flagship case study and live dogfooding client.
+    non_goals_for_now:
+      - Full-blown SaaS self-service signup, billing, and plan management.
+      - Arbitrary workflow automation beyond content and sharing.
+      - Public user accounts/comments.
+
+  personas:
+    - id: "tenant_owner_ball_lightning"
+      name: "Nicolas – Ball Lightning"
+      role: "Tenant owner / admin"
+      goals:
+        - Plug Ball Lightning’s repos, notes, and email into Chronomation.
+        - Use TBCsite as the main builder/devlog surface.
+        - Reuse the same content on BALLsite if useful.
+    - id: "tenant_owner_smb_creator"
+      name: "Future SMB / influencer"
+      role: "External Chronomation customer"
+      goals:
+        - Ship a blog/content hub quickly using a template like TBC.
+        - Automate as much of content generation and sharing as possible.
+    - id: "public_visitor_tbc"
+      role: "Visitor of The Builder Coil"
+      goals:
+        - Read current builder posts and key milestones.
+        - Discover Chronomation and Ball Lightning.
+        - Reach out via a simple contact form.
+
+  scope:
+    in_scope_mvp:
+      chronomation:
+        - Multi-tenant schema (tenants, channels, projects, feed, posts, social, settings).
+        - Tenant-aware ingestion HTTP APIs:
+          - POST /api/tenants/:tenantSlug/ingest/github
+          - POST /api/tenants/:tenantSlug/ingest/email
+          - POST /api/tenants/:tenantSlug/ingest/manual
+        - Tenant-aware daily post generation:
+          - POST /api/tenants/:tenantSlug/cron/daily-post
+        - Admin UI at chronomation.com:
+          - Login via Better Auth.
+          - Tenant-scoped dashboard for Ball Lightning (first tenant).
+        - Public read APIs:
+          - GET /api/public/:tenantSlug/:channelSlug/feed.json
+          - GET /api/public/:tenantSlug/:channelSlug/rss.xml
+      tbc_site:
+        - Frontend-only app that:
+          - Calls Chronomation’s public APIs with tenant/channel slugs.
+          - Renders blog index, blog post, news index/detail.
+          - Renders mini “about” and contact form (Resend).
+        - No booking calendar; refer to BALLsite where needed.
+    later_phases:
+      - Chronomation.com:
+        - richer marketing site
+        - case study section linking to TBC and BALLsite
+      - Merch on TBCsite:
+        - merch index/detail/cart (exact implementation TBD)
+      - Social auto-posting from Chronomation:
+        - X/LinkedIn integration when safe and stable.
+      - Multi-tenant billing and tiered features via Polar.
+
+  architecture:
+    overview: |
+      Chronomation is the core application and backend, deployed on chronomation.com.
+      It includes:
+      - Public marketing pages.
+      - Authenticated admin UI.
+      - Multi-tenant ingestion and content APIs.
+
+      The Builder Coil is a separate frontend project (TBCsite) that talks only
+      to Chronomation’s HTTP API and renders the Ball Lightning tenant’s blog.
+    tenancy_model:
+      concepts:
+        tenant:
+          description: "Customer/org in Chronomation (Ball Lightning as first tenant)."
+        channel:
+          description: "Content surface for a tenant (e.g. 'tbc-blog', 'ball-site-blog')."
+        project:
+          description: "Activity source within a tenant (e.g. blightfell-web3-integration repo)."
+      scoping_rules:
+        - All projects, feed items, posts, social channels, and settings are attached to a tenant.
+        - All posts belong to a tenant and a channel.
+        - APIs are always tenant-scoped (via :tenantSlug), and often channel-scoped.
+    chronomation_frontend_and_backend:
+      framework: "TanStack Start"
+      usage:
+        - Router: TanStack Router for all routing.
+        - Loaders/Server Functions: for admin and public API endpoints.
+        - SSR where useful for chronomation.com marketing/admin pages.
+      main_areas:
+        - Marketing:
+          - `/` – marketing landing (Chronomation)
+          - `/use-cases/the-builder-coil` – case study pointing to TBCsite
+          - `/use-cases/ball-lightning` – case study pointing to BALLsite
+        - Admin (authenticated):
+          - `/app` – overview dashboard for tenant
+          - `/app/projects`, `/app/feed`, `/app/posts`, `/app/social`, `/app/settings`
+    tbc_site_frontend:
+      framework: "TanStack Start or TanStack Router + Vite"
+      data_access: "HTTP calls to chronomation.com public APIs only."
+      main_surfaces:
+        - `/` – blog-focused home for tenant `ball-lightning` channel `tbc-blog`
+        - `/blog`, `/blog/:slug`
+        - `/news`, `/news/:slug`
+        - `/about`
+        - `/contact` (form via Resend)
+        - later: `/merch`, `/merch/:slug`
+    ball_lightning_site:
+      note: |
+        BALLsite remains its own project. It:
+        - embeds Chronomation feeds for recent posts,
+        - exposes booking/calendar,
+        - is used as canonical link for scheduling from Chronomation and TBC where relevant.
+
+  non_functional_and_operational:
+    security:
+      multi_tenancy:
+        - "All read/write operations must be explicitly scoped by tenantId (server-side) to prevent cross-tenant leakage."
+        - "No tenantId should ever come from the client without being checked against the authenticated user’s allowed tenants in admin flows."
+      secrets:
+        - "All external keys (Resend, social APIs, Polar) only in server env; never exposed to TBCsite."
+      webhooks:
+        - "Verify Resend webhook signatures + shared secret before processing."
+    logging_and_monitoring:
+      - "Log all ingestion calls (github/email/manual) with tenantSlug, projectSlug, count-of-items, and timing."
+      - "Log all cron executions per tenant, including number of posts generated and any failures."
+      - "Introduce a simple 'ingestion status' metric per tenant for display in Chronomation admin."
+    rate_limiting:
+      public_api:
+        - "Rate limit /api/public/:tenantSlug/:channelSlug/feed.json and rss.xml to avoid abuse."
+      ingestion_api:
+        - "Basic rate limiting per tenant for /ingest endpoints to avoid accidental loops."
+    analytics:
+      chronomation_site:
+        - "Track high-level analytics on chronomation.com (page views, clicks to TBC/BALLsite, contact submissions)."
+      tbc_site:
+        - "Track page views on posts, scroll depth, and outbound clicks to Chronomation and BALLsite."
+    content_authoring:
+      manual_only_posts:
+        - "Allow creating posts in Chronomation that are not tied to feed items (purely manual posts)."
+        - "Mark such posts clearly in the admin UI and allow filtering by origin (auto/assisted/manual)."
+    merch_support_future:
+      tbc_merch:
+        - "Plan a 'merch items' model (id, slug, title, price, images, stock_status) for future integration."
+        - "Ensure that Chronomation’s data model can later power content around merch drops (e.g. devlog posts linked to merch)."
+    api_contracts:
+      versioning:
+        - "Namespace public APIs under /api/public/v1/... for future versioning."
+        - "Similarly namespace tenant APIs under /api/v1/tenants/:tenantSlug/..."
+    productization:
+      tbc_as_template:
+        - "Document which parts of TBCsite are safe to clone for other tenants (layout, components, typical pages)."
+        - "Keep TBCsite’s integration with Chronomation as generic as possible (e.g. rely only on public API contracts)."
+
+  data_model:
+    # This is Chronomation’s internal DB model (Neon + Drizzle).
+    tables:
+      tenants:
+        fields:
+          id: "uuid, pk"
+          slug: "text, unique (e.g. 'ball-lightning')"
+          name: "text"
+          primary_domain: "text, nullable (e.g. 'balllightning.cloud')"
+          created_at: "timestamptz"
+      channels:
+        fields:
+          id: "uuid, pk"
+          tenant_id: "uuid fk → tenants.id"
+          slug: "text, unique per tenant (e.g. 'tbc-blog')"
+          name: "text"
+          type: "enum('blog','newsletter','other')"
+          is_default: "boolean"
+          created_at: "timestamptz"
+      projects:
+        fields:
+          id: "uuid, pk"
+          tenant_id: "uuid fk → tenants.id"
+          slug: "text, unique per tenant"
+          name: "text"
+          repo_url: "text, nullable"
+          is_active: "boolean"
+          created_at: "timestamptz"
+      blog_feed_items:
+        fields:
+          id: "uuid, pk"
+          tenant_id: "uuid fk → tenants.id"
+          project_id: "uuid fk → projects.id"
+          source_type: "enum('github_changelog','github_commit','manual','email','other')"
+          source_external_id: "text, nullable"
+          title: "text, nullable"
+          raw_content: "text"
+          structured_meta: "jsonb"
+          tags: "text[]"
+          effective_at: "timestamptz"
+          created_at: "timestamptz"
+          status: "enum('pending','ready','used','ignored','archived')"
+      blog_posts:
+        fields:
+          id: "uuid, pk"
+          tenant_id: "uuid fk → tenants.id"
+          channel_id: "uuid fk → channels.id"
+          slug: "text, unique per (tenant, channel)"
+          title: "text"
+          type: "enum('blog','news')"
+          summary: "text"
+          body_markdown: "text"
+          hero_image_url: "text, nullable"
+          primary_project_id: "uuid fk → projects.id, nullable"
+          status: "enum('draft','scheduled','published','archived')"
+          published_at: "timestamptz, nullable"
+          created_at: "timestamptz"
+          updated_at: "timestamptz"
+      blog_post_feed_items:
+        fields:
+          post_id: "uuid fk → blog_posts.id"
+          feed_item_id: "uuid fk → blog_feed_items.id"
+          contribution_weight: "numeric, optional"
+      email_ingest_sources:
+        fields:
+          id: "uuid, pk"
+          tenant_id: "uuid fk → tenants.id"
+          label: "text"
+          email_address: "text, unique per tenant"
+          default_project_id: "uuid fk → projects.id, nullable"
+          is_active: "boolean"
+          created_at: "timestamptz"
+      social_channels:
+        fields:
+          id: "uuid, pk"
+          tenant_id: "uuid fk → tenants.id"
+          kind: "enum('x','linkedin','youtube','rss','other')"
+          display_name: "text"
+          handle: "text"
+          is_enabled: "boolean"
+          is_auto_default: "boolean"
+          metadata: "jsonb"
+          created_at: "timestamptz"
+      social_shares:
+        fields:
+          id: "uuid, pk"
+          tenant_id: "uuid fk → tenants.id"
+          post_id: "uuid fk → blog_posts.id"
+          channel_id: "uuid fk → social_channels.id"
+          share_type: "enum('auto','manual')"
+          status: "enum('pending','skipped','sent','failed')"
+          payload_preview: "text"
+          remote_url: "text, nullable"
+          error_message: "text, nullable"
+          created_at: "timestamptz"
+          posted_at: "timestamptz, nullable"
+      site_settings:
+        fields:
+          tenant_id: "uuid fk → tenants.id"
+          channel_id: "uuid fk → channels.id, nullable"
+          key: "text"
+          value: "jsonb"
+          updated_at: "timestamptz"
+
+  routes:
+    chronomation_public:
+      - path: "/"
+        purpose: "Chronomation marketing landing."
+      - path: "/use-cases/the-builder-coil"
+        purpose: "Case study; links to https://thebuildercoil.com."
+      - path: "/use-cases/ball-lightning"
+        purpose: "Case study; links to https://balllightning.cloud."
+      - path: "/contact"
+        purpose: "Mini-info on Ball Lightning + contact form (no booking; link to BALLsite for scheduling)."
+    chronomation_admin:
+      base: "/app"
+      routes:
+        - path: "/app"
+          purpose: "Tenant dashboard."
+        - path: "/app/projects"
+        - path: "/app/feed"
+        - path: "/app/posts"
+        - path: "/app/posts/new"
+        - path: "/app/posts/:id"
+        - path: "/app/social"
+        - path: "/app/settings"
+    chronomation_api:
+      - path: "/api/tenants/:tenantSlug/ingest/github"
+        method: "POST"
+      - path: "/api/tenants/:tenantSlug/ingest/email"
+        method: "POST"
+      - path: "/api/tenants/:tenantSlug/ingest/manual"
+        method: "POST"
+      - path: "/api/tenants/:tenantSlug/cron/daily-post"
+        method: "POST"
+      - path: "/api/public/:tenantSlug/:channelSlug/feed.json"
+        method: "GET"
+      - path: "/api/public/:tenantSlug/:channelSlug/rss.xml"
+        method: "GET"
+
+  env:
+    chronomation_server_only:
+      - key: "NODE_ENV"
+      - key: "APP_ENV"
+      - key: "APP_BASE_URL"          # e.g. https://chronomation.com
+      - key: "DATABASE_URL"
+      - key: "BETTER_AUTH_SECRET"
+      - key: "BETTER_AUTH_URL"       # usually same as APP_BASE_URL
+      - key: "RESEND_API_KEY"
+      - key: "RESEND_FROM_EMAIL"
+      - key: "RESEND_INBOUND_WEBHOOK_SECRET"
+      - key: "CRON_SECRET"
+      - key: "BLOGFEED_INGEST_TOKEN"
+      - key: "SOCIAL_X_API_KEY"
+      - key: "SOCIAL_X_API_SECRET"
+      - key: "SOCIAL_X_ACCESS_TOKEN"
+      - key: "SOCIAL_X_ACCESS_TOKEN_SECRET"
+      - key: "SOCIAL_LINKEDIN_ACCESS_TOKEN"
+      - key: "SOCIAL_LINKEDIN_ORG_ID"
+      - key: "POLAR_ACCESS_TOKEN"
+      - key: "POLAR_ORGANIZATION_ID"
+      - key: "POLAR_PROJECT_ID"
+    tbc_frontend_client:
+      - key: "VITE_APP_NAME"             # "The Builder Coil"
+      - key: "VITE_APP_BASE_URL"         # e.g. https://thebuildercoil.com
+      - key: "VITE_CHRONOMATION_API_URL" # e.g. https://chronomation.com
+      - key: "VITE_TENANT_SLUG"          # "ball-lightning"
+      - key: "VITE_CHANNEL_SLUG"         # "tbc-blog"
+      - key: "VITE_TBC_ENV"              # dev|preview|prod
+
+  implementation_plan:
+    phase_1_chronomation_core:
+      - "Initialize Chronomation TanStack Start app (chronomation.com)."
+      - "Add shared design system (Tailwind, shadcn, Efferd/Tailark, Kibo UI)."
+      - "Set up Neon + Drizzle schema (tenants, channels, projects, feed, posts, social, settings)."
+      - "Integrate Better Auth."
+      - "Seed tenant 'ball-lightning' + channel 'tbc-blog'."
+    phase_2_ingestion_and_posts:
+      - "Implement GitHub/email/manual ingestion APIs (tenant-scoped)."
+      - "Implement daily-post cron endpoint."
+      - "Build admin screens for feed and posts for Ball Lightning."
+    phase_3_public_apis:
+      - "Implement /api/public/:tenantSlug/:channelSlug/feed.json and rss.xml."
+      - "Use these APIs internally on Chronomation marketing pages for previews."
+    phase_4_tbc_site_frontend:
+      - "Create separate TBCsite frontend project."
+      - "Configure env for tenantSlug=ball-lightning, channelSlug=tbc-blog, apiBase=https://chronomation.com."
+      - "Implement blog, news, about, contact pages using Chronomation APIs."
+    phase_5_ball_lightning_integration:
+      - "Add 'From The Builder Coil' section to BALLsite via Chronomation feed."
+      - "Ensure Chronomation and TBC both link clearly to BALLsite for booking."
+    phase_6_merch_and_next_features:
+      - "Add merch section to TBCsite."
+      - "Refine Chronomation admin UX to be comfortable for external SMB/influencer tenants."

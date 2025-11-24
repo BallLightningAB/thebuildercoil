@@ -1,0 +1,71 @@
+entries:
+  - date: "2025-11-24"
+    version: 0.0.1.5
+    issue: "#1 https://github.com/BallLightningAB/thebuildercoil/issues/1"
+    commit: tbd
+    status: in-progress
+    title: "docs(specs): add memory-bank scaffolding and security baseline"
+    details: |-
+      - Add specs/memory-bank/active-context.yaml describing current roadmap and guardrails
+      - Add specs/memory-bank/CHANGELOG.yaml to track versions and Refs
+      - Document security baseline (pre-commit + CI Gitleaks) in README
+
+      Refs: v0.0.1.5 #1
+
+  - date: "2025-11-24"
+    version: 0.0.1.4
+    issue: "#1 https://github.com/BallLightningAB/thebuildercoil/issues/1"
+    commit: ea82484
+    status: in-progress
+    title: "chore(ci): removed args from gitleaks step"
+    details: |-
+      - chore(ci): removed args from gitleaks step
+
+      Refs: v0.0.1.4 #1
+
+  - date: "2025-11-24"
+    version: 0.0.1.3
+    issue: "#1 https://github.com/BallLightningAB/thebuildercoil/issues/1"
+    commit: 8745dd1
+    status: in-progress
+    title: "chore(ci): renamed gitleaks.toml and added use instructions to README.md"
+    details: |-
+      - chore(ci): renamed gitleaks.toml and added use instructions to README.md
+
+      Refs: v0.0.1.3 #1
+
+  - date: "2025-11-24"
+    version: 0.0.1.2
+    issue: "#1 https://github.com/BallLightningAB/thebuildercoil/issues/1"
+    commit: 3bd0df6
+    status: in-progress
+    title: "chore(security): add Gitleaks secret scanning"
+    details: |-
+      - Add pre-commit hooks for detect-private-key and gitleaks protect
+      - Add shared gitleaks.toml config for local + CI scans
+      - Add GitHub Actions workflow .github/workflows/secret-scan.yml
+
+      Refs: v0.0.1.2 #1
+
+  - date: "2025-11-24"
+    version: 0.0.1.1
+    issue: "#1 https://github.com/BallLightningAB/thebuildercoil/issues/1"
+    commit: 281c3d2
+    status: in-progress
+    title: "feat: added logos and gh labels"
+    details: |-
+      - added logos
+      - gh labels
+
+      Refs: v0.0.1.1 [#1]
+
+  - date: "2025-11-24"
+    version: 0.0.1
+    issue: "#1 https://github.com/BallLightningAB/thebuildercoil/issues/1"
+    commit: 18f98cc
+    status: in-progress
+    title: "Initial commit: TanStack Start scaffold"
+    details: |-
+      - Initial commit: TanStack Start scaffold
+
+      Refs: v0.0.1 #1
