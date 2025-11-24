@@ -1,5 +1,5 @@
 meta:
-  release: 0.0.1.5
+  release: 0.0.1.6
   repo: github.com/BallLightningAB/thebuildercoil
   pdd_version: "v0.1"
   current_changes: see specs/current-changes/
@@ -31,7 +31,36 @@ guardrails:
         est:
           dev_h: 8
           test_h: 0
-        progress_log: []
+        progress_log:
+          - Initialized the project using the Tanstack Start Builder
+          - Designed a new logo
+          - Adapted the current color scheme to match the new logo in dark and light mode
+          - Created a gh project
+          - Repurposed gh labels
+          - Added the logos + favicon to /public
+          - Repurpose the secrets-scan pre-commit and workflow for the blightfell-web3-integration project
+          - Repurpose the memorybank/changelog automation from the blightfell-web3-integration project
     next_steps: []
-
-    recent_done: []
+    recent_done:
+      - id: Install dependencies
+        issue: "#2"
+        title: Install dependencies
+        status: done
+        links:
+          issue: https://github.com/BallLightningAB/thebuildercoil/issues/2
+          pr: ""
+        deliverables:
+          - install zod
+          - configure zod add central zod helper
+          - install ultracite
+          - configure biome + ultracite
+          - dependency upgrade pass
+        est:
+          dev_h: 4
+          test_h: 0
+        progress_log:
+          - Installed Ultracite and upgraded Biome to 2.3.7 using pnpm
+          - Initialized Ultracite configuration (biome.json, tsconfig, editor/editorconfig settings)
+          - Installed zod as a shared validation dependency
+          - Added central zod helper at src/lib/validation/zod.ts
+          - Completed initial dependency upgrade pass for TanStack, Tailwind, TypeScript, devtools, and related tooling

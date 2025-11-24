@@ -27,6 +27,16 @@ The Builder Coil treats secret leakage as a first-class concern:
 - **CI secret scanning**: The GitHub Actions workflow `.github/workflows/secret-scan.yml` runs Gitleaks on pushes and pull requests to `main`, uploading results to the repository’s Security tab.
 - **Shared configuration**: `gitleaks.toml` centralizes allowlists and rules shared between local and CI scans; avoid weakening this config unless there is a clear, documented justification.
 
+## Validation (zod)
+
+This project uses [zod](https://zod.dev/) for runtime validation and type inference.
+A central helper is defined in `src/lib/validation/zod.ts`. When adding schemas for
+env, loaders, or forms, import `z` from there:
+
+```ts
+import { z } from "@/lib/validation/zod";
+```
+
 KEEP BELOW FOR NOW
 
 Welcome to your new TanStack app!

@@ -1,5 +1,19 @@
 entries:
   - date: "2025-11-24"
+    version: 0.0.1.6
+    issue: "#2 https://github.com/BallLightningAB/thebuildercoil/issues/2"
+    commit: tbd
+    status: done
+    title: "chore(deps): install zod + ultracite and refresh tooling stack"
+    details: |-
+      - Install Ultracite and upgrade Biome to 2.3.7
+      - Initialize Ultracite configuration (biome.json, tsconfig, editor/editorconfig)
+      - Add zod as a shared validation dependency and central helper at src/lib/validation/zod.ts
+      - Refresh TanStack, Tailwind, TypeScript, devtools, and related tooling to latest compatible versions
+
+      Refs: v0.0.1.6 #2 closing #2
+
+  - date: "2025-11-24"
     version: 0.0.1.5
     issue: "#1 https://github.com/BallLightningAB/thebuildercoil/issues/1"
     commit: tbd
