@@ -1,0 +1,26 @@
+version: 1
+updates:
+  - package-ecosystem: 'pnpm'
+    directory: '/'
+    schedule:
+      interval: 'weekly'
+      day: 'monday'
+      time: '07:00'
+      timezone: 'UTC'
+    labels:
+      - 'type: dependency'
+      - 'status: planned'
+    open-pull-requests-limit: 5
+    allow:
+      - dependency-type: 'development'
+    groups:
+      dev-deps:
+        patterns:
+          - '*'
+        dependency-type: 'development'
+        update-types:
+          - 'minor'
+          - 'patch'
+    commit-message:
+      prefix: 'chore(deps)'
+      include: 'scope'
