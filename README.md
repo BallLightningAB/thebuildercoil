@@ -19,6 +19,14 @@ https://thebuildercoil.com
 
 © 2025 Nicolas Brulay / Ball Lightning AB
 
+## Security baseline
+
+The Builder Coil treats secret leakage as a first-class concern:
+
+- **Local pre-commit hooks**: `detect-private-key` and `gitleaks protect` run on every `git commit` via `.pre-commit-config.yaml`. Before committing, install `pre-commit` and `gitleaks` globally and run `pre-commit install` in this repo.
+- **CI secret scanning**: The GitHub Actions workflow `.github/workflows/secret-scan.yml` runs Gitleaks on pushes and pull requests to `main`, uploading results to the repository’s Security tab.
+- **Shared configuration**: `gitleaks.toml` centralizes allowlists and rules shared between local and CI scans; avoid weakening this config unless there is a clear, documented justification.
+
 KEEP BELOW FOR NOW
 
 Welcome to your new TanStack app!
