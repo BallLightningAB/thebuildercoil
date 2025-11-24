@@ -1,4 +1,27 @@
-Welcome to your new TanStack app! 
+The Builder Coil is the public builder’s log of Nicolas Brulay/Ball Lightning AB, documenting the journey of this small agentic development studio.
+This includes the creation of Chronomation.
+
+🌀 Vision
+Chronomation is a multi-tenant content engine that turns raw work artifacts (commits, notes, emails, etc.) into structured blog posts and social content for SMBs, creators, and influencers.
+
+The Builder Coil (TBC) is the first tenant and public case study: a builder’s log for Ball Lightning AB, powered by Chronomation’s APIs.
+
+🎯 Purpose
+The Builder Coil serves two main goals:
+Transparency & Community – Share the journey of Ball Lightning AB.
+Product Dogfooding – Test and showcase Chronomation in a real-world, production setting.
+
+🧠 Tech Stack
+Tanstack Start, TailwindCSS, Shadcn UI, Biome + Ultracite
+
+🌐 Domain
+https://thebuildercoil.com
+
+© 2025 Nicolas Brulay / Ball Lightning AB
+
+KEEP BELOW FOR NOW
+
+Welcome to your new TanStack app!
 
 # Getting Started
 
@@ -29,18 +52,15 @@ pnpm test
 
 This project uses [Tailwind CSS](https://tailwindcss.com/) for styling.
 
-
 ## Linting & Formatting
 
 This project uses [Biome](https://biomejs.dev/) for linting and formatting. The following scripts are available:
-
 
 ```bash
 pnpm lint
 pnpm format
 pnpm check
 ```
-
 
 ## Shadcn
 
@@ -50,9 +70,8 @@ Add components using the latest version of [Shadcn](https://ui.shadcn.com/).
 pnpx shadcn@latest add button
 ```
 
-
-
 ## Routing
+
 This project uses [TanStack Router](https://tanstack.com/router). The initial setup is a file based router. Which means that the routes are managed as files in `src/routes`.
 
 ### Adding A Route
@@ -88,8 +107,8 @@ In the File Based Routing setup the layout is located in `src/routes/__root.tsx`
 Here is an example layout that includes a header:
 
 ```tsx
-import { Outlet, createRootRoute } from '@tanstack/react-router'
-import { TanStackRouterDevtools } from '@tanstack/react-router-devtools'
+import { Outlet, createRootRoute } from "@tanstack/react-router";
+import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
 
 import { Link } from "@tanstack/react-router";
 
@@ -106,13 +125,12 @@ export const Route = createRootRoute({
       <TanStackRouterDevtools />
     </>
   ),
-})
+});
 ```
 
 The `<TanStackRouterDevtools />` component is not required so you can remove it if you don't want it in your layout.
 
 More information on layouts can be found in the [Layouts documentation](https://tanstack.com/router/latest/docs/framework/react/guide/routing-concepts#layouts).
-
 
 ## Data Fetching
 
