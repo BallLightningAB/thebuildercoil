@@ -1,8 +1,22 @@
 entries:
   - date: "2025-11-25"
-    version: 0.0.1.7
+    version: 0.0.1.8
     issue: "#1 https://github.com/BallLightningAB/thebuildercoil/issues/1"
     commit: tbd
+    status: done
+    title: "chore(workflow): align Biome, Tailwind, and commitprocess pipeline"
+    details: |-
+      - Configure Biome as the primary formatter and linter for JS/TS/JSON/CSS in the workspace
+      - Suppress false-positive CSS at-rule warnings for Tailwind v4 directives in the IDE
+      - Remove unused demo-related dependencies and tidy the Tailwind/TanStack toolchain
+      - Update the commitprocess workflow to run pre-commit, pnpm format, and pnpm lint across the full repo
+
+      Refs: v0.0.1.8 #1
+
+  - date: "2025-11-25"
+    version: 0.0.1.7
+    issue: "#1 https://github.com/BallLightningAB/thebuildercoil/issues/1"
+    commit: 7380c8e
     status: done
     title: "chore(start): remove TanStack demo and simplify starter shell"
     details: |-

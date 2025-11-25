@@ -9,10 +9,5 @@
   "packageManager": "pnpm",
   "version": 1,
   "framework": "react-cra",
-  "chosenAddOns": [
-    "shadcn",
-    "start",
-    "biome",
-    "nitro"
-  ]
+  "chosenAddOns": ["shadcn", "start", "biome", "nitro"]
 }

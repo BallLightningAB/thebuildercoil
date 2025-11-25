@@ -38,8 +38,5 @@
       "quoteStyle": "double"
     }
   },
-  "extends": [
-    "ultracite/core",
-    "ultracite/remix"
-  ]
+  "extends": ["ultracite/core", "ultracite/remix"]
 }
