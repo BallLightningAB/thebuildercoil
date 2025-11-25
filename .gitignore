@@ -41,3 +41,6 @@ favor.yaml
 
 # Admin
 admin/
+
+# Newsletter PII data (Phase 1 JSON storage)
+content/newsletter/subscribers.json

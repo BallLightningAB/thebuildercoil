@@ -2,18 +2,28 @@ entries:
   - date: "2025-11-25"
     version: 0.1.0
     issue: "#3 https://github.com/BallLightningAB/thebuildercoil/issues/3"
-    commit: tbd
+    commit: d4e6021
     status: in-progress
-    title: "docs(specs): create implementation plan for TBC site Phase 1"
+    title: "feat(site): Implement Phase 1 of The Builder Coil site"
     details: |-
+      Implementation work (4338d9b):
+      - Add .env.example with environment variables documentation
+      - Install dependencies: marked, reading-time, resend, shadcn components
+      - Create theme provider with dark/light/system mode support
+      - Build content system: types, Zod schemas, JSON loaders for blog/news
+      - Create layout components: Header with nav, Footer with links
+      - Build page routes: home, blog (index + detail), news (index + detail), about, contact, newsletter
+      - Add sample content: 3 blog posts, 1 news post
+      - Configure Google Fonts (Montserrat, Lora, JetBrains Mono)
+      - Add @tailwindcss/typography for prose styling
+      - Update root route with SEO meta tags and ThemeProvider
+      
+      Planning work (86bb60a):
       - Create full implementation plan at specs/current-changes/issue-003-build-tbc-site-phase1.yaml
       - Add separate newsletter implementation plan at specs/current-changes/newsletter-the-upkeep-implementation.yaml
       - Integrate newsletter (The Upkeep) into Phase 1 plan with JSON-based signup + double opt-in
-      - Add environment_variables section and .env template (APP_BASE_URL_TBC, NEWSLETTER_SECRET, Resend config)
-      - Update src/styles.css with TBC brand colors from PDD (void/cream theme, teal/violet accents)
-      - Configure typography (Montserrat, Lora, JetBrains Mono)
-      - Add TBC brand color utilities (tbc-teal, tbc-violet, tbc-ember, tbc-cream)
-      - Create GitHub Issue #3 plus Phase 1/Phase 2 milestones and assign Issue #3 to the Phase 1 milestone
+      - Add environment_variables section and .env template
+      - Create GitHub Issue #3 plus Phase 1/Phase 2 milestones
 
       Refs: v0.1.0 #3
 

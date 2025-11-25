@@ -1,0 +1,16 @@
+{
+  "id": "news-001",
+  "slug": "site-launch",
+  "title": "The Builder Coil is Live!",
+  "type": "news",
+  "summary": "After weeks of development, The Builder Coil is officially live. Here's what's included in our initial launch and what's coming next.",
+  "body": "# The Builder Coil is Live!\n\nWe're excited to announce that **The Builder Coil** is officially live! 🎉\n\n## What's Included\n\n### Blog\nA fully-featured blog with:\n- Dark and light mode support\n- Mobile-responsive design\n- SEO-optimized pages\n- Tag-based organization\n\n### Newsletter\nSubscribe to **The Upkeep** to get updates delivered to your inbox. We've implemented GDPR-compliant double opt-in.\n\n### About & Contact\nLearn more about Ball Lightning AB and get in touch through our contact form.\n\n## Tech Stack\n\n- **Framework**: TanStack Start\n- **Styling**: Tailwind CSS + shadcn/ui\n- **Content**: Local JSON (Phase 1), Chronomation API (Phase 2)\n- **Email**: Resend\n\n## What's Next\n\nPhase 2 will integrate The Builder Coil with Chronomation, our content engine, enabling:\n\n- Dynamic content from the API\n- Automated post generation\n- Social sharing\n\nThank you for being here at the beginning. Let's build something great together! 🌀",
+  "bodyIsMarkdown": true,
+  "tags": ["announcement", "launch"],
+  "author": "Nicolas Brulay",
+  "status": "published",
+  "publishedAt": "2025-11-25T13:00:00.000Z",
+  "createdAt": "2025-11-25T11:00:00.000Z",
+  "updatedAt": "2025-11-25T13:00:00.000Z",
+  "readingTime": 2
+}

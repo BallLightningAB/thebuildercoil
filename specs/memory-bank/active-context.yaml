@@ -27,7 +27,8 @@ guardrails:
           - Implement blog index and detail pages
           - Implement news section
           - Implement about and contact pages
-          - Set up local markdown content system
+          - Set up local JSON content system for posts
+          - Implement newsletter signup with double opt-in (The Upkeep)
           - Configure SEO, meta tags, and sitemap
         est:
           dev_h: 24

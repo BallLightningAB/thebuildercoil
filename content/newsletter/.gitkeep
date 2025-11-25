@@ -1,0 +1,2 @@
+# This directory stores newsletter subscriber data (JSON)
+# subscribers.json is gitignored as it contains PII

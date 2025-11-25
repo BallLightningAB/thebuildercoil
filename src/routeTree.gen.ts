@@ -9,38 +9,147 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as NewsletterIndexRouteImport } from './routes/newsletter/index'
+import { Route as NewsIndexRouteImport } from './routes/news/index'
+import { Route as BlogIndexRouteImport } from './routes/blog/index'
+import { Route as NewsSlugRouteImport } from './routes/news/$slug'
+import { Route as BlogSlugRouteImport } from './routes/blog/$slug'
 
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const NewsletterIndexRoute = NewsletterIndexRouteImport.update({
+  id: '/newsletter/',
+  path: '/newsletter/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NewsIndexRoute = NewsIndexRouteImport.update({
+  id: '/news/',
+  path: '/news/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogIndexRoute = BlogIndexRouteImport.update({
+  id: '/blog/',
+  path: '/blog/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NewsSlugRoute = NewsSlugRouteImport.update({
+  id: '/news/$slug',
+  path: '/news/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogSlugRoute = BlogSlugRouteImport.update({
+  id: '/blog/$slug',
+  path: '/blog/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
+  '/blog/$slug': typeof BlogSlugRoute
+  '/news/$slug': typeof NewsSlugRoute
+  '/blog': typeof BlogIndexRoute
+  '/news': typeof NewsIndexRoute
+  '/newsletter': typeof NewsletterIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
+  '/blog/$slug': typeof BlogSlugRoute
+  '/news/$slug': typeof NewsSlugRoute
+  '/blog': typeof BlogIndexRoute
+  '/news': typeof NewsIndexRoute
+  '/newsletter': typeof NewsletterIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
+  '/blog/$slug': typeof BlogSlugRoute
+  '/news/$slug': typeof NewsSlugRoute
+  '/blog/': typeof BlogIndexRoute
+  '/news/': typeof NewsIndexRoute
+  '/newsletter/': typeof NewsletterIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/blog/$slug'
+    | '/news/$slug'
+    | '/blog'
+    | '/news'
+    | '/newsletter'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/blog/$slug'
+    | '/news/$slug'
+    | '/blog'
+    | '/news'
+    | '/newsletter'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/blog/$slug'
+    | '/news/$slug'
+    | '/blog/'
+    | '/news/'
+    | '/newsletter/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
+  ContactRoute: typeof ContactRoute
+  BlogSlugRoute: typeof BlogSlugRoute
+  NewsSlugRoute: typeof NewsSlugRoute
+  BlogIndexRoute: typeof BlogIndexRoute
+  NewsIndexRoute: typeof NewsIndexRoute
+  NewsletterIndexRoute: typeof NewsletterIndexRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,11 +157,53 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/newsletter/': {
+      id: '/newsletter/'
+      path: '/newsletter'
+      fullPath: '/newsletter'
+      preLoaderRoute: typeof NewsletterIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/news/': {
+      id: '/news/'
+      path: '/news'
+      fullPath: '/news'
+      preLoaderRoute: typeof NewsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/': {
+      id: '/blog/'
+      path: '/blog'
+      fullPath: '/blog'
+      preLoaderRoute: typeof BlogIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/news/$slug': {
+      id: '/news/$slug'
+      path: '/news/$slug'
+      fullPath: '/news/$slug'
+      preLoaderRoute: typeof NewsSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/$slug': {
+      id: '/blog/$slug'
+      path: '/blog/$slug'
+      fullPath: '/blog/$slug'
+      preLoaderRoute: typeof BlogSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
+  ContactRoute: ContactRoute,
+  BlogSlugRoute: BlogSlugRoute,
+  NewsSlugRoute: NewsSlugRoute,
+  BlogIndexRoute: BlogIndexRoute,
+  NewsIndexRoute: NewsIndexRoute,
+  NewsletterIndexRoute: NewsletterIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
