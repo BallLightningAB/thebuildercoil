@@ -2,11 +2,11 @@ entries:
   - date: "2025-11-25"
     version: 0.1.0
     issue: "#3 https://github.com/BallLightningAB/thebuildercoil/issues/3"
-    commit: d4e6021
+    commit: 72f4222
     status: in-progress
     title: "feat(site): Implement Phase 1 of The Builder Coil site"
     details: |-
-      Implementation work (4338d9b):
+      Implementation work (72f4222):
       - Add .env.example with environment variables documentation
       - Install dependencies: marked, reading-time, resend, shadcn components
       - Create theme provider with dark/light/system mode support
