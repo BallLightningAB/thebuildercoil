@@ -1,93 +1,201 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
 @custom-variant dark (&:is(.dark *));
+
+/* =============================================================================
+   The Builder Coil – Brand Styling
+   Based on: specs/memory-bank/pdd-thebuildercoil.yaml → design.brands.the_builder_coil
+   ============================================================================= */
+
+/* Typography: Montserrat (sans), Lora (serif), JetBrains Mono (mono) */
+/* Note: Add font imports when ready (Google Fonts or self-hosted) */
 
 body {
   @apply m-0;
   font-family:
-    -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
-    'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    Montserrat,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
   font-family:
-    source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+    "JetBrains Mono",
+    ui-monospace,
+    SFMono-Regular,
+    Menlo,
+    Monaco,
+    Consolas,
+    "Liberation Mono",
+    "Courier New",
+    monospace;
 }
+
+/* Headings H1-H2 use Lora (grimoire feel) */
+h1,
+h2,
+.font-serif {
+  font-family:
+    Lora,
+    "Times New Roman",
+    ui-serif,
+    Georgia,
+    serif;
+}
+
+/* =============================================================================
+   Light Mode (Cream Base)
+   - Background: #F5E6D3 (cream)
+   - Foreground: #111827 (dark ink)
+   ============================================================================= */
 
 :root {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.141 0.005 285.823);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.141 0.005 285.823);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.141 0.005 285.823);
-  --primary: oklch(0.21 0.006 285.885);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.967 0.001 286.375);
-  --secondary-foreground: oklch(0.21 0.006 285.885);
-  --muted: oklch(0.967 0.001 286.375);
-  --muted-foreground: oklch(0.552 0.016 285.938);
-  --accent: oklch(0.967 0.001 286.375);
-  --accent-foreground: oklch(0.21 0.006 285.885);
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.577 0.245 27.325);
-  --border: oklch(0.92 0.004 286.32);
-  --input: oklch(0.92 0.004 286.32);
-  --ring: oklch(0.871 0.006 286.286);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
+  /* Core backgrounds */
+  --background: #f5e6d3;
+  --foreground: #111827;
+
+  /* Card / elevated surfaces */
+  --card: #f9f3e8;
+  --card-foreground: #111827;
+
+  /* Popover */
+  --popover: #f9f3e8;
+  --popover-foreground: #111827;
+
+  /* Primary action (dark ink on cream) */
+  --primary: #111827;
+  --primary-foreground: #f5e6d3;
+
+  /* Secondary */
+  --secondary: #e5ddd0;
+  --secondary-foreground: #111827;
+
+  /* Muted */
+  --muted: #e5ddd0;
+  --muted-foreground: #4b5563;
+
+  /* Accent – teal for light mode */
+  --accent: #12b8c4;
+  --accent-foreground: #111827;
+
+  /* TBC Brand Colors */
+  --tbc-teal: #23f0ff;
+  --tbc-teal-hover: #4ff6ff;
+  --tbc-violet: #8b5cff;
+  --tbc-violet-hover: #a78bfa;
+  --tbc-ember: #c05621;
+  --tbc-cream: #f5e6d3;
+  --tbc-cream-soft: #f9f3e8;
+
+  /* Destructive */
+  --destructive: #b91c1c;
+  --destructive-foreground: #fef2f2;
+
+  /* Border / Input */
+  --border: #d4c9b8;
+  --input: #d4c9b8;
+  --ring: #8b5cff;
+
+  /* Chart colors */
+  --chart-1: #23f0ff;
+  --chart-2: #8b5cff;
+  --chart-3: #c05621;
+  --chart-4: #15803d;
+  --chart-5: #b45309;
+
+  /* Radius */
   --radius: 0.625rem;
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.141 0.005 285.823);
-  --sidebar-primary: oklch(0.21 0.006 285.885);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.967 0.001 286.375);
-  --sidebar-accent-foreground: oklch(0.21 0.006 285.885);
-  --sidebar-border: oklch(0.92 0.004 286.32);
-  --sidebar-ring: oklch(0.871 0.006 286.286);
+
+  /* Sidebar (if used) */
+  --sidebar: #f9f3e8;
+  --sidebar-foreground: #111827;
+  --sidebar-primary: #111827;
+  --sidebar-primary-foreground: #f5e6d3;
+  --sidebar-accent: #e5ddd0;
+  --sidebar-accent-foreground: #111827;
+  --sidebar-border: #d4c9b8;
+  --sidebar-ring: #8b5cff;
 }
 
+/* =============================================================================
+   Dark Mode (Void Base)
+   - Background: #05070A (void)
+   - Foreground: #E5E7EB (body text)
+   - Headings: #F5E6D3 (cream)
+   ============================================================================= */
+
 .dark {
-  --background: oklch(0.141 0.005 285.823);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.141 0.005 285.823);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.141 0.005 285.823);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.985 0 0);
-  --primary-foreground: oklch(0.21 0.006 285.885);
-  --secondary: oklch(0.274 0.006 286.033);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.274 0.006 286.033);
-  --muted-foreground: oklch(0.705 0.015 286.067);
-  --accent: oklch(0.274 0.006 286.033);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.396 0.141 25.723);
-  --destructive-foreground: oklch(0.637 0.237 25.331);
-  --border: oklch(0.274 0.006 286.033);
-  --input: oklch(0.274 0.006 286.033);
-  --ring: oklch(0.442 0.017 285.786);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.21 0.006 285.885);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.274 0.006 286.033);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(0.274 0.006 286.033);
-  --sidebar-ring: oklch(0.442 0.017 285.786);
+  /* Core backgrounds – void */
+  --background: #05070a;
+  --foreground: #e5e7eb;
+
+  /* Card / elevated surfaces */
+  --card: #0a1014;
+  --card-foreground: #e5e7eb;
+
+  /* Popover */
+  --popover: #0a1014;
+  --popover-foreground: #e5e7eb;
+
+  /* Primary action (cream on void) */
+  --primary: #f5e6d3;
+  --primary-foreground: #05070a;
+
+  /* Secondary */
+  --secondary: #111827;
+  --secondary-foreground: #e5e7eb;
+
+  /* Muted */
+  --muted: #111827;
+  --muted-foreground: #9ca3af;
+
+  /* Accent – teal for dark mode */
+  --accent: #23f0ff;
+  --accent-foreground: #05070a;
+
+  /* TBC Brand Colors (same as light, but some may shift) */
+  --tbc-teal: #23f0ff;
+  --tbc-teal-hover: #4ff6ff;
+  --tbc-violet: #8b5cff;
+  --tbc-violet-hover: #a78bfa;
+  --tbc-ember: #ffdca8;
+  --tbc-cream: #f5e6d3;
+  --tbc-cream-soft: #f9f3e8;
+
+  /* Destructive */
+  --destructive: #f97373;
+  --destructive-foreground: #05070a;
+
+  /* Border / Input – subtle slate */
+  --border: rgba(148, 163, 184, 0.35);
+  --input: rgba(148, 163, 184, 0.35);
+  --ring: #8b5cff;
+
+  /* Chart colors */
+  --chart-1: #23f0ff;
+  --chart-2: #8b5cff;
+  --chart-3: #ffdca8;
+  --chart-4: #4ade80;
+  --chart-5: #fbbf24;
+
+  /* Sidebar */
+  --sidebar: #0a1014;
+  --sidebar-foreground: #e5e7eb;
+  --sidebar-primary: #23f0ff;
+  --sidebar-primary-foreground: #05070a;
+  --sidebar-accent: #111827;
+  --sidebar-accent-foreground: #e5e7eb;
+  --sidebar-border: rgba(148, 163, 184, 0.35);
+  --sidebar-ring: #8b5cff;
 }
 
 @theme inline {
+  /* Core colors */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -107,15 +215,30 @@ code {
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
+
+  /* TBC Brand Colors (available as bg-tbc-teal, text-tbc-violet, etc.) */
+  --color-tbc-teal: var(--tbc-teal);
+  --color-tbc-teal-hover: var(--tbc-teal-hover);
+  --color-tbc-violet: var(--tbc-violet);
+  --color-tbc-violet-hover: var(--tbc-violet-hover);
+  --color-tbc-ember: var(--tbc-ember);
+  --color-tbc-cream: var(--tbc-cream);
+  --color-tbc-cream-soft: var(--tbc-cream-soft);
+
+  /* Chart colors */
   --color-chart-1: var(--chart-1);
   --color-chart-2: var(--chart-2);
   --color-chart-3: var(--chart-3);
   --color-chart-4: var(--chart-4);
   --color-chart-5: var(--chart-5);
+
+  /* Radius */
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+
+  /* Sidebar */
   --color-sidebar: var(--sidebar);
   --color-sidebar-foreground: var(--sidebar-foreground);
   --color-sidebar-primary: var(--sidebar-primary);
@@ -124,6 +247,13 @@ code {
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+
+  /* Typography font families */
+  --font-sans: Montserrat, system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
+  --font-serif: Lora, "Times New Roman", ui-serif, Georgia, serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco,
+    Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
 @layer base {
@@ -132,5 +262,11 @@ code {
   }
   body {
     @apply bg-background text-foreground;
+  }
+
+  /* Dark mode heading colors – cream for emphasis */
+  .dark h1,
+  .dark h2 {
+    color: var(--tbc-cream);
   }
 }

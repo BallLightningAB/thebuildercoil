@@ -1,5 +1,5 @@
 meta:
-  release: 0.0.1.8
+  release: 0.1.0
   repo: github.com/BallLightningAB/thebuildercoil
   pdd_version: "v0.1"
   current_changes: see specs/current-changes/
@@ -10,8 +10,36 @@ guardrails:
     pdd: specs/pdd-thebuildercoil.yaml
     changelog: specs/CHANGELOG.yaml
   roadmap:
-    current: []
-    next_steps: []
+    current:
+      - id: build-tbc-site-phase1
+        issue: "#3"
+        title: "Build The Builder Coil Site – Phase 1 (Manual Blog)"
+        status: in-progress
+        links:
+          issue: https://github.com/BallLightningAB/thebuildercoil/issues/3
+          pr: ""
+        deliverables:
+          - Configure TBC brand colors and typography in styles.css
+          - Install and configure dark/light mode with shadcn theme provider
+          - Install Kibo UI theme-switcher
+          - Create shared layout (header, footer)
+          - Implement home page with hero and featured posts
+          - Implement blog index and detail pages
+          - Implement news section
+          - Implement about and contact pages
+          - Set up local markdown content system
+          - Configure SEO, meta tags, and sitemap
+        est:
+          dev_h: 24
+          test_h: 4
+        progress_log:
+          - Created implementation plan (specs/current-changes/issue-003-build-tbc-site-phase1.yaml)
+          - Updated styles.css with TBC brand colors from PDD
+    next_steps:
+      - id: chronomation-integration
+        issue: "#TBD"
+        title: "Integrate with Chronomation API (Phase 2)"
+        status: planned
     recent_done:
       - id: Project initialization using the Tanstack Start Builder
         issue: "#1"

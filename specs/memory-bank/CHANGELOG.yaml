@@ -1,8 +1,26 @@
 entries:
   - date: "2025-11-25"
+    version: 0.1.0
+    issue: "#3 https://github.com/BallLightningAB/thebuildercoil/issues/3"
+    commit: tbd
+    status: in-progress
+    title: "docs(specs): create implementation plan for TBC site Phase 1"
+    details: |-
+      - Create full implementation plan at specs/current-changes/issue-003-build-tbc-site-phase1.yaml
+      - Add separate newsletter implementation plan at specs/current-changes/newsletter-the-upkeep-implementation.yaml
+      - Integrate newsletter (The Upkeep) into Phase 1 plan with JSON-based signup + double opt-in
+      - Add environment_variables section and .env template (APP_BASE_URL_TBC, NEWSLETTER_SECRET, Resend config)
+      - Update src/styles.css with TBC brand colors from PDD (void/cream theme, teal/violet accents)
+      - Configure typography (Montserrat, Lora, JetBrains Mono)
+      - Add TBC brand color utilities (tbc-teal, tbc-violet, tbc-ember, tbc-cream)
+      - Create GitHub Issue #3 plus Phase 1/Phase 2 milestones and assign Issue #3 to the Phase 1 milestone
+
+      Refs: v0.1.0 #3
+
+  - date: "2025-11-25"
     version: 0.0.1.8
     issue: "#1 https://github.com/BallLightningAB/thebuildercoil/issues/1"
-    commit: tbd
+    commit: e2df4ab
     status: done
     title: "chore(workflow): align Biome, Tailwind, and commitprocess pipeline"
     details: |-

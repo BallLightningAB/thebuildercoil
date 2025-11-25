@@ -1,0 +1,654 @@
+# =============================================================================
+# Implementation Plan: Newsletter Module – "The Upkeep"
+# =============================================================================
+# Parent Issue: #3 – Build The Builder Coil Site
+# Plan Version: 1.0.0
+# Plan Status: draft
+# Created: 2025-11-25
+# Updated: 2025-11-25
+# =============================================================================
+#
+# Plan Changelog:
+#   1.0.0 (2025-11-25) – Initial detailed plan
+#     - Phase 1: TBC-only with JSON storage (signup + double opt-in)
+#     - Phase 2: Chronomation multi-tenant API with Neon storage
+#     - Resend as single email provider for all tenants
+#
+# =============================================================================
+
+meta:
+  title: "Newsletter Module – The Upkeep"
+  description: |
+    Two-phase implementation of the newsletter system:
+    
+    - **Phase 1:** TBC-only, signups stored in JSON. No newsletter issues sent;
+      only double opt-in confirmation emails.
+    - **Phase 2:** Full newsletter module inside Chronomation, storing data in
+      Neon with multi-tenant support, handling actual newsletter sending.
+    
+    Uses TanStack Start (React 19 + TS + Vite) everywhere, no Next.js.
+  parent_plan: "specs/current-changes/issue-003-build-tbc-site-phase1.yaml"
+
+# =============================================================================
+# SYSTEM ROLES
+# =============================================================================
+
+system_roles:
+  the_builder_coil:
+    description: |
+      Public blog/devlog site. Hosts the newsletter signup UI and confirmation
+      pages for "The Upkeep".
+    phase_1_role: "Writes to JSON storage only"
+    phase_2_role: "Thin client calling Chronomation's newsletter API"
+
+  chronomation:
+    description: |
+      Backend SaaS platform. Owns newsletter data, multi-tenant logic, and
+      actual sending of newsletter issues.
+    phase_1_role: "Not involved"
+    phase_2_role: "Owns newsletter data and sending for all tenants"
+
+  resend:
+    description: |
+      Single email provider for all tenants. One global Resend account + API key
+      owned by Chronomation. Tenants do NOT need their own Resend accounts.
+    usage:
+      - "Double opt-in confirmation emails (Phase 1 & 2)"
+      - "Sending newsletter content (Phase 2+)"
+
+# =============================================================================
+# ENVIRONMENT VARIABLES
+# =============================================================================
+
+environment_variables:
+  phase_1_tbc:
+    description: "Required for TBC Phase 1 newsletter"
+    variables:
+      - key: "RESEND_API_KEY"
+        purpose: "Global Resend key (Chronomation-owned, shared)"
+        obtain: "https://resend.com/api-keys"
+
+      - key: "RESEND_FROM_EMAIL"
+        value: "The Builder Coil <newsletter@thebuildercoil.com>"
+        purpose: "From address for confirmation emails"
+        note: "Must verify domain in Resend first"
+
+      - key: "APP_BASE_URL_TBC"
+        value: "https://thebuildercoil.com"
+        purpose: "Base URL for confirmation links"
+
+      - key: "NEWSLETTER_SECRET"
+        purpose: "Long random string for signing tokens (optional but recommended)"
+        generate: "openssl rand -base64 32"
+
+  phase_2_chronomation:
+    description: "Additional vars for Chronomation multi-tenant"
+    variables:
+      - key: "APP_BASE_URL_CHRONO"
+        value: "https://app.chronomation.com"
+        purpose: "Chronomation app base URL"
+
+      - key: "CHRONO_TENANT_ID_TBC"
+        purpose: "Tenant ID for TBC inside Chronomation"
+        note: "Generated when TBC tenant is seeded"
+
+# =============================================================================
+# PHASE 1 – TBC ONLY, JSON-BASED STORAGE
+# =============================================================================
+
+phase_1:
+  summary: |
+    Implement newsletter signup + double opt-in on TBC.
+    Store subscriber data in JSON. Do NOT implement newsletter issue sending yet.
+    No multi-tenant logic; everything is implicitly "for TBC".
+
+  # ---------------------------------------------------------------------------
+  # Data Model (JSON)
+  # ---------------------------------------------------------------------------
+  data_model:
+    storage_location: "content/newsletter/subscribers.json"
+    gitignore: true  # Contains PII, do not commit
+    
+    schema: |
+      interface SignupRecord {
+        email: string;
+        status: "pending" | "confirmed" | "unsubscribed";
+        confirmationToken: string;
+        unsubToken?: string;
+        meta: {
+          source: string;           // e.g. "tbc_blog_form", "footer_cta"
+          userAgent?: string;
+          ip?: string;
+          createdFromPath?: string; // e.g. "/newsletter"
+          notes?: string;
+        };
+        createdAt: string;          // ISO 8601
+        confirmedAt: string | null;
+        unsubscribedAt: string | null;
+      }
+    
+    example: |
+      [
+        {
+          "email": "user@example.com",
+          "status": "pending",
+          "confirmationToken": "550e8400-e29b-41d4-a716-446655440000",
+          "unsubToken": "660e8400-e29b-41d4-a716-446655440001",
+          "meta": {
+            "source": "tbc_blog_form",
+            "userAgent": "Mozilla/5.0...",
+            "ip": "192.168.1.1",
+            "createdFromPath": "/newsletter"
+          },
+          "createdAt": "2025-11-25T12:00:00.000Z",
+          "confirmedAt": null,
+          "unsubscribedAt": null
+        }
+      ]
+
+  # ---------------------------------------------------------------------------
+  # Storage Utilities
+  # ---------------------------------------------------------------------------
+  storage_utilities:
+    description: |
+      Wrap all I/O in utility functions for easy migration to Neon later.
+    
+    file: "src/lib/newsletter/storage.ts"
+    
+    functions:
+      - name: "loadNewsletterSignups"
+        signature: "(): Promise<SignupRecord[]>"
+        description: "Load all signup records from JSON file"
+        
+      - name: "saveNewsletterSignups"
+        signature: "(records: SignupRecord[]): Promise<void>"
+        description: "Atomically write all records back to JSON file"
+        
+      - name: "findByEmail"
+        signature: "(email: string): Promise<SignupRecord | null>"
+        description: "Find a record by email"
+        
+      - name: "findByToken"
+        signature: "(token: string, type: 'confirmation' | 'unsub'): Promise<SignupRecord | null>"
+        description: "Find a record by confirmation or unsub token"
+        
+      - name: "upsertSignup"
+        signature: "(email: string, data: Partial<SignupRecord>): Promise<SignupRecord>"
+        description: "Create or update a signup record"
+
+  # ---------------------------------------------------------------------------
+  # Routes (TanStack Start)
+  # ---------------------------------------------------------------------------
+  routes:
+    signup_page:
+      path: "/newsletter"
+      file: "src/routes/newsletter.tsx"
+      purpose: "Newsletter signup form"
+      
+      ui_components:
+        - "Email input (required)"
+        - "Name input (optional)"
+        - "Consent checkbox: 'I agree to receive emails from The Builder Coil'"
+        - "Submit button with loading state"
+        - "Success message: 'Check your inbox to confirm your subscription.'"
+        - "Error handling for invalid email, already subscribed, etc."
+      
+      server_action_steps:
+        - step: "Validate email format and consent checkbox"
+          error: "Return validation error if invalid"
+          
+        - step: "Generate tokens"
+          code: |
+            const confirmationToken = crypto.randomUUID();
+            const unsubToken = crypto.randomUUID();
+          
+        - step: "Load existing records"
+          code: "const records = await loadNewsletterSignups();"
+          
+        - step: "Upsert record"
+          logic: |
+            - If no existing record for email:
+              - Push new record with status = "pending", tokens, meta, timestamps
+            - If record exists with status = "unsubscribed" or "confirmed":
+              - Regenerate token, set status = "pending", update meta & timestamps
+          
+        - step: "Save records"
+          code: "await saveNewsletterSignups(records);"
+          
+        - step: "Send double opt-in email via Resend"
+          code: |
+            import { Resend } from 'resend';
+            
+            const resend = new Resend(process.env.RESEND_API_KEY);
+            const confirmUrl = `${process.env.APP_BASE_URL_TBC}/newsletter/confirm?token=${confirmationToken}`;
+            
+            await resend.emails.send({
+              from: process.env.RESEND_FROM_EMAIL,
+              to: email,
+              subject: "Confirm your subscription to The Upkeep",
+              html: `
+                <h1>Welcome to The Upkeep!</h1>
+                <p>Click the link below to confirm your subscription:</p>
+                <a href="${confirmUrl}">Confirm Subscription</a>
+                <p>If you didn't sign up, you can ignore this email.</p>
+              `
+            });
+          
+        - step: "Return success response"
+          code: "return { success: true, message: 'Check your inbox to confirm.' };"
+
+    confirm_page:
+      path: "/newsletter/confirm"
+      file: "src/routes/newsletter/confirm.tsx"
+      purpose: "Double opt-in confirmation"
+      
+      server_steps:
+        - step: "Read token from query string"
+          code: "const { token } = search;"
+          
+        - step: "Load records and find by token"
+          code: |
+            const records = await loadNewsletterSignups();
+            const record = records.find(r => r.confirmationToken === token);
+          
+        - step: "Handle not found"
+          condition: "!record"
+          render: "Invalid or expired confirmation link"
+          
+        - step: "Handle already confirmed"
+          condition: "record.status === 'confirmed'"
+          render: "You're already subscribed to The Upkeep!"
+          
+        - step: "Confirm subscription"
+          condition: "record.status === 'pending'"
+          code: |
+            record.status = 'confirmed';
+            record.confirmedAt = new Date().toISOString();
+            await saveNewsletterSignups(records);
+          render: "You're now subscribed to The Upkeep! 🌀"
+
+    unsubscribe_page:
+      path: "/newsletter/unsubscribe"
+      file: "src/routes/newsletter/unsubscribe.tsx"
+      purpose: "Unsubscribe from newsletter"
+      
+      server_steps:
+        - step: "Read token from query string"
+          code: "const { token } = search;"
+          
+        - step: "Load records and find by unsub token"
+          code: |
+            const records = await loadNewsletterSignups();
+            const record = records.find(r => r.unsubToken === token);
+          
+        - step: "Handle not found"
+          condition: "!record"
+          render: "Invalid unsubscribe link"
+          
+        - step: "Handle already unsubscribed"
+          condition: "record.status === 'unsubscribed'"
+          render: "You're already unsubscribed."
+          
+        - step: "Unsubscribe"
+          code: |
+            record.status = 'unsubscribed';
+            record.unsubscribedAt = new Date().toISOString();
+            await saveNewsletterSignups(records);
+          render: "You've been unsubscribed from The Upkeep."
+
+  # ---------------------------------------------------------------------------
+  # Email Templates
+  # ---------------------------------------------------------------------------
+  email_templates:
+    confirmation:
+      subject: "Confirm your subscription to The Upkeep"
+      from: "${RESEND_FROM_EMAIL}"
+      template_file: "src/lib/newsletter/emails/confirmation.tsx"
+      content_outline: |
+        - The Upkeep branding (🌀 emoji)
+        - "Engineering card advantage in real life" tagline
+        - Clear CTA button: "Confirm Subscription"
+        - Footer: "If you didn't sign up, ignore this email."
+
+    welcome:
+      subject: "Welcome to The Upkeep! 🌀"
+      from: "${RESEND_FROM_EMAIL}"
+      template_file: "src/lib/newsletter/emails/welcome.tsx"
+      optional: true
+      content_outline: |
+        - Welcome message
+        - What to expect (devlogs, Chronomation progress, lessons)
+        - Links to latest blog posts
+        - Unsubscribe link in footer
+
+  # ---------------------------------------------------------------------------
+  # Tasks
+  # ---------------------------------------------------------------------------
+  tasks:
+    - id: "NL-1.1"
+      title: "Create SignupRecord type and Zod schema"
+      deliverables:
+        - "src/lib/newsletter/types.ts"
+        - "src/lib/newsletter/schemas.ts"
+      status: pending
+
+    - id: "NL-1.2"
+      title: "Implement JSON storage utilities"
+      deliverables:
+        - "src/lib/newsletter/storage.ts"
+        - "content/newsletter/.gitkeep"
+        - "Update .gitignore to exclude subscribers.json"
+      status: pending
+
+    - id: "NL-1.3"
+      title: "Implement /newsletter signup page"
+      deliverables:
+        - "src/routes/newsletter.tsx"
+        - "src/components/newsletter/SignupForm.tsx"
+      status: pending
+
+    - id: "NL-1.4"
+      title: "Implement /newsletter/confirm page"
+      deliverables:
+        - "src/routes/newsletter/confirm.tsx"
+      status: pending
+
+    - id: "NL-1.5"
+      title: "Implement /newsletter/unsubscribe page"
+      deliverables:
+        - "src/routes/newsletter/unsubscribe.tsx"
+      status: pending
+
+    - id: "NL-1.6"
+      title: "Create confirmation email template"
+      deliverables:
+        - "src/lib/newsletter/emails/confirmation.tsx"
+      status: pending
+
+    - id: "NL-1.7"
+      title: "Integrate Resend for sending confirmation emails"
+      install_commands:
+        - "pnpm add resend"
+      deliverables:
+        - "src/lib/newsletter/email-service.ts"
+      status: pending
+
+    - id: "NL-1.8"
+      title: "Add NewsletterSignup component to footer/home page"
+      deliverables:
+        - "src/components/newsletter/NewsletterCTA.tsx"
+        - "Integration in Footer and/or home page"
+      status: pending
+
+    - id: "NL-1.9"
+      title: "Add privacy note for newsletter"
+      deliverables:
+        - "Privacy note in signup form"
+        - "Link to privacy policy section"
+      status: pending
+
+# =============================================================================
+# PHASE 2 – CHRONOMATION NEWSLETTER MODULE
+# =============================================================================
+
+phase_2:
+  summary: |
+    Move newsletter data from JSON into Neon under Chronomation.
+    Implement multi-tenant support (TBC + future customers).
+    Implement actual newsletter sending logic.
+    TBC becomes a client of Chronomation's newsletter API.
+
+  # ---------------------------------------------------------------------------
+  # Database Schema (Neon)
+  # ---------------------------------------------------------------------------
+  database_schema:
+    tenants_table:
+      description: "Chronomation tenants table (may already exist)"
+      sql: |
+        CREATE TABLE tenants (
+          id         uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+          name       text NOT NULL,
+          slug       text UNIQUE NOT NULL,
+          created_at timestamptz NOT NULL DEFAULT now()
+        );
+      
+      tbc_seed: |
+        INSERT INTO tenants (name, slug)
+        VALUES ('The Builder Coil', 'the-builder-coil')
+        RETURNING id;  -- Store as CHRONO_TENANT_ID_TBC
+
+    newsletter_subscriptions_table:
+      description: "Multi-tenant newsletter subscriptions"
+      sql: |
+        CREATE TABLE newsletter_subscriptions (
+          id                 uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+          tenant_id          uuid NOT NULL REFERENCES tenants (id) ON DELETE CASCADE,
+          email              text NOT NULL,
+          status             text NOT NULL CHECK (status IN ('pending', 'confirmed', 'unsubscribed')),
+          confirmation_token text NOT NULL,
+          unsub_token        text,
+          meta               jsonb NOT NULL DEFAULT '{}'::jsonb,
+          created_at         timestamptz NOT NULL DEFAULT now(),
+          confirmed_at       timestamptz,
+          unsubscribed_at    timestamptz,
+          resend_contact_id  text
+        );
+
+        CREATE UNIQUE INDEX newsletter_unique_email_per_tenant
+          ON newsletter_subscriptions (tenant_id, email);
+
+  # ---------------------------------------------------------------------------
+  # Chronomation API Endpoints
+  # ---------------------------------------------------------------------------
+  api_endpoints:
+    subscribe:
+      method: "POST"
+      path: "/api/newsletter/subscribe"
+      input:
+        - "tenantId or tenantSlug"
+        - "email"
+        - "name (optional)"
+        - "source (optional)"
+      steps:
+        - "Resolve tenant by id or slug"
+        - "Upsert into newsletter_subscriptions for tenant_id"
+        - "Generate new confirmation_token and unsub_token"
+        - "Send double opt-in email via Resend"
+        - "Return success response"
+
+    confirm:
+      method: "GET"
+      path: "/api/newsletter/confirm"
+      input:
+        - "tenant (id or slug)"
+        - "token"
+      steps:
+        - "Lookup row by tenant_id + confirmation_token"
+        - "If found and status = 'pending': confirm subscription"
+        - "Optionally create/update Resend Contact"
+        - "Redirect to tenant site (e.g. APP_BASE_URL_TBC + /newsletter/confirmed)"
+
+    unsubscribe:
+      method: "GET"
+      path: "/api/newsletter/unsubscribe"
+      input:
+        - "tenant"
+        - "unsubToken or email + token"
+      steps:
+        - "Lookup row by tenant_id + token"
+        - "Set status = 'unsubscribed'"
+        - "Optionally update Resend Contact"
+        - "Render or redirect to tenant-branded page"
+
+    send_issue:
+      method: "POST"
+      path: "/api/newsletter/send"
+      description: "Send newsletter issue to all confirmed subscribers of a tenant"
+      input:
+        - "tenantId"
+        - "subject"
+        - "content (HTML or template reference)"
+      future: true
+
+  # ---------------------------------------------------------------------------
+  # TBC Integration in Phase 2
+  # ---------------------------------------------------------------------------
+  tbc_integration:
+    description: |
+      TBC routes become thin clients calling Chronomation API.
+    
+    changes:
+      signup:
+        - "TBC submits form"
+        - "TBC server action calls POST /api/newsletter/subscribe on Chronomation"
+        - "Pass tenant = CHRONO_TENANT_ID_TBC or slug 'the-builder-coil'"
+      
+      confirm:
+        - "Chronomation handles confirmation"
+        - "Redirects back to TBC /newsletter/confirmed"
+      
+      unsubscribe:
+        - "Chronomation handles unsubscribe"
+        - "Redirects back to TBC /newsletter/unsubscribed"
+
+  # ---------------------------------------------------------------------------
+  # Migration Script
+  # ---------------------------------------------------------------------------
+  migration:
+    description: "Migrate Phase 1 JSON data to Chronomation Neon"
+    script_location: "scripts/migrate-newsletter-to-chronomation.ts"
+    steps:
+      - "Read Phase 1 JSON records from TBC (content/newsletter/subscribers.json)"
+      - "For each record:"
+      - "  Create or update newsletter_subscriptions with tenant_id = CHRONO_TENANT_ID_TBC"
+      - "  Preserve status, createdAt, confirmedAt, unsubscribedAt"
+      - "  Generate new unsub_token if needed"
+      - "Log migration results"
+
+  # ---------------------------------------------------------------------------
+  # Tasks
+  # ---------------------------------------------------------------------------
+  tasks:
+    - id: "NL-2.1"
+      title: "Create newsletter_subscriptions table in Chronomation"
+      project: "chronomation"
+      status: future
+
+    - id: "NL-2.2"
+      title: "Implement POST /api/newsletter/subscribe endpoint"
+      project: "chronomation"
+      status: future
+
+    - id: "NL-2.3"
+      title: "Implement GET /api/newsletter/confirm endpoint"
+      project: "chronomation"
+      status: future
+
+    - id: "NL-2.4"
+      title: "Implement GET /api/newsletter/unsubscribe endpoint"
+      project: "chronomation"
+      status: future
+
+    - id: "NL-2.5"
+      title: "Update TBC routes to call Chronomation API"
+      project: "thebuildercoil"
+      status: future
+
+    - id: "NL-2.6"
+      title: "Create migration script for JSON → Neon"
+      project: "chronomation"
+      status: future
+
+    - id: "NL-2.7"
+      title: "Implement newsletter issue sending"
+      project: "chronomation"
+      status: future
+
+# =============================================================================
+# FILE STRUCTURE
+# =============================================================================
+
+file_structure:
+  phase_1:
+    src:
+      lib:
+        newsletter:
+          - "types.ts          # SignupRecord interface"
+          - "schemas.ts        # Zod validation schemas"
+          - "storage.ts        # JSON I/O utilities"
+          - "email-service.ts  # Resend integration"
+          emails:
+            - "confirmation.tsx  # Confirmation email template"
+            - "welcome.tsx       # Optional welcome email"
+      routes:
+        - "newsletter.tsx      # /newsletter signup page"
+        newsletter:
+          - "confirm.tsx       # /newsletter/confirm"
+          - "unsubscribe.tsx   # /newsletter/unsubscribe"
+          - "confirmed.tsx     # /newsletter/confirmed (success page)"
+          - "unsubscribed.tsx  # /newsletter/unsubscribed (success page)"
+      components:
+        newsletter:
+          - "SignupForm.tsx    # Signup form component"
+          - "NewsletterCTA.tsx # CTA block for footer/home"
+    content:
+      newsletter:
+        - ".gitkeep"
+        - "subscribers.json    # GITIGNORED - PII data"
+
+# =============================================================================
+# DEPENDENCIES
+# =============================================================================
+
+dependencies:
+  phase_1:
+    - "resend"  # Email sending
+    - "zod"     # Validation (already installed)
+
+  phase_2:
+    - "drizzle-orm"  # Database (Chronomation)
+    - "@neondatabase/serverless"  # Neon connection
+
+# =============================================================================
+# SECURITY CONSIDERATIONS
+# =============================================================================
+
+security:
+  data_protection:
+    - "subscribers.json is gitignored (contains PII)"
+    - "Use HTTPS for all confirmation links"
+    - "Tokens are randomly generated UUIDs"
+    - "Optional: Sign tokens with NEWSLETTER_SECRET for tamper detection"
+
+  gdpr_compliance:
+    - "Double opt-in required before status = 'confirmed'"
+    - "Clear consent checkbox on signup form"
+    - "Easy unsubscribe via link in every email"
+    - "Privacy note visible on signup form"
+    - "Right to erasure: delete record on request"
+
+  rate_limiting:
+    - "Consider rate limiting signup endpoint to prevent abuse"
+    - "Log IP addresses for abuse detection"
+
+# =============================================================================
+# NOTES
+# =============================================================================
+
+notes:
+  tanstack_start: |
+    Use TanStack Start file-based routing with loaders/actions.
+    All server-side logic in server functions, not API routes.
+    
+  resend_integration: |
+    Single global Resend account for all tenants.
+    Use Resend Node SDK, not REST API directly.
+    
+  no_newsletter_sending_phase_1: |
+    Phase 1 does NOT implement sending newsletter issues.
+    Only signup + double opt-in confirmation emails.
+    Actual newsletter sending is Phase 2+ (Chronomation).
+    
+  migration_path: |
+    Phase 1 JSON storage is designed to mirror Phase 2 Neon schema.
+    Migration script will be straightforward.

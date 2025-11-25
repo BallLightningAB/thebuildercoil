@@ -1,0 +1,1007 @@
+# =============================================================================
+# Implementation Plan: Build The Builder Coil Site – Phase 1 (Manual Blog)
+# =============================================================================
+# Issue: #3 – Build The Builder Coil Site
+# Meta Version: 0.1.x
+# Plan Version: 1.2.0
+# Plan Status: draft
+# Created: 2025-11-25
+# Updated: 2025-11-25
+# =============================================================================
+#
+# Plan Changelog:
+#   1.2.0 (2025-11-25) – Newsletter detailed spec integration
+#     - Created separate detailed newsletter plan: newsletter-the-upkeep-implementation.yaml
+#     - Simplified newsletter section to high-level overview with reference to detailed plan
+#     - Phase 1: JSON storage, double opt-in only (no newsletter sending)
+#     - Phase 2: Chronomation multi-tenant API with Neon
+#     - Updated env vars: APP_BASE_URL_TBC, NEWSLETTER_SECRET
+#     - Added GitHub milestones (Phase 1, Phase 2) and labels to Issue #3
+#
+#   1.1.0 (2025-11-25) – Newsletter branding + env vars
+#     - Newsletter branded as "The Upkeep" with finalized CTA copy
+#     - Confirmed Resend as sole email provider (consistency with Chronomation)
+#     - Added comprehensive environment_variables section with setup checklist
+#     - Created GitHub Issue #3
+#
+#   1.0.0 (2025-11-25) – Initial plan draft
+#     - Defined Phase 1 scope (manual blog site)
+#     - Identified UI blocks from Tailark, Kibo UI, Launch UI
+#     - Added Newsletter Phase 1 (email capture with double opt-in)
+#     - Selected JSON content format for future Chronomation compatibility
+#
+# =============================================================================
+
+meta:
+  title: "Build The Builder Coil Site – Phase 1"
+  description: |
+    Build the first version of The Builder Coil (TBC) site as a manual blog / builder's log.
+    This phase focuses on a static-content approach with hardcoded or markdown-based posts,
+    designed and architected to later integrate with Chronomation's API in Phase 2.
+  version_target: "0.1.x"
+  estimated_hours:
+    dev: 24
+    test: 4
+
+# =============================================================================
+# PHASE 1 – Manual Blog Site (Current Focus)
+# =============================================================================
+
+phase_1:
+  summary: |
+    A manually-authored blog site for Ball Lightning AB's builder's log.
+    Posts are stored locally (markdown or JSON) and rendered via TanStack Start's
+    file-based routing. Built with SEO-first MPA architecture.
+
+  # ---------------------------------------------------------------------------
+  # 1. Foundation & Theming
+  # ---------------------------------------------------------------------------
+  foundation:
+    tasks:
+      - id: "1.1"
+        title: "Update CSS variables to match PDD design spec"
+        description: |
+          Replace current shadcn defaults in src/styles.css with The Builder Coil brand colors:
+          - Dark mode: void background (#05070A), cream ink (#F5E6D3), teal/violet accents
+          - Light mode: cream background (#F5E6D3), dark ink (#111827)
+          See pdd-thebuildercoil.yaml → design.brands.the_builder_coil.scheme
+        deliverables:
+          - Updated src/styles.css with TBC color palette
+          - CSS custom properties for teal (#23F0FF), violet (#8B5CFF), ember (#FFDCA8)
+        status: pending
+
+      - id: "1.2"
+        title: "Configure custom fonts (Montserrat, Lora, JetBrains Mono)"
+        description: |
+          Add Google Fonts or self-hosted font files for:
+          - Montserrat (sans) – body, H3+, UI copy
+          - Lora (serif) – H1, H2 headings (grimoire feel)
+          - JetBrains Mono – code blocks, commit snippets
+          Update Tailwind config with font-family CSS variables.
+        deliverables:
+          - Font imports in root layout or styles.css
+          - Tailwind font-sans, font-serif, font-mono mapped to brand fonts
+        status: pending
+
+      - id: "1.3"
+        title: "Install and configure shadcn dark mode theme provider"
+        description: |
+          Use the official shadcn/ui dark mode approach:
+          - next-themes or equivalent for TanStack Start
+          - Persist theme preference in localStorage
+          - Default to system preference, allow manual toggle
+          
+          NOTE (TanStack): next-themes is designed for Next.js. For TanStack Start,
+          we may need to:
+          - Use a simpler custom ThemeProvider with React context
+          - Or adapt next-themes by replacing next/head usage
+          - Test SSR hydration carefully
+        install_commands:
+          - "pnpm add next-themes"  # May need adaptation for TanStack
+        deliverables:
+          - ThemeProvider wrapper in root layout
+          - Theme toggle component
+        status: pending
+
+      - id: "1.4"
+        title: "Install Kibo UI theme-switcher component"
+        description: |
+          Use the Kibo UI theme switcher for a polished toggle UI.
+        install_commands:
+          - "npx kibo-ui add theme-switcher"
+        deliverables:
+          - ThemeSwitcher component integrated into site header
+        status: pending
+
+  # ---------------------------------------------------------------------------
+  # 2. Site Structure & Layout
+  # ---------------------------------------------------------------------------
+  site_structure:
+    routes:
+      - path: "/"
+        purpose: "Home page with hero, featured posts, and quick links"
+        blocks_needed:
+          - hero_section
+          - featured_posts_grid
+          - call_to_action
+
+      - path: "/blog"
+        purpose: "Blog index – paginated list of all builder's log posts"
+        blocks_needed:
+          - blog_post_card_grid
+          - pagination
+
+      - path: "/blog/:slug"
+        purpose: "Individual blog post with full content"
+        blocks_needed:
+          - article_header
+          - markdown_content
+          - related_posts
+
+      - path: "/news"
+        purpose: "News/announcements index (subset of posts with type='news')"
+        blocks_needed:
+          - news_card_list
+          - pagination
+
+      - path: "/news/:slug"
+        purpose: "Individual news article"
+        blocks_needed:
+          - article_header
+          - markdown_content
+
+      - path: "/about"
+        purpose: "About The Builder Coil, Chronomation and Ball Lightning AB"
+        blocks_needed:
+          - content_section
+          - team_or_founder_card
+
+      - path: "/contact"
+        purpose: "Contact form (Resend integration)"
+        blocks_needed:
+          - contact_form
+          - contact_info
+
+    tasks:
+      - id: "2.1"
+        title: "Create shared layout with header and footer"
+        description: |
+          Build a root layout component with:
+          - Sticky header with logo, nav links, theme switcher
+          - Footer with links to Chronomation, Ball Lightning, social
+          - Responsive mobile menu
+        blocks_to_consider:
+          launch_ui:
+            - "navbar – Free, dark/light mode, shadcn CLI compatible"
+            - "Install: npx shadcn@latest add 'https://launchuicomponents.com/r/navbar'"
+          tailark:
+            - "footer (Dusk or Mist variant)"
+          note: |
+            Launch UI navbar is the recommended choice for header:
+            - Free and open source
+            - In official shadcn registry
+            - Supports dark/light mode
+            - Responsive with mobile menu
+            
+            TanStack Adaptation: May need to replace next/link with TanStack Router Link.
+        deliverables:
+          - src/components/layout/Header.tsx
+          - src/components/layout/Footer.tsx
+          - src/components/layout/Layout.tsx
+        status: pending
+
+      - id: "2.2"
+        title: "Implement home page with hero and featured posts"
+        description: |
+          Home page showcasing:
+          - Hero section with tagline and CTA
+          - Grid of 3–6 featured/recent blog posts
+          - Optional: Ball Lightning / Chronomation cross-links
+        blocks_to_consider:
+          tailark:
+            - "hero-section (multiple variants in Dusk)"
+            - "content (for featured posts grid)"
+            - "call-to-action"
+          efferd:
+            - "cta"
+        deliverables:
+          - src/routes/index.tsx (home page)
+        status: pending
+
+      - id: "2.3"
+        title: "Implement blog index page"
+        description: |
+          Paginated grid of blog post cards with:
+          - Title, excerpt, date, tags
+          - Hero image thumbnail
+          - Link to full post
+        blocks_to_consider:
+          custom:
+            - "BlogPostCard – based on shadcn Card component"
+            - "BlogPostGrid – responsive grid layout"
+          tailark:
+            - "content blocks can serve as inspiration"
+        deliverables:
+          - src/routes/blog/index.tsx
+          - src/components/blog/BlogPostCard.tsx
+          - src/components/blog/BlogPostGrid.tsx
+        status: pending
+
+      - id: "2.4"
+        title: "Implement blog post detail page"
+        description: |
+          Individual post page with:
+          - Article header (title, date, author, tags, hero image)
+          - Rendered markdown content
+          - Related posts section
+          - Share buttons (optional)
+        deliverables:
+          - src/routes/blog/$slug.tsx
+          - src/components/blog/ArticleHeader.tsx
+          - src/components/blog/ArticleContent.tsx
+          - src/components/blog/RelatedPosts.tsx
+        status: pending
+
+      - id: "2.5"
+        title: "Implement news index and detail pages"
+        description: |
+          Similar to blog but filtered for type='news'.
+          Can share most components with blog.
+        deliverables:
+          - src/routes/news/index.tsx
+          - src/routes/news/$slug.tsx
+        status: pending
+
+      - id: "2.6"
+        title: "Implement about page"
+        description: |
+          Static content page about:
+          - The Builder Coil concept
+          - Ball Lightning AB
+          - Links to Chronomation
+        blocks_to_consider:
+          tailark:
+            - "content"
+            - "team (if showing founder info)"
+          efferd:
+            - "feature"
+        deliverables:
+          - src/routes/about.tsx
+        status: pending
+
+      - id: "2.7"
+        title: "Implement contact page"
+        description: |
+          Contact form with:
+          - Name, email, message fields
+          - Form validation (zod)
+          - Submission via Resend (server function)
+        blocks_to_consider:
+          tailark:
+            - "contact"
+          efferd:
+            - "contact"
+            - "form"
+        deliverables:
+          - src/routes/contact.tsx
+          - src/components/contact/ContactForm.tsx
+          - Server function for email sending
+        status: pending
+
+  # ---------------------------------------------------------------------------
+  # 3. Blog Content System (Phase 1 – Local/Static)
+  # ---------------------------------------------------------------------------
+  content_system:
+    approach: |
+      For Phase 1, blog posts are stored locally as JSON files.
+      
+      Decision: Option B (JSON) selected over Markdown because:
+      - Chronomation API will return JSON, so same parsing logic applies
+      - Easier programmatic manipulation for future automation
+      - No markdown parsing library needed initially
+      - Content body can be stored as HTML or markdown string within JSON
+      
+      Migration to Chronomation API in Phase 2 is straightforward:
+      just swap file reads with fetch() calls.
+
+    tasks:
+      - id: "3.1"
+        title: "Set up content directory structure"
+        description: |
+          Create content folder structure with JSON files:
+          /content
+            /blog
+              - 2025-01-15-first-post.json
+              - 2025-01-20-second-post.json
+            /news
+              - 2025-01-18-announcement.json
+            index.json  # Optional: manifest of all posts for quick listing
+          
+          JSON structure mirrors Chronomation API response shape.
+        deliverables:
+          - content/blog/ directory with sample posts (JSON)
+          - content/news/ directory with sample news (JSON)
+          - Type definitions matching Chronomation API schema
+        status: pending
+
+      - id: "3.2"
+        title: "Create content loader utilities"
+        description: |
+          Utilities to:
+          - Load and parse JSON content files
+          - Render markdown body to HTML (if body is stored as markdown)
+          - List and filter posts by type, tag, date
+          - Calculate reading time from content
+          
+          Note: gray-matter not needed since we're using JSON.
+          marked only needed if body content is stored as markdown strings.
+        install_commands:
+          - "pnpm add marked"  # For rendering markdown body content
+          - "pnpm add reading-time"
+        deliverables:
+          - src/lib/content/loader.ts
+          - src/lib/content/types.ts
+        status: pending
+
+      - id: "3.3"
+        title: "Define post schema with Zod"
+        description: |
+          Create Zod schemas for JSON post structure:
+          - id, slug, title, date, type (blog|news)
+          - summary, body (markdown or HTML string)
+          - tags[], heroImage, author
+          - status (draft|published)
+          - readingTime (computed or stored)
+          
+          Schema should match Chronomation API response shape for easy migration.
+        deliverables:
+          - src/lib/content/schemas.ts
+        status: pending
+
+      - id: "3.4"
+        title: "Create sample blog posts"
+        description: |
+          Write 3–5 sample posts to demonstrate the site:
+          - Welcome / Introduction post
+          - Project update post
+          - Technical devlog post
+        deliverables:
+          - 3–5 JSON files in content/blog/
+        status: pending
+
+  # ---------------------------------------------------------------------------
+  # 4. SEO & Performance
+  # ---------------------------------------------------------------------------
+  seo:
+    tasks:
+      - id: "4.1"
+        title: "Configure meta tags and Open Graph"
+        description: |
+          Ensure each page has proper:
+          - <title> and <meta name="description">
+          - Open Graph tags (og:title, og:description, og:image)
+          - Twitter Card tags
+          Use TanStack Start's head management.
+        deliverables:
+          - SEO utility component or hook
+          - Default meta tags in root layout
+          - Per-page meta overrides
+        status: pending
+
+      - id: "4.2"
+        title: "Add structured data (JSON-LD)"
+        description: |
+          Add schema.org structured data for:
+          - BlogPosting schema on post pages
+          - Organization schema on about page
+          - WebSite schema on home page
+        deliverables:
+          - src/lib/seo/structured-data.ts
+        status: pending
+
+      - id: "4.3"
+        title: "Generate sitemap.xml"
+        description: |
+          Auto-generate sitemap with all public routes and blog posts.
+        deliverables:
+          - Sitemap generation script or route
+          - public/sitemap.xml (or dynamic route)
+        status: pending
+
+      - id: "4.4"
+        title: "Configure robots.txt"
+        description: |
+          Update robots.txt with sitemap reference and crawl rules.
+        deliverables:
+          - Updated public/robots.txt
+        status: pending
+
+      - id: "4.5"
+        title: "Verify MPA rendering (SSR/SSG)"
+        description: |
+          Ensure TanStack Start is configured for server-side rendering
+          or static generation for SEO-friendliness.
+        deliverables:
+          - SSR/SSG verification tests
+          - Performance audit
+        status: pending
+
+  # ---------------------------------------------------------------------------
+  # 5. Newsletter – "The Upkeep" (Phase 1 – Signup + Double Opt-In)
+  # ---------------------------------------------------------------------------
+  # DETAILED PLAN: specs/current-changes/newsletter-the-upkeep-implementation.yaml
+  # ---------------------------------------------------------------------------
+  newsletter:
+    detailed_plan: "specs/current-changes/newsletter-the-upkeep-implementation.yaml"
+    
+    overview: |
+      Two-phase newsletter implementation:
+      
+      **Phase 1 (TBC Site Build):** Signup + double opt-in only. No newsletter sending.
+      - Store subscribers in JSON (content/newsletter/subscribers.json)
+      - Send confirmation emails via Resend
+      - GDPR-compliant double opt-in flow
+      
+      **Phase 2 (Chronomation):** Full newsletter module with multi-tenant support.
+      - Migrate data from JSON to Neon
+      - TBC becomes thin client calling Chronomation API
+      - Actual newsletter issue sending
+    
+    branding:
+      name: "The Upkeep"
+      emoji: "🌀"
+      tagline: "Engineering card advantage in real life"
+      cta_copy: |
+        ### 🌀 The Upkeep
+        
+        Engineering card advantage in real life: devlogs from The Builder Coil sharing:
+        
+        - progress on Chronomation,
+        - real-world agentic building experiments,
+        - and lessons learned running Ball Lightning AB.
+    
+    architecture:
+      phase_1:
+        storage: "JSON file (content/newsletter/subscribers.json)"
+        email_provider: "Resend (single global account)"
+        routes:
+          - "/newsletter – Signup form"
+          - "/newsletter/confirm – Double opt-in confirmation"
+          - "/newsletter/unsubscribe – Unsubscribe"
+        sends: "Confirmation emails only (no newsletter issues)"
+      
+      phase_2:
+        storage: "Neon (Chronomation multi-tenant)"
+        email_provider: "Resend (single global account)"
+        api_endpoints:
+          - "POST /api/newsletter/subscribe"
+          - "GET /api/newsletter/confirm"
+          - "GET /api/newsletter/unsubscribe"
+        tbc_role: "Thin client calling Chronomation API"
+    
+    env_vars_required:
+      - "RESEND_API_KEY"
+      - "RESEND_FROM_EMAIL"
+      - "APP_BASE_URL_TBC"
+      - "NEWSLETTER_SECRET (for token signing)"
+
+    tasks_summary:
+      # See detailed plan for full task breakdown (NL-1.1 through NL-1.9)
+      - id: "5.1"
+        title: "Implement newsletter signup + storage (NL-1.1 to NL-1.3)"
+        description: "Types, schemas, JSON storage, and /newsletter signup page"
+        status: pending
+
+      - id: "5.2"
+        title: "Implement double opt-in flow (NL-1.4 to NL-1.6)"
+        description: "/newsletter/confirm, /newsletter/unsubscribe, email templates"
+        status: pending
+
+      - id: "5.3"
+        title: "Integrate Resend + add CTA component (NL-1.7 to NL-1.8)"
+        description: "Resend integration, NewsletterCTA in footer/home"
+        status: pending
+
+      - id: "5.4"
+        title: "Privacy and GDPR compliance (NL-1.9)"
+        description: "Consent checkbox, privacy note, unsubscribe link in emails"
+        status: pending
+
+  # ---------------------------------------------------------------------------
+  # 6. Components & Blocks Installation
+  # ---------------------------------------------------------------------------
+  components:
+    shadcn_base:
+      description: "Core shadcn/ui components needed for the site"
+      components:
+        - button
+        - card
+        - badge
+        - separator
+        - input
+        - textarea
+        - label
+        - form
+        - navigation-menu
+        - sheet (mobile menu)
+        - skeleton (loading states)
+        - avatar
+        - scroll-area
+      install_command: |
+        npx shadcn@latest add button card badge separator input textarea label form navigation-menu sheet skeleton avatar scroll-area
+
+    # -------------------------------------------------------------------------
+    # Library Priority:
+    #   1. Tailark (primary) – Marketing blocks, free tier
+    #   2. Launch UI – Free navbar/header
+    #   3. Kibo UI – Components only (theme-switcher, etc.)
+    #   4. Efferd (backup) – Most interesting blocks are paid
+    # -------------------------------------------------------------------------
+
+    launch_ui:
+      description: |
+        Launch UI provides a free navbar component in the official shadcn registry.
+        This is our primary choice for the site header.
+      components:
+        - navbar
+      install_command: |
+        npx shadcn@latest add "https://launchuicomponents.com/r/navbar"
+      tanstack_notes: |
+        After installation, adapt for TanStack Start:
+        - Replace next/link imports with @tanstack/react-router Link
+        - Replace next/image with standard <img> or custom Image component
+        - Test mobile menu functionality
+
+    kibo_ui:
+      description: |
+        Kibo UI for specific components that complement Tailark.
+        Use only for components, not blocks.
+        Docs: https://www.kibo-ui.com/components
+      components:
+        - theme-switcher
+      install_command: |
+        npx kibo-ui add theme-switcher
+
+    tailark_blocks:
+      description: |
+        Tailark marketing blocks (primary block source).
+        Dusk theme for dark mode compatibility.
+        Install via shadcn CLI or copy from GitHub.
+      recommended:
+        - hero-section (Dusk variant for dark mode)
+        - footer
+        - contact
+        - content (for inspiration on blog grids)
+        - call-to-action (for newsletter CTA)
+      install_command: |
+        npx shadcn@latest add "https://tailark.com/r/hero-section-1"
+        npx shadcn@latest add "https://tailark.com/r/footer-1"
+        npx shadcn@latest add "https://tailark.com/r/contact-1"
+        npx shadcn@latest add "https://tailark.com/r/call-to-action-1"
+      tanstack_notes: |
+        After installation, adapt for TanStack Start:
+        - Replace next/link with @tanstack/react-router Link
+        - Replace next/image with standard <img> or custom Image component
+
+    efferd_blocks:
+      description: |
+        Efferd blocks (BACKUP only) – Most interesting blocks are paid.
+        Use only if Tailark doesn't have what we need.
+      note: "Install via Efferd CLI or copy from their GitHub if needed"
+
+    custom_components:
+      description: "Custom components to build for the site"
+      components:
+        # Blog components
+        - BlogPostCard: "Card showing post preview (title, excerpt, date, tags, image)"
+        - BlogPostGrid: "Responsive grid of BlogPostCards"
+        - ArticleHeader: "Post title, meta, hero image"
+        - ArticleContent: "Rendered markdown/HTML with prose styling"
+        - RelatedPosts: "Grid of related post cards"
+        - Pagination: "Page navigation for lists"
+        - TagList: "Inline tag badges"
+        - ReadingTime: "Estimated reading time display"
+        # Newsletter components
+        - NewsletterSignup: "Email capture form with privacy note"
+        - NewsletterConfirm: "Double opt-in confirmation page"
+
+    blog_section_block_recommendation: |
+      For the "blog section" on the home page and blog index, the best approach is:
+      
+      1. **Blog Card Grid** – A responsive grid of cards (3-col desktop, 2-col tablet, 1-col mobile)
+         Each card contains:
+         - Hero image thumbnail (aspect-ratio maintained)
+         - Title (Lora serif font)
+         - Excerpt (2-3 lines, truncated)
+         - Date + reading time
+         - Tags as small badges
+         - Hover effect with teal/violet accent
+      
+      2. **Block sources to reference:**
+         - Tailark "content" blocks (general content cards)
+         - shadcn Card component as the base
+         - Efferd blog examples if available
+      
+      3. **Implementation:**
+         Build a custom BlogPostCard component using shadcn Card,
+         styled with TBC brand colors and typography.
+         This gives full control and easy migration to Chronomation API later.
+
+# =============================================================================
+# PHASE 2 – Chronomation Integration (Future)
+# =============================================================================
+
+phase_2:
+  summary: |
+    Integrate with Chronomation's public API to fetch posts dynamically.
+    Replace local content loaders with API calls.
+
+  tasks:
+    - id: "P2.1"
+      title: "Configure Chronomation API client"
+      description: |
+        Set up HTTP client to call:
+        - GET /api/public/:tenantSlug/:channelSlug/feed.json
+        - Individual post endpoints
+      env_vars:
+        - VITE_CHRONOMATION_API_URL
+        - VITE_TENANT_SLUG (ball-lightning)
+        - VITE_CHANNEL_SLUG (tbc-blog)
+      status: future
+
+    - id: "P2.2"
+      title: "Replace content loaders with API calls"
+      description: |
+        Swap local JSON loading with Chronomation API fetches.
+        Use TanStack Router loaders for data fetching.
+      status: future
+
+    - id: "P2.3"
+      title: "Add RSS feed route"
+      description: |
+        Proxy or redirect to Chronomation's RSS endpoint:
+        /api/public/:tenantSlug/:channelSlug/rss.xml
+      status: future
+
+    - id: "P2.4"
+      title: "Implement incremental static regeneration (if needed)"
+      description: |
+        For better performance, cache API responses and
+        revalidate on a schedule.
+      status: future
+
+    - id: "P2.5"
+      title: "Add news filtering from API"
+      description: |
+        Filter posts by type from API response for news section.
+      status: future
+
+# =============================================================================
+# PHASE 3 – Future Features
+# =============================================================================
+
+phase_3:
+  summary: "Additional features beyond MVP"
+
+  features:
+    - id: "P3.1"
+      title: "Merch section"
+      description: |
+        Add /merch and /merch/:slug routes.
+        Display merch items powered by Chronomation or external source.
+      status: future
+
+    - id: "P3.2"
+      title: "Search functionality"
+      description: |
+        Add client-side or server-side search for posts.
+      status: future
+
+    - id: "P3.3"
+      title: "Newsletter automation (Phase 2-3)"
+      description: |
+        Newsletter signup is implemented in Phase 1.
+        Future enhancements:
+        - Send first issue after ~5-10 posts and some subscribers
+        - Invite early testers when Chronomation has usable features
+        - Automate sends via Chronomation integration
+      status: future
+
+    - id: "P3.4"
+      title: "Analytics integration"
+      description: |
+        Add privacy-friendly analytics (Plausible, Fathom, or similar).
+      status: future
+
+    - id: "P3.5"
+      title: "Social sharing automation"
+      description: |
+        Auto-share new posts to X/LinkedIn via Chronomation.
+      status: future
+
+# =============================================================================
+# GitHub Issue Templates
+# =============================================================================
+
+github_issues:
+  main_issue:
+    number: 3
+    title: "feat(site): Build The Builder Coil Site – Phase 1 (Manual Blog)"
+    labels:
+      - "feature"
+      - "phase-1"
+      - "priority:high"
+    description: |
+      ## Summary
+      Build the first version of The Builder Coil site as a manual blog / builder's log.
+      
+      ## Goals
+      - Implement all core pages: Home, Blog, News, About, Contact
+      - Apply TBC brand design (dark void + cream, teal/violet accents)
+      - Use Montserrat, Lora, JetBrains Mono fonts
+      - Dark/light mode with shadcn theme provider + Kibo UI theme-switcher
+      - SEO-optimized MPA architecture
+      - Local JSON content (Phase 1), designed for easy Chronomation API integration (Phase 2)
+      - Newsletter signup with GDPR-compliant double opt-in
+      
+      ## Acceptance Criteria
+      - [ ] Site runs locally with `pnpm dev`
+      - [ ] All 6 routes implemented and styled
+      - [ ] Dark/light mode toggle works
+      - [ ] At least 3 sample blog posts rendered (JSON format)
+      - [ ] Contact form sends email via Resend
+      - [ ] Newsletter signup with double opt-in works
+      - [ ] Meta tags and Open Graph configured
+      - [ ] Mobile responsive design
+      
+      ## Blocked By
+      - None (Phase 1 is independent)
+      
+      ## References
+      - PDD: specs/memory-bank/pdd-thebuildercoil.yaml
+      - Implementation Plan: specs/current-changes/issue-003-build-tbc-site-phase1.yaml
+
+  sub_issues:
+    - title: "feat(theme): Configure TBC brand colors and typography"
+      labels: ["feature", "design", "phase-1"]
+      tasks:
+        - "1.1 – Update CSS variables to match PDD"
+        - "1.2 – Configure custom fonts"
+        - "1.3 – Install shadcn dark mode provider"
+        - "1.4 – Install Kibo UI theme-switcher"
+
+    - title: "feat(layout): Create shared header, footer, and layout"
+      labels: ["feature", "ui", "phase-1"]
+      tasks:
+        - "2.1 – Create shared layout with header and footer"
+
+    - title: "feat(pages): Implement home page"
+      labels: ["feature", "ui", "phase-1"]
+      tasks:
+        - "2.2 – Implement home page with hero and featured posts"
+
+    - title: "feat(blog): Implement blog index and detail pages"
+      labels: ["feature", "ui", "phase-1"]
+      tasks:
+        - "2.3 – Implement blog index page"
+        - "2.4 – Implement blog post detail page"
+
+    - title: "feat(news): Implement news section"
+      labels: ["feature", "ui", "phase-1"]
+      tasks:
+        - "2.5 – Implement news index and detail pages"
+
+    - title: "feat(pages): Implement about and contact pages"
+      labels: ["feature", "ui", "phase-1"]
+      tasks:
+        - "2.6 – Implement about page"
+        - "2.7 – Implement contact page"
+
+    - title: "feat(content): Set up local JSON content system"
+      labels: ["feature", "content", "phase-1"]
+      tasks:
+        - "3.1 – Set up content directory structure (JSON)"
+        - "3.2 – Create content loader utilities"
+        - "3.3 – Define post schema with Zod"
+        - "3.4 – Create sample blog posts (JSON)"
+
+    - title: "feat(seo): Configure SEO, meta tags, and sitemap"
+      labels: ["feature", "seo", "phase-1"]
+      tasks:
+        - "4.1 – Configure meta tags and Open Graph"
+        - "4.2 – Add structured data (JSON-LD)"
+        - "4.3 – Generate sitemap.xml"
+        - "4.4 – Configure robots.txt"
+        - "4.5 – Verify MPA rendering"
+
+    - title: "feat(newsletter): Implement newsletter signup with double opt-in"
+      labels: ["feature", "newsletter", "gdpr", "phase-1"]
+      tasks:
+        - "5.1 – Create newsletter signup component"
+        - "5.2 – Implement double opt-in flow (GDPR)"
+        - "5.3 – Integrate email service provider"
+        - "5.4 – Add privacy policy section for newsletter"
+
+# =============================================================================
+# Environment Variables (Set Up Early)
+# =============================================================================
+# Reference: specs/memory-bank/pdd-thebuildercoil.yaml → env
+
+environment_variables:
+  setup_timing: |
+    Set up ALL environment variables at the start of development to avoid
+    interruptions later. Create .env.local (gitignored) with all values.
+    
+  phase_1_required:
+    description: "Required immediately for Phase 1 development"
+    variables:
+      # App identity
+      - key: "VITE_APP_NAME"
+        value: "The Builder Coil"
+        purpose: "Site name for meta tags, branding"
+        
+      - key: "VITE_APP_BASE_URL"
+        value: "http://localhost:3000"  # dev: localhost, prod: https://thebuildercoil.com
+        purpose: "Base URL for canonical links, OG tags, sitemap"
+        
+      - key: "VITE_TBC_ENV"
+        value: "dev"  # dev | preview | prod
+        purpose: "Environment flag for conditional logic"
+        
+      # Resend (for contact form + newsletter)
+      - key: "RESEND_API_KEY"
+        value: "re_xxxxxxxxxxxx"
+        purpose: "Resend API key for sending emails"
+        obtain: "https://resend.com/api-keys"
+        
+      - key: "RESEND_FROM_EMAIL"
+        value: "noreply@thebuildercoil.com"
+        purpose: "Verified sender email for Resend"
+        note: "Must verify domain in Resend dashboard first"
+        
+      - key: "APP_BASE_URL_TBC"
+        value: "http://localhost:3000"  # prod: https://thebuildercoil.com
+        purpose: "Base URL for newsletter confirmation links"
+        
+      - key: "NEWSLETTER_SECRET"
+        value: ""
+        purpose: "Secret for signing newsletter tokens (optional but recommended)"
+        generate: "openssl rand -base64 32"
+        
+  phase_2_chronomation:
+    description: "Required when integrating with Chronomation API"
+    variables:
+      - key: "VITE_CHRONOMATION_API_URL"
+        value: "https://chronomation.com"  # or localhost for dev
+        purpose: "Base URL for Chronomation API calls"
+        
+      - key: "VITE_TENANT_SLUG"
+        value: "ball-lightning"
+        purpose: "Tenant identifier for Chronomation API"
+        
+      - key: "VITE_CHANNEL_SLUG"
+        value: "tbc-blog"
+        purpose: "Channel identifier for blog feed"
+        
+  env_file_template: |
+    # =============================================================================
+    # The Builder Coil - Environment Variables
+    # =============================================================================
+    # Copy this to .env.local and fill in values
+    # .env.local is gitignored - NEVER commit secrets
+    
+    # App Identity
+    VITE_APP_NAME="The Builder Coil"
+    VITE_APP_BASE_URL="http://localhost:3000"
+    VITE_TBC_ENV="dev"
+    
+    # Resend (Email) - Single global account for all tenants
+    RESEND_API_KEY="re_xxxxxxxxxxxx"
+    RESEND_FROM_EMAIL="The Builder Coil <newsletter@thebuildercoil.com>"
+    
+    # Newsletter
+    APP_BASE_URL_TBC="http://localhost:3000"  # For confirmation links
+    NEWSLETTER_SECRET=""  # Generate: openssl rand -base64 32
+    
+    # Chronomation API (Phase 2)
+    # VITE_CHRONOMATION_API_URL="https://chronomation.com"
+    # VITE_TENANT_SLUG="ball-lightning"
+    # VITE_CHANNEL_SLUG="tbc-blog"
+    # CHRONO_TENANT_ID_TBC=""  # TBC tenant ID in Chronomation
+
+  setup_checklist:
+    - step: "Create Resend account at https://resend.com"
+      required_for: "Contact form, Newsletter confirmation emails"
+    - step: "Verify thebuildercoil.com domain in Resend"
+      required_for: "Sending emails from @thebuildercoil.com"
+    - step: "Generate Resend API key"
+      required_for: "RESEND_API_KEY"
+    - step: "Generate NEWSLETTER_SECRET"
+      command: "openssl rand -base64 32"
+      required_for: "Token signing (optional but recommended)"
+    - step: "Create content/newsletter/ directory"
+      required_for: "JSON subscriber storage (Phase 1)"
+    - step: "Add content/newsletter/subscribers.json to .gitignore"
+      required_for: "PII protection"
+    - step: "Copy .env.local.example to .env.local"
+      required_for: "Local development"
+    - step: "Add env vars to deployment platform (Vercel/Netlify)"
+      required_for: "Production deployment"
+
+# =============================================================================
+# Dependencies to Install
+# =============================================================================
+
+dependencies:
+  production:
+    - "next-themes" # Dark mode provider (may need TanStack adaptation)
+    - "marked" # Markdown to HTML (for body content if stored as markdown)
+    - "reading-time" # Estimated reading time
+    - "resend" # Email sending for contact form and newsletter
+
+  dev: []
+
+  shadcn_components:
+    - button
+    - card
+    - badge
+    - separator
+    - input
+    - textarea
+    - label
+    - form
+    - navigation-menu
+    - sheet
+    - skeleton
+    - avatar
+    - scroll-area
+
+  launch_ui:
+    - navbar # Free header component
+
+  kibo_ui:
+    - theme-switcher
+
+  tailark_blocks:
+    - hero-section
+    - footer
+    - contact
+    - call-to-action # For newsletter CTA
+
+# =============================================================================
+# Notes
+# =============================================================================
+
+notes:
+  architecture: |
+    TanStack Start provides server-side capabilities while maintaining a
+    React-based frontend. For SEO, ensure routes are server-rendered.
+    
+  tanstack_adaptations: |
+    Blocks from Next.js-focused libraries (Tailark, Launch UI, Kibo UI) need:
+    - Replace next/link with @tanstack/react-router Link
+    - Replace next/image with standard <img> or custom component
+    - Test SSR hydration carefully
+    - Verify mobile menu state management works
+    
+  content_migration: |
+    The local JSON approach in Phase 1 uses the same data shape
+    as Chronomation's API will return. This makes migration straightforward:
+    - Replace file reads with fetch() calls
+    - Keep the same TypeScript interfaces
+    - Update TanStack Router loaders
+    
+  block_customization: |
+    Blocks from Tailark and Kibo UI should be customized to match
+    TBC brand colors. The CSS variables in styles.css make this easy.
+    Efferd is a backup source if Tailark doesn't have what we need.
+    
+  library_priority: |
+    1. Tailark (primary) – Marketing blocks, free Dusk theme
+    2. Launch UI – Free navbar/header
+    3. Kibo UI – Components only (theme-switcher, etc.)
+    4. Efferd (backup) – Most interesting blocks are paid
+    
+  fonts: |
+    Consider self-hosting fonts for better performance and privacy.
+    Google Fonts is acceptable for initial development.
