@@ -1,8 +1,22 @@
 entries:
+  - date: "2025-11-25"
+    version: 0.0.1.7
+    issue: "#1 https://github.com/BallLightningAB/thebuildercoil/issues/1"
+    commit: tbd
+    status: done
+    title: "chore(start): remove TanStack demo and simplify starter shell"
+    details: |-
+      - Remove TanStack Start demo routes, data, and header
+      - Simplify the root index route to a minimal thebuildercoil landing view
+      - Restrict TanStack devtools rendering to the development environment only
+      - Trim unused demo dependencies and align Tailwind/Biome/Vite tooling for the new baseline
+
+      Refs: v0.0.1.7 #1
+
   - date: "2025-11-24"
     version: 0.0.1.6
     issue: "#2 https://github.com/BallLightningAB/thebuildercoil/issues/2"
-    commit: tbd
+    commit: ca15bdf
     status: done
     title: "chore(deps): install zod + ultracite and refresh tooling stack"
     details: |-
@@ -16,7 +30,7 @@ entries:
   - date: "2025-11-24"
     version: 0.0.1.5
     issue: "#1 https://github.com/BallLightningAB/thebuildercoil/issues/1"
-    commit: tbd
+    commit: 87364a7
     status: in-progress
     title: "docs(specs): add memory-bank scaffolding and security baseline"
     details: |-

@@ -1,5 +1,5 @@
 meta:
-  release: 0.0.1.6
+  release: 0.0.1.7
   repo: github.com/BallLightningAB/thebuildercoil
   pdd_version: "v0.1"
   current_changes: see specs/current-changes/
@@ -10,11 +10,13 @@ guardrails:
     pdd: specs/pdd-thebuildercoil.yaml
     changelog: specs/CHANGELOG.yaml
   roadmap:
-    current:
+    current: []
+    next_steps: []
+    recent_done:
       - id: Project initialization using the Tanstack Start Builder
         issue: "#1"
         title: Project initialization using the Tanstack Start Builder
-        status: in-progress
+        status: done
         links:
           issue: https://github.com/BallLightningAB/thebuildercoil/issues/1
           pr: ""
@@ -40,8 +42,7 @@ guardrails:
           - Added the logos + favicon to /public
           - Repurpose the secrets-scan pre-commit and workflow for the blightfell-web3-integration project
           - Repurpose the memorybank/changelog automation from the blightfell-web3-integration project
-    next_steps: []
-    recent_done:
+          - Remove Tanstack Demo components etc
       - id: Install dependencies
         issue: "#2"
         title: Install dependencies
