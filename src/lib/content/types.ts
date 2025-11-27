@@ -50,6 +50,15 @@ export type Post = {
 	projectSlug?: string;
 };
 
+export type PostCodeBlock = {
+	/** Language identifier from fenced code block, e.g. ts, sql, bash */
+	language: string;
+	/** Optional filename or label parsed from the info string */
+	filename: string;
+	/** Raw code contents inside the fenced block */
+	code: string;
+};
+
 /**
  * Post metadata for listings (excludes body content)
  */

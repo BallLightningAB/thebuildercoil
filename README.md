@@ -37,6 +37,83 @@ env, loaders, or forms, import `z` from there:
 import { z } from "@/lib/validation/zod";
 ```
 
+## Content Management (Phase 1)
+
+In Phase 1, The Builder Coil uses a local JSON-based content system. This will migrate to the Chronomation API in Phase 2.
+
+### Content Flow
+
+```mermaid
+flowchart TD
+    subgraph Content["📁 content/"]
+        Blog["blog/*.json"]
+        News["news/*.json"]
+    end
+
+    subgraph Loader["🔄 Content Loader"]
+        LoadPosts["loadPosts()"]
+        LoadPost["loadPost(slug, type)"]
+        GetHtml["getPostHtml()"]
+    end
+
+    subgraph Routes["📄 Routes"]
+        BlogIndex["/blog"]
+        BlogDetail["/blog/$slug"]
+        NewsIndex["/news"]
+        NewsDetail["/news/$slug"]
+        Home["/"]
+    end
+
+    Blog --> LoadPosts
+    News --> LoadPosts
+    Blog --> LoadPost
+    News --> LoadPost
+    
+    LoadPosts --> BlogIndex
+    LoadPosts --> NewsIndex
+    LoadPosts --> Home
+    
+    LoadPost --> BlogDetail
+    LoadPost --> NewsDetail
+    
+    GetHtml --> BlogDetail
+    GetHtml --> NewsDetail
+```
+
+### Adding a New Blog Post
+
+1. Create a JSON file in `content/blog/` with naming convention: `YYYY-MM-DD-slug-name.json`
+2. Use this structure:
+
+```json
+{
+  "id": "unique-id",
+  "slug": "slug-name",
+  "title": "Your Post Title",
+  "type": "blog",
+  "summary": "Brief description for cards and SEO",
+  "body": "# Markdown content here...",
+  "bodyIsMarkdown": true,
+  "heroImage": "/path/to/image.png",
+  "heroImageAlt": "Alt text",
+  "tags": ["tag1", "tag2"],
+  "author": "Author Name",
+  "status": "published",
+  "publishedAt": "2025-01-01T12:00:00.000Z",
+  "createdAt": "2025-01-01T10:00:00.000Z",
+  "updatedAt": "2025-01-01T12:00:00.000Z"
+}
+```
+
+3. Set `status: "published"` when ready to go live (drafts are filtered out)
+4. The dev server will automatically pick up the new file
+
+### Adding News
+
+Same process as blog posts, but place files in `content/news/` and set `type: "news"`.
+
+---
+
 KEEP BELOW FOR NOW
 
 Welcome to your new TanStack app!

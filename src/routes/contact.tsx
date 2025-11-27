@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ExternalLink, Mail, MapPin } from "lucide-react";
 import { useState } from "react";
+import { AnimatedGroup } from "@/components/motion-primitives/animated-group";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -39,12 +40,31 @@ function ContactPage() {
 
 	return (
 		<div className="py-12 md:py-20">
-			<div className="container mx-auto max-w-4xl px-4">
+			<AnimatedGroup
+				className="container mx-auto max-w-4xl px-4"
+				variants={{
+					container: {
+						hidden: { opacity: 0, y: 24, filter: "blur(12px)" },
+						visible: {
+							opacity: 1,
+							y: 0,
+							filter: "blur(0px)",
+							transition: { duration: 0.9, delayChildren: 0.1 },
+						},
+					},
+					item: {
+						hidden: { opacity: 0, y: 16 },
+						visible: {
+							opacity: 1,
+							y: 0,
+							transition: { duration: 0.7 },
+						},
+					},
+				}}
+			>
 				{/* Header */}
 				<div className="mb-16 text-center">
-					<h1 className="mb-4 font-bold font-serif text-4xl md:text-5xl">
-						Get in Touch
-					</h1>
+					<h1 className="mb-4 font-bold text-4xl md:text-5xl">Get in Touch</h1>
 					<p className="mx-auto max-w-2xl text-lg text-muted-foreground">
 						Have a question or want to work together? We'd love to hear from
 						you.
@@ -54,9 +74,7 @@ function ContactPage() {
 				<div className="grid gap-12 md:grid-cols-2">
 					{/* Contact Form */}
 					<div>
-						<h2 className="mb-6 font-semibold font-serif text-2xl">
-							Send a Message
-						</h2>
+						<h2 className="mb-6 font-semibold text-2xl">Send a Message</h2>
 
 						{formState === "success" ? (
 							<Card className="border-green-500/50 bg-green-500/10">
@@ -118,7 +136,7 @@ function ContactPage() {
 
 					{/* Contact Info */}
 					<div>
-						<h2 className="mb-6 font-semibold font-serif text-2xl">
+						<h2 className="mb-6 font-semibold text-2xl">
 							Other Ways to Connect
 						</h2>
 
@@ -133,9 +151,9 @@ function ContactPage() {
 								<CardContent>
 									<a
 										className="text-muted-foreground hover:text-tbc-teal"
-										href="mailto:hello@thebuildercoil.com"
+										href="mailto:contact@thebuildercoil.com"
 									>
-										hello@thebuildercoil.com
+										contact@thebuildercoil.com
 									</a>
 								</CardContent>
 							</Card>
@@ -148,7 +166,7 @@ function ContactPage() {
 									</CardTitle>
 								</CardHeader>
 								<CardContent>
-									<p className="text-muted-foreground">Stockholm, Sweden</p>
+									<p className="text-muted-foreground">Mölndal, Sweden</p>
 								</CardContent>
 							</Card>
 
@@ -189,7 +207,7 @@ function ContactPage() {
 						</div>
 					</div>
 				</div>
-			</div>
+			</AnimatedGroup>
 		</div>
 	);
 }

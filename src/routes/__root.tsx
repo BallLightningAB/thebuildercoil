@@ -10,6 +10,22 @@ import { Layout } from "@/components/layout/Layout";
 import { ThemeProvider } from "@/components/theme-provider";
 import appCss from "../styles.css?url";
 
+function RootNotFound() {
+	return (
+		<main className="py-20">
+			<div className="container mx-auto max-w-3xl px-4 text-center">
+				<h1 className="mb-4 font-bold text-3xl">Page not found</h1>
+				<p className="mb-6 text-muted-foreground">
+					The page you are looking for does not exist.
+				</p>
+				<a className="text-tbc-teal hover:underline" href="/">
+					Go back home
+				</a>
+			</div>
+		</main>
+	);
+}
+
 export const Route = createRootRoute({
 	head: () => ({
 		meta: [
@@ -53,7 +69,7 @@ export const Route = createRootRoute({
 			},
 		],
 	}),
-
+	notFoundComponent: RootNotFound,
 	shellComponent: RootDocument,
 	component: RootComponent,
 });
@@ -68,15 +84,29 @@ function RootComponent() {
 	);
 }
 
+// Inline script to prevent theme flash on page load
+const themeScript = `
+(function() {
+  const storageKey = 'tbc-theme';
+  const theme = localStorage.getItem(storageKey) || 'dark';
+  let resolved = theme;
+  if (theme === 'system') {
+    resolved = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  }
+  document.documentElement.classList.add(resolved);
+})();
+`;
+
 function RootDocument({ children }: { children: React.ReactNode }) {
 	const isDev = import.meta.env.DEV;
 
 	return (
-		<html lang="en">
+		<html lang="en" suppressHydrationWarning>
 			<head>
 				<HeadContent />
+				<script dangerouslySetInnerHTML={{ __html: themeScript }} />
 			</head>
-			<body>
+			<body className="scroll-smooth">
 				{children}
 				{isDev && (
 					<TanStackDevtools

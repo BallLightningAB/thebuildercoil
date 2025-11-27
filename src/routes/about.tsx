@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Codesandbox, Globe, Zap } from "lucide-react";
+import { AnimatedGroup } from "@/components/motion-primitives/animated-group";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
@@ -10,7 +11,28 @@ export const Route = createFileRoute("/about")({
 function AboutPage() {
 	return (
 		<div className="py-12 md:py-20">
-			<div className="container mx-auto max-w-4xl px-4">
+			<AnimatedGroup
+				className="container mx-auto max-w-4xl px-4"
+				variants={{
+					container: {
+						hidden: { opacity: 0, y: 24, filter: "blur(12px)" },
+						visible: {
+							opacity: 1,
+							y: 0,
+							filter: "blur(0px)",
+							transition: { duration: 0.9, delayChildren: 0.1 },
+						},
+					},
+					item: {
+						hidden: { opacity: 0, y: 16 },
+						visible: {
+							opacity: 1,
+							y: 0,
+							transition: { duration: 0.7 },
+						},
+					},
+				}}
+			>
 				{/* Header */}
 				<div className="mb-16 text-center">
 					<h1 className="mb-4 font-bold font-serif text-4xl md:text-5xl">
@@ -106,7 +128,7 @@ function AboutPage() {
 				</div>
 
 				{/* CTA */}
-				<div className="rounded-lg border border-border bg-card p-8 text-center">
+				<div className="rounded-lg border border-border bg-background p-8 text-center">
 					<h2 className="mb-4 font-semibold font-serif text-2xl">
 						Want to stay updated?
 					</h2>
@@ -125,7 +147,7 @@ function AboutPage() {
 						</Button>
 					</div>
 				</div>
-			</div>
+			</AnimatedGroup>
 		</div>
 	);
 }

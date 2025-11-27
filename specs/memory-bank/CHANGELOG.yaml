@@ -1,9 +1,54 @@
 entries:
+  - date: "2025-11-27"
+    version: 0.1.3
+    issue: "#3 https://github.com/BallLightningAB/thebuildercoil/issues/3"
+    commit: TBD
+    status: pending
+    title: "feat(content): refine hero cards, Kibo theme-switcher, and blog docs"
+    details: |-
+      - Ensure blog and news detail hero images use object-contain so logos
+        (for example the welcome-to-the-builder-coil hero) are never cropped.
+      - Update BlogPostCard thumbnails (home "Latest from the Coil" and the
+        blog index) to center hero art inside a 16:9 frame with object-contain,
+        preventing top/bottom cropping while retaining a subtle hover scale.
+      - Fix Kibo CodeBlock duplicate React key warnings by generating unique
+        snippet filenames for fenced code blocks when no explicit filename is
+        provided.
+      - Wire the Kibo UI ThemeSwitcher component into the header by adapting it
+        to the existing ThemeProvider/useTheme context (dark/light/system) and
+        replacing the previous generic icon button.
+      - Refine the home hero animation so the GitHub contribution graph
+        consistently slides in from the right with a blur-to-sharp transition,
+        without being double-wrapped by AnimatedGroup, while preserving the
+        staggered fade-in for the left hero copy.
+      - Document the { post, html, codeBlocks } content contract in
+        specs/memory-bank/pdd-thebuildercoil.yaml so Chronomation Phase 2 can
+        mirror the current JSON-based behavior.
+      - Mark foundation task 1.4 ("Install Kibo UI theme-switcher component")
+        as done and keep the Phase 1 implementation plan aligned with reality.
+      - Reorder specs/memory-bank/CHANGELOG.yaml entries into reverse
+        chronological order (latest version first) without changing the content
+        of the existing entries.
+
+      Refs: v0.1.3 #3
+
   - date: "2025-11-25"
-    version: 0.1.0
+    version: 0.1.2
+    issue: "#3 https://github.com/BallLightningAB/thebuildercoil/issues/3"
+    commit: 3581440
+    status: pending
+    title: "docs(changelog): update commit hash for v0.1.x Phase 1 implementation"
+    details: |-
+      - Adjust specs/memory-bank/CHANGELOG.yaml to point at the actual Phase 1 implementation commit hash.
+      - Keep versioning scheme aligned between active-context and CHANGELOG.
+
+      Refs: v0.1.2 #3
+
+  - date: "2025-11-25"
+    version: 0.1.1
     issue: "#3 https://github.com/BallLightningAB/thebuildercoil/issues/3"
     commit: 72f4222
-    status: in-progress
+    status: pending
     title: "feat(site): Implement Phase 1 of The Builder Coil site"
     details: |-
       Implementation work (72f4222):
@@ -17,7 +62,16 @@ entries:
       - Configure Google Fonts (Montserrat, Lora, JetBrains Mono)
       - Add @tailwindcss/typography for prose styling
       - Update root route with SEO meta tags and ThemeProvider
-      
+
+      Refs: v0.1.1 #3
+
+  - date: "2025-11-25"
+    version: 0.1
+    issue: "#3 https://github.com/BallLightningAB/thebuildercoil/issues/3"
+    commit: 86bb60a
+    status: pending
+    title: "docs(specs): finalize implementation plans for TBC site Phase 1"
+    details: |-
       Planning work (86bb60a):
       - Create full implementation plan at specs/current-changes/issue-003-build-tbc-site-phase1.yaml
       - Add separate newsletter implementation plan at specs/current-changes/newsletter-the-upkeep-implementation.yaml
@@ -25,7 +79,7 @@ entries:
       - Add environment_variables section and .env template
       - Create GitHub Issue #3 plus Phase 1/Phase 2 milestones
 
-      Refs: v0.1.0 #3
+      Refs: v0.1 #3
 
   - date: "2025-11-25"
     version: 0.0.1.8

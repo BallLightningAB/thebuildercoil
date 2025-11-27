@@ -1,11 +1,13 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { BlogPostGrid } from "@/components/blog/BlogPostGrid";
-import { loadPosts } from "@/lib/content/loader";
+import { AnimatedGroup } from "@/components/motion-primitives/animated-group";
+import { TextEffect } from "@/components/motion-primitives/text-effect";
+import { getPosts } from "@/lib/content/server";
 
 export const Route = createFileRoute("/blog/")({
 	component: BlogIndexPage,
-	loader: () => {
-		const posts = loadPosts("blog");
+	loader: async () => {
+		const posts = await getPosts({ data: { type: "blog" } });
 		return { posts };
 	},
 });
@@ -15,16 +17,46 @@ function BlogIndexPage() {
 
 	return (
 		<div className="py-12 md:py-20">
-			<div className="container mx-auto max-w-6xl px-4">
+			<AnimatedGroup
+				className="container mx-auto max-w-6xl px-4"
+				variants={{
+					container: {
+						hidden: { opacity: 0, y: 24, filter: "blur(12px)" },
+						visible: {
+							opacity: 1,
+							y: 0,
+							filter: "blur(0px)",
+							transition: { duration: 0.9, delayChildren: 0.1 },
+						},
+					},
+					item: {
+						hidden: { opacity: 0, y: 16 },
+						visible: {
+							opacity: 1,
+							y: 0,
+							transition: { duration: 0.7 },
+						},
+					},
+				}}
+			>
 				{/* Header */}
 				<div className="mb-12 text-center">
-					<h1 className="mb-4 font-bold font-serif text-4xl md:text-5xl">
+					<TextEffect
+						as="h1"
+						className="mb-4 font-bold text-4xl md:text-5xl"
+						preset="fade-in-blur"
+					>
 						The Builder's Log
-					</h1>
-					<p className="mx-auto max-w-2xl text-lg text-muted-foreground">
+					</TextEffect>
+					<TextEffect
+						as="p"
+						className="mx-auto max-w-2xl text-lg text-muted-foreground"
+						delay={0.2}
+						preset="fade-in-blur"
+					>
 						Devlogs, technical deep-dives, and lessons learned from building
 						software and running Ball Lightning AB.
-					</p>
+					</TextEffect>
 				</div>
 
 				{/* Posts Grid */}
@@ -32,7 +64,7 @@ function BlogIndexPage() {
 					emptyMessage="No blog posts yet. Check back soon!"
 					posts={posts}
 				/>
-			</div>
+			</AnimatedGroup>
 		</div>
 	);
 }

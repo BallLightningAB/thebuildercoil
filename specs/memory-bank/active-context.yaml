@@ -1,5 +1,5 @@
 meta:
-  release: 0.1.0
+  release: 0.1.3
   repo: github.com/BallLightningAB/thebuildercoil
   pdd_version: "v0.1"
   current_changes: see specs/current-changes/
@@ -36,6 +36,11 @@ guardrails:
         progress_log:
           - Created implementation plan (specs/current-changes/issue-003-build-tbc-site-phase1.yaml)
           - Updated styles.css with TBC brand colors from PDD
+          - Implemented Phase 1 core pages (home, blog, news, about, contact, newsletter) with TBC layout
+          - Set up local JSON content system with Zod schemas, reading time, and markdown support
+          - Integrated GitHub contribution graph hero panel with refined slide-in animation
+          - Implemented server-side markdown rendering plus Kibo UI CodeBlock for blog/news code samples
+          - Resolved remaining Biome lint issues and unified dark mode card/tag styling
     next_steps:
       - id: chronomation-integration
         issue: "#TBD"

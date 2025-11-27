@@ -45,15 +45,26 @@ pdd:
           ui_blocks:
             - "shadcn/ui"
             - "Shared design system (Chronomation-compatible)"
-      tooling:
-        lint_format:
-          - "Biome"
-          - "Ultracite"
-        hosting:
-          - "Vercel for Chronomation"
-          - "Vercel (or similar) for TBCsite"
-        payments_future:
-          provider: "Polar"
+        content_contract:
+          post_response_shape: |
+            TBCsite expects Chronomation public APIs to return, per post:
+            - post: metadata + raw body fields matching src/lib/content/types.ts:Post
+            - html: server-rendered HTML string for body_markdown/body
+            - codeBlocks: array of structured code blocks ({ language, filename, code })
+          notes: |
+            Phase 1 (local JSON) already uses this { post, html, codeBlocks } shape via
+            src/lib/content/loader-server.ts and src/lib/content/server.ts. Phase 2 should
+            preserve this contract on Chronomation’s HTTP API so the TBCsite frontend can
+            swap file reads for fetch() calls without changing its rendering logic.
+        tooling:
+          lint_format:
+            - "Biome"
+            - "Ultracite"
+          hosting:
+            - "Vercel for Chronomation"
+            - "Vercel for TBCsite"
+          payments_future:
+            provider: "Polar"
   
 design:
   shared:

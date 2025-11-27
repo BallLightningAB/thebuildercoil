@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Codesandbox, Github, Linkedin, Twitter } from "lucide-react";
+import { Github, Linkedin, Twitter } from "lucide-react";
 
 const footerLinks = {
 	site: [
@@ -37,16 +37,20 @@ export function Footer() {
 	const currentYear = new Date().getFullYear();
 
 	return (
-		<footer className="border-border border-t bg-card">
+		<footer className="border-border border-t bg-background">
 			<div className="container mx-auto max-w-6xl px-4 py-12">
 				<div className="grid gap-8 md:grid-cols-4">
 					{/* Brand */}
 					<div className="md:col-span-1">
 						<Link className="flex items-center gap-2" to="/">
-							<Codesandbox className="h-6 w-6 text-tbc-teal" />
-							<span className="font-semibold font-serif text-lg">
-								The Builder Coil
-							</span>
+							<img
+								alt="The Builder Coil"
+								className="h-6 w-6"
+								height={24}
+								src="/logo.png"
+								width={24}
+							/>
+							<span className="font-semibold text-lg">The Builder Coil</span>
 						</Link>
 						<p className="mt-3 text-muted-foreground text-sm">
 							A builder's grimoire for modern development. Devlogs, experiments,

@@ -1,9 +1,16 @@
 import { Link } from "@tanstack/react-router";
-import { Codesandbox, Menu } from "lucide-react";
+import { Menu } from "lucide-react";
 import { useState } from "react";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Button } from "@/components/ui/button";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import {
+	Sheet,
+	SheetContent,
+	SheetDescription,
+	SheetHeader,
+	SheetTitle,
+	SheetTrigger,
+} from "@/components/ui/sheet";
 
 const navLinks = [
 	{ href: "/", label: "Home" },
@@ -21,8 +28,14 @@ export function Header() {
 			<div className="container mx-auto flex h-16 max-w-6xl items-center justify-between px-4">
 				{/* Logo */}
 				<Link className="flex items-center gap-2" to="/">
-					<Codesandbox className="h-7 w-7 text-tbc-teal" />
-					<span className="font-semibold font-serif text-lg text-tbc-cream dark:text-tbc-cream">
+					<img
+						alt="The Builder Coil"
+						className="h-16 w-16"
+						height={32}
+						src="/logo.png"
+						width={32}
+					/>
+					<span className="font-semibold text-foreground text-lg dark:text-tbc-cream">
 						The Builder Coil
 					</span>
 				</Link>
@@ -53,6 +66,12 @@ export function Header() {
 							</Button>
 						</SheetTrigger>
 						<SheetContent className="w-[280px]" side="right">
+							<SheetHeader>
+								<SheetTitle className="text-left">Navigation Menu</SheetTitle>
+								<SheetDescription className="sr-only">
+									Main navigation links for mobile devices
+								</SheetDescription>
+							</SheetHeader>
 							<nav className="mt-8 flex flex-col gap-4">
 								{navLinks.map((link) => (
 									<Link

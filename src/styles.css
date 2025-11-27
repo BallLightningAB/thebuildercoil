@@ -11,6 +11,10 @@
 /* Typography: Montserrat (sans), Lora (serif), JetBrains Mono (mono) */
 /* Note: Add font imports when ready (Google Fonts or self-hosted) */
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   @apply m-0;
   font-family:
@@ -37,9 +41,21 @@ code {
     monospace;
 }
 
-/* Headings H1-H2 use Lora (grimoire feel) */
+/* Headings H1-H2 use JetBrains Mono (dev/hacker feel) */
 h1,
 h2,
+.font-heading {
+  font-family:
+    "JetBrains Mono",
+    ui-monospace,
+    SFMono-Regular,
+    Menlo,
+    Monaco,
+    monospace;
+  font-weight: 600;
+}
+
+/* Serif utility class (keep for future use) */
 .font-serif {
   font-family:
     Lora,
@@ -84,14 +100,15 @@ h2,
   --accent: #12b8c4;
   --accent-foreground: #111827;
 
-  /* TBC Brand Colors */
-  --tbc-teal: #23f0ff;
-  --tbc-teal-hover: #4ff6ff;
-  --tbc-violet: #8b5cff;
-  --tbc-violet-hover: #a78bfa;
+  /* TBC Brand Colors (light mode - high contrast on cream) */
+  --tbc-teal: #05070a; /* Use void color for accent in light mode */
+  --tbc-teal-hover: #111827;
+  --tbc-violet: #6d28d9; /* Darker violet for light mode */
+  --tbc-violet-hover: #7c3aed;
   --tbc-ember: #c05621;
   --tbc-cream: #f5e6d3;
   --tbc-cream-soft: #f9f3e8;
+  --tbc-void: #05070a; /* Dark panels in light mode */
 
   /* Destructive */
   --destructive: #b91c1c;
@@ -133,33 +150,33 @@ h2,
 .dark {
   /* Core backgrounds – void */
   --background: #05070a;
-  --foreground: #e5e7eb;
+  --foreground: #f5e6d3; /* Cream text */
 
-  /* Card / elevated surfaces */
-  --card: #0a1014;
-  --card-foreground: #e5e7eb;
+  /* Card / elevated surfaces - dark void with subtle cream border */
+  --card: #05070a; /* Match background; rely on border/shadow for elevation */
+  --card-foreground: #f5e6d3;
 
   /* Popover */
-  --popover: #0a1014;
-  --popover-foreground: #e5e7eb;
+  --popover: #080c11;
+  --popover-foreground: #f5e6d3;
 
-  /* Primary action (cream on void) */
-  --primary: #f5e6d3;
+  /* Primary action - TEAL */
+  --primary: #23f0ff;
   --primary-foreground: #05070a;
 
-  /* Secondary */
-  --secondary: #111827;
-  --secondary-foreground: #e5e7eb;
+  /* Secondary - violet accent */
+  --secondary: #8b5cff;
+  --secondary-foreground: #05070a;
 
-  /* Muted */
-  --muted: #111827;
-  --muted-foreground: #9ca3af;
+  /* Muted - subtle cream tint on void */
+  --muted: rgba(245, 230, 211, 0.05);
+  --muted-foreground: #d4c9b8; /* Darker cream */
 
-  /* Accent – teal for dark mode */
-  --accent: #23f0ff;
-  --accent-foreground: #05070a;
+  /* Accent – violet for dark mode */
+  --accent: #8b5cff;
+  --accent-foreground: #f5e6d3;
 
-  /* TBC Brand Colors (same as light, but some may shift) */
+  /* TBC Brand Colors (dark mode - teal glows on void) */
   --tbc-teal: #23f0ff;
   --tbc-teal-hover: #4ff6ff;
   --tbc-violet: #8b5cff;
@@ -167,14 +184,15 @@ h2,
   --tbc-ember: #ffdca8;
   --tbc-cream: #f5e6d3;
   --tbc-cream-soft: #f9f3e8;
+  --tbc-void: #05070a;
 
   /* Destructive */
   --destructive: #f97373;
   --destructive-foreground: #05070a;
 
-  /* Border / Input – subtle slate */
-  --border: rgba(148, 163, 184, 0.35);
-  --input: rgba(148, 163, 184, 0.35);
+  /* Border / Input – subtle cream tint */
+  --border: rgba(245, 230, 211, 0.15);
+  --input: rgba(245, 230, 211, 0.15);
   --ring: #8b5cff;
 
   /* Chart colors */
@@ -225,6 +243,7 @@ h2,
   --color-tbc-ember: var(--tbc-ember);
   --color-tbc-cream: var(--tbc-cream);
   --color-tbc-cream-soft: var(--tbc-cream-soft);
+  --color-tbc-void: var(--tbc-void);
 
   /* Chart colors */
   --color-chart-1: var(--chart-1);
@@ -270,4 +289,9 @@ h2,
   .dark h2 {
     color: var(--tbc-cream);
   }
+
+	/* Ensure blog/news body text reads as cream in dark mode */
+	.dark .prose {
+		color: var(--tbc-cream);
+	}
 }

@@ -1,9 +1,18 @@
 import fs from "node:fs";
 import path from "node:path";
 import { marked } from "marked";
-import readingTime from "reading-time";
+
 import { PostSchema } from "./schemas";
 import type { PaginatedPosts, Post, PostMeta, PostType } from "./types";
+
+// Simple reading time calculation (browser-compatible)
+const WORD_SPLIT_REGEX = /\s+/;
+const WORDS_PER_MINUTE = 200;
+
+function calculateReadingTime(text: string): number {
+	const words = text.trim().split(WORD_SPLIT_REGEX).length;
+	return Math.ceil(words / WORDS_PER_MINUTE);
+}
 
 const CONTENT_DIR = path.join(process.cwd(), "content");
 const BLOG_DIR = path.join(CONTENT_DIR, "blog");
@@ -61,8 +70,7 @@ export function loadPost(slug: string, type: PostType): Post | null {
 
 				// Calculate reading time if not present
 				if (!validated.readingTime) {
-					const stats = readingTime(validated.body);
-					validated.readingTime = Math.ceil(stats.minutes);
+					validated.readingTime = calculateReadingTime(validated.body);
 				}
 
 				return validated;
@@ -103,7 +111,7 @@ export function loadPosts(type?: PostType): PostMeta[] {
 	return published.map(
 		({ body, bodyIsMarkdown, ...meta }): PostMeta => ({
 			...meta,
-			readingTime: meta.readingTime || Math.ceil(readingTime(body).minutes),
+			readingTime: meta.readingTime || calculateReadingTime(body),
 		})
 	);
 }

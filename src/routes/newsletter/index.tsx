@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowLeft, CheckCircle } from "lucide-react";
 import { useState } from "react";
+import { AnimatedGroup } from "@/components/motion-primitives/animated-group";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
@@ -41,7 +42,28 @@ function NewsletterPage() {
 
 	return (
 		<div className="py-12 md:py-20">
-			<div className="container mx-auto max-w-2xl px-4">
+			<AnimatedGroup
+				className="container mx-auto max-w-2xl px-4"
+				variants={{
+					container: {
+						hidden: { opacity: 0, y: 24, filter: "blur(12px)" },
+						visible: {
+							opacity: 1,
+							y: 0,
+							filter: "blur(0px)",
+							transition: { duration: 0.9, delayChildren: 0.1 },
+						},
+					},
+					item: {
+						hidden: { opacity: 0, y: 16 },
+						visible: {
+							opacity: 1,
+							y: 0,
+							transition: { duration: 0.7 },
+						},
+					},
+				}}
+			>
 				{/* Back link */}
 				<Button asChild className="mb-8 gap-2" size="sm" variant="ghost">
 					<Link to="/">
@@ -53,9 +75,7 @@ function NewsletterPage() {
 				{/* Header */}
 				<div className="mb-12 text-center">
 					<div className="mb-4 text-5xl">🌀</div>
-					<h1 className="mb-4 font-bold font-serif text-4xl md:text-5xl">
-						The Upkeep
-					</h1>
+					<h1 className="mb-4 font-bold text-4xl md:text-5xl">The Upkeep</h1>
 					<p className="mb-2 font-medium text-lg text-tbc-teal">
 						Engineering card advantage in real life
 					</p>
@@ -69,9 +89,7 @@ function NewsletterPage() {
 				{formState === "success" ? (
 					<div className="rounded-lg border border-green-500/50 bg-green-500/10 p-8 text-center">
 						<CheckCircle className="mx-auto mb-4 h-12 w-12 text-green-500" />
-						<h2 className="mb-2 font-semibold font-serif text-2xl">
-							Check your inbox!
-						</h2>
+						<h2 className="mb-2 font-semibold text-2xl">Check your inbox!</h2>
 						<p className="text-muted-foreground">
 							We've sent you a confirmation email. Click the link inside to
 							confirm your subscription.
@@ -128,10 +146,8 @@ function NewsletterPage() {
 				)}
 
 				{/* What to expect */}
-				<div className="mt-16 rounded-lg border border-border bg-card p-8">
-					<h2 className="mb-4 font-semibold font-serif text-xl">
-						What to expect
-					</h2>
+				<div className="mt-16 rounded-lg border border-border bg-background p-8">
+					<h2 className="mb-4 font-semibold text-xl">What to expect</h2>
 					<ul className="space-y-3 text-muted-foreground">
 						<li className="flex items-start gap-3">
 							<span className="text-tbc-teal">→</span>
@@ -151,7 +167,7 @@ function NewsletterPage() {
 						</li>
 					</ul>
 				</div>
-			</div>
+			</AnimatedGroup>
 		</div>
 	);
 }

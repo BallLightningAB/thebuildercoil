@@ -21,10 +21,10 @@ export function BlogPostCard({ post }: BlogPostCardProps) {
 	return (
 		<Card className="group overflow-hidden transition-all hover:border-tbc-teal/50 hover:shadow-lg hover:shadow-tbc-teal/5">
 			{post.heroImage && (
-				<div className="aspect-video overflow-hidden">
+				<div className="aspect-video flex items-center justify-center bg-card/60">
 					<img
 						alt={post.heroImageAlt || post.title}
-						className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+						className="max-h-full max-w-full object-contain transition-transform duration-300 group-hover:scale-105"
 						height={360}
 						src={post.heroImage}
 						width={640}
@@ -35,7 +35,7 @@ export function BlogPostCard({ post }: BlogPostCardProps) {
 				<div className="flex flex-wrap gap-2">
 					{post.tags.slice(0, 3).map((tag) => (
 						<Badge
-							className="bg-tbc-teal/10 text-tbc-teal hover:bg-tbc-teal/20"
+							className="bg-background/80 border-border/60 text-tbc-teal hover:bg-background"
 							key={tag}
 							variant="secondary"
 						>
@@ -44,7 +44,7 @@ export function BlogPostCard({ post }: BlogPostCardProps) {
 					))}
 				</div>
 				<Link to={linkPath}>
-					<h3 className="font-semibold font-serif text-xl leading-tight transition-colors group-hover:text-tbc-teal">
+					<h3 className="font-semibold text-xl leading-tight transition-colors group-hover:text-tbc-teal">
 						{post.title}
 					</h3>
 				</Link>

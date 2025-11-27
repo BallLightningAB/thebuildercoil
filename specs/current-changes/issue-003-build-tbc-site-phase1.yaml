@@ -68,7 +68,7 @@ phase_1:
         deliverables:
           - Updated src/styles.css with TBC color palette
           - CSS custom properties for teal (#23F0FF), violet (#8B5CFF), ember (#FFDCA8)
-        status: pending
+        status: done
 
       - id: "1.2"
         title: "Configure custom fonts (Montserrat, Lora, JetBrains Mono)"
@@ -81,7 +81,7 @@ phase_1:
         deliverables:
           - Font imports in root layout or styles.css
           - Tailwind font-sans, font-serif, font-mono mapped to brand fonts
-        status: pending
+        status: done
 
       - id: "1.3"
         title: "Install and configure shadcn dark mode theme provider"
@@ -101,7 +101,7 @@ phase_1:
         deliverables:
           - ThemeProvider wrapper in root layout
           - Theme toggle component
-        status: pending
+        status: done
 
       - id: "1.4"
         title: "Install Kibo UI theme-switcher component"
@@ -111,7 +111,7 @@ phase_1:
           - "npx kibo-ui add theme-switcher"
         deliverables:
           - ThemeSwitcher component integrated into site header
-        status: pending
+        status: done
 
   # ---------------------------------------------------------------------------
   # 2. Site Structure & Layout
@@ -188,7 +188,7 @@ phase_1:
           - src/components/layout/Header.tsx
           - src/components/layout/Footer.tsx
           - src/components/layout/Layout.tsx
-        status: pending
+        status: done
 
       - id: "2.2"
         title: "Implement home page with hero and featured posts"
@@ -206,7 +206,7 @@ phase_1:
             - "cta"
         deliverables:
           - src/routes/index.tsx (home page)
-        status: pending
+        status: done
 
       - id: "2.3"
         title: "Implement blog index page"
@@ -225,7 +225,7 @@ phase_1:
           - src/routes/blog/index.tsx
           - src/components/blog/BlogPostCard.tsx
           - src/components/blog/BlogPostGrid.tsx
-        status: pending
+        status: done
 
       - id: "2.4"
         title: "Implement blog post detail page"
@@ -240,7 +240,7 @@ phase_1:
           - src/components/blog/ArticleHeader.tsx
           - src/components/blog/ArticleContent.tsx
           - src/components/blog/RelatedPosts.tsx
-        status: pending
+        status: done
 
       - id: "2.5"
         title: "Implement news index and detail pages"
@@ -250,7 +250,7 @@ phase_1:
         deliverables:
           - src/routes/news/index.tsx
           - src/routes/news/$slug.tsx
-        status: pending
+        status: done
 
       - id: "2.6"
         title: "Implement about page"
@@ -267,7 +267,7 @@ phase_1:
             - "feature"
         deliverables:
           - src/routes/about.tsx
-        status: pending
+        status: done
 
       - id: "2.7"
         title: "Implement contact page"
@@ -286,7 +286,7 @@ phase_1:
           - src/routes/contact.tsx
           - src/components/contact/ContactForm.tsx
           - Server function for email sending
-        status: pending
+        status: done
 
   # ---------------------------------------------------------------------------
   # 3. Blog Content System (Phase 1 – Local/Static)
@@ -322,7 +322,7 @@ phase_1:
           - content/blog/ directory with sample posts (JSON)
           - content/news/ directory with sample news (JSON)
           - Type definitions matching Chronomation API schema
-        status: pending
+        status: done
 
       - id: "3.2"
         title: "Create content loader utilities"
@@ -341,7 +341,7 @@ phase_1:
         deliverables:
           - src/lib/content/loader.ts
           - src/lib/content/types.ts
-        status: pending
+        status: done
 
       - id: "3.3"
         title: "Define post schema with Zod"
@@ -356,7 +356,7 @@ phase_1:
           Schema should match Chronomation API response shape for easy migration.
         deliverables:
           - src/lib/content/schemas.ts
-        status: pending
+        status: done
 
       - id: "3.4"
         title: "Create sample blog posts"
@@ -367,7 +367,7 @@ phase_1:
           - Technical devlog post
         deliverables:
           - 3–5 JSON files in content/blog/
-        status: pending
+        status: done
 
   # ---------------------------------------------------------------------------
   # 4. SEO & Performance

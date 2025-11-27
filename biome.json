@@ -30,7 +30,27 @@
   "linter": {
     "enabled": true,
     "rules": {
-      "recommended": true
+      "recommended": true,
+      "security": {
+        "noDangerouslySetInnerHtml": "off"
+      },
+      "nursery": {
+        "useSortedClasses": "off",
+        "useConsistentArrowReturn": "off"
+      },
+      "style": {
+        "useFilenamingConvention": {
+          "level": "error",
+          "options": {
+            "filenameCases": ["kebab-case", "PascalCase"]
+          }
+        },
+        "useImportType": "off",
+        "noNegationElse": "off"
+      },
+      "performance": {
+        "noNamespaceImport": "off"
+      }
     }
   },
   "javascript": {

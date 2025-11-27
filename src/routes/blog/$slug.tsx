@@ -1,24 +1,40 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowLeft, Calendar, Clock, User } from "lucide-react";
 import { BlogPostGrid } from "@/components/blog/BlogPostGrid";
+import {
+	CodeBlock,
+	CodeBlockBody,
+	CodeBlockContent,
+	CodeBlockCopyButton,
+	CodeBlockFilename,
+	CodeBlockFiles,
+	CodeBlockHeader,
+	CodeBlockItem,
+} from "@/components/kibo-ui/code-block";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { getPostHtml, getRelatedPosts, loadPost } from "@/lib/content/loader";
+import { getPost, getRelatedPosts } from "@/lib/content/server";
 
 export const Route = createFileRoute("/blog/$slug")({
 	component: BlogPostPage,
-	loader: ({ params }) => {
-		const post = loadPost(params.slug, "blog");
-		if (!post) {
+	loader: async ({ params }) => {
+		const result = await getPost({ data: { slug: params.slug, type: "blog" } });
+		if (!result) {
 			throw notFound();
 		}
-		const html = getPostHtml(post);
-		const related = getRelatedPosts(post, 3);
-		return { post, html, related };
+		const related = await getRelatedPosts({
+			data: { slug: params.slug, type: "blog", limit: 3 },
+		});
+		return {
+			post: result.post,
+			html: result.html,
+			codeBlocks: result.codeBlocks,
+			related,
+		};
 	},
 	notFoundComponent: () => (
 		<div className="py-20 text-center">
-			<h1 className="mb-4 font-bold font-serif text-3xl">Post Not Found</h1>
+			<h1 className="mb-4 font-bold text-3xl">Post Not Found</h1>
 			<p className="mb-8 text-muted-foreground">
 				The post you're looking for doesn't exist.
 			</p>
@@ -30,7 +46,7 @@ export const Route = createFileRoute("/blog/$slug")({
 });
 
 function BlogPostPage() {
-	const { post, html, related } = Route.useLoaderData();
+	const { post, html, codeBlocks, related } = Route.useLoaderData();
 
 	const formattedDate = new Date(post.publishedAt).toLocaleDateString("en-US", {
 		year: "numeric",
@@ -48,14 +64,13 @@ function BlogPostPage() {
 						Back to Blog
 					</Link>
 				</Button>
-
 				{/* Article Header */}
 				<header className="mb-12">
 					{/* Tags */}
 					<div className="mb-4 flex flex-wrap gap-2">
 						{post.tags.map((tag: string) => (
 							<Badge
-								className="bg-tbc-teal/10 text-tbc-teal"
+								className="bg-background/80 border-border/60 text-tbc-teal"
 								key={tag}
 								variant="secondary"
 							>
@@ -65,7 +80,7 @@ function BlogPostPage() {
 					</div>
 
 					{/* Title */}
-					<h1 className="mb-6 font-bold font-serif text-3xl leading-tight md:text-4xl lg:text-5xl">
+					<h1 className="mb-6 font-bold text-3xl leading-tight md:text-4xl lg:text-5xl">
 						{post.title}
 					</h1>
 
@@ -87,32 +102,61 @@ function BlogPostPage() {
 						)}
 					</div>
 				</header>
-
 				{/* Hero Image */}
 				{post.heroImage && (
-					<div className="mb-12 overflow-hidden rounded-lg">
+					<div className="mb-12 rounded-lg">
 						<img
 							alt={post.heroImageAlt || post.title}
-							className="w-full object-cover"
+							className="w-full object-contain h-auto"
 							height={504}
 							src={post.heroImage}
 							width={896}
 						/>
 					</div>
 				)}
-
 				{/* Article Content */}
 				<div
-					className="prose prose-lg dark:prose-invert max-w-none prose-code:rounded prose-pre:border prose-pre:border-border prose-code:bg-muted prose-pre:bg-card prose-code:px-1.5 prose-code:py-0.5 prose-code:font-normal prose-headings:font-semibold prose-headings:font-serif prose-a:text-tbc-teal prose-a:no-underline prose-code:before:content-none prose-code:after:content-none hover:prose-a:underline"
+					className="prose prose-lg dark:prose-invert max-w-none prose-code:rounded prose-pre:border prose-pre:border-border prose-code:bg-muted prose-pre:bg-card prose-code:px-1.5 prose-code:py-0.5 prose-code:font-normal prose-headings:font-semibold prose-headings:prose-a:text-tbc-teal prose-a:no-underline prose-code:before:content-none prose-code:after:content-none hover:prose-a:underline"
 					dangerouslySetInnerHTML={{ __html: html }}
 				/>
-
+				{codeBlocks.length > 0 && (
+					<section className="mt-16 border-border border-t pt-12">
+						<h2 className="mb-6 font-semibold text-2xl">Code samples</h2>
+						<CodeBlock
+							className="bg-card/60"
+							data={codeBlocks}
+							defaultValue={codeBlocks[0]?.language}
+						>
+							<CodeBlockHeader>
+								<CodeBlockFiles>
+									{(item) => (
+										<CodeBlockFilename
+											key={`${item.language}-${item.filename || "snippet"}`}
+											value={item.language}
+										>
+											{item.filename || item.language || "snippet"}
+										</CodeBlockFilename>
+									)}
+								</CodeBlockFiles>
+								<CodeBlockCopyButton />
+							</CodeBlockHeader>
+							<CodeBlockBody>
+								{(item) => (
+									<CodeBlockItem
+										key={`${item.language}-${item.filename || "snippet"}`}
+										value={item.language}
+									>
+										<CodeBlockContent>{item.code}</CodeBlockContent>
+									</CodeBlockItem>
+								)}
+							</CodeBlockBody>
+						</CodeBlock>
+					</section>
+				)}
 				{/* Related Posts */}
 				{related.length > 0 && (
 					<section className="mt-16 border-border border-t pt-12">
-						<h2 className="mb-8 font-semibold font-serif text-2xl">
-							Related Posts
-						</h2>
+						<h2 className="mb-8 font-semibold text-2xl">Related Posts</h2>
 						<BlogPostGrid posts={related} />
 					</section>
 				)}
