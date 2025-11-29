@@ -2,6 +2,7 @@ pdd:
   meta:
     name: "Chronomation – Content Engine"
     code_name: "chronomation_core"
+    version: "0.1.1"
     owner:
       individual: "Nicolas Brulay"
       company: "Ball Lightning AB"
@@ -399,6 +400,194 @@ design:
         - embeds Chronomation feeds for recent posts,
         - exposes booking/calendar,
         - is used as canonical link for scheduling from Chronomation and TBC where relevant.
+
+  media_hosting_strategy:
+    goals:
+      - "Support rich media (images first, video as embeds) in blog/news entries."
+      - "Keep Phase 1 simple (URLs only), while designing Phase 2 for multi-tenant hosting."
+      - "Make the UX for attaching and previewing media obvious and low-friction for non-technical users."
+
+    phase_1_text_and_urls_only:
+      scope: "Initial Chronomation backend + TBC as first client"
+      approach:
+        - "Chronomation stores only media metadata + URLs, no file uploads."
+        - "Tenants can reference images already hosted elsewhere (e.g. their website, TBCsite, GitHub, Imgur, etc.)."
+        - "Neon stores media rows with storage_provider='external_url' and source_url pointing to the asset."
+      data_model_notes:
+        media_assets:
+          fields:
+            - "id (uuid)"
+            - "tenant_id"
+            - "kind: 'image' | 'video_embed' | 'file'"
+            - "storage_provider: 'external_url'"
+            - "source_url: string"
+            - "alt_text: string | null"
+            - "created_at"
+        post_media_link:
+          notes:
+            - "Join table (post_id, media_asset_id, role='cover'|'inline'|'gallery', order_index)."
+      ux_notes:
+        editor_experience:
+          - "In the post editor, provide a simple 'Add image' control."
+          - "Default mode: 'Embed via URL'."
+          - "Fields: 'Image URL', 'Alt text', optional 'Caption'."
+          - "Show live preview below the URL field as soon as a valid URL is entered."
+          - "Allow re-ordering images (drag up/down) and selecting one as 'Cover image'."
+        validation:
+          - "Require alt text (or explicitly allow 'decorative' checkbox) for accessibility."
+          - "Validate that the URL looks like an image (basic extension check + attempt to load in preview)."
+
+    phase_2_managed_media_hosting:
+      scope: "Chronomation SaaS with tenants who want us to host images for them."
+      approach:
+        - "Introduce an object storage provider (e.g. Cloudflare R2, Vercel Blob, or S3-compatible)."
+        - "Single bucket per environment, logically partitioned per-tenant by path."
+        - "Neon continues to store metadata; media_assets.storage_provider='managed' with storage_path + public_url."
+      storage_layout_example:
+        provider: "TBD (likely R2 or Vercel Blob)"
+        bucket_structure:
+          - "chronomation-media/tenants/{tenant_slug}/images/{uuid}.png"
+          - "chronomation-media/tenants/{tenant_slug}/files/{uuid}.{ext}"
+      api_and_auth:
+        - "Auth’d tenants call POST /api/tenants/:tenantId/media to upload."
+        - "Backend writes to object storage, creates media_assets row, returns public_url + id."
+        - "Enforce per-tenant limits (max file size, total storage, plan-based quotas)."
+
+    phase_2_editor_ux:
+      goals:
+        - "Same UX for all tenants, regardless of whether they use external URLs or hosted uploads."
+        - "Keep the complexity hidden behind a simple 'Add media' button."
+      editor_components:
+        add_media_button:
+          behaviour:
+            - "Opens a modal or side panel with two tabs: 'Upload' and 'From URL'."
+            - "If tenant has no managed hosting, default to 'From URL' and grey out 'Upload' with an upgrade hint."
+        upload_tab:
+          features:
+            - "Drag-and-drop area + 'Browse files' button."
+            - "Accept common image formats: PNG, JPG, WebP."
+            - "Show upload progress and then a thumbnail grid of uploaded images."
+            - "Allow selecting an existing uploaded asset (re-use across posts)."
+        from_url_tab:
+          features:
+            - "URL field, Alt text field, optional Caption."
+            - "Live preview once URL is entered."
+        inline_preview_and_management:
+          features:
+            - "Within the post editor, show image thumbnails inline with content blocks."
+            - "Controls on each image: 'Set as cover', 'Move up/down', 'Edit', 'Remove'."
+            - "Cover image preview at top of editor if one is selected."
+      multi_tenant_considerations:
+        - "All media operations are scoped to tenant_id; never show cross-tenant assets."
+        - "Track basic usage metrics per tenant (asset count, total storage) for billing/plan enforcement."
+        - "Offer 'we host your media' as a higher plan or add-on; technically this just toggles access to the Upload tab."
+
+    tbc_specific_notes:
+      phase_1_tbc_file_based:
+        - "TBC v0 stores images and (optionally) tiny video clips in the repo under public/media and references them directly in manual posts."
+      phase_2a_tbc_as_chronomation_tenant_urls_only:
+        - "When Chronomation Phase 1 goes live, TBC becomes a tenant but continues to self-host images under public/media."
+        - "Chronomation stores media_assets for TBC with storage_provider='external_url' and source_url pointing to https://thebuildercoil.com/media/... URLs."
+        - "In the Chronomation editor, 'Add image' for TBC defaults to 'From URL' with live preview. You add the file to public/media, push to Vercel, then paste the resulting URL."
+        - "This keeps integration simple while TBC is the only real tenant, without introducing object storage yet."
+      phase_2b_tbc_managed_images:
+        - "Next step: introduce a managed object storage bucket for Chronomation (e.g. Cloudflare R2 or Vercel Blob) and a default shared media domain, e.g. https://media.chronomation.com/."
+        - "Internal storage layout stays multi-tenant (e.g. chronomation-media/tenants/the-builder-coil/images/{uuid}.webp), but the public CDN host can be either the shared media.chronomation.com or, for TBC, a vanity domain like https://media.thebuildercoil.com/."
+        - "New uploads from the TBC tenant still write to tenants/the-builder-coil/images/... in the bucket; media_assets for TBC use storage_provider='managed', storage_path, and public_url fields."
+        - "The TBC frontend uses public_url directly for <img> tags; git repo is no longer the canonical store for new images."
+        - "Chronomation editor for TBC gets two options: 'Upload' (to managed storage) and 'From URL' (existing behaviour), with the same preview UX. External tenants can either continue to self-host images via storage_provider='external_url' (their own domains) or opt into managed storage (with or without a custom media domain) as a higher-tier feature."
+
+    video_strategy:
+      goals:
+        - "Let posts showcase flows and demos with short video, without Chronomation becoming a full video hosting provider."
+        - "Use YouTube as the primary solution for TBC from day 1 (good UX, free, discoverable)."
+        - "Model video generically as embeddable media (URL-based), so it works for external tenants and other providers too."
+
+      phase_1_tbc_only:
+        scope: "The Builder Coil as a standalone site (no Chronomation integration yet)."
+        approach:
+          - "Create a dedicated YouTube channel for The Builder Coil using thebuildercoil@gmail.com."
+          - "Organise content with playlists (e.g. 'Chronomation Devlog', 'TBC Site', 'Blightfell / Web3')."
+          - "Upload short demo clips (public or unlisted) and embed them in blog posts via YouTube URLs."
+          - "Optionally use a small number of self-hosted clips in public/media for very short, low-traffic videos if needed."
+        guidelines:
+          youtube:
+            length: "Target 10–120 seconds for most clips (short, focused demos)."
+            visibility: "Default to Unlisted if you only care about embeds; Public if you want discoverability."
+            titles: "Describe what changed (e.g. 'TBC v0.2 – New blog flow')."
+          self_hosted_fallback:
+            path: "public/media/*.mp4 (TBC only, limited use)."
+            length: "Very short (5–20 seconds) and small (<10–20 MB)."
+            risk_notes:
+              - "All assets under public/ are public and can be scraped/abused."
+              - "Use sparingly; YouTube should be the primary option."
+          embed_markup_example: |
+            <!-- YouTube embed -->
+            <div class="video-embed">
+              <iframe
+                src="https://www.youtube.com/embed/VIDEO_ID"
+                title="The Builder Coil demo"
+                frameborder="0"
+                allowfullscreen
+              ></iframe>
+            </div>
+
+      phase_2_tbc_as_chronomation_tenant:
+        scope: "TBC using Chronomation as its content backend while still hosting video primarily on YouTube."
+        approach:
+          - "Chronomation stores video references as URLs only (kind='video_embed')."
+          - "TBC continues to upload videos to YouTube and stores the YouTube watch/embed URLs in Chronomation."
+          - "Chronomation renders a generic video embed component, which detects YouTube and builds the right iframe."
+        data_model:
+          media_assets:
+            fields:
+              - "id (uuid)"
+              - "tenant_id"
+              - "kind: 'image' | 'video_embed' | 'file'"
+              - "storage_provider: 'external_url'"
+              - "source_url: string (e.g. https://www.youtube.com/watch?v=..., https://loom.com/share/...)"
+              - "alt_text: string | null"
+              - "created_at"
+          post_media_link:
+            notes:
+              - "Join table linking posts to media_assets with role='cover'|'inline'|'gallery'|'embed' and order_index."
+        ux_notes:
+          editor:
+            add_media_button:
+              behaviour:
+                - "Opens a modal/side panel with tabs: 'Image' and 'Video'."
+                - "Video tab defaults to 'Embed from URL'."
+            video_tab_fields:
+              - "Video URL (YouTube/Loom/Vimeo/etc.)"
+              - "Title / caption"
+              - "Optional 'Aspect ratio' selector (e.g. 16:9, 9:16) or auto-detect."
+            preview:
+              - "As soon as a valid URL is entered, show a live inline preview (iframe for YouTube, etc.)."
+              - "Show a textual fallback if the provider is unknown ('This URL will be rendered as a generic link or fallback embed')."
+          usage_guidelines_for_tbc:
+            - "Prefer YouTube embeds for all public-facing TBC devlog videos."
+            - "Reserve raw MP4/WebM in public/media for rare edge cases and very short clips."
+
+      phase_2_and_beyond_external_tenants:
+        default_model: "Embed-first, no default video hosting."
+        approach:
+          - "Tenants add video via 'Embed from URL' (YouTube/Loom/Vimeo, etc.)."
+          - "Chronomation treats videos as 'video_embed' with a source_url and type detection by hostname."
+          - "Provide simple documentation encouraging YouTube or similar for bandwidth-heavy content."
+        ux_notes:
+          editor:
+            - "Same 'Add media' UX as TBC: Image vs Video tabs, URL entry, live preview."
+            - "If a tenant tries to paste a raw MP4 URL, show a warning and recommend a video platform unless they are on a plan that explicitly includes hosted video."
+        future_managed_video (optional):
+          notes:
+            - "Only consider hosting raw video (storage_provider='managed') as a premium add-on for tenants."
+            - "Enforce strict size and duration limits, and always behind a CDN."
+            - "Even with managed video, continue to recommend platforms like YouTube for frequent or long-form content."
+
+      security_and_performance_notes:
+        - "Chronomation itself should not stream large videos directly from the app servers; use embeds or CDN-backed storage."
+        - "TBC self-hosted clips under public/media are acceptable in small numbers but should not become a primary video CDN."
+        - "For YouTube embeds, consider privacy-enhanced mode (youtube-nocookie.com) if/when privacy requirements demand it."
 
   non_functional_and_operational:
     security:

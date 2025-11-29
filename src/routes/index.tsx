@@ -220,10 +220,10 @@ function HomePage() {
 				>
 					<div className="mb-10 flex items-center justify-between">
 						<div>
-							<h2 className="font-semibold text-3xl">Latest from the Coil</h2>
-							<p className="mt-2 text-muted-foreground">
-								Recent devlogs and updates
-							</p>
+							<h2 className="font-semibold text-3xl">
+								Channeling knowledge and creativity
+							</h2>
+							<p className="mt-2 text-secondary">Recent devlogs and updates</p>
 						</div>
 						<Button asChild className="hidden gap-2 sm:flex" variant="ghost">
 							<Link to="/blog">
@@ -254,7 +254,7 @@ function HomePage() {
 				<div className="container mx-auto max-w-6xl px-4">
 					<div className="mx-auto max-w-2xl text-center">
 						<h2 className="mb-4 font-semibold text-3xl">🌀 The Upkeep</h2>
-						<p className="mb-2 font-medium text-lg text-tbc-teal">
+						<p className="mb-2 font-medium text-lg text-secondary">
 							Engineering card advantage in real life
 						</p>
 						<p className="mb-8 text-muted-foreground">

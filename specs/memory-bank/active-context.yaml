@@ -1,7 +1,7 @@
 meta:
-  release: 0.1.3
+  release: 0.1.4
   repo: github.com/BallLightningAB/thebuildercoil
-  pdd_version: "v0.1"
+  pdd_version: "v0.1.1"
   current_changes: see specs/current-changes/
 guardrails:
   non_goals: []
@@ -34,13 +34,13 @@ guardrails:
           dev_h: 24
           test_h: 4
         progress_log:
-          - Created implementation plan (specs/current-changes/issue-003-build-tbc-site-phase1.yaml)
-          - Updated styles.css with TBC brand colors from PDD
-          - Implemented Phase 1 core pages (home, blog, news, about, contact, newsletter) with TBC layout
-          - Set up local JSON content system with Zod schemas, reading time, and markdown support
-          - Integrated GitHub contribution graph hero panel with refined slide-in animation
-          - Implemented server-side markdown rendering plus Kibo UI CodeBlock for blog/news code samples
-          - Resolved remaining Biome lint issues and unified dark mode card/tag styling
+          - Created Phase 1 implementation plan (specs/current-changes/issue-003-build-tbc-site-phase1.yaml) plus The Upkeep newsletter sub-plan
+          - Implemented shared layout and core pages (home, blog, news, about, contact, newsletter shell) using TBC fonts, colors, and dark/light theme provider
+          - Set up local JSON content system with Zod schemas, markdown-to-HTML rendering, reading time, and media conventions
+          - Refined hero and card presentation (GitHub contribution graph animation, safer hero images, BlogPostCard thumbnails)
+          - Integrated Kibo UI ThemeSwitcher and CodeBlock, resolved duplicate key warnings, and documented the { post, html, codeBlocks } contract in the PDD
+          - Resolved remaining Biome lint issues and unified dark/light card and tag styling
+          - Fixed dark mode typography so prose content uses TBC cream (#f5e6d3) instead of white via a custom prose-cream utility in styles.css and route updates
     next_steps:
       - id: chronomation-integration
         issue: "#TBD"

@@ -103,8 +103,8 @@ h2,
   /* TBC Brand Colors (light mode - high contrast on cream) */
   --tbc-teal: #05070a; /* Use void color for accent in light mode */
   --tbc-teal-hover: #111827;
-  --tbc-violet: #6d28d9; /* Darker violet for light mode */
-  --tbc-violet-hover: #7c3aed;
+  --tbc-violet: #a78bfa; /* Darker violet for light mode */
+  --tbc-violet-hover: #8b5cff;
   --tbc-ember: #c05621;
   --tbc-cream: #f5e6d3;
   --tbc-cream-soft: #f9f3e8;
@@ -117,11 +117,11 @@ h2,
   /* Border / Input */
   --border: #d4c9b8;
   --input: #d4c9b8;
-  --ring: #8b5cff;
+  --ring: #a78bfa;
 
   /* Chart colors */
   --chart-1: #23f0ff;
-  --chart-2: #8b5cff;
+  --chart-2: #a78bfa;
   --chart-3: #c05621;
   --chart-4: #15803d;
   --chart-5: #b45309;
@@ -137,7 +137,7 @@ h2,
   --sidebar-accent: #e5ddd0;
   --sidebar-accent-foreground: #111827;
   --sidebar-border: #d4c9b8;
-  --sidebar-ring: #8b5cff;
+  --sidebar-ring: #a78bfa;
 }
 
 /* =============================================================================
@@ -160,12 +160,12 @@ h2,
   --popover: #080c11;
   --popover-foreground: #f5e6d3;
 
-  /* Primary action - TEAL */
-  --primary: #23f0ff;
+  /* Primary action - violet */
+  --primary: #a78bfa;
   --primary-foreground: #05070a;
-
-  /* Secondary - violet accent */
-  --secondary: #8b5cff;
+  
+  /* Secondary - teal accent */
+  --secondary: #00bfff;
   --secondary-foreground: #05070a;
 
   /* Muted - subtle cream tint on void */
@@ -173,14 +173,14 @@ h2,
   --muted-foreground: #d4c9b8; /* Darker cream */
 
   /* Accent – violet for dark mode */
-  --accent: #8b5cff;
+  --accent: #a78bfa;
   --accent-foreground: #f5e6d3;
-
+  
   /* TBC Brand Colors (dark mode - teal glows on void) */
-  --tbc-teal: #23f0ff;
-  --tbc-teal-hover: #4ff6ff;
-  --tbc-violet: #8b5cff;
-  --tbc-violet-hover: #a78bfa;
+  --tbc-teal: #a78bfa;
+  --tbc-teal-hover: #8b5cff;
+  --tbc-violet: #00bfff;
+  --tbc-violet-hover: #25befc;
   --tbc-ember: #ffdca8;
   --tbc-cream: #f5e6d3;
   --tbc-cream-soft: #f9f3e8;
@@ -196,8 +196,8 @@ h2,
   --ring: #8b5cff;
 
   /* Chart colors */
-  --chart-1: #23f0ff;
-  --chart-2: #8b5cff;
+  --chart-1: #a78bfa;
+  --chart-2: #00bfff;
   --chart-3: #ffdca8;
   --chart-4: #4ade80;
   --chart-5: #fbbf24;
@@ -210,7 +210,28 @@ h2,
   --sidebar-accent: #111827;
   --sidebar-accent-foreground: #e5e7eb;
   --sidebar-border: rgba(148, 163, 184, 0.35);
-  --sidebar-ring: #8b5cff;
+  --sidebar-ring: #a78bfa;
+}
+
+/* Custom prose utility for TBC cream theme in dark mode
+   This creates a prose-cream class that uses our brand colors */
+@utility prose-cream {
+  --tw-prose-body: var(--foreground);
+  --tw-prose-headings: var(--foreground);
+  --tw-prose-lead: var(--foreground);
+  --tw-prose-links: var(--tbc-teal);
+  --tw-prose-bold: var(--foreground);
+  --tw-prose-counters: var(--foreground);
+  --tw-prose-bullets: var(--foreground);
+  --tw-prose-hr: var(--border);
+  --tw-prose-quotes: var(--foreground);
+  --tw-prose-quote-borders: var(--border);
+  --tw-prose-captions: var(--foreground);
+  --tw-prose-code: var(--foreground);
+  --tw-prose-pre-code: var(--foreground);
+  --tw-prose-pre-bg: var(--card);
+  --tw-prose-th-borders: var(--border);
+  --tw-prose-td-borders: var(--border);
 }
 
 @theme inline {
@@ -289,9 +310,4 @@ h2,
   .dark h2 {
     color: var(--tbc-cream);
   }
-
-	/* Ensure blog/news body text reads as cream in dark mode */
-	.dark .prose {
-		color: var(--tbc-cream);
-	}
 }

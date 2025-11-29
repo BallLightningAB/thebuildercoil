@@ -1,0 +1,19 @@
+{
+  "id": "post-004",
+  "slug": "media-hosting-strategy-for-the-builder-coil",
+  "title": "Designing Media Hosting for The Builder Coil",
+  "type": "blog",
+  "summary": "How I’m designing media hosting for The Builder Coil and Chronomation: from simple file-based images to multi-tenant media for future clients.",
+  "bodyIsMarkdown": true,
+  "heroImage": "/media/chronomation-media-strategy.png",
+  "heroImageAlt": "Chronomation Media Hosting Strategy",
+  "body": "# Designing Media Hosting for The Builder Coil",
+  "bodyFile": "2025-11-28-media-hosting-strategy-for-the-builder-coil.md",
+  "tags": ["chronomation", "media", "architecture", "devlog"],
+  "author": "Nicolas Brulay",
+  "status": "published",
+  "publishedAt": "2025-11-28T10:00:00.000Z",
+  "createdAt": "2025-11-28T09:30:00.000Z",
+  "updatedAt": "2025-11-28T18:10:00.000Z",
+  "readingTime": 5
+}

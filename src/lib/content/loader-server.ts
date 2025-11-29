@@ -45,20 +45,35 @@ function extractCodeBlocksFromMarkdown(body: string): PostCodeBlock[] {
 
 function buildPostFromFileContent(
 	content: string,
-	slug: string
+	slug: string,
+	filePath: string
 ): { post: Post; html: string; codeBlocks: PostCodeBlock[] } | null {
 	const parsed = JSON.parse(content);
 	const validated = PostSchema.parse(parsed);
 	if (validated.slug !== slug) {
 		return null;
 	}
+	// Resolve body from optional external markdown file if provided
+	const resolvedBody = validated.bodyFile
+		? fs.readFileSync(
+				path.isAbsolute(validated.bodyFile)
+					? validated.bodyFile
+					: path.join(path.dirname(filePath), validated.bodyFile),
+				"utf-8"
+			)
+		: validated.body;
+
 	if (!validated.readingTime) {
-		validated.readingTime = calculateReadingTime(validated.body);
+		validated.readingTime = calculateReadingTime(resolvedBody);
 	}
+
+	// Ensure callers always see the fully resolved body
+	validated.body = resolvedBody;
+
 	const sourceBody =
 		validated.bodyIsMarkdown !== false
-			? stripLeadingTitleHeading(validated.title, validated.body)
-			: validated.body;
+			? stripLeadingTitleHeading(validated.title, resolvedBody)
+			: resolvedBody;
 	const html =
 		validated.bodyIsMarkdown !== false
 			? (marked.parse(sourceBody, { async: false }) as string)
@@ -129,7 +144,7 @@ export function loadPostInternal(
 		const filePath = path.join(dir, file);
 		const content = fs.readFileSync(filePath, "utf-8");
 		try {
-			const result = buildPostFromFileContent(content, slug);
+			const result = buildPostFromFileContent(content, slug, filePath);
 			if (result) {
 				return result;
 			}
@@ -156,8 +171,15 @@ export function loadPostsInternal(type?: PostType): PostMeta[] {
 		posts.push(...newsPosts);
 	}
 
+	const now = Date.now();
 	const published = posts
-		.filter((p) => p.status === "published")
+		.filter((p) => {
+			if (p.status !== "published") {
+				return false;
+			}
+			const publishedTime = new Date(p.publishedAt).getTime();
+			return !Number.isNaN(publishedTime) && publishedTime <= now;
+		})
 		.sort(
 			(a, b) =>
 				new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()

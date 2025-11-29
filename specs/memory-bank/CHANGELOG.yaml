@@ -1,4 +1,20 @@
 entries:
+  - date: "2025-11-29"
+    version: 0.1.4
+    issue: "#3 https://github.com/BallLightningAB/thebuildercoil/issues/3"
+    commit: TBD
+    status: pending
+    title: "fix(typography): resolve dark mode prose colors for TBC brand"
+    details: |- 
+      - Fix dark mode typography issue where @tailwindcss/typography prose text was white instead of cream
+      - Create custom prose-cream utility class in styles.css using @utility directive
+      - Replace dark:prose-invert with dark:prose-cream in blog, news, and about route components
+      - Ensure all prose elements (headings, body text, links, code) use TBC cream color (#f5e6d3) in dark mode
+      - Follow Tailwind Typography best practices for custom color theming
+      - Verify fix works across all content pages with hot module replacement
+
+      Refs: v0.1.4 #3
+
   - date: "2025-11-27"
     version: 0.1.3
     issue: "#3 https://github.com/BallLightningAB/thebuildercoil/issues/3"

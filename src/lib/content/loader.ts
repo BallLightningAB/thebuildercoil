@@ -14,6 +14,16 @@ function calculateReadingTime(text: string): number {
 	return Math.ceil(words / WORDS_PER_MINUTE);
 }
 
+function resolveBodyFromPost(validated: Post, filePath: string): string {
+	if (!validated.bodyFile) {
+		return validated.body;
+	}
+	const bodyPath = path.isAbsolute(validated.bodyFile)
+		? validated.bodyFile
+		: path.join(path.dirname(filePath), validated.bodyFile);
+	return fs.readFileSync(bodyPath, "utf-8");
+}
+
 const CONTENT_DIR = path.join(process.cwd(), "content");
 const BLOG_DIR = path.join(CONTENT_DIR, "blog");
 const NEWS_DIR = path.join(CONTENT_DIR, "news");
@@ -68,10 +78,16 @@ export function loadPost(slug: string, type: PostType): Post | null {
 				// Validate with Zod
 				const validated = PostSchema.parse(post);
 
+				// Resolve body from optional external markdown file if provided
+				const resolvedBody = resolveBodyFromPost(validated, filePath);
+
 				// Calculate reading time if not present
 				if (!validated.readingTime) {
-					validated.readingTime = calculateReadingTime(validated.body);
+					validated.readingTime = calculateReadingTime(resolvedBody);
 				}
+
+				// Ensure callers always see the fully resolved body
+				validated.body = resolvedBody;
 
 				return validated;
 			}
@@ -99,9 +115,16 @@ export function loadPosts(type?: PostType): PostMeta[] {
 		posts.push(...newsPosts);
 	}
 
-	// Filter to published only, sort by date (newest first)
+	// Filter to published only (with publishedAt in the past), sort by date (newest first)
+	const now = Date.now();
 	const published = posts
-		.filter((p) => p.status === "published")
+		.filter((p) => {
+			if (p.status !== "published") {
+				return false;
+			}
+			const publishedTime = new Date(p.publishedAt).getTime();
+			return !Number.isNaN(publishedTime) && publishedTime <= now;
+		})
 		.sort(
 			(a, b) =>
 				new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()

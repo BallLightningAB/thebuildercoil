@@ -4,13 +4,14 @@
   "title": "Chronomation: Key Architecture Decisions",
   "type": "blog",
   "summary": "A deep dive into the architecture decisions behind Chronomation – our multi-tenant content engine. Why we chose Neon, Drizzle, and a tenant-first data model.",
-  "body": "# Chronomation: Key Architecture Decisions\n\nChronomation is the engine that powers The Builder Coil. It's a multi-tenant content platform designed to turn raw work artifacts into structured blog posts and social content. Here are the key architecture decisions we made.\n\n## Multi-Tenant from Day One\n\nWe designed Chronomation to be multi-tenant from the start. Every table has a `tenant_id` column. Every query is scoped. This adds complexity upfront but makes scaling to multiple customers straightforward.\n\n```sql\nCREATE TABLE blog_posts (\n  id uuid PRIMARY KEY,\n  tenant_id uuid NOT NULL REFERENCES tenants(id),\n  channel_id uuid NOT NULL REFERENCES channels(id),\n  slug text NOT NULL,\n  -- ...\n  UNIQUE (tenant_id, channel_id, slug)\n);\n```\n\n## Database: Neon + Drizzle\n\n### Why Neon?\n\n- **Serverless scaling**: No connection pool management headaches\n- **Branching**: Test migrations on branches before production\n- **Cost**: Pay for what you use\n\n### Why Drizzle?\n\n- **Type safety**: Schema types flow through your entire app\n- **SQL-like**: Feels like writing SQL, not fighting an ORM\n- **Lightweight**: Minimal runtime overhead\n\n```typescript\nconst posts = await db\n  .select()\n  .from(blogPosts)\n  .where(and(\n    eq(blogPosts.tenantId, tenantId),\n    eq(blogPosts.status, 'published')\n  ))\n  .orderBy(desc(blogPosts.publishedAt));\n```\n\n## Content Ingestion\n\nChronomation ingests content from multiple sources:\n\n1. **GitHub**: Commits, changelogs, releases\n2. **Email**: Via Resend inbound webhooks\n3. **Manual**: Notes entered in the admin UI\n\nEach source creates \"feed items\" that can later be combined into blog posts.\n\n## What's Next\n\nIn future posts, we'll cover:\n\n- The AI-assisted content generation pipeline\n- Social sharing automation\n- The admin UI built with shadcn/ui\n\nFollow along as we build Chronomation in public. 🔧",
+  "body": "# Chronomation: Key Architecture Decisions",
+  "bodyFile": "2025-11-23-chronomation-architecture-decisions.md",
   "bodyIsMarkdown": true,
   "tags": ["chronomation", "architecture", "neon", "drizzle", "devlog"],
   "author": "Nicolas Brulay",
   "status": "published",
-  "publishedAt": "2025-11-23T16:00:00.000Z",
+  "publishedAt": "2025-12-01T12:00:00.000Z",
   "createdAt": "2025-11-23T12:00:00.000Z",
-  "updatedAt": "2025-11-23T16:00:00.000Z",
+  "updatedAt": "2025-11-28T16:00:00.000Z",
   "readingTime": 4
 }

@@ -44,7 +44,7 @@ function AboutPage() {
 				</div>
 
 				{/* Main Content */}
-				<div className="prose prose-lg dark:prose-invert mx-auto mb-16 max-w-none prose-headings:font-serif">
+				<div className="prose prose-lg dark:prose-cream mx-auto mb-16 max-w-none prose-headings:font-serif">
 					<h2>What Is The Builder Coil?</h2>
 					<p>
 						The Builder Coil is more than just a blog – it's a living record of

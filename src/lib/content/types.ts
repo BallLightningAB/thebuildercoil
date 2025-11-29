@@ -24,6 +24,8 @@ export type Post = {
 	summary: string;
 	/** Full post content (HTML or markdown string) */
 	body: string;
+	/** Optional path to external markdown body file (relative to the JSON file) */
+	bodyFile?: string;
 	/** Whether body is markdown (true) or HTML (false) */
 	bodyIsMarkdown?: boolean;
 	/** Hero/featured image URL */

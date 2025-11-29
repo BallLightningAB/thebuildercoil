@@ -94,7 +94,7 @@ flowchart TD
   "summary": "Brief description for cards and SEO",
   "body": "# Markdown content here...",
   "bodyIsMarkdown": true,
-  "heroImage": "/path/to/image.png",
+  "heroImage": "/media/your-image.png",
   "heroImageAlt": "Alt text",
   "tags": ["tag1", "tag2"],
   "author": "Author Name",
@@ -105,12 +105,54 @@ flowchart TD
 }
 ```
 
+Images for `heroImage` and other inline content should be placed in
+`public/media` and referenced using `/media/...` paths. Phase 1 keeps media
+simple (static files in the repo) while matching the media_hosting_strategy in
+the PDD so that Chronomation or external URLs can later replace the local
+`/media` paths without changing rendering code.
+
+For long-form posts, you can optionally store the full body in a separate
+markdown file next to the JSON file and reference it with a `bodyFile` field
+(for example `"bodyFile": "YYYY-MM-DD-slug-name.md"`). The loader will read
+from that file at runtime, and `body` in the JSON can stay a short stub (such
+as the title heading) to keep diffs small and editing pleasant.
+
+Bodies are written in markdown (whether inline in `body` or loaded via
+`bodyFile`), so you can add links using normal markdown syntax. For internal
+links between posts, prefer absolute paths that match the routes:
+
+- Blog post: `[Chronomation: Key Architecture Decisions](/blog/chronomation-architecture-decisions)`
+- News item: `[The Builder Coil is Live](/news/the-builder-coil-is-live)`
+- External: `[TanStack Start](https://tanstack.com/start)`
+
+These links should live in the `.md` body files alongside the JSON so content
+remains easy to edit.
+
 3. Set `status: "published"` when ready to go live (drafts are filtered out)
 4. The dev server will automatically pick up the new file
 
 ### Adding News
 
 Same process as blog posts, but place files in `content/news/` and set `type: "news"`.
+
+### Media hosting (Phase 1)
+
+- Images for hero sections and inline content live under `public/media` and are
+  referenced from JSON as `/media/...` paths (for example `/media/welcome-hero.png`).
+- This keeps Phase 1 simple (static files in the repo) and matches the
+  `media_hosting_strategy` in the PDD so that Chronomation- or CDN-hosted URLs
+  can later replace the local `/media` paths without changing rendering code.
+- For **very small, low-traffic video clips**, you may optionally place
+  short `.mp4` files under `public/media/*.mp4`, but the default strategy for
+  richer video is to upload to YouTube and embed via URL (see PDD
+  `video_strategy.phase_1_tbc_only`).
+
+Phase 2 of the media strategy (Chronomation-managed object storage, shared
+`media.chronomation.com` host, and optional per-tenant vanity media domains)
+is defined in `specs/memory-bank/pdd-thebuildercoil.yaml` under
+`media_hosting_strategy`. When that is implemented, `heroImage` and inline
+media URLs will typically point at Chronomation/CDN URLs instead of
+`/media/...`, but the rendering code and content JSON shape remain the same.
 
 ---
 

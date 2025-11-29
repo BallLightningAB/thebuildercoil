@@ -1,5 +1,6 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowLeft, Calendar, Clock, User } from "lucide-react";
+import { BlogPostGrid } from "@/components/blog/BlogPostGrid";
 import {
 	CodeBlock,
 	CodeBlockBody,
@@ -12,7 +13,7 @@ import {
 } from "@/components/kibo-ui/code-block";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { getPost } from "@/lib/content/server";
+import { getPost, getRelatedPosts } from "@/lib/content/server";
 
 export const Route = createFileRoute("/news/$slug")({
 	component: NewsPostPage,
@@ -21,10 +22,14 @@ export const Route = createFileRoute("/news/$slug")({
 		if (!result) {
 			throw notFound();
 		}
+		const related = await getRelatedPosts({
+			data: { slug: params.slug, type: "news", limit: 3 },
+		});
 		return {
 			post: result.post,
 			html: result.html,
 			codeBlocks: result.codeBlocks,
+			related,
 		};
 	},
 	notFoundComponent: () => (
@@ -41,7 +46,7 @@ export const Route = createFileRoute("/news/$slug")({
 });
 
 function NewsPostPage() {
-	const { post, html, codeBlocks } = Route.useLoaderData();
+	const { post, html, codeBlocks, related } = Route.useLoaderData();
 
 	const formattedDate = new Date(post.publishedAt).toLocaleDateString("en-US", {
 		year: "numeric",
@@ -111,7 +116,7 @@ function NewsPostPage() {
 				)}
 				{/* Article Content */}
 				<div
-					className="prose prose-lg dark:prose-invert max-w-none prose-code:rounded prose-pre:border prose-pre:border-border prose-code:bg-muted prose-pre:bg-card prose-code:px-1.5 prose-code:py-0.5 prose-code:font-normal prose-headings:font-semibold prose-headings:prose-a:text-tbc-teal prose-a:no-underline prose-code:before:content-none prose-code:after:content-none hover:prose-a:underline"
+					className="prose prose-lg dark:prose-cream max-w-none prose-code:rounded prose-pre:border prose-pre:border-border prose-code:bg-muted prose-pre:bg-card prose-code:px-1.5 prose-code:py-0.5 prose-code:font-normal prose-headings:font-semibold prose-headings:prose-a:text-tbc-teal prose-a:no-underline prose-code:before:content-none prose-code:after:content-none hover:prose-a:underline"
 					dangerouslySetInnerHTML={{ __html: html }}
 				/>
 				{codeBlocks.length > 0 && (
@@ -146,6 +151,12 @@ function NewsPostPage() {
 								)}
 							</CodeBlockBody>
 						</CodeBlock>
+					</section>
+				)}
+				{related.length > 0 && (
+					<section className="mt-16 border-border border-t pt-12">
+						<h2 className="mb-8 font-semibold text-2xl">Related News</h2>
+						<BlogPostGrid posts={related} />
 					</section>
 				)}
 			</div>

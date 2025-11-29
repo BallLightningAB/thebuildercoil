@@ -301,6 +301,11 @@ phase_1:
       - No markdown parsing library needed initially
       - Content body can be stored as HTML or markdown string within JSON
       
+      In Phase 1, media for posts (hero images, inline illustrations) is
+      stored directly in the repo under public/media and referenced from JSON
+      via /media/... paths in the heroImage field, matching the
+      media_hosting_strategy defined in the PDD.
+
       Migration to Chronomation API in Phase 2 is straightforward:
       just swap file reads with fetch() calls.
 
@@ -367,6 +372,20 @@ phase_1:
           - Technical devlog post
         deliverables:
           - 3–5 JSON files in content/blog/
+        status: done
+
+      - id: "3.5"
+        title: "Define media storage convention for post assets"
+        description: |
+          Establish a clear convention for storing images used in blog/news
+          entries in Phase 1:
+          - Place static assets under public/media in the repo.
+          - Reference hero images from JSON via /media/... paths.
+          - Keep this aligned with the media_hosting_strategy in the PDD so
+            Phase 2 Chronomation URLs can later replace local /media paths.
+        deliverables:
+          - public/media directory with sample hero images.
+          - Updated README documenting the /media heroImage convention.
         status: done
 
   # ---------------------------------------------------------------------------
@@ -923,7 +942,9 @@ environment_variables:
       required_for: "JSON subscriber storage (Phase 1)"
     - step: "Add content/newsletter/subscribers.json to .gitignore"
       required_for: "PII protection"
-    - step: "Copy .env.local.example to .env.local"
+    - step: "Create public/media directory for blog/news images"
+      required_for: "Static media for Phase 1 blog/news posts"
+    - step: "Copy .env.example to .env.local"
       required_for: "Local development"
     - step: "Add env vars to deployment platform (Vercel/Netlify)"
       required_for: "Production deployment"

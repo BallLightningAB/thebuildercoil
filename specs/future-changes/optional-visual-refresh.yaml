@@ -1,0 +1,267 @@
+visual_refresh_spec:
+  name: "Visual Refresh – TBC / Chronomation / Ball Lightning"
+  audience: "Hubert (LLM dev)"
+  scope: "Visual and layout refresh only. No content, routing, or IA changes."
+
+  goals:
+    - "Keep all existing content and information architecture."
+    - "Move to a single dark-first 'arcane terminal' theme shared across brands."
+    - "Use JetBrains Mono for all typography."
+    - "Differentiate brands via accent gradients and animations, not different layouts."
+    - "Integrate grid/carbon pattern + gradient background, including animated hover states."
+
+  global_theme:
+    concept: >-
+      Arcane terminal / builder’s grimoire. Calm dark developer UI that feels
+      like a spellbook rendered as a modern code editor.
+    dark_only_initial: true
+    later_light_mode: true
+    shared_foundation:
+      background:
+        base: "#05070A"
+        elevated: "#0A1014"
+        pattern_description: >-
+          Radial gradient from top with subtle violet/teal tint plus grid/carbon
+          overlay. Same pattern family reused on heroes, tiles and hover states.
+        css_example: |
+          background:
+            radial-gradient(circle at top, #251842 0, #05070a 55%, #020308 100%),
+            repeating-linear-gradient(
+              to right,
+              rgba(255,255,255,0.04) 0,
+              rgba(255,255,255,0.04) 1px,
+              transparent 1px,
+              transparent 32px
+            ),
+            repeating-linear-gradient(
+              to bottom,
+              rgba(255,255,255,0.04) 0,
+              rgba(255,255,255,0.04) 1px,
+              transparent 1px,
+              transparent 32px
+            );
+          background-blend-mode: soft-light, normal, normal;
+      pattern_hover_behavior: >-
+        On key cards/buttons, use a slightly stronger, animated variant of the
+        grid/carbon pattern: animate background-position slowly and slightly
+        increase opacity on hover.
+      typography:
+        font_family: "JetBrains Mono"
+        base:
+          size: "15-16px"
+          line_height: 1.7
+        headings:
+          h1: "text-4xl sm:text-5xl md:text-6xl, font-medium, tracking 0.08em"
+          h2: "text-2xl sm:text-3xl, tracking 0.06em"
+        body_color: "#E5E7EB"
+        muted_color: "#9CA3AF"
+        heading_cream: "#F5E6D3"
+
+  brands:
+    the_builder_coil:
+      role: "Devlog / blog"
+      palette:
+        background:
+          base: "#05070A"
+          elevated: "#0A1014"
+        foreground:
+          body: "#E5E7EB"
+          muted: "#9CA3AF"
+          cream_heading: "#F5E6D3"
+        gradient:
+          name: "tbc-primary"
+          colors: ["#8B5CFF", "#00BFFF"]
+          css: "linear-gradient(135deg, #8B5CFF, #00BFFF)"
+        semantic_tokens:
+          brand_accent_1: "#8B5CFF"
+          brand_accent_2: "#00BFFF"
+          brand_gradient: "var(--tbc-primary)"
+      usage_notes:
+        - "Hero right-hand tile uses violet→blue gradient with grid pattern."
+        - "Primary CTAs, tag pills, and nav active underline use brand gradient."
+        - "Body text stays neutral; color used sparingly (approx 10% of surface)."
+
+    chronomation:
+      role: "Automation engine / SaaS control center"
+      palette:
+        background:
+          base: "#05070A"
+          elevated: "#0A1014"
+        foreground:
+          body: "#E5E7EB"
+          muted: "#9CA3AF"
+          cream_heading: "#F5E6D3"
+        gradient:
+          name: "chrono-primary"
+          colors: ["#00BFFF", "#F81EA6"]  # blue + pink
+          css: "linear-gradient(135deg, #00BFFF, #F81EA6)"
+        semantic_tokens:
+          brand_accent_1: "#00BFFF"       # primary Chronomation blue
+          brand_accent_2: "#F81EA6"       # signature Chronomation pink (alt-logo + accents)
+          brand_gradient: "var(--chrono-primary)"
+      usage_notes:
+        - "#F81EA6 is the only Chronomation pink; used for alt-logo and key accents."
+        - "Blue #00BFFF + pink #F81EA6 define the Chronomation gradient; remove previous teal/sky variants."
+        - "Same hero layout as TBC; right tile uses blue→pink animation."
+        - "CTAs, tags, and nav active state use the blue→pink gradient."
+        - "Motion slightly calmer than TBC but same component language."
+
+
+    ball_lightning:
+      role: "Parent studio brand"
+      palette:
+        background:
+          base: "#05070A"
+          elevated: "#0A1014"
+        foreground:
+          body: "#E5E7EB"
+          muted: "#9CA3AF"
+          cream_heading: "#F5E6D3"
+        gradient:
+          name: "bl-primary"
+          colors: ["#DD3A28", "#FF7268"]
+          css: "linear-gradient(135deg, #DD3A28, #FF7268)"
+        semantic_tokens:
+          brand_accent_1: "#DD3A28"
+          brand_accent_2: "#FF7268"
+          brand_gradient: "var(--bl-primary)"
+      usage_notes:
+        - "Molten red/orange used for hero accent and 'Powered by' elements."
+        - "Same dark background, typography, and components as other brands."
+        - "Should clearly read as the parent of TBC and Chronomation."
+
+  layout_patterns:
+    hero:
+      description: >-
+        Two-column hero inspired by factory.ai. Left column content, right
+        column animated brand tile. Same pattern used across all three brands.
+      desktop_grid: "grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] gap-10-12"
+      mobile_behavior: "Stack columns; text first, tile second."
+      left_column:
+        contents:
+          - "Kicker pill (e.g. 'Building in public')."
+          - "H1 and optional supporting subheadline."
+          - "Short paragraph."
+          - "Two CTAs: primary (filled gradient), secondary (outlined/ghost)."
+      right_column:
+        tile:
+          base_style:
+            background: "brand_gradient"
+            pattern: "same grid/carbon pattern, slightly stronger than page bg"
+            radius: "rounded-3xl"
+            shadow: "0 20px 60px rgba(0,0,0,0.9)"
+          animation_ideas:
+            - "Looping CSS gradient shift within the tile."
+            - "Simple SVG line/shape animation in brand accents."
+          hover_behavior:
+            - "Subtle increase in glow and contrast of gradient."
+            - "Slow movement of grid pattern (background-position animation)."
+
+    blog_news_block:
+      description: >-
+        Blog/news sections mimic factory.ai/news: clean card grid with subtle
+        borders, pattern on hover, and brand-colored interactions.
+      structure:
+        header:
+          elements:
+            - "Section title (e.g. 'Latest from the Coil')."
+            - "Right-aligned 'View all posts' link."
+        grid:
+          columns: "2–3 responsive columns depending on viewport."
+      card_style:
+        base:
+          background: "rgba(5,7,10,0.95)"
+          border: "1px solid rgba(255,255,255,0.06)"
+          radius: "rounded-2xl"
+          shadow: "0 20px 60px rgba(0,0,0,0.9)"
+        hover:
+          transform: "translateY(-2px)"
+          border: "border-image using brand_gradient"
+          pattern: "grid/carbon overlay slightly stronger and moving"
+          title_effect: "underline in brand accent color"
+        content_elements:
+          - "Tag pills with brand accent background."
+          - "Post title."
+          - "Meta (date, reading time)."
+          - "Short excerpt."
+
+    buttons_and_links:
+      primary_button:
+        base:
+          background: "brand_gradient"
+          text_color: "#05070A or #0A1014 depending on contrast"
+          border: "transparent or subtle"
+          shadow: "soft glow matching gradient"
+        hover:
+          effects:
+            - "Increase gradient contrast slightly."
+            - "Add low-opacity animated grid overlay."
+            - "Slight lift (translateY)."
+      secondary_button:
+        base:
+          background: "transparent dark"
+          border: "1px solid rgba(255,255,255,0.12)"
+        hover:
+          effects:
+            - "Border becomes brand_gradient (border-image or pseudo-element)."
+            - "Slight lift and mild glow."
+      text_links:
+        default:
+          color: "body text color"
+          underline: "none"
+        hover:
+          color: "brand_accent_1 or brand_accent_2"
+          underline: "visible, in brand accent color"
+          motion: "optional 1–2px upward movement"
+
+  component_guidelines:
+    theme_tokens:
+      notes: >-
+        Existing YAML token files stay as the single source of truth, but ensure
+        Chronomation primaries are teal+pink again (remove teal+blue). Each
+        brand should have a small set of semantic tokens:
+      semantic_tokens:
+        - "--brand-accent-1"
+        - "--brand-accent-2"
+        - "--brand-gradient"
+        - "--brand-tag-bg"
+        - "--brand-tag-text"
+      mapping: >-
+        For each site, set these tokens at the layout root via CSS variables and
+        wire them into Tailwind/Shadcn theme config.
+
+    shadcn_components:
+      shared_changes:
+        button:
+          variants:
+            primary: "Uses brand-gradient background with described hover."
+            secondary: "Transparent dark background, gradient border on hover."
+        card:
+          style: "Dark panel with subtle border and pattern-hover behavior."
+        badge_tag:
+          style: "Brand-colored pills for labels and post tags."
+        navbar:
+          active_state: "Underline in brand gradient; text in brand accent."
+          hover_state: "Accent underline plus color shift."
+
+    per_brand_implementation:
+      tbc:
+        changes:
+          - "Replace current hero with two-column hero pattern."
+          - "Ensure 'Latest from the Coil' cards use updated card hover + gradient."
+          - "Apply global gradient+grid background to entire site."
+      chronomation:
+        changes:
+          - "Reapply teal+pink brand palette to hero, CTAs, tags, and nav."
+          - "Use same hero and news grid layout as TBC."
+          - "Confirm Shadcn theme reads Chronomation-specific tokens, not teal+blue."
+      ball_lightning:
+        changes:
+          - "Use same background and pattern as other brands."
+          - "Update hero and highlights to use molten red/orange gradient."
+          - "Maintain identical UI language so it reads as parent brand."
+
+  constraints:
+    - "Do not change any textual content, copy, or page routing."
+    - "Keep TanStack Start, Shadcn, and existing component architecture; avoid major rewrites."
+    - "All work is visual and structural within existing pages: backgrounds, patterns, gradients, components, and hero/news layouts."
