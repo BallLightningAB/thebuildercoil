@@ -3,6 +3,7 @@ pdd:
     name: "Chronomation – Content Engine"
     code_name: "chronomation_core"
     version: "0.1.1"
+    workflow_guide: "specs/memory-bank/memory-bank-usage.yaml"
     owner:
       individual: "Nicolas Brulay"
       company: "Ball Lightning AB"

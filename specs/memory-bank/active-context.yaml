@@ -1,7 +1,7 @@
 meta:
-  release: 0.1.4
+  release: 0.1.5
   repo: github.com/BallLightningAB/thebuildercoil
-  pdd_version: "v0.1.1"
+  pdd_version: "v0.1.2"
   current_changes: see specs/current-changes/
 guardrails:
   non_goals: []
@@ -9,6 +9,9 @@ guardrails:
   references:
     pdd: specs/pdd-thebuildercoil.yaml
     changelog: specs/CHANGELOG.yaml
+  # Legend:
+  # - I{issue}D{n}: deliverable n for GitHub issue #{issue} (e.g. I3D3 = Issue #3 Deliverable 3)
+  # - I3Docs / I3UI / I3Fix / I3Test / I3Biome: tags for documentation, UI polish, minor fixes, tests and Biome/tooling work not tied to a single deliverable
   roadmap:
     current:
       - id: build-tbc-site-phase1
@@ -19,28 +22,38 @@ guardrails:
           issue: https://github.com/BallLightningAB/thebuildercoil/issues/3
           pr: ""
         deliverables:
-          - Configure TBC brand colors and typography in styles.css
-          - Install and configure dark/light mode with shadcn theme provider
-          - Install Kibo UI theme-switcher
-          - Create shared layout (header, footer)
-          - Implement home page with hero and featured posts
-          - Implement blog index and detail pages
-          - Implement news section
-          - Implement about and contact pages
-          - Set up local JSON content system for posts
-          - Implement newsletter signup with double opt-in (The Upkeep)
-          - Configure SEO, meta tags, and sitemap
+          - "[I3D1] Configure TBC brand colors and typography in styles.css"
+          - "[I3D2] Install and configure dark/light mode with shadcn theme provider"
+          - "[I3D3] Install Kibo UI theme-switcher"
+          - "[I3D4] Create shared layout (header, footer)"
+          - "[I3D5] Implement home page with hero and featured posts"
+          - "[I3D6] Implement blog index and detail pages"
+          - "[I3D7] Implement news section"
+          - "[I3D8] Implement about and contact pages"
+          - "[I3D9] Set up local JSON content system for posts"
+          - "[I3D10] Implement newsletter signup with double opt-in (The Upkeep)"
+          - "[I3D11] Configure SEO, meta tags, and sitemap"
         est:
           dev_h: 24
           test_h: 4
+        sub_issues:
+          - id: memory-bank-organizational-upgrade
+            issue: "#4"
+            title: "docs(memory-bank): implement ID-based tracking system and usage guide"
+            status: done
+            links:
+              issue: https://github.com/BallLightningAB/thebuildercoil/issues/4
+        remaining_deliverables:
+          - I3D10
+          - I3D11
         progress_log:
-          - Created Phase 1 implementation plan (specs/current-changes/issue-003-build-tbc-site-phase1.yaml) plus The Upkeep newsletter sub-plan
-          - Implemented shared layout and core pages (home, blog, news, about, contact, newsletter shell) using TBC fonts, colors, and dark/light theme provider
-          - Set up local JSON content system with Zod schemas, markdown-to-HTML rendering, reading time, and media conventions
-          - Refined hero and card presentation (GitHub contribution graph animation, safer hero images, BlogPostCard thumbnails)
-          - Integrated Kibo UI ThemeSwitcher and CodeBlock, resolved duplicate key warnings, and documented the { post, html, codeBlocks } contract in the PDD
-          - Resolved remaining Biome lint issues and unified dark/light card and tag styling
-          - Fixed dark mode typography so prose content uses TBC cream (#f5e6d3) instead of white via a custom prose-cream utility in styles.css and route updates
+          - covers: [I3Docs] note: "Created Phase 1 implementation plan and The Upkeep newsletter sub-plan."
+          - covers: [I3D1, I3D2, I3D3, I3D4] note: "Set up TBC theming: styles.css colors, theme provider, Kibo switcher, and shared layout."
+          - covers: [I3D5, I3D6, I3D7, I3D8, I3D9] note: "Implemented core pages (home/blog/news/about/contact) backed by the local JSON content system."
+          - covers: [I3D5, I3D6, I3D7] note: "Refined hero and card presentation: contribution graph, safer hero images, BlogPostCard thumbnails."
+          - covers: [I3D2, I3D3, I3D4, I3D6, I3D7] note: "Integrated Kibo ThemeSwitcher and CodeBlock, fixed duplicate keys, documented { post, html, codeBlocks } contract."
+          - covers: [I3Biome] note: "Resolved remaining Biome lint issues and unified dark/light card and tag styling."
+          - covers: [I3D1] note: "Fixed dark mode prose: TBC cream (#f5e6d3) via prose-cream utility and route updates."
     next_steps:
       - id: chronomation-integration
         issue: "#TBD"
@@ -55,28 +68,27 @@ guardrails:
           issue: https://github.com/BallLightningAB/thebuildercoil/issues/1
           pr: ""
         deliverables:
-          - Initialized the project using the Tanstack Start Builder
-          - Designed a new logo
-          - Adapted the current color scheme to match the new logo in dark and light mode
-          - Created a gh project
-          - Repurposed gh labels
-          - Added the logos + favicon to /public
-          - Repurpose the secrets-scan pre-commit and workflow for the blightfell-web3-integration project
-          - Repurpose the memorybank/changelog automation from the blightfell-web3-integration project
-          - Remove Tanstack Demo components etc
+          - "[I1D1] Initialized the project using the Tanstack Start Builder"
+          - "[I1D2] Designed a new logo"
+          - "[I1D3] Adapted the current color scheme to match the new logo in dark and light mode"
+          - "[I1D4] Created a gh project"
+          - "[I1D5] Repurposed gh labels"
+          - "[I1D6] Added the logos + favicon to /public"
+          - "[I1D7] Repurpose the secrets-scan pre-commit and workflow for the blightfell-web3-integration project"
+          - "[I1D8] Repurpose the memorybank/changelog automation from the blightfell-web3-integration project"
+          - "[I1D9] Remove Tanstack Demo components etc"
         est:
           dev_h: 8
           test_h: 0
         progress_log:
-          - Initialized the project using the Tanstack Start Builder
-          - Designed a new logo
-          - Adapted the current color scheme to match the new logo in dark and light mode
-          - Created a gh project
-          - Repurposed gh labels
-          - Added the logos + favicon to /public
-          - Repurpose the secrets-scan pre-commit and workflow for the blightfell-web3-integration project
-          - Repurpose the memorybank/changelog automation from the blightfell-web3-integration project
-          - Remove Tanstack Demo components etc
+          - covers: [I1D1] note: "Initialized the project using the Tanstack Start Builder"
+          - covers: [I1D2] note: "Designed a new logo"
+          - covers: [I1D3] note: "Adapted the current color scheme to match the new logo in dark and light mode"
+          - covers: [I1D4, I1D5] note: "Created a gh project and repurposed gh labels [concatenated]"
+          - covers: [I1D6] note: "Added the logos + favicon to /public"
+          - covers: [I1D7] note: "Repurpose the secrets-scan pre-commit and workflow for the blightfell-web3-integration project"
+          - covers: [I1D8] note: "Repurpose the memorybank/changelog automation from the blightfell-web3-integration project"
+          - covers: [I1D9] note: "Remove Tanstack Demo components etc"
       - id: Install dependencies
         issue: "#2"
         title: Install dependencies
@@ -85,17 +97,15 @@ guardrails:
           issue: https://github.com/BallLightningAB/thebuildercoil/issues/2
           pr: ""
         deliverables:
-          - install zod
-          - configure zod add central zod helper
-          - install ultracite
-          - configure biome + ultracite
-          - dependency upgrade pass
+          - "[I2D1] install zod"
+          - "[I2D2] configure zod add central zod helper"
+          - "[I2D3] install ultracite"
+          - "[I2D4] configure biome + ultracite"
+          - "[I2D5] dependency upgrade pass"
         est:
           dev_h: 4
           test_h: 0
         progress_log:
-          - Installed Ultracite and upgraded Biome to 2.3.7 using pnpm
-          - Initialized Ultracite configuration (biome.json, tsconfig, editor/editorconfig settings)
-          - Installed zod as a shared validation dependency
-          - Added central zod helper at src/lib/validation/zod.ts
-          - Completed initial dependency upgrade pass for TanStack, Tailwind, TypeScript, devtools, and related tooling
+          - covers: [I2D3, I2D4] note: "Installed Ultracite and upgraded Biome to 2.3.7 using pnpm, then initialized Ultracite configuration (biome.json, tsconfig, editor/editorconfig settings). [concatenated]"
+          - covers: [I2D1, I2D2] note: "Installed zod as a shared validation dependency and added central zod helper at src/lib/validation/zod.ts. [concatenated]"
+          - covers: [I2D5] note: "Completed initial dependency upgrade pass for TanStack, Tailwind, TypeScript, devtools, and related tooling"
