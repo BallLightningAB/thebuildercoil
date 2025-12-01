@@ -4,27 +4,46 @@
 # Issue: #3 – Build The Builder Coil Site
 # Meta Version: 0.1.x
 # Plan Version: 1.2.0
-# Plan Status: draft
 # Created: 2025-11-25
-# Updated: 2025-11-25
+# Updated: 2025-12-01
 # =============================================================================
 #
 # Plan Changelog:
-#   1.2.0 (2025-11-25) – Newsletter detailed spec integration
+#   0.1.5.1 (2025-12-01) – Newsletter Phase 1 completed
+#     - All NL-1.x tasks completed (NL-1.0 through NL-1.9)
+#     - Email template uses #a78bfa (violet) accent to match TBC brand
+#     - Added NewsletterCTA to footer, privacy note to signup form
+#     - NOTE: If fonts/colors change per optional-visual-refresh.yaml, update:
+#       - src/lib/newsletter/emails/confirmation.tsx (email template styles)
+#       - Any newsletter-related UI components
+#
+#   0.1.5 (2025-12-01) – Email architecture updates
+#     - Switch to Option 1: single Chronomation-owned sending domain (updates.chronomation.com)
+#     - Update The Upkeep from address to "The Upkeep by The Builder Coil <theupkeep@updates.chronomation.com>"
+#     - Change environment variables to TBC_* naming
+#     - Completed DNS prerequisite task (NL-1.0)
+#
+#   0.1.4 (2025-11-29) – Typography fix
+#     - Fix dark mode prose: TBC cream (#f5e6d3) via prose-cream utility
+#     - Replace dark:prose-invert with dark:prose-cream in routes
+#
+#   0.1.3 (2025-11-27) – Hero cards, Kibo theme-switcher, blog docs
+#     - Ensure blog/news hero images use object-contain (no cropping)
+#     - Wire Kibo UI ThemeSwitcher into header
+#     - Refine home hero animation
+#     - Document { post, html, codeBlocks } content contract in PDD
+#
+#   0.1.2 (2025-11-25) – Newsletter detailed spec integration
 #     - Created separate detailed newsletter plan: newsletter-the-upkeep-implementation.yaml
-#     - Simplified newsletter section to high-level overview with reference to detailed plan
 #     - Phase 1: JSON storage, double opt-in only (no newsletter sending)
 #     - Phase 2: Chronomation multi-tenant API with Neon
-#     - Updated env vars: APP_BASE_URL_TBC, NEWSLETTER_SECRET
-#     - Added GitHub milestones (Phase 1, Phase 2) and labels to Issue #3
 #
-#   1.1.0 (2025-11-25) – Newsletter branding + env vars
-#     - Newsletter branded as "The Upkeep" with finalized CTA copy
-#     - Confirmed Resend as sole email provider (consistency with Chronomation)
-#     - Added comprehensive environment_variables section with setup checklist
-#     - Created GitHub Issue #3
+#   0.1.1 (2025-11-25) – Phase 1 implementation
+#     - Implement core pages (home/blog/news/about/contact)
+#     - Set up TBC theming, theme provider, layout components
+#     - Create local JSON content system
 #
-#   1.0.0 (2025-11-25) – Initial plan draft
+#   0.1 (2025-11-25) – Initial plan draft
 #     - Defined Phase 1 scope (manual blog site)
 #     - Identified UI blocks from Tailark, Kibo UI, Launch UI
 #     - Added Newsletter Phase 1 (email capture with double opt-in)
@@ -509,22 +528,22 @@ phase_1:
       - id: "5.1"
         title: "Implement newsletter signup + storage (NL-1.1 to NL-1.3)"
         description: "Types, schemas, JSON storage, and /newsletter signup page"
-        status: pending
+        status: done
 
       - id: "5.2"
         title: "Implement double opt-in flow (NL-1.4 to NL-1.6)"
         description: "/newsletter/confirm, /newsletter/unsubscribe, email templates"
-        status: pending
+        status: done
 
       - id: "5.3"
         title: "Integrate Resend + add CTA component (NL-1.7 to NL-1.8)"
         description: "Resend integration, NewsletterCTA in footer/home"
-        status: pending
+        status: done
 
       - id: "5.4"
         title: "Privacy and GDPR compliance (NL-1.9)"
         description: "Consent checkbox, privacy note, unsubscribe link in emails"
-        status: pending
+        status: done
 
   # ---------------------------------------------------------------------------
   # 6. Components & Blocks Installation

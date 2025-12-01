@@ -15,6 +15,8 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as NewsletterIndexRouteImport } from './routes/newsletter/index'
 import { Route as NewsIndexRouteImport } from './routes/news/index'
 import { Route as BlogIndexRouteImport } from './routes/blog/index'
+import { Route as NewsletterUnsubscribeRouteImport } from './routes/newsletter/unsubscribe'
+import { Route as NewsletterConfirmRouteImport } from './routes/newsletter/confirm'
 import { Route as NewsSlugRouteImport } from './routes/news/$slug'
 import { Route as BlogSlugRouteImport } from './routes/blog/$slug'
 
@@ -48,6 +50,16 @@ const BlogIndexRoute = BlogIndexRouteImport.update({
   path: '/blog/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const NewsletterUnsubscribeRoute = NewsletterUnsubscribeRouteImport.update({
+  id: '/newsletter/unsubscribe',
+  path: '/newsletter/unsubscribe',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NewsletterConfirmRoute = NewsletterConfirmRouteImport.update({
+  id: '/newsletter/confirm',
+  path: '/newsletter/confirm',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const NewsSlugRoute = NewsSlugRouteImport.update({
   id: '/news/$slug',
   path: '/news/$slug',
@@ -65,6 +77,8 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/news/$slug': typeof NewsSlugRoute
+  '/newsletter/confirm': typeof NewsletterConfirmRoute
+  '/newsletter/unsubscribe': typeof NewsletterUnsubscribeRoute
   '/blog': typeof BlogIndexRoute
   '/news': typeof NewsIndexRoute
   '/newsletter': typeof NewsletterIndexRoute
@@ -75,6 +89,8 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/news/$slug': typeof NewsSlugRoute
+  '/newsletter/confirm': typeof NewsletterConfirmRoute
+  '/newsletter/unsubscribe': typeof NewsletterUnsubscribeRoute
   '/blog': typeof BlogIndexRoute
   '/news': typeof NewsIndexRoute
   '/newsletter': typeof NewsletterIndexRoute
@@ -86,6 +102,8 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/news/$slug': typeof NewsSlugRoute
+  '/newsletter/confirm': typeof NewsletterConfirmRoute
+  '/newsletter/unsubscribe': typeof NewsletterUnsubscribeRoute
   '/blog/': typeof BlogIndexRoute
   '/news/': typeof NewsIndexRoute
   '/newsletter/': typeof NewsletterIndexRoute
@@ -98,6 +116,8 @@ export interface FileRouteTypes {
     | '/contact'
     | '/blog/$slug'
     | '/news/$slug'
+    | '/newsletter/confirm'
+    | '/newsletter/unsubscribe'
     | '/blog'
     | '/news'
     | '/newsletter'
@@ -108,6 +128,8 @@ export interface FileRouteTypes {
     | '/contact'
     | '/blog/$slug'
     | '/news/$slug'
+    | '/newsletter/confirm'
+    | '/newsletter/unsubscribe'
     | '/blog'
     | '/news'
     | '/newsletter'
@@ -118,6 +140,8 @@ export interface FileRouteTypes {
     | '/contact'
     | '/blog/$slug'
     | '/news/$slug'
+    | '/newsletter/confirm'
+    | '/newsletter/unsubscribe'
     | '/blog/'
     | '/news/'
     | '/newsletter/'
@@ -129,6 +153,8 @@ export interface RootRouteChildren {
   ContactRoute: typeof ContactRoute
   BlogSlugRoute: typeof BlogSlugRoute
   NewsSlugRoute: typeof NewsSlugRoute
+  NewsletterConfirmRoute: typeof NewsletterConfirmRoute
+  NewsletterUnsubscribeRoute: typeof NewsletterUnsubscribeRoute
   BlogIndexRoute: typeof BlogIndexRoute
   NewsIndexRoute: typeof NewsIndexRoute
   NewsletterIndexRoute: typeof NewsletterIndexRoute
@@ -178,6 +204,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/newsletter/unsubscribe': {
+      id: '/newsletter/unsubscribe'
+      path: '/newsletter/unsubscribe'
+      fullPath: '/newsletter/unsubscribe'
+      preLoaderRoute: typeof NewsletterUnsubscribeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/newsletter/confirm': {
+      id: '/newsletter/confirm'
+      path: '/newsletter/confirm'
+      fullPath: '/newsletter/confirm'
+      preLoaderRoute: typeof NewsletterConfirmRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/news/$slug': {
       id: '/news/$slug'
       path: '/news/$slug'
@@ -201,6 +241,8 @@ const rootRouteChildren: RootRouteChildren = {
   ContactRoute: ContactRoute,
   BlogSlugRoute: BlogSlugRoute,
   NewsSlugRoute: NewsSlugRoute,
+  NewsletterConfirmRoute: NewsletterConfirmRoute,
+  NewsletterUnsubscribeRoute: NewsletterUnsubscribeRoute,
   BlogIndexRoute: BlogIndexRoute,
   NewsIndexRoute: NewsIndexRoute,
   NewsletterIndexRoute: NewsletterIndexRoute,

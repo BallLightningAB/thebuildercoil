@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { createServerFn } from "@tanstack/react-start";
 import { ArrowLeft, CheckCircle } from "lucide-react";
 import { useState } from "react";
 import { AnimatedGroup } from "@/components/motion-primitives/animated-group";
@@ -6,6 +7,77 @@ import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { sendConfirmationEmail } from "@/lib/newsletter/email-service";
+import { findByEmail, upsertSignup } from "@/lib/newsletter/storage";
+import type { NewsletterSignupResult } from "@/lib/newsletter/types";
+
+const subscribeToNewsletter = createServerFn({ method: "POST" })
+	.inputValidator(
+		(data: { email: string; consent: boolean; path?: string }) => data
+	)
+	.handler(async ({ data }): Promise<NewsletterSignupResult> => {
+		const { email, consent, path } = data;
+
+		if (!consent) {
+			return {
+				success: false,
+				message: "Please agree to receive emails to continue.",
+				error: "consent_required",
+			};
+		}
+
+		const normalizedEmail = email.toLowerCase().trim();
+
+		// Check for existing subscription
+		const existing = await findByEmail(normalizedEmail);
+
+		if (existing?.status === "confirmed") {
+			return {
+				success: true,
+				message: "You're already subscribed to The Upkeep!",
+			};
+		}
+
+		// Generate new tokens
+		const confirmationToken = crypto.randomUUID();
+		const unsubToken = crypto.randomUUID();
+
+		// Upsert the signup record
+		await upsertSignup(normalizedEmail, {
+			status: "pending",
+			confirmationToken,
+			unsubToken,
+			meta: {
+				source: "tbc_newsletter_page",
+				createdFromPath: path || "/newsletter",
+			},
+			createdAt: new Date().toISOString(),
+			confirmedAt: null,
+			unsubscribedAt: null,
+		});
+
+		// Send confirmation email
+		const emailResult = await sendConfirmationEmail({
+			to: normalizedEmail,
+			confirmationToken,
+			unsubToken,
+		});
+
+		if (!emailResult.success) {
+			console.error("Failed to send confirmation email:", emailResult.error);
+			return {
+				success: false,
+				message:
+					"Something went wrong sending your confirmation email. Please try again.",
+				error: "email_failed",
+			};
+		}
+
+		return {
+			success: true,
+			message: "Check your inbox to confirm your subscription!",
+		};
+	});
 
 export const Route = createFileRoute("/newsletter/")({
 	component: NewsletterPage,
@@ -24,20 +96,28 @@ function NewsletterPage() {
 
 		const formData = new FormData(e.currentTarget);
 		const email = formData.get("email") as string;
-		const consent = formData.get("consent");
+		const consent = formData.get("consent") === "on";
 
-		if (!consent) {
+		try {
+			const result = await subscribeToNewsletter({
+				data: {
+					email,
+					consent,
+					path: "/newsletter",
+				},
+			});
+
+			if (result.success) {
+				setFormState("success");
+			} else {
+				setFormState("error");
+				setErrorMessage(result.message);
+			}
+		} catch (err) {
 			setFormState("error");
-			setErrorMessage("Please agree to receive emails to continue.");
-			return;
+			setErrorMessage("Something went wrong. Please try again.");
+			console.error("Newsletter signup error:", err);
 		}
-
-		// TODO: Integrate with newsletter server function
-		// For now, simulate a successful submission
-		await new Promise((resolve) => setTimeout(resolve, 1000));
-
-		console.log("Newsletter signup:", { email });
-		setFormState("success");
 	};
 
 	return (
@@ -87,8 +167,8 @@ function NewsletterPage() {
 				</div>
 
 				{formState === "success" ? (
-					<div className="rounded-lg border border-green-500/50 bg-green-500/10 p-8 text-center">
-						<CheckCircle className="mx-auto mb-4 h-12 w-12 text-green-500" />
+					<div className="rounded-lg border border-border bg-muted/50 p-8 text-center">
+						<CheckCircle className="mx-auto mb-4 h-12 w-12 text-primary" />
 						<h2 className="mb-2 font-semibold text-2xl">Check your inbox!</h2>
 						<p className="text-muted-foreground">
 							We've sent you a confirmation email. Click the link inside to
@@ -136,11 +216,17 @@ function NewsletterPage() {
 						</Button>
 
 						<p className="text-center text-muted-foreground text-xs">
-							We respect your privacy. No spam, ever. Read our{" "}
-							<Link className="underline hover:text-foreground" to="/about">
+							We respect your privacy and will never share your email. You can
+							unsubscribe at any time via the link in every email. Read our{" "}
+							<a
+								className="underline hover:text-foreground"
+								href="https://balllightning.cloud/privacy"
+								rel="noopener noreferrer"
+								target="_blank"
+							>
 								privacy policy
-							</Link>
-							.
+							</a>{" "}
+							to learn how we handle your data under GDPR.
 						</p>
 					</form>
 				)}

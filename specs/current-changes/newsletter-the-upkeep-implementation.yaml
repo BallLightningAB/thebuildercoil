@@ -9,6 +9,11 @@
 # =============================================================================
 #
 # Plan Changelog:
+#   1.2.0 (2025-12-01) – Phase 1 implementation completed
+#     - All NL-1.x tasks completed (NL-1.0 through NL-1.9)
+#     - NewsletterCTA integrated in footer, The Upkeep link added to header
+#     - Privacy note updated with GDPR-compliant language
+#     - Social icons moved from footer to header for better UX
 #   1.0.0 (2025-11-25) – Initial detailed plan
 #     - Phase 1: TBC-only with JSON storage (signup + double opt-in)
 #     - Phase 2: Chronomation multi-tenant API with Neon storage
@@ -351,7 +356,7 @@ phase_1:
       deliverables:
         - "src/lib/newsletter/types.ts"
         - "src/lib/newsletter/schemas.ts"
-      status: pending
+      status: done
 
     - id: "NL-1.2"
       title: "Implement JSON storage utilities"
@@ -359,32 +364,31 @@ phase_1:
         - "src/lib/newsletter/storage.ts"
         - "content/newsletter/.gitkeep"
         - "Update .gitignore to exclude subscribers.json"
-      status: pending
+      status: done
 
     - id: "NL-1.3"
       title: "Implement /newsletter signup page"
       deliverables:
-        - "src/routes/newsletter.tsx"
-        - "src/components/newsletter/SignupForm.tsx"
-      status: pending
+        - "src/routes/newsletter/index.tsx"
+      status: done
 
     - id: "NL-1.4"
       title: "Implement /newsletter/confirm page"
       deliverables:
         - "src/routes/newsletter/confirm.tsx"
-      status: pending
+      status: done
 
     - id: "NL-1.5"
       title: "Implement /newsletter/unsubscribe page"
       deliverables:
         - "src/routes/newsletter/unsubscribe.tsx"
-      status: pending
+      status: done
 
     - id: "NL-1.6"
       title: "Create confirmation email template"
       deliverables:
         - "src/lib/newsletter/emails/confirmation.tsx"
-      status: pending
+      status: done
 
     - id: "NL-1.7"
       title: "Integrate Resend for sending confirmation emails"
@@ -392,21 +396,21 @@ phase_1:
         - "pnpm add resend"
       deliverables:
         - "src/lib/newsletter/email-service.ts"
-      status: pending
+      status: done
 
     - id: "NL-1.8"
       title: "Add NewsletterSignup component to footer/home page"
       deliverables:
-        - "src/components/newsletter/NewsletterCTA.tsx"
-        - "Integration in Footer and/or home page"
-      status: pending
+        - "src/components/newsletter/NewsletterCta.tsx"
+        - "Integration in Footer"
+      status: done
 
     - id: "NL-1.9"
       title: "Add privacy note for newsletter"
       deliverables:
-        - "Privacy note in signup form"
-        - "Link to privacy policy section"
-      status: pending
+        - "Privacy note in signup form (GDPR-compliant language)"
+        - "Link to Ball Lightning AB privacy policy"
+      status: done
 
 # =============================================================================
 # PHASE 2 – CHRONOMATION NEWSLETTER MODULE
@@ -582,6 +586,47 @@ phase_2:
 
     - id: "NL-2.7"
       title: "Implement newsletter issue sending"
+      project: "chronomation"
+      status: future
+
+    - id: "NL-2.8"
+      title: "Add separate Chronomation product updates consent toggle"
+      description: |
+        Allow users to opt-in to Chronomation product updates separately from
+        The Upkeep newsletter. This enables better segmentation:
+        - Newsletter consent (The Upkeep devlogs) — required for signup
+        - Product updates consent (Chronomation releases/features) — optional
+        Requires:
+        - Additional checkbox on signup form
+        - New field in SignupRecord/newsletter_subscriptions schema
+        - Consent preference storage and management
+      project: "thebuildercoil"
+      status: optional, future
+
+    - id: "NL-2.9"
+      title: "Implement stale pending signup cleanup (cron job)"
+      description: |
+        Delete pending signups older than 30 days that were never confirmed.
+        Prevents database bloat and stale data accumulation.
+        Run as scheduled task (cron) or triggered by Chronomation.
+      project: "chronomation"
+      status: future
+
+    - id: "NL-2.10"
+      title: "Implement confirmation reminder re-send (cron job)"
+      description: |
+        Re-send confirmation email to pending signups after 24 hours.
+        Improves conversion rate for users who missed the initial email.
+        Should only send one reminder per signup.
+      project: "chronomation"
+      status: future
+
+    - id: "NL-2.11"
+      title: "Implement bounce/complaint handling via Resend webhooks"
+      description: |
+        Set up Resend webhook endpoint to receive bounce and complaint events.
+        Automatically update subscription status or flag problematic addresses.
+        Not a cron job — event-driven via webhook callbacks.
       project: "chronomation"
       status: future
 

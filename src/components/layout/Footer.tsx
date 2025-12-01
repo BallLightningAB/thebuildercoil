@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Github, Linkedin, Twitter } from "lucide-react";
+import { NewsletterCTA } from "@/components/newsletter/NewsletterCta";
 
 const footerLinks = {
 	site: [
@@ -10,25 +10,16 @@ const footerLinks = {
 		{ href: "/contact", label: "Contact" },
 	],
 	resources: [
-		{ href: "/newsletter", label: "Newsletter" },
 		{ href: "https://chronomation.com", label: "Chronomation", external: true },
 		{
 			href: "https://balllightning.cloud",
 			label: "Ball Lightning AB",
 			external: true,
 		},
-	],
-	social: [
 		{
-			href: "https://github.com/BallLightningAB",
-			label: "GitHub",
-			icon: Github,
-		},
-		{ href: "https://twitter.com/balllightningab", label: "X", icon: Twitter },
-		{
-			href: "https://linkedin.com/company/ball-lightning-ab",
-			label: "LinkedIn",
-			icon: Linkedin,
+			href: "https://balllightning.cloud/privacy",
+			label: "Privacy Policy",
+			external: true,
 		},
 	],
 };
@@ -105,25 +96,9 @@ export function Footer() {
 						</ul>
 					</div>
 
-					{/* Social */}
+					{/* Newsletter CTA */}
 					<div>
-						<h4 className="mb-3 font-semibold text-foreground text-sm">
-							Connect
-						</h4>
-						<div className="flex gap-3">
-							{footerLinks.social.map((link) => (
-								<a
-									aria-label={link.label}
-									className="text-muted-foreground transition-colors hover:text-tbc-teal"
-									href={link.href}
-									key={link.href}
-									rel="noopener noreferrer"
-									target="_blank"
-								>
-									<link.icon className="h-5 w-5" />
-								</a>
-							))}
-						</div>
+						<NewsletterCTA compact />
 					</div>
 				</div>
 
