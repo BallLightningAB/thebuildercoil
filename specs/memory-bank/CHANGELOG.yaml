@@ -1,8 +1,26 @@
 entries:
+  - date: "2025-12-01"
+    version: 0.1.5.1
+    issue: "#3 https://github.com/BallLightningAB/thebuildercoil/issues/3"
+    commit: TBD
+    status: pending
+    title: "docs(email): refresh email architecture and update newsletter implementation plan"
+    details: |-
+      - Replace email_infrastructure with email_architecture section in PDD
+      - Switch to Option 1: single Chronomation-owned sending domain (updates.chronomation.com)
+      - Update The Upkeep from address to "The Upkeep by The Builder Coil <theupkeep@updates.chronomation.com>"
+      - Update newsletter implementation plan to reflect new architecture
+      - Change environment variables from CHRONO_* to TBC_* naming
+      - Completed DNS prerequisite task domain
+      - Add architecture notes about Option 1 active, Option 2 as future work
+      - Update .env.example with correct TBC_* environment variables
+
+      Refs: v0.1.5.1 #3 I3Docs I3D10
+
   - date: "2025-11-30"
     version: 0.1.5
     issue: "#4 https://github.com/BallLightningAB/thebuildercoil/issues/4"
-    commit: TBD
+    commit: 29269cb
     status: pending
     title: "docs(memory-bank): implement ID-based tracking system and usage guide"
     details: |-

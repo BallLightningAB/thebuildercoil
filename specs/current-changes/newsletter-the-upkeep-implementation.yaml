@@ -13,6 +13,11 @@
 #     - Phase 1: TBC-only with JSON storage (signup + double opt-in)
 #     - Phase 2: Chronomation multi-tenant API with Neon storage
 #     - Resend as single email provider for all tenants
+#   1.1.0 (2025-12-01) – Updated for new email infrastructure
+#     - Switch to separate BL vs Chronomation Resend accounts
+#     - TBC uses Chronomation account as tenant (theupkeep@updates.thebuildercoil.com)
+#     - Added DNS prerequisite for tenant subdomain setup
+#     - Updated environment variables to CHRONO_* naming
 #
 # =============================================================================
 
@@ -50,11 +55,12 @@ system_roles:
 
   resend:
     description: |
-      Single email provider for all tenants. One global Resend account + API key
-      owned by Chronomation. Tenants do NOT need their own Resend accounts.
+      Separate email providers for Ball Lightning (including The Builder Coil) vs Chronomation SaaS.
+      The Upkeep uses Chronomation's Resend account as a tenant.
     usage:
-      - "Double opt-in confirmation emails (Phase 1 & 2)"
-      - "Sending newsletter content (Phase 2+)"
+      - "Double opt-in confirmation emails (Phase 1 & 2) - via Chronomation account"
+      - "Sending newsletter content (Phase 2+) - via Chronomation account"
+      - "Ball Lightning corporate mail (invoices, etc.) - via BL account"
 
 # =============================================================================
 # ENVIRONMENT VARIABLES
@@ -62,22 +68,22 @@ system_roles:
 
 environment_variables:
   phase_1_tbc:
-    description: "Required for TBC Phase 1 newsletter"
+    description: "Required for TBC Phase 1 newsletter (using Chronomation Resend account as tenant)"
     variables:
-      - key: "RESEND_API_KEY"
-        purpose: "Global Resend key (Chronomation-owned, shared)"
+      - key: "CHRONO_RESEND_API_KEY"
+        purpose: "Chronomation Resend key for tenant mail"
         obtain: "https://resend.com/api-keys"
 
-      - key: "RESEND_FROM_EMAIL"
-        value: "The Builder Coil <newsletter@thebuildercoil.com>"
-        purpose: "From address for confirmation emails"
-        note: "Must verify domain in Resend first"
+      - key: "TBC_RESEND_DEFAULT_FROM"
+        value: "The Upkeep by The Builder Coil <theupkeep@updates.chronomation.com>"
+        purpose: "From address for confirmation emails (TBC as Chronomation tenant)"
+        note: "Uses Chronomation's verified updates.chronomation.com domain"
 
       - key: "APP_BASE_URL_TBC"
         value: "https://thebuildercoil.com"
         purpose: "Base URL for confirmation links"
 
-      - key: "NEWSLETTER_SECRET"
+      - key: "TBC_NEWSLETTER_SECRET"
         purpose: "Long random string for signing tokens (optional but recommended)"
         generate: "openssl rand -base64 32"
 
@@ -100,7 +106,11 @@ phase_1:
   summary: |
     Implement newsletter signup + double opt-in on TBC.
     Store subscriber data in JSON. Do NOT implement newsletter issue sending yet.
+    Use Chronomation's Resend account with TBC as a tenant (theupkeep@updates.chronomation.com).
     No multi-tenant logic; everything is implicitly "for TBC".
+
+    Note: This uses Option 1 (single Chronomation-owned domain) due to Resend Free plan limitations.
+    Option 2 (tenant-owned domains) is planned as future work for advanced users.
 
   # ---------------------------------------------------------------------------
   # Data Model (JSON)
@@ -215,15 +225,15 @@ phase_1:
         - step: "Save records"
           code: "await saveNewsletterSignups(records);"
           
-        - step: "Send double opt-in email via Resend"
+        - step: "Send double opt-in email via Chronomation Resend account"
           code: |
             import { Resend } from 'resend';
             
-            const resend = new Resend(process.env.RESEND_API_KEY);
+            const resend = new Resend(process.env.CHRONO_RESEND_API_KEY);
             const confirmUrl = `${process.env.APP_BASE_URL_TBC}/newsletter/confirm?token=${confirmationToken}`;
             
             await resend.emails.send({
-              from: process.env.RESEND_FROM_EMAIL,
+              from: process.env.TBC_RESEND_DEFAULT_FROM,
               to: email,
               subject: "Confirm your subscription to The Upkeep",
               html: `
@@ -302,7 +312,7 @@ phase_1:
   email_templates:
     confirmation:
       subject: "Confirm your subscription to The Upkeep"
-      from: "${RESEND_FROM_EMAIL}"
+      from: "${TBC_RESEND_DEFAULT_FROM}"
       template_file: "src/lib/newsletter/emails/confirmation.tsx"
       content_outline: |
         - The Upkeep branding (🌀 emoji)
@@ -312,7 +322,7 @@ phase_1:
 
     welcome:
       subject: "Welcome to The Upkeep! 🌀"
-      from: "${RESEND_FROM_EMAIL}"
+      from: "${TBC_RESEND_DEFAULT_FROM}"
       template_file: "src/lib/newsletter/emails/welcome.tsx"
       optional: true
       content_outline: |
@@ -325,6 +335,17 @@ phase_1:
   # Tasks
   # ---------------------------------------------------------------------------
   tasks:
+    - id: "NL-1.0"
+      title: "Configure DNS for updates.chronomation.com in Chronomation Resend"
+      description: |
+        Add Resend-provided DNS records for updates.chronomation.com domain.
+        Verify the domain in Chronomation Resend account.
+        This enables TBC to send as a Chronomation tenant with branded from address.
+      deliverables:
+        - "DNS records added for updates.chronomation.com"
+        - "Domain verified in Chronomation Resend account"
+      status: done
+
     - id: "NL-1.1"
       title: "Create SignupRecord type and Zod schema"
       deliverables:
@@ -641,8 +662,16 @@ notes:
     All server-side logic in server functions, not API routes.
     
   resend_integration: |
-    Single global Resend account for all tenants.
-    Use Resend Node SDK, not REST API directly.
+    Use Chronomation's Resend account for TBC tenant mail.
+    TBC sends as "The Upkeep by The Builder Coil <theupkeep@updates.chronomation.com>".
+    Uses Option 1 (single Chronomation-owned domain) due to Resend Free plan limitations.
+    Option 2 (tenant-owned domains) is planned as future work for advanced users.
+    Client Tracking enabled in Resend for analytics.
+    
+  architecture_notes: |
+    Current implementation uses Option 1: single Chronomation-owned sending domain.
+    All outbound email routes via updates.chronomation.com to respect Resend's single-domain limit.
+    Future Option 2 will allow tenant-owned Resend accounts for advanced users.
     
   no_newsletter_sending_phase_1: |
     Phase 1 does NOT implement sending newsletter issues.

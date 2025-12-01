@@ -2,7 +2,7 @@ pdd:
   meta:
     name: "Chronomation – Content Engine"
     code_name: "chronomation_core"
-    version: "0.1.1"
+    version: "0.1.2"
     workflow_guide: "specs/memory-bank/memory-bank-usage.yaml"
     owner:
       individual: "Nicolas Brulay"
@@ -32,6 +32,7 @@ pdd:
           orm: "Drizzle ORM"
         email:
           provider: "Resend"
+          # See email_infrastructure for full account separation details
         styling:
           css: "TailwindCSS"
           ui_blocks:
@@ -67,192 +68,277 @@ pdd:
             - "Vercel for TBCsite"
           payments_future:
             provider: "Polar"
-  
-design:
-  shared:
-    typography:
-      sans:
-        css_var: "--font-sans"
-        stack: "Montserrat, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
-      serif:
-        css_var: "--font-serif"
-        stack: "Lora, 'Times New Roman', ui-serif, Georgia, serif"
-      mono:
-        css_var: "--font-mono"
-        stack: "'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace"
-      usage:
-        headings: "Lora for H1–H2 (tome / grimoire feeling), Montserrat for H3+"
-        body: "Montserrat for paragraphs, lists, UI copy"
-        code: "JetBrains Mono for code, IDs, commit snippets"
-    backgrounds:
-      dark_base: "#05070A"      # shared dark "void" background for all brands
-      dark_elevated: "#0A1014"  # cards / panels on dark
-      dark_subtle: "#111827"    # inputs, subtle surfaces
-      light_base: "#F5E6D3"     # warm cream light-mode background
-      light_elevated: "#F9F3E8" # slightly lighter cards on cream
-    shared_colors:
-      cream_main: "#F5E6D3"     # primary cream (logo ink on dark, light backgrounds)
-      cream_soft: "#F9F3E8"     # softer cream (light cards, highlights)
-      dark_ink: "#111827"       # main dark text on cream
-      light_ink: "#F9FAFB"      # main light text on dark
-      body_on_dark: "#E5E7EB"   # paragraph text on dark
-      muted_on_dark: "#9CA3AF"
 
-  brands:
-    the_builder_coil:
-      description: >
-        Arcane engineering / builder’s grimoire. Dark void background with cream
-        ink and selective teal/violet energy as accents. Feels like a spellbook
-        for modern dev work, but still readable and practical.
-      scheme:
-        dark:
-          background:
-            base: "#05070A"
-            elevated: "#0A1014"
-            subtle: "#111827"
-          foreground:
-            body: "#E5E7EB"
-            muted: "#9CA3AF"
-            heading_cream: "#F5E6D3"   # H1/H2, key labels, nav brand text
-          logo:
-            ink: "#F5E6D3"             # circle, coil, book in dark mode
-          surfaces:
-            card_default: "#0A1014"
-            card_border_cream: "#F5E6D3"
-            tag_bg_cream_soft: "rgba(245,230,211,0.06)"
-            tag_text_cream: "#F5E6D3"
-          primaries:
-            teal: "#23F0FF"            # electric teal highlights
-            teal_hover: "#4FF6FF"
-            teal_soft: "rgba(35,240,255,0.18)"
-            violet: "#8B5CFF"          # arcane violet accents
-            violet_hover: "#A78BFA"
-            violet_soft: "rgba(139,92,255,0.16)"
-          accent:
-            ember: "#FFDCA8"           # warm highlight tying into cream
-            success: "#4ADE80"
-            warning: "#FBBF24"
-            danger: "#F97373"
-          neutrals:
-            border_subtle: "rgba(148,163,184,0.35)"
-            border_strong: "rgba(148,163,184,0.6)"
-        light:
-          background:
-            base: "#F5E6D3"            # cream base
-            elevated: "#F9F3E8"
-          foreground:
-            primary: "#111827"
-            muted: "#4B5563"
-            heading_ink: "#111827"
-          logo:
-            ink: "#111827"             # circle, coil, book in light mode
-          primaries:
-            teal: "#23F0FF"
-            violet: "#8B5CFF"
-          accent:
-            ember: "#C05621"           # slightly darker ember for text/icons
-            success: "#15803D"
-            warning: "#B45309"
-            danger: "#B91C1C"
+  email_architecture:
+    provider: resend
+    account:
+      team_scope: "Ball Lightning / Chronomation"
+      plan:
+        name: "Free"
+        limitation:
+          max_sending_domains: 1
 
-    chronomation:
-      description: >
-        Automation engine / control center. Same void/cream foundations, but
-        calmer teal/blue accents and a more utilitarian SaaS feel. Feels like a
-        reliable control room for orchestrating workflows behind the scenes.
-      scheme:
-        dark:
-          background:
-            base: "#05070A"
-            elevated: "#0A1014"
-            subtle: "#111827"
-          foreground:
-            body: "#E5E7EB"
-            muted: "#9CA3AF"
-            heading_cream: "#F5E6D3"   # headings, key status labels
-          logo:
-            ink: "#F5E6D3"             # Chronomation mark on dark
-          surfaces:
-            card_default: "#0A1014"
-            card_border_cream: "#F5E6D3"
-            tag_bg_cream_soft: "rgba(245,230,211,0.06)"
-          primaries:
-            teal: "#12B8C4"            # calmer teal than TBC
-            teal_hover: "#22D3EE"
-            teal_soft: "rgba(34,211,238,0.18)"
-            sky: "#38BDF8"
-            sky_hover: "#60A5FA"
-          accent:
-            action: "#FACC15"          # sharp yellow CTAs
-            success: "#22C55E"
-            warning: "#EAB308"
-            danger: "#F97373"
-          neutrals:
-            border_subtle: "rgba(148,163,184,0.30)"
-            border_strong: "rgba(148,163,184,0.55)"
-        light:
-          background:
-            base: "#F5E6D3"
-            elevated: "#F9F3E8"
-          foreground:
-            primary: "#111827"
-            muted: "#4B5563"
-          logo:
-            ink: "#111827"
-          primaries:
-            teal: "#12B8C4"
-            sky: "#38BDF8"
+    strategy:
+      option_1_single_domain:
+        label: "Chronomation-owned sending domain"
+        status: "active"
+        description: >
+          Use a single Chronomation-owned domain as the only verified sending
+          domain in Resend. All brands/tenants send via this domain using
+          different From-names and mailboxes.
+        sending_domain: "updates.chronomation.com"
+        return_path_prefix: "outbound"  # or current value in Resend
+        mailboxes:
+          the_builder_coil_upkeep:
+            from_address: "theupkeep@updates.chronomation.com"
+            display_name: "The Builder Coil — The Upkeep"
+            purpose: "Primary newsletter for The Builder Coil"
+          chronomation_system:
+            from_address: "system@updates.chronomation.com"
+            display_name: "Chronomation — System Notifications"
+            purpose: "App/system alerts (future)"
+          chronomation_marketing:
+            from_address: "hello@updates.chronomation.com"
+            display_name: "Chronomation"
+            purpose: "Marketing / onboarding flows (future)"
+        data_model:
+          sending_domains_table:
+            - id: "chronomation_default"
+              domain: "updates.chronomation.com"
+              is_default: true
+          brands_table_example:
+            - id: "tbc"
+              name: "The Builder Coil"
+              default_from: "theupkeep@updates.chronomation.com"
+              display_name: "The Builder Coil — The Upkeep"
+              sending_domain_id: "chronomation_default"
+            - id: "chronomation"
+              name: "Chronomation"
+              default_from: "hello@updates.chronomation.com"
+              display_name: "Chronomation"
+              sending_domain_id: "chronomation_default"
 
-    ball_lightning:
-      description: >
-        Parent brand. Shares the same dark/cream foundations but switches to
-        molten red/orange energy with a slightly more aggressive, playful feel.
-        Represents the studio behind Chronomation and The Builder Coil.
-      scheme:
-        dark:
-          background:
-            base: "#05070A"
-            elevated: "#0A1014"
-            subtle: "#111827"
-          foreground:
-            body: "#E5E7EB"
-            muted: "#9CA3AF"
-            heading_cream: "#F5E6D3"   # headings and key brand marks
-          logo:
-            ink: "#F5E6D3"             # BL wordmark / icon on dark
-          surfaces:
-            card_default: "#0A1014"
-            card_border_cream: "#F5E6D3"
-            tag_bg_cream_soft: "rgba(245,230,211,0.06)"
-          primaries:
-            deep_molten: "#9C1B12"
-            mid_red: "#DD3A28"
-          accent:
-            warm_rose: "#FF7268"
-            pale_ember: "#FFD4C9"
-          neutrals:
-            surface: "#1B181C"
-            soft_light: "#E8E5E6"
-        light:
-          background:
-            base: "#F5E6D3"
-            elevated: "#F9F3E8"
-          foreground:
-            primary: "#111827"
-            muted: "#4B5563"
-          logo:
-            ink: "#111827"
-          primaries:
-            deep_molten: "#9C1B12"
-            mid_red: "#DD3A28"
-          accent:
-            warm_rose: "#FF7268"
-            pale_ember: "#FFD4C9"
+      option_2_tenant_owned_resend:
+        label: "Tenant-resident Resend account"
+        status: "planned"
+        position: "advanced"
+        description: >
+          Advanced mode for customers who either (a) already use Resend or
+          (b) pay Chronomation for admin/hosting. Each tenant can connect its
+          own Resend API key and verified domain. Chronomation becomes an ESP-
+          agnostic orchestration layer.
+        target_users:
+          - "Advanced users comfortable managing DNS + ESP setup"
+          - "Managed customers where Chronomation handles infra/admin"
+        requirements:
+          tenant_must:
+            - "Create or own a Resend account"
+            - "Verify their own sending domain (e.g. updates.customer.com)"
+            - "Provide a Resend API key with send + domain read permissions"
+          chronomation_must:
+            - "Store tenant Resend credentials securely (per-tenant secrets)"
+            - "Allow selecting `delivery_provider = tenant_resend` at workspace level"
+            - "Allow mapping tenant brands → tenant sending domain / From-addresses"
+        ui_notes:
+          - "Mark as 'Advanced setup' in workspace email settings."
+          - "Wizard: 1) explain model, 2) ask for API key, 3) fetch domains, 4) let user pick default domain."
+          - "Show clear warning: tenant is responsible for their own Resend billing, limits, and reputation."
 
-        relationship_notes:
-          - "Chronomation and TBC share the same typography and core component language as Ball Lightning."
-          - "TBC leans into teal/violet arcane; Chronomation leans into teal/blue lab; Ball Lightning leans into molten red/orange."
-          - "It should feel like one universe: same fonts and component shapes, different color temperatures and attitude."
+    implementation_notes:
+      - "Keep internal schema provider-agnostic (e.g. `delivery_providers` table with `type = resend`)."
+      - "All outbound mail for now uses `chronomation_default` sending_domain."
+      - "The Upkeep is first real-world tenant using Option 1; instrument tracking and event logging for it first."
+      - "When enabling Option 2, re-use same abstraction for campaigns/flows; only the delivery provider + sending_domain change per workspace."
+
+    future_sale_considerations:
+      - "If Chronomation is sold, the chronomation_resend account (or equivalent config) can be handed to the buyer independently of Ball Lightning's Resend account."
+      - "If TBC is sold separately, export The Upkeep subscribers and templates from Chronomation and/or Resend and let the buyer import them into their own ESP; the thebuildercoil.com DNS can be repointed without touching Ball Lightning's internal mail setup."
+
+  design:
+    shared:
+      typography:
+        sans:
+          css_var: "--font-sans"
+          stack: "Montserrat, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+        serif:
+          css_var: "--font-serif"
+          stack: "Lora, 'Times New Roman', ui-serif, Georgia, serif"
+        mono:
+          css_var: "--font-mono"
+          stack: "'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace"
+        usage:
+          headings: "Lora for H1–H2 (tome / grimoire feeling), Montserrat for H3+"
+          body: "Montserrat for paragraphs, lists, UI copy"
+          code: "JetBrains Mono for code, IDs, commit snippets"
+      backgrounds:
+        dark_base: "#05070A"      # shared dark "void" background for all brands
+        dark_elevated: "#0A1014"  # cards / panels on dark
+        dark_subtle: "#111827"    # inputs, subtle surfaces
+        light_base: "#F5E6D3"     # warm cream light-mode background
+        light_elevated: "#F9F3E8" # slightly lighter cards on cream
+      shared_colors:
+        cream_main: "#F5E6D3"     # primary cream (logo ink on dark, light backgrounds)
+        cream_soft: "#F9F3E8"     # softer cream (light cards, highlights)
+        dark_ink: "#111827"       # main dark text on cream
+        light_ink: "#F9FAFB"      # main light text on dark
+        body_on_dark: "#E5E7EB"   # paragraph text on dark
+        muted_on_dark: "#9CA3AF"
+
+    brands:
+      the_builder_coil:
+        description: >
+          Arcane engineering / builder’s grimoire. Dark void background with cream
+          ink and selective teal/violet energy as accents. Feels like a spellbook
+          for modern dev work, but still readable and practical.
+        scheme:
+          dark:
+            background:
+              base: "#05070A"
+              elevated: "#0A1014"
+              subtle: "#111827"
+            foreground:
+              body: "#E5E7EB"
+              muted: "#9CA3AF"
+              heading_cream: "#F5E6D3"   # H1/H2, key labels, nav brand text
+            logo:
+              ink: "#F5E6D3"             # circle, coil, book in dark mode
+            surfaces:
+              card_default: "#0A1014"
+              card_border_cream: "#F5E6D3"
+              tag_bg_cream_soft: "rgba(245,230,211,0.06)"
+              tag_text_cream: "#F5E6D3"
+            primaries:
+              teal: "#23F0FF"            # electric teal highlights
+              teal_hover: "#4FF6FF"
+              teal_soft: "rgba(35,240,255,0.18)"
+              violet: "#8B5CFF"          # arcane violet accents
+              violet_hover: "#A78BFA"
+              violet_soft: "rgba(139,92,255,0.16)"
+            accent:
+              ember: "#FFDCA8"           # warm highlight tying into cream
+              success: "#4ADE80"
+              warning: "#FBBF24"
+              danger: "#F97373"
+            neutrals:
+              border_subtle: "rgba(148,163,184,0.35)"
+              border_strong: "rgba(148,163,184,0.6)"
+          light:
+            background:
+              base: "#F5E6D3"            # cream base
+              elevated: "#F9F3E8"
+            foreground:
+              primary: "#111827"
+              muted: "#4B5563"
+              heading_ink: "#111827"
+            logo:
+              ink: "#111827"             # circle, coil, book in light mode
+            primaries:
+              teal: "#23F0FF"
+              violet: "#8B5CFF"
+            accent:
+              ember: "#C05621"           # slightly darker ember for text/icons
+              success: "#15803D"
+              warning: "#B45309"
+              danger: "#B91C1C"
+
+      chronomation:
+        description: >
+          Automation engine / control center. Same void/cream foundations, but
+          calmer teal/blue accents and a more utilitarian SaaS feel. Feels like a
+          reliable control room for orchestrating workflows behind the scenes.
+        scheme:
+          dark:
+            background:
+              base: "#05070A"
+              elevated: "#0A1014"
+              subtle: "#111827"
+            foreground:
+              body: "#E5E7EB"
+              muted: "#9CA3AF"
+              heading_cream: "#F5E6D3"   # headings, key status labels
+            logo:
+              ink: "#F5E6D3"             # Chronomation mark on dark
+            surfaces:
+              card_default: "#0A1014"
+              card_border_cream: "#F5E6D3"
+              tag_bg_cream_soft: "rgba(245,230,211,0.06)"
+            primaries:
+              teal: "#12B8C4"            # calmer teal than TBC
+              teal_hover: "#22D3EE"
+              teal_soft: "rgba(34,211,238,0.18)"
+              sky: "#38BDF8"
+              sky_hover: "#60A5FA"
+            accent:
+              action: "#FACC15"          # sharp yellow CTAs
+              success: "#22C55E"
+              warning: "#EAB308"
+              danger: "#F97373"
+            neutrals:
+              border_subtle: "rgba(148,163,184,0.30)"
+              border_strong: "rgba(148,163,184,0.55)"
+          light:
+            background:
+              base: "#F5E6D3"
+              elevated: "#F9F3E8"
+            foreground:
+              primary: "#111827"
+              muted: "#4B5563"
+            logo:
+              ink: "#111827"
+            primaries:
+              teal: "#12B8C4"
+              sky: "#38BDF8"
+
+      ball_lightning:
+        description: >
+          Parent brand. Shares the same dark/cream foundations but switches to
+          molten red/orange energy with a slightly more aggressive, playful feel.
+          Represents the studio behind Chronomation and The Builder Coil.
+        scheme:
+          dark:
+            background:
+              base: "#05070A"
+              elevated: "#0A1014"
+              subtle: "#111827"
+            foreground:
+              body: "#E5E7EB"
+              muted: "#9CA3AF"
+              heading_cream: "#F5E6D3"   # headings and key brand marks
+            logo:
+              ink: "#F5E6D3"             # BL wordmark / icon on dark
+            surfaces:
+              card_default: "#0A1014"
+              card_border_cream: "#F5E6D3"
+              tag_bg_cream_soft: "rgba(245,230,211,0.06)"
+            primaries:
+              deep_molten: "#9C1B12"
+              mid_red: "#DD3A28"
+            accent:
+              warm_rose: "#FF7268"
+              pale_ember: "#FFD4C9"
+            neutrals:
+              surface: "#1B181C"
+              soft_light: "#E8E5E6"
+          light:
+            background:
+              base: "#F5E6D3"
+              elevated: "#F9F3E8"
+            foreground:
+              primary: "#111827"
+              muted: "#4B5563"
+            logo:
+              ink: "#111827"
+            primaries:
+              deep_molten: "#9C1B12"
+              mid_red: "#DD3A28"
+            accent:
+              warm_rose: "#FF7268"
+              pale_ember: "#FFD4C9"
+
+          relationship_notes:
+            - "Chronomation and TBC share the same typography and core component language as Ball Lightning."
+            - "TBC leans into teal/violet arcane; Chronomation leans into teal/blue lab; Ball Lightning leans into molten red/orange."
+            - "It should feel like one universe: same fonts and component shapes, different color temperatures and attitude."
 
   product:
     vision: |
