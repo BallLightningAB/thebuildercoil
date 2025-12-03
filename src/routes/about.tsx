@@ -83,7 +83,7 @@ function AboutPage() {
 				{/* Projects Grid */}
 				<div className="mb-16">
 					<h2 className="mb-8 text-center font-semibold font-serif text-2xl">
-						Our Projects
+						My Projects
 					</h2>
 					<div className="grid gap-6 md:grid-cols-3">
 						<Card className="transition-all hover:border-tbc-teal/50">
