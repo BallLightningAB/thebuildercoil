@@ -35,6 +35,7 @@
     "@tanstack/react-router-ssr-query": "^1.139.3",
     "@tanstack/react-start": "^1.139.3",
     "@tanstack/router-plugin": "^1.139.3",
+    "@tanstack/start-static-server-functions": "^1.139.14",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "date-fns": "^4.1.0",

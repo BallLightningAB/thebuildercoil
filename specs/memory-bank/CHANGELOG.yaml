@@ -1,5 +1,24 @@
 entries:
   - date: "2025-12-03"
+    version: 0.1.8
+    issue: "#5 https://github.com/BallLightningAB/thebuildercoil/issues/5"
+    commit: TBD
+    status: pending
+    title: "fix(deploy): refactor content loader for Vercel serverless and wire contact form"
+    details: |-
+      - Refactor loader-server.ts to use Vite import.meta.glob for build-time bundling
+      - Move content from /content/ to /src/data/ for proper Vite bundling
+      - Create contact form email service (src/lib/contact/email-service.ts)
+      - Create contact form server function (src/lib/contact/server.ts)
+      - Wire contact form in contact.tsx to Resend via server function
+      - Update sitemap generation script for new content path
+      - Remove hacky post-build script and Nitro serverAssets config
+      - Remove leftover .github/ISSUE_3_BODY.md file
+      - Create GitHub issue #5 for deployment tracking
+
+      Refs: v0.1.8 #5 I5D1 I5D2
+
+  - date: "2025-12-03"
     version: 0.1.7
     issue: "#3 https://github.com/BallLightningAB/thebuildercoil/issues/3"
     commit: TBD

@@ -7,6 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { submitContactForm } from "@/lib/contact/server";
 
 export const Route = createFileRoute("/contact")({
 	component: ContactPage,
@@ -30,12 +31,17 @@ function ContactPage() {
 			message: formData.get("message") as string,
 		};
 
-		// TODO: Integrate with Resend server function
-		// For now, simulate a successful submission
-		await new Promise((resolve) => setTimeout(resolve, 1000));
-
-		console.log("Contact form submission:", data);
-		setFormState("success");
+		try {
+			await submitContactForm({ data });
+			setFormState("success");
+		} catch (err) {
+			setFormState("error");
+			setErrorMessage(
+				err instanceof Error
+					? err.message
+					: "Failed to send message. Please try again."
+			);
+		}
 	};
 
 	return (

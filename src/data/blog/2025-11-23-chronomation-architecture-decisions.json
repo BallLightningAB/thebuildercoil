@@ -7,6 +7,8 @@
   "body": "# Chronomation: Key Architecture Decisions",
   "bodyFile": "2025-11-23-chronomation-architecture-decisions.md",
   "bodyIsMarkdown": true,
+  "heroImage": "/media/chronomation-architecture.webp",
+  "heroImageAlt": "Chronomation Architecture Decisions",
   "tags": ["chronomation", "architecture", "neon", "drizzle", "devlog"],
   "author": "Nicolas Brulay",
   "status": "published",

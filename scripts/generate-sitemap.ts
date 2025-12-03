@@ -8,7 +8,7 @@ import * as fs from "node:fs";
 import * as path from "node:path";
 
 const SITE_URL = "https://thebuildercoil.com";
-const CONTENT_DIR = path.join(process.cwd(), "content");
+const CONTENT_DIR = path.join(process.cwd(), "src", "data");
 const OUTPUT_PATH = path.join(process.cwd(), "public", "sitemap.xml");
 
 // Static pages with priorities and change frequencies

@@ -1,5 +1,5 @@
 meta:
-  release: 0.1.7
+  release: 0.1.8
   repo: github.com/BallLightningAB/thebuildercoil
   pdd_version: "v0.1.2"
   current_changes: see specs/current-changes/
@@ -14,6 +14,26 @@ guardrails:
   # - I3Docs / I3UI / I3Fix / I3Test / I3Biome: tags for documentation, UI polish, minor fixes, tests and Biome/tooling work not tied to a single deliverable
   roadmap:
     current:
+      - id: fix-vercel-deployment
+        issue: "#5"
+        title: "Fix Vercel deployment: content loading, missing images, and initial deploy concerns"
+        status: in-progress
+        links:
+          issue: https://github.com/BallLightningAB/thebuildercoil/issues/5
+          pr: ""
+        deliverables:
+          - "[I5D1] Refactor content loader to use Vite import.meta.glob for serverless"
+          - "[I5D2] Wire contact form to Resend email service"
+          - "[I5D3] Verify deployment and fix missing images"
+        est:
+          dev_h: 4
+          test_h: 1
+        sub_issues: []
+        remaining_deliverables:
+          - "[I5D3] Verify deployment and fix missing images"
+        progress_log:
+          - covers: [I5D1] note: "Refactored loader-server.ts to use import.meta.glob, moved content to src/data/"
+          - covers: [I5D2] note: "Created contact email service and server function, wired contact form"
       - id: balllightning-cloud-remake
         issue: "#TBD"
         title: "Remake Ball Lightning cloud site with TBC tech stack"
