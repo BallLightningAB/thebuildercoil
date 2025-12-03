@@ -29,11 +29,11 @@ A fully featured blog with:
 ### Newsletter – *The Upkeep*
 
 You can subscribe to **The Upkeep** to get new posts and progress updates straight to your inbox. The signup uses a GDPR-compliant double opt-in flow.
-I expect the newsletter to get up and running in the next few weeks, but for now sign-up to not miss out.
+I expect the newsletter to get up and running in the next few weeks. For now sign-up to not miss out.
 
 ### About & Contact
 
-There’s an **About** section where you can read more about Ball Lightning AB and the projects I’m working on, plus a **contact form** (to be enabled on Monday) if you want to get in touch about collaborations or client work.
+There’s an **About** section where you can read more about Ball Lightning AB and the projects I’m working on, plus a **contact form** (to be enabled on Monday) if you want to get in touch about collaborations or client work. In the mean time, please simply email me=)
 
 ## Under the Hood
 

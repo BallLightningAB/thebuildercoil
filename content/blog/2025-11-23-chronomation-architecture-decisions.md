@@ -1,10 +1,10 @@
 # Chronomation: Key Architecture Decisions
 
-Chronomation is the engine that powers [The Builder Coil](/news/the-builder-coil-is-live). It's a multi-tenant content platform designed to turn raw work artifacts into structured blog posts and social content. Here are the key architecture decisions we made.
+Chronomation is the engine that powers [The Builder Coil](/news/the-builder-coil-is-live). In its first iteration it's a multi-tenant content platform designed to turn raw work artifacts into structured blog posts and social content. Here are the key architecture decisions I made.
 
 ## Multi-Tenant from Day One
 
-We designed Chronomation to be multi-tenant from the start. Every table has a `tenant_id` column. Every query is scoped. This adds complexity upfront but makes scaling to multiple customers straightforward.
+I designed Chronomation to be multi-tenant from the start. Every table has a `tenant_id` column. Every query is scoped. This adds complexity upfront but makes scaling to multiple customers straightforward.
 
 ```sql
 CREATE TABLE blog_posts (
@@ -25,7 +25,7 @@ CREATE TABLE blog_posts (
 - **Branching**: Test migrations on branches before production
 - **Cost**: Pay for what you use
 
-Neon is our database host of choice for Chronomation. Learn more at [neon.tech](https://neon.tech).
+Neon is my database host of choice for Chronomation. Learn more at [neon.tech](https://neon.tech).
 
 ### Why Drizzle?
 
@@ -58,10 +58,10 @@ Each source creates "feed items" that can later be combined into blog posts.
 
 ## What's Next
 
-In future posts, we'll cover:
+In future posts, I'll cover:
 
 - The AI-assisted content generation pipeline
 - Social sharing automation
 - The admin UI built with [shadcn/ui](https://ui.shadcn.com)
 
-Follow along as we build Chronomation in public. 🔧
+Follow along as I build Chronomation in public. 🔧

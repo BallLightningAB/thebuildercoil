@@ -3,7 +3,7 @@
   "slug": "building-with-tanstack-start",
   "title": "Building with TanStack Start: First Impressions",
   "type": "blog",
-  "summary": "Our experience setting up The Builder Coil with TanStack Start, TanStack Router, and the modern React 19 stack. What we learned and what surprised us.",
+  "summary": "My experience setting up The Builder Coil with TanStack Start, TanStack Router, and the modern React 19 stack. What I learned and what surprised me.",
   "body": "# Building with TanStack Start: First Impressions",
   "bodyFile": "2025-11-24-building-with-tanstack-start.md",
   "bodyIsMarkdown": true,

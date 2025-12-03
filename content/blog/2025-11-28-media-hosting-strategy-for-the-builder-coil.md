@@ -1,6 +1,6 @@
 # Designing Media Hosting for The Builder Coil
 
-The Builder Coil started as a text-first devlog. Very quickly it was obvious that plain text wouldn’t be enough.
+The Builder Coil concept started as a text-first devlog. Very quickly it became obvious that plain text wouldn’t be enough.
 
 I want to show real flows, UI changes, and automation wiring – which means screenshots and short video clips. At the same time, [Chronomation](/blog/chronomation-architecture-decisions) (the engine behind The Builder Coil) needs a media model that scales to multiple tenants, not just my own brands.
 
@@ -23,7 +23,7 @@ I don’t want Chronomation to become a generic “video hosting” platform, bu
 
 ## Phase 0: File-Based Media for The Builder Coil
 
-Right now, The Builder Coil is built with **[TanStack Start](https://tanstack.com/start)**, React 19, and a modern TypeScript stack. For v0, I’m keeping media as simple as possible. For more on that stack, see [Building with TanStack Start: First Impressions](/blog/building-with-tanstack-start).
+The Builder Coil is built with **[TanStack Start](https://tanstack.com/start)**, React 19, and a modern TypeScript stack. For v0, I’m keeping media as simple as possible. For more on that stack, see [Building with TanStack Start: First Impressions](/blog/building-with-tanstack-start).
 
 - Images and tiny clips live in the repo under `public/media/`.
 - Posts reference them with paths like `/media/The Builder Coil-home-v0.png`.

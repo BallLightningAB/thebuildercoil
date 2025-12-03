@@ -1,5 +1,5 @@
 meta:
-  release: 0.1.6
+  release: 0.1.7
   repo: github.com/BallLightningAB/thebuildercoil
   pdd_version: "v0.1.2"
   current_changes: see specs/current-changes/
@@ -14,10 +14,34 @@ guardrails:
   # - I3Docs / I3UI / I3Fix / I3Test / I3Biome: tags for documentation, UI polish, minor fixes, tests and Biome/tooling work not tied to a single deliverable
   roadmap:
     current:
+      - id: balllightning-cloud-remake
+        issue: "#TBD"
+        title: "Remake Ball Lightning cloud site with TBC tech stack"
+        status: planned
+        links:
+          issue: ""
+          pr: ""
+        deliverables:
+          - "[I TBD] Define scope and requirements"
+          - "[I TBD] Design new site architecture"
+          - "[I TBD] Implement core pages"
+          - "[I TBD] Set up content system"
+        est:
+          dev_h: TBD
+          test_h: TBD
+        sub_issues: []
+        remaining_deliverables: []
+        progress_log: []
+    next_steps:
+      - id: chronomation-integration
+        issue: "#TBD"
+        title: "Integrate with Chronomation API (Phase 2)"
+        status: planned
+    recent_done:
       - id: build-tbc-site-phase1
         issue: "#3"
         title: "Build The Builder Coil Site – Phase 1 (Manual Blog)"
-        status: in-progress
+        status: done
         links:
           issue: https://github.com/BallLightningAB/thebuildercoil/issues/3
           pr: ""
@@ -43,9 +67,7 @@ guardrails:
             status: done
             links:
               issue: https://github.com/BallLightningAB/thebuildercoil/issues/4
-        remaining_deliverables:
-          - I3D10
-          - I3D11
+        remaining_deliverables: []
         progress_log:
           - covers: [I3Docs] note: "Created Phase 1 implementation plan and The Upkeep newsletter sub-plan."
           - covers: [I3D1, I3D2, I3D3, I3D4] note: "Set up TBC theming: styles.css colors, theme provider, Kibo switcher, and shared layout."
@@ -54,12 +76,8 @@ guardrails:
           - covers: [I3D2, I3D3, I3D4, I3D6, I3D7] note: "Integrated Kibo ThemeSwitcher and CodeBlock, fixed duplicate keys, documented { post, html, codeBlocks } contract."
           - covers: [I3Biome] note: "Resolved remaining Biome lint issues and unified dark/light card and tag styling."
           - covers: [I3D1] note: "Fixed dark mode prose: TBC cream (#f5e6d3) via prose-cream utility and route updates."
-    next_steps:
-      - id: chronomation-integration
-        issue: "#TBD"
-        title: "Integrate with Chronomation API (Phase 2)"
-        status: planned
-    recent_done:
+          - covers: [I3D10] note: "Implemented newsletter signup with double opt-in (The Upkeep) and completed Newsletter Phase 1 (v0.1.6)."
+          - covers: [I3D11] note: "Configured SEO: meta/OG tags, JSON-LD structured data, sitemap.xml, robots.txt. Phase 1 complete (v0.1.7)."
       - id: Project initialization using the Tanstack Start Builder
         issue: "#1"
         title: Project initialization using the Tanstack Start Builder

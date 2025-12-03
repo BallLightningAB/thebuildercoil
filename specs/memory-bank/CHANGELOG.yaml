@@ -1,9 +1,30 @@
 entries:
-  - date: "2025-12-01"
-    version: 0.1.6
+  - date: "2025-12-03"
+    version: 0.1.7
     issue: "#3 https://github.com/BallLightningAB/thebuildercoil/issues/3"
     commit: TBD
     status: pending
+    title: "feat(seo): implement SEO meta tags, JSON-LD, sitemap, and robots.txt"
+    details: |-
+      - Add SEO utility functions (src/lib/seo/meta.ts, src/lib/seo/structured-data.ts)
+      - Implement generateMeta() for Open Graph and Twitter Card tags
+      - Add JSON-LD structured data (BlogPosting schema) for blog/news posts
+      - Add head() configuration to blog/$slug.tsx and news/$slug.tsx routes
+      - Create static sitemap generation script (scripts/generate-sitemap.ts)
+      - Generate public/sitemap.xml with all static pages and published posts
+      - Update public/robots.txt with sitemap reference
+      - Fix first-person voice in about.tsx ("we" → "I")
+      - Review all markdown content files for narrative voice consistency
+      - Complete Phase 1 deliverable I3D11: SEO & performance tasks
+      - Clean up broken sitemap route artifacts
+
+      Refs: v0.1.7 closes #3 I3D11
+
+  - date: "2025-12-01"
+    version: 0.1.6
+    issue: "#3 https://github.com/BallLightningAB/thebuildercoil/issues/3"
+    commit: 4860109000d79cdc9a1b9f061e9eb24594635b57
+    status: released
     title: "feat(newsletter): complete Phase 1 implementation of The Upkeep"
     details: |-
       - Complete all NL-1.x tasks (NL-1.0 through NL-1.9)
@@ -22,7 +43,7 @@ entries:
   - date: "2025-12-01"
     version: 0.1.5.1
     issue: "#3 https://github.com/BallLightningAB/thebuildercoil/issues/3"
-    commit: TBD
+    commit: 6943c2b
     status: pending
     title: "docs(email): refresh email architecture and update newsletter implementation plan"
     details: |-

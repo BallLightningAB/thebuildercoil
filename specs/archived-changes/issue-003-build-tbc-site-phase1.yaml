@@ -3,12 +3,21 @@
 # =============================================================================
 # Issue: #3 – Build The Builder Coil Site
 # Meta Version: 0.1.x
-# Plan Version: 1.2.0
+# Plan Version: 1.3.0
 # Created: 2025-11-25
-# Updated: 2025-12-01
+# Updated: 2025-12-03
 # =============================================================================
 #
 # Plan Changelog:
+#   0.1.7 (2025-12-03) – Phase 1 COMPLETE (SEO & Performance)
+#     - All SEO tasks completed (4.1 through 4.5)
+#     - Added SEO utilities: src/lib/seo/meta.ts, src/lib/seo/structured-data.ts
+#     - Implemented head() with Open Graph, Twitter Cards, JSON-LD on blog/news routes
+#     - Created static sitemap generator: scripts/generate-sitemap.ts
+#     - Updated robots.txt with sitemap reference
+#     - Fixed first-person voice in about.tsx
+#     - Phase 1 (Issue #3) is now fully complete and ready for deployment
+#
 #   0.1.5.1 (2025-12-01) – Newsletter Phase 1 completed
 #     - All NL-1.x tasks completed (NL-1.0 through NL-1.9)
 #     - Email template uses #a78bfa (violet) accent to match TBC brand
@@ -424,7 +433,7 @@ phase_1:
           - SEO utility component or hook
           - Default meta tags in root layout
           - Per-page meta overrides
-        status: pending
+        status: done
 
       - id: "4.2"
         title: "Add structured data (JSON-LD)"
@@ -435,7 +444,7 @@ phase_1:
           - WebSite schema on home page
         deliverables:
           - src/lib/seo/structured-data.ts
-        status: pending
+        status: done
 
       - id: "4.3"
         title: "Generate sitemap.xml"
@@ -444,7 +453,7 @@ phase_1:
         deliverables:
           - Sitemap generation script or route
           - public/sitemap.xml (or dynamic route)
-        status: pending
+        status: done
 
       - id: "4.4"
         title: "Configure robots.txt"
@@ -452,7 +461,7 @@ phase_1:
           Update robots.txt with sitemap reference and crawl rules.
         deliverables:
           - Updated public/robots.txt
-        status: pending
+        status: done
 
       - id: "4.5"
         title: "Verify MPA rendering (SSR/SSG)"
@@ -462,7 +471,7 @@ phase_1:
         deliverables:
           - SSR/SSG verification tests
           - Performance audit
-        status: pending
+        status: done
 
   # ---------------------------------------------------------------------------
   # 5. Newsletter – "The Upkeep" (Phase 1 – Signup + Double Opt-In)

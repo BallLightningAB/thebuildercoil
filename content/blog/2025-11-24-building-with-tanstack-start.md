@@ -1,6 +1,6 @@
 # Building with TanStack Start: First Impressions
 
-When we started building [The Builder Coil](/news/the-builder-coil-is-live), we had a choice to make: Next.js, Remix, Astro, or something newer. We chose **[TanStack Start](https://tanstack.com/start)** – and here's why.
+When I started building [The Builder Coil](/news/the-builder-coil-is-live), I had a choice to make: Next.js, Remix, Astro, or something newer. I chose **[TanStack Start](https://tanstack.com/start)** – and here's why.
 
 ## Why TanStack Start?
 
@@ -17,11 +17,12 @@ When we started building [The Builder Coil](/news/the-builder-coil-is-live), we 
 
 ### File-Based with Flexibility
 
-Like Next.js, TanStack Start uses file-based routing. But it also gives you the flexibility to define routes programmatically when needed.
+Like Next.js, TanStack Start uses file-based routing. It also gives you the flexibility to define routes programmatically when needed.
 
 ### Server Functions
 
 Server functions in TanStack Start feel natural. They're just async functions that run on the server, with full access to Node.js APIs.
+The biggest thing though is that Tanstack Start is Isoporphic be design, so all functions are available on the client and server, unless specified otherwise.
 
 ```typescript
 export const serverFn = createServerFn()
@@ -35,11 +36,13 @@ export const serverFn = createServerFn()
 
 ## The Learning Curve
 
-Honestly, the documentation is still catching up with the features. We spent time reading source code and examples. But the Discord community is helpful, and the patterns make sense once you understand them.
+Honestly, the documentation is still catching up with the features. I spent time reading source code and examples. But the Discord community is helpful, and the patterns make sense once you understand them.
+There is also a lot of content on Tanstack Start as it's very popular with a lot of opensource support.
+While LLMs are inherently worse with all frameworks than Next.js since that's historically so popular and thus have the most training data, with MCPs like Context7 your LLM can keep up-to-date with the latest documentation and best practices.
 
 ## What's Next
 
-We'll be sharing more about our TanStack Start setup in future posts, including:
+I'll be sharing more about my TanStack Start setup in future posts, including:
 
 - SEO and meta tag management
 - Server-side data loading patterns

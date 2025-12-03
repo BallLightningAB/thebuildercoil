@@ -14,6 +14,13 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { getPost, getRelatedPosts } from "@/lib/content/server";
+import { generateCanonical, generateMeta } from "@/lib/seo/meta";
+import {
+	generateBlogPostingSchema,
+	jsonLdScript,
+} from "@/lib/seo/structured-data";
+
+const SITE_URL = "https://thebuildercoil.com";
 
 export const Route = createFileRoute("/blog/$slug")({
 	component: BlogPostPage,
@@ -30,6 +37,43 @@ export const Route = createFileRoute("/blog/$slug")({
 			html: result.html,
 			codeBlocks: result.codeBlocks,
 			related,
+		};
+	},
+	head: ({ loaderData }) => {
+		if (!loaderData?.post) {
+			return { meta: [{ title: "Post Not Found | The Builder Coil" }] };
+		}
+		const { post } = loaderData;
+		let heroImage: string | undefined;
+		if (post.heroImage) {
+			heroImage = post.heroImage.startsWith("http")
+				? post.heroImage
+				: `${SITE_URL}${post.heroImage}`;
+		}
+
+		return {
+			meta: [
+				{ title: `${post.title} | The Builder Coil` },
+				...generateMeta({
+					title: post.title,
+					description: post.summary,
+					url: `${SITE_URL}/blog/${post.slug}`,
+					image: heroImage,
+					imageAlt: post.heroImageAlt || post.title,
+					type: "article",
+					publishedAt: post.publishedAt,
+					modifiedAt: post.updatedAt,
+					author: post.author,
+					tags: post.tags,
+				}),
+			],
+			links: [generateCanonical(`/blog/${post.slug}`)],
+			scripts: [
+				{
+					type: "application/ld+json",
+					children: jsonLdScript(generateBlogPostingSchema(post)),
+				},
+			],
 		};
 	},
 	notFoundComponent: () => (

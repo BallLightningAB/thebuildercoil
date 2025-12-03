@@ -48,7 +48,7 @@ function AboutPage() {
 					<h2>What Is The Builder Coil?</h2>
 					<p>
 						The Builder Coil is more than just a blog – it's a living record of
-						building software in public. Here, we document the journey of
+						building software in public. Here, I document the journey of
 						creating products, experimenting with agentic AI workflows, and
 						sharing the lessons learned along the way.
 					</p>
