@@ -1,8 +1,23 @@
 entries:
+  - date: "2025-12-10"
+    version: 0.1.8.2
+    issue: "Content update"
+    commit: TBD
+    status: pending
+    title: "feat(content): add typography unification blog post and update visual refresh spec"
+    details: |-
+      - Add new blog post "Unifying Typography for Three Brands" with hero image concepts
+      - Update optional-visual-refresh.yaml with refined typography scale and brand gradients
+      - Fix italic formatting in blog post footnote about X account handle
+      - Document modular type scale (major third, 1.25) and brand-specific color schemes
+      - Add comprehensive layout guidelines for hero patterns and card interactions
+
+      Refs: v0.1.8.2
+
   - date: "2025-12-03"
     version: 0.1.8
     issue: "#5 https://github.com/BallLightningAB/thebuildercoil/issues/5"
-    commit: TBD
+    commit: 0b385bc
     status: pending
     title: "fix(deploy): refactor content loader for Vercel serverless and wire contact form"
     details: |-

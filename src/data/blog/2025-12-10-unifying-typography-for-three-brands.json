@@ -1,0 +1,27 @@
+{
+  "id": "post-005",
+  "slug": "unifying-typography-for-three-brands",
+  "title": "Building a Shared Typography and Layout System for Three Brands",
+  "type": "blog",
+  "summary": "How I’m designing a shared typography and layout system that unifies The Builder Coil, Chronomation and Ball Lightning—starting from body text, a modular scale, and consistent vertical rhythm.",
+  "bodyIsMarkdown": true,
+  "heroImage": "/media/2025-12-10-unifying-typography-for-three-brands.png",
+  "heroImageAlt": "Viewing fonts in Fontbase",
+  "body": "# Building a Shared Typography & Layout System for Three Brands",
+  "bodyFile": "2025-12-10-unifying-typography-for-three-brands.md",
+  "tags": [
+    "design",
+    "typography",
+    "layout",
+    "the-builder-coil",
+    "chronomation",
+    "ball-lightning",
+    "devlog"
+  ],
+  "author": "Nicolas Brulay",
+  "status": "published",
+  "publishedAt": "2025-12-10T14:00:00.000Z",
+  "createdAt": "2025-12-10T11:00:00.000Z",
+  "updatedAt": "2025-12-10T14:00:00.000Z",
+  "readingTime": 6
+}
