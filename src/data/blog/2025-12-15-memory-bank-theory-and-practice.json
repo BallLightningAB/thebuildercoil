@@ -1,0 +1,27 @@
+{
+  "id": "post-006",
+  "slug": "memory-bank-theory-and-practice",
+  "title": "The Memory Bank: Theory, Practice, and Agentic Pair Programming",
+  "type": "blog",
+  "summary": "A practical spec system for working with AI coding agents: why I built a memory-bank, how it works day-to-day, and why The Builder Coil version is the template moving forward.",
+  "bodyIsMarkdown": true,
+  "heroImage": "/media/2025-12-15-memory-bank-theory-and-practice.webp",
+  "heroImageAlt": "A grimoire-like knowledge system rendered as a technical blueprint",
+  "body": "# The Memory Bank: Theory, Practice, and Agentic Pair Programming",
+  "bodyFile": "2025-12-15-memory-bank-theory-and-practice.md",
+  "tags": [
+    "devlog",
+    "process",
+    "documentation",
+    "ai",
+    "agentic-dev",
+    "the-builder-coil",
+    "chronomation"
+  ],
+  "author": "Nicolas Brulay",
+  "status": "published",
+  "publishedAt": "2025-12-15T18:30:00.000Z",
+  "createdAt": "2025-12-15T16:30:00.000Z",
+  "updatedAt": "2025-12-15T18:30:00.000Z",
+  "readingTime": 7
+}

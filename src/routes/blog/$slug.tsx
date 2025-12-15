@@ -1,5 +1,6 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowLeft, Calendar, Clock, User } from "lucide-react";
+import type { ReactNode } from "react";
 import { BlogPostGrid } from "@/components/blog/BlogPostGrid";
 import {
 	CodeBlock,
@@ -14,6 +15,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { getPost, getRelatedPosts } from "@/lib/content/server";
+import type { PostCodeBlock } from "@/lib/content/types";
 import { generateCanonical, generateMeta } from "@/lib/seo/meta";
 import {
 	generateBlogPostingSchema,
@@ -26,6 +28,7 @@ export const Route = createFileRoute("/blog/$slug")({
 	component: BlogPostPage,
 	loader: async ({ params }) => {
 		const result = await getPost({ data: { slug: params.slug, type: "blog" } });
+
 		if (!result) {
 			throw notFound();
 		}
@@ -89,8 +92,91 @@ export const Route = createFileRoute("/blog/$slug")({
 	),
 });
 
+const CODE_BLOCK_MARKER_REGEX =
+	/<div[^>]*data-post-code-block="(\d+)"[^>]*><\/div>/g;
+
+function renderHtmlWithInlineCodeBlocks(
+	html: string,
+	codeBlocks: PostCodeBlock[]
+): ReactNode[] {
+	const nodes: ReactNode[] = [];
+	let lastIndex = 0;
+
+	for (const match of html.matchAll(CODE_BLOCK_MARKER_REGEX)) {
+		const index = match.index ?? 0;
+		const marker = match[0] ?? "";
+		const id = match[1];
+		const blockIndex = id ? Number.parseInt(id, 10) : Number.NaN;
+
+		if (index > lastIndex) {
+			const slice = html.slice(lastIndex, index);
+			nodes.push(
+				<div
+					className="contents"
+					dangerouslySetInnerHTML={{ __html: slice }}
+					key={`html-${lastIndex}`}
+				/>
+			);
+		}
+
+		if (!Number.isNaN(blockIndex)) {
+			const block = codeBlocks[blockIndex];
+			if (block) {
+				nodes.push(
+					<div className="not-prose my-6" key={`code-${blockIndex}`}>
+						<CodeBlock
+							className="bg-card/60"
+							data={[block]}
+							defaultValue={block.language}
+						>
+							<CodeBlockHeader>
+								<CodeBlockFiles>
+									{(item) => (
+										<CodeBlockFilename
+											key={`${item.filename}-${item.language}`}
+											value={item.language}
+										>
+											{item.filename || item.language || "snippet"}
+										</CodeBlockFilename>
+									)}
+								</CodeBlockFiles>
+								<CodeBlockCopyButton />
+							</CodeBlockHeader>
+							<CodeBlockBody>
+								{(item) => (
+									<CodeBlockItem
+										key={`${item.filename}-${item.language}`}
+										value={item.language}
+									>
+										<CodeBlockContent>{item.code}</CodeBlockContent>
+									</CodeBlockItem>
+								)}
+							</CodeBlockBody>
+						</CodeBlock>
+					</div>
+				);
+			}
+		}
+
+		lastIndex = index + marker.length;
+	}
+
+	if (lastIndex < html.length) {
+		nodes.push(
+			<div
+				className="contents"
+				dangerouslySetInnerHTML={{ __html: html.slice(lastIndex) }}
+				key={`html-${lastIndex}`}
+			/>
+		);
+	}
+
+	return nodes;
+}
+
 function BlogPostPage() {
 	const { post, html, codeBlocks, related } = Route.useLoaderData();
+	const contentNodes = renderHtmlWithInlineCodeBlocks(html, codeBlocks);
 
 	const formattedDate = new Date(post.publishedAt).toLocaleDateString("en-US", {
 		year: "numeric",
@@ -159,44 +245,9 @@ function BlogPostPage() {
 					</div>
 				)}
 				{/* Article Content */}
-				<div
-					className="prose prose-lg dark:prose-cream max-w-none prose-code:rounded prose-pre:border prose-pre:border-border prose-code:bg-muted prose-pre:bg-card prose-code:px-1.5 prose-code:py-0.5 prose-code:font-normal prose-headings:font-semibold prose-headings:prose-a:text-tbc-teal prose-a:no-underline prose-code:before:content-none prose-code:after:content-none hover:prose-a:underline"
-					dangerouslySetInnerHTML={{ __html: html }}
-				/>
-				{codeBlocks.length > 0 && (
-					<section className="mt-16 border-border border-t pt-12">
-						<h2 className="mb-6 font-semibold text-2xl">Code samples</h2>
-						<CodeBlock
-							className="bg-card/60"
-							data={codeBlocks}
-							defaultValue={codeBlocks[0]?.language}
-						>
-							<CodeBlockHeader>
-								<CodeBlockFiles>
-									{(item) => (
-										<CodeBlockFilename
-											key={`${item.language}-${item.filename || "snippet"}`}
-											value={item.language}
-										>
-											{item.filename || item.language || "snippet"}
-										</CodeBlockFilename>
-									)}
-								</CodeBlockFiles>
-								<CodeBlockCopyButton />
-							</CodeBlockHeader>
-							<CodeBlockBody>
-								{(item) => (
-									<CodeBlockItem
-										key={`${item.language}-${item.filename || "snippet"}`}
-										value={item.language}
-									>
-										<CodeBlockContent>{item.code}</CodeBlockContent>
-									</CodeBlockItem>
-								)}
-							</CodeBlockBody>
-						</CodeBlock>
-					</section>
-				)}
+				<div className="prose prose-lg dark:prose-cream max-w-none prose-code:rounded prose-pre:border prose-pre:border-border prose-code:bg-muted prose-pre:bg-card prose-code:px-1.5 prose-code:py-0.5 prose-code:font-normal prose-headings:font-semibold prose-headings:prose-a:text-tbc-teal prose-a:no-underline prose-code:before:content-none prose-code:after:content-none hover:prose-a:underline">
+					{contentNodes}
+				</div>
 				{/* Related Posts */}
 				{related.length > 0 && (
 					<section className="mt-16 border-border border-t pt-12">

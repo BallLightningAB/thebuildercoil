@@ -2,11 +2,12 @@ pdd:
   meta:
     name: "Chronomation – Content Engine"
     code_name: "chronomation_core"
-    version: "0.1.2"
+    version: "0.1.2.1"
     workflow_guide: "specs/memory-bank/memory-bank-usage.yaml"
     owner:
       individual: "Nicolas Brulay"
       company: "Ball Lightning AB"
+    github_project: "https://github.com/users/BallLightningAB/projects/6"
     products:
       chronomation:
         description: "Multi-tenant backend + admin + marketing site for activity → narrative content and social sharing."

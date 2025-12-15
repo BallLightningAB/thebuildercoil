@@ -3,6 +3,10 @@ import { BlogPostGrid } from "@/components/blog/BlogPostGrid";
 import { AnimatedGroup } from "@/components/motion-primitives/animated-group";
 import { TextEffect } from "@/components/motion-primitives/text-effect";
 import { getPosts } from "@/lib/content/server";
+import { generateCanonical, generateMeta } from "@/lib/seo/meta";
+import { generateNewsSchema, jsonLdScript } from "@/lib/seo/structured-data";
+
+const SITE_URL = "https://thebuildercoil.com";
 
 export const Route = createFileRoute("/news/")({
 	component: NewsIndexPage,
@@ -10,6 +14,25 @@ export const Route = createFileRoute("/news/")({
 		const posts = await getPosts({ data: { type: "news" } });
 		return { posts };
 	},
+	head: () => ({
+		meta: [
+			{ title: "Latest News | The Builder Coil" },
+			...generateMeta({
+				title: "Latest News",
+				description:
+					"Updates, announcements, and press releases from Ball Lightning AB.",
+				url: `${SITE_URL}/news`,
+				type: "website",
+			}),
+		],
+		links: [generateCanonical("/news")],
+		scripts: [
+			{
+				type: "application/ld+json",
+				children: jsonLdScript(generateNewsSchema()),
+			},
+		],
+	}),
 });
 
 function NewsIndexPage() {

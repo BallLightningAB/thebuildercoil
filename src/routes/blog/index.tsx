@@ -3,6 +3,10 @@ import { BlogPostGrid } from "@/components/blog/BlogPostGrid";
 import { AnimatedGroup } from "@/components/motion-primitives/animated-group";
 import { TextEffect } from "@/components/motion-primitives/text-effect";
 import { getPosts } from "@/lib/content/server";
+import { generateCanonical, generateMeta } from "@/lib/seo/meta";
+import { generateBlogSchema, jsonLdScript } from "@/lib/seo/structured-data";
+
+const SITE_URL = "https://thebuildercoil.com";
 
 export const Route = createFileRoute("/blog/")({
 	component: BlogIndexPage,
@@ -10,6 +14,25 @@ export const Route = createFileRoute("/blog/")({
 		const posts = await getPosts({ data: { type: "blog" } });
 		return { posts };
 	},
+	head: () => ({
+		meta: [
+			{ title: "The Builder's Log | The Builder Coil" },
+			...generateMeta({
+				title: "The Builder's Log",
+				description:
+					"Devlogs, technical deep-dives, and lessons learned from building software and running Ball Lightning AB.",
+				url: `${SITE_URL}/blog`,
+				type: "website",
+			}),
+		],
+		links: [generateCanonical("/blog")],
+		scripts: [
+			{
+				type: "application/ld+json",
+				children: jsonLdScript(generateBlogSchema()),
+			},
+		],
+	}),
 });
 
 function BlogIndexPage() {

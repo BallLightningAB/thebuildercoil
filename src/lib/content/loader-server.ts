@@ -51,7 +51,6 @@ const WORD_SPLIT_REGEX = /\s+/;
 const WORDS_PER_MINUTE = 200;
 const LEADING_HEADING_PATTERN = /^#\s+(.+?)\s*$/m;
 const LEADING_BLANK_LINE_PATTERN = /^\s*\n/;
-const FENCED_CODE_BLOCK_REGEX = /```([^\n`]*)\n([\s\S]*?)```/g;
 const INFO_SPLIT_REGEX = /\s+/;
 
 function calculateReadingTime(text: string): number {
@@ -59,25 +58,30 @@ function calculateReadingTime(text: string): number {
 	return Math.ceil(words / WORDS_PER_MINUTE);
 }
 
-function extractCodeBlocksFromMarkdown(body: string): PostCodeBlock[] {
-	const blocks: PostCodeBlock[] = [];
-	FENCED_CODE_BLOCK_REGEX.lastIndex = 0;
-	let match: RegExpExecArray | null = FENCED_CODE_BLOCK_REGEX.exec(body);
+function renderMarkdownWithCodeBlocks(body: string): {
+	html: string;
+	codeBlocks: PostCodeBlock[];
+} {
+	const codeBlocks: PostCodeBlock[] = [];
+	const renderer = new marked.Renderer();
 
-	while (match !== null) {
-		const infoString = (match[1] ?? "").trim();
+	renderer.code = ({ text, lang }) => {
+		const infoString = (lang ?? "").trim();
 		const [languagePart, filenamePart] = infoString.split(INFO_SPLIT_REGEX, 2);
 		const language = languagePart ?? "";
 		const baseFilename = filenamePart ?? "";
-		const indexLabel = blocks.length + 1;
+		const indexLabel = codeBlocks.length + 1;
 		const filename = baseFilename || `snippet-${indexLabel}`;
-		const code = match[2] ?? "";
+		const normalizedCode = text.endsWith("\n") ? text.slice(0, -1) : text;
+		const index = codeBlocks.length;
 
-		blocks.push({ language, filename, code });
-		match = FENCED_CODE_BLOCK_REGEX.exec(body);
-	}
+		codeBlocks.push({ language, filename, code: normalizedCode });
 
-	return blocks;
+		return `\n<div class="not-prose my-6" data-post-code-block="${index}"></div>\n`;
+	};
+
+	const html = marked.parse(body, { async: false, renderer }) as string;
+	return { html, codeBlocks };
 }
 
 export function stripLeadingTitleHeading(title: string, body: string): string {
@@ -144,17 +148,16 @@ function buildPost(
 			? stripLeadingTitleHeading(validated.title, resolvedBody)
 			: resolvedBody;
 
-	const html =
-		validated.bodyIsMarkdown !== false
-			? (marked.parse(sourceBody, { async: false }) as string)
-			: sourceBody;
+	if (validated.bodyIsMarkdown === false) {
+		return { post: validated, html: sourceBody, codeBlocks: [] };
+	}
 
-	const codeBlocks =
-		validated.bodyIsMarkdown !== false
-			? extractCodeBlocksFromMarkdown(sourceBody)
-			: [];
-
-	return { post: validated, html, codeBlocks };
+	const rendered = renderMarkdownWithCodeBlocks(sourceBody);
+	return {
+		post: validated,
+		html: rendered.html,
+		codeBlocks: rendered.codeBlocks,
+	};
 }
 
 /**

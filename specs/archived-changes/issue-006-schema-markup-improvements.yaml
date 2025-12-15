@@ -1,0 +1,33 @@
+# =============================================================================
+# Implementation Plan: Schema Markup Improvements (AI + SEO)
+# =============================================================================
+# Issue: #6 – Schema markup improvements
+# Created: 2025-12-15
+# Status: done
+# =============================================================================
+
+meta:
+  issue: "#6"
+  title: "Schema markup improvements (AI + SEO)"
+  project: "https://github.com/users/BallLightningAB/projects/6"
+  status: done
+
+summary:
+  goals:
+    - "Improve AI/SEO understanding of The Builder Coil and its relationship to Ball Lightning AB and Chronomation"
+    - "Ensure blog and news listing pages emit proper meta + canonical + JSON-LD"
+
+deliverables:
+  - id: "I6D1"
+    title: "Add global root entity graph JSON-LD"
+    status: done
+  - id: "I6D2"
+    title: "Add head() + canonical + JSON-LD to /blog and /news index pages"
+    status: done
+  - id: "I6D3"
+    title: "Use NewsArticle schema for /news/:slug"
+    status: done
+
+notes:
+  - "BreadcrumbList intentionally deferred until Phase 2 (Chronomation automation/integration)."
+  - "Ensure any new issues created in this repo are added to the GitHub Project URL above."

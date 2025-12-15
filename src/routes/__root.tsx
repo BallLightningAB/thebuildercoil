@@ -8,6 +8,10 @@ import {
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 import { Layout } from "@/components/layout/Layout";
 import { ThemeProvider } from "@/components/theme-provider";
+import {
+	generateRootEntityGraphSchema,
+	jsonLdScript,
+} from "@/lib/seo/structured-data";
 import appCss from "../styles.css?url";
 
 function RootNotFound() {
@@ -66,6 +70,12 @@ export const Route = createRootRoute({
 			{
 				rel: "icon",
 				href: "/favicon.ico",
+			},
+		],
+		scripts: [
+			{
+				type: "application/ld+json",
+				children: jsonLdScript(generateRootEntityGraphSchema()),
 			},
 		],
 	}),

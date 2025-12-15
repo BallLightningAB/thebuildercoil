@@ -1,7 +1,7 @@
 meta:
-  release: 0.1.8.2
+  release: 0.1.8.3
   repo: github.com/BallLightningAB/thebuildercoil
-  pdd_version: "v0.1.2"
+  pdd_version: "v0.1.2.1"
   current_changes: see specs/current-changes/
 guardrails:
   non_goals: []
@@ -14,26 +14,6 @@ guardrails:
   # - I3Docs / I3UI / I3Fix / I3Test / I3Biome: tags for documentation, UI polish, minor fixes, tests and Biome/tooling work not tied to a single deliverable
   roadmap:
     current:
-      - id: fix-vercel-deployment
-        issue: "#5"
-        title: "Fix Vercel deployment: content loading, missing images, and initial deploy concerns"
-        status: in-progress
-        links:
-          issue: https://github.com/BallLightningAB/thebuildercoil/issues/5
-          pr: ""
-        deliverables:
-          - "[I5D1] Refactor content loader to use Vite import.meta.glob for serverless"
-          - "[I5D2] Wire contact form to Resend email service"
-          - "[I5D3] Verify deployment and fix missing images"
-        est:
-          dev_h: 4
-          test_h: 1
-        sub_issues: []
-        remaining_deliverables:
-          - "[I5D3] Verify deployment and fix missing images"
-        progress_log:
-          - covers: [I5D1] note: "Refactored loader-server.ts to use import.meta.glob, moved content to src/data/"
-          - covers: [I5D2] note: "Created contact email service and server function, wired contact form"
       - id: balllightning-cloud-remake
         issue: "#TBD"
         title: "Remake Ball Lightning cloud site with TBC tech stack"
@@ -58,6 +38,62 @@ guardrails:
         title: "Integrate with Chronomation API (Phase 2)"
         status: planned
     recent_done:
+      - id: codeblock-inline-rendering-fix
+        issue: "#7"
+        title: "fix(content): render fenced code blocks inline with CodeBlock UI"
+        status: done
+        links:
+          issue: https://github.com/BallLightningAB/thebuildercoil/issues/7
+          pr: ""
+        deliverables:
+          - "[I3Fix] Stop duplicate code rendering and keep CodeBlock UI inline"
+        est:
+          dev_h: 1
+          test_h: 0
+        sub_issues: []
+        remaining_deliverables: []
+        progress_log:
+          - covers: [I3Fix] note: "Changed markdown rendering to emit data-post-code-block markers and render Kibo CodeBlock inline on blog/news detail pages (header + copy), removing the duplicate 'Code samples' section."
+      - id: schema-markup-improvements
+        issue: "#6"
+        title: "feat(seo): schema markup improvements (root entity graph + blog/news indexes)"
+        status: done
+        links:
+          issue: https://github.com/BallLightningAB/thebuildercoil/issues/6
+          pr: ""
+        deliverables:
+          - "[I6D1] Add global root entity graph JSON-LD"
+          - "[I6D2] Add head() + canonical + JSON-LD to /blog and /news index pages"
+          - "[I6D3] Use NewsArticle schema for /news/:slug"
+        est:
+          dev_h: 2
+          test_h: 0
+        sub_issues: []
+        remaining_deliverables: []
+        progress_log:
+          - covers: [I6D1] note: "Added global JSON-LD @graph (Organization + WebSite + Product) and emitted it via src/routes/__root.tsx head()."
+          - covers: [I6D2] note: "Added head() metadata + canonical + JSON-LD to src/routes/blog/index.tsx and src/routes/news/index.tsx."
+          - covers: [I6D3] note: "Switched src/routes/news/$slug.tsx structured data to NewsArticle for semantic accuracy."
+      - id: fix-vercel-deployment
+        issue: "#5"
+        title: "Fix Vercel deployment: content loading, missing images, and initial deploy concerns"
+        status: done
+        links:
+          issue: https://github.com/BallLightningAB/thebuildercoil/issues/5
+          pr: ""
+        deliverables:
+          - "[I5D1] Refactor content loader to use Vite import.meta.glob for serverless"
+          - "[I5D2] Wire contact form to Resend email service"
+          - "[I5D3] Verify deployment and fix missing images"
+        est:
+          dev_h: 4
+          test_h: 1
+        sub_issues: []
+        remaining_deliverables: []
+        progress_log:
+          - covers: [I5D1] note: "Refactored loader-server.ts to use import.meta.glob, moved content to src/data/"
+          - covers: [I5D2] note: "Created contact email service and server function, wired contact form"
+          - covers: [I5D3] note: "Verified deployment and fixed missing images"
       - id: build-tbc-site-phase1
         issue: "#3"
         title: "Build The Builder Coil Site – Phase 1 (Manual Blog)"
