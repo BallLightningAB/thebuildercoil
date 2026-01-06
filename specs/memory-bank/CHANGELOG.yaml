@@ -1,8 +1,23 @@
 entries:
   - date: "2026-01-06"
+    version: 0.1.8.6
+    issue: "UI improvement"
+    commit: TBD
+    status: pending
+    title: "feat(ui): update GitHub contribution graph to show rolling 12 months"
+    details: |-
+      - Modify GitHub contribution graph to display last 12 months instead of current year only
+      - Update date filtering logic to show rolling window ending today
+      - Change display text from year to "last 12 months" for clarity
+      - Align with GitHub's profile contribution graph behavior
+      - Add .biomeignore file to exclude node_modules from Biome linting
+      - Fix IDE lint errors caused by checking dependency type definitions
+
+      Refs: v0.1.8.6
+  - date: "2026-01-06"
     version: 0.1.8.5
     issue: "Code quality improvements"
-    commit: TBD
+    commit: f8942fc6ae6f49cc39f24a5cb9fab8bfc10c5fbe
     status: pending
     title: "refactor(code): update Biome to latest and enforce consistent type definitions"
     details: |-

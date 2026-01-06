@@ -176,9 +176,9 @@ function HomePage() {
 									</ContributionGraphCalendar>
 									<ContributionGraphFooter>
 										<ContributionGraphTotalCount className="text-xs text-muted-foreground">
-											{({ totalCount, year }) => (
+											{({ totalCount }) => (
 												<span>
-													{totalCount} contributions in {year}
+													{totalCount} contributions in the last 12 months
 												</span>
 											)}
 										</ContributionGraphTotalCount>

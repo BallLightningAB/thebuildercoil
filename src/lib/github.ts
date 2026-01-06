@@ -37,14 +37,19 @@ async function fetchGitHubContributions(
 
 	const json = (await res.json()) as GitHubContributionResponse;
 
-	// Find the latest year we have totals for
-	const years = Object.keys(json.total).map((y) => Number.parseInt(y, 10));
-	const latestYear =
-		years.length > 0 ? Math.max(...years) : new Date().getFullYear();
+	// Calculate date for 12 months ago
+	const twelveMonthsAgo = new Date();
+	twelveMonthsAgo.setMonth(twelveMonthsAgo.getMonth() - 12);
 
-	// Keep only contributions for that year
+	// Calculate today's date
+	const today = new Date();
+
+	// Keep only contributions from the last 12 months, up to today
 	const activities = json.contributions
-		.filter((day) => day.date.startsWith(String(latestYear)))
+		.filter((day) => {
+			const dayDate = new Date(day.date);
+			return dayDate >= twelveMonthsAgo && dayDate <= today;
+		})
 		.map((day) => ({
 			date: day.date,
 			count: day.count,
@@ -52,14 +57,13 @@ async function fetchGitHubContributions(
 			level: Math.max(0, Math.min(4, day.level)),
 		}));
 
-	const totalCountFromTotals = json.total[String(latestYear)];
-	const totalCount =
-		totalCountFromTotals ?? activities.reduce((sum, day) => sum + day.count, 0);
+	// Calculate total count for the last 12 months
+	const totalCount = activities.reduce((sum, day) => sum + day.count, 0);
 
 	return {
 		activities,
 		totalCount,
-		year: latestYear,
+		year: new Date().getFullYear(),
 	};
 }
 
