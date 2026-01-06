@@ -4,14 +4,14 @@ import { motion, type Variants } from "motion/react";
 import type { ReactNode } from "react";
 import { Children, cloneElement, isValidElement } from "react";
 
-type AnimatedGroupProps = {
+interface AnimatedGroupProps {
 	children: ReactNode;
 	className?: string;
 	variants?: {
 		container?: Variants;
 		item?: Variants;
 	};
-};
+}
 
 const defaultContainerVariants: Variants = {
 	hidden: { opacity: 0 },

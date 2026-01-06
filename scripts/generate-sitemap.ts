@@ -41,13 +41,13 @@ function generateUrlEntry(
   </url>`;
 }
 
-type PostMeta = {
+interface PostMeta {
 	slug: string;
 	type: string;
 	publishedAt: string;
 	updatedAt?: string;
 	status: string;
-};
+}
 
 function loadPostsFromDir(dirPath: string, type: string): PostMeta[] {
 	const posts: PostMeta[] = [];

@@ -5,15 +5,15 @@
 
 export type SubscriptionStatus = "pending" | "confirmed" | "unsubscribed";
 
-export type SignupMeta = {
+export interface SignupMeta {
 	source: string; // e.g. "tbc_blog_form", "footer_cta"
 	userAgent?: string;
 	ip?: string;
 	createdFromPath?: string; // e.g. "/newsletter"
 	notes?: string;
-};
+}
 
-export type SignupRecord = {
+export interface SignupRecord {
 	email: string;
 	status: SubscriptionStatus;
 	confirmationToken: string;
@@ -22,24 +22,24 @@ export type SignupRecord = {
 	createdAt: string; // ISO 8601
 	confirmedAt: string | null;
 	unsubscribedAt: string | null;
-};
+}
 
-export type NewsletterSignupInput = {
+export interface NewsletterSignupInput {
 	email: string;
 	consent: boolean;
 	source?: string;
 	path?: string;
-};
+}
 
-export type NewsletterSignupResult = {
+export interface NewsletterSignupResult {
 	success: boolean;
 	message: string;
 	error?: string;
-};
+}
 
-export type TokenValidationResult = {
+export interface TokenValidationResult {
 	success: boolean;
 	message: string;
 	status?: SubscriptionStatus;
 	error?: string;
-};
+}

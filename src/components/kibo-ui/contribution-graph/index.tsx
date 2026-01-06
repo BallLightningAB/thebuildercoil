@@ -25,15 +25,15 @@ import {
 } from "react";
 import { cn } from "@/lib/utils";
 
-export type Activity = {
+export interface Activity {
 	date: string;
 	count: number;
 	level: number;
-};
+}
 
 type Week = Array<Activity | undefined>;
 
-export type Labels = {
+export interface Labels {
 	months?: string[];
 	weekdays?: string[];
 	totalCount?: string;
@@ -41,12 +41,12 @@ export type Labels = {
 		less?: string;
 		more?: string;
 	};
-};
+}
 
-type MonthLabel = {
+interface MonthLabel {
 	weekIndex: number;
 	label: string;
-};
+}
 
 const DEFAULT_MONTH_LABELS = [
 	"Jan",
@@ -73,7 +73,7 @@ const DEFAULT_LABELS: Labels = {
 	},
 };
 
-type ContributionGraphContextType = {
+interface ContributionGraphContextType {
 	data: Activity[];
 	weeks: Week[];
 	blockMargin: number;
@@ -88,7 +88,7 @@ type ContributionGraphContextType = {
 	year: number;
 	width: number;
 	height: number;
-};
+}
 
 const ContributionGraphContext =
 	createContext<ContributionGraphContextType | null>(null);

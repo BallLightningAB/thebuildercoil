@@ -11,7 +11,7 @@ export type PostStatus = "draft" | "published" | "archived";
 /**
  * Blog/News Post - matches Chronomation blog_posts table shape
  */
-export type Post = {
+export interface Post {
 	/** Unique identifier */
 	id: string;
 	/** URL-friendly slug */
@@ -50,16 +50,16 @@ export type Post = {
 	readingTime?: number;
 	/** Related project slug (for Chronomation integration) */
 	projectSlug?: string;
-};
+}
 
-export type PostCodeBlock = {
+export interface PostCodeBlock {
 	/** Language identifier from fenced code block, e.g. ts, sql, bash */
 	language: string;
 	/** Optional filename or label parsed from the info string */
 	filename: string;
 	/** Raw code contents inside the fenced block */
 	code: string;
-};
+}
 
 /**
  * Post metadata for listings (excludes body content)
@@ -74,25 +74,25 @@ export type PostInput = Omit<Post, "id" | "createdAt" | "updatedAt">;
 /**
  * Pagination info
  */
-export type PaginationInfo = {
+export interface PaginationInfo {
 	page: number;
 	perPage: number;
 	total: number;
 	totalPages: number;
-};
+}
 
 /**
  * Paginated posts response
  */
-export type PaginatedPosts = {
+export interface PaginatedPosts {
 	posts: PostMeta[];
 	pagination: PaginationInfo;
-};
+}
 
 /**
  * Content manifest for quick listing
  */
-export type ContentManifest = {
+export interface ContentManifest {
 	posts: {
 		id: string;
 		slug: string;
@@ -101,4 +101,4 @@ export type ContentManifest = {
 		publishedAt: string;
 	}[];
 	lastUpdated: string;
-};
+}

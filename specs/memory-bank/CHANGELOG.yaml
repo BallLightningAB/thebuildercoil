@@ -1,8 +1,23 @@
 entries:
   - date: "2026-01-06"
+    version: 0.1.8.5
+    issue: "Code quality improvements"
+    commit: TBD
+    status: pending
+    title: "refactor(code): update Biome to latest and enforce consistent type definitions"
+    details: |-
+      - Update @biomejs/biome from 2.3.7 to 2.3.11 (latest version)
+      - Install Biome globally for better IDE integration
+      - Fix all useConsistentTypeDefinitions lint violations (39 errors)
+      - Convert 19 type definitions from 'type' to 'interface' for object shapes
+      - Add coding standard for type definitions in .windsurf/rules/ultracite.md
+      - Enforce using interface for objects and type for unions/utilities/primitives
+
+      Refs: v0.1.8.5
+  - date: "2026-01-06"
     version: 0.1.8.4
     issue: "Security update and dependency upgrades"
-    commit: TBD
+    commit: d6d8a178eeb5724a9b0c9508c78ac13dbdbc25cc
     status: pending
     title: "fix(security): resolve tRPC prototype pollution vulnerability and update dependencies"
     details: |-

@@ -17,10 +17,10 @@ import {
 	Text,
 } from "@react-email/components";
 
-export type ConfirmationEmailProps = {
+export interface ConfirmationEmailProps {
 	confirmUrl: string;
 	unsubscribeUrl: string;
-};
+}
 
 export function ConfirmationEmail({
 	confirmUrl,

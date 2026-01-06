@@ -4,9 +4,9 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import type { PostMeta } from "@/lib/content/types";
 
-type BlogPostCardProps = {
+interface BlogPostCardProps {
 	post: PostMeta;
-};
+}
 
 export function BlogPostCard({ post }: BlogPostCardProps) {
 	const formattedDate = new Date(post.publishedAt).toLocaleDateString("en-US", {

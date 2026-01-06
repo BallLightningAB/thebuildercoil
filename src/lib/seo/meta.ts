@@ -5,7 +5,7 @@
  * compatible with TanStack Start's head() function.
  */
 
-export type SeoMeta = {
+export interface SeoMeta {
 	title: string;
 	description: string;
 	/** Canonical URL for the page */
@@ -24,7 +24,7 @@ export type SeoMeta = {
 	tags?: string[];
 	/** Page type: website, article, etc. */
 	type?: "website" | "article";
-};
+}
 
 const SITE_NAME = "The Builder Coil";
 const SITE_URL = "https://thebuildercoil.com";
@@ -33,16 +33,20 @@ const DEFAULT_DESCRIPTION =
 	"A builder's grimoire for modern development. Devlogs, experiments, and lessons from Ball Lightning AB.";
 const TWITTER_HANDLE = "@balllightningab";
 
-type MetaTag = { name?: string; property?: string; content: string };
+interface MetaTag {
+	name?: string;
+	property?: string;
+	content: string;
+}
 
-type CoreMetaInput = {
+interface CoreMetaInput {
 	title: string;
 	description: string;
 	url: string;
 	image: string;
 	imageAlt: string;
 	type: string;
-};
+}
 
 function buildCoreMeta(input: CoreMetaInput): MetaTag[] {
 	const { title, description, url, image, imageAlt, type } = input;

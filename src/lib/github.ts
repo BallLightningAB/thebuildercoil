@@ -1,24 +1,24 @@
 import { createServerFn } from "@tanstack/react-start";
 
-export type GitHubContributionDay = {
+export interface GitHubContributionDay {
 	date: string;
 	count: number;
-};
+}
 
-export type GitHubContributionResponse = {
+export interface GitHubContributionResponse {
 	total: Record<string, number>;
 	contributions: Array<{
 		date: string;
 		count: number;
 		level: number;
 	}>;
-};
+}
 
-export type GitHubGraphData = {
+export interface GitHubGraphData {
 	activities: { date: string; count: number; level: number }[];
 	totalCount: number;
 	year: number;
-};
+}
 
 async function fetchGitHubContributions(
 	username: string

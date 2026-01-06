@@ -7,17 +7,17 @@ import { Resend } from "resend";
 
 const resend = new Resend(process.env.CHRONO_RESEND_API_KEY);
 
-export type ContactFormData = {
+export interface ContactFormData {
 	name: string;
 	email: string;
 	message: string;
-};
+}
 
-export type SendEmailResult = {
+export interface SendEmailResult {
 	success: boolean;
 	messageId?: string;
 	error?: string;
-};
+}
 
 /**
  * Send contact form submission to admin email

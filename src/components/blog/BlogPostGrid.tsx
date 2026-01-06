@@ -1,10 +1,10 @@
 import type { PostMeta } from "@/lib/content/types";
 import { BlogPostCard } from "./BlogPostCard";
 
-type BlogPostGridProps = {
+interface BlogPostGridProps {
 	posts: PostMeta[];
 	emptyMessage?: string;
-};
+}
 
 export function BlogPostGrid({
 	posts,

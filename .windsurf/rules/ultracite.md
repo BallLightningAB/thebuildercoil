@@ -23,6 +23,7 @@ Write code that is **accessible, performant, type-safe, and maintainable**. Focu
 - Use const assertions (`as const`) for immutable values and literal types
 - Leverage TypeScript's type narrowing instead of type assertions
 - Use meaningful variable names instead of magic numbers - extract constants with descriptive names
+- **Type Definitions**: Use `interface` for object shapes and `type` for unions, intersections, utilities, and primitives. This provides better error messages, declaration merging capabilities, and follows Biome's `useConsistentTypeDefinitions` rule.
 
 ### Modern JavaScript/TypeScript
 

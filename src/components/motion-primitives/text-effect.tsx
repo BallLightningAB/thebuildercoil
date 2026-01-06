@@ -3,7 +3,7 @@
 import { motion, type Variants } from "motion/react";
 import type { ElementType, ReactNode } from "react";
 
-type TextEffectProps = {
+interface TextEffectProps {
 	children: ReactNode;
 	className?: string;
 	as?: ElementType;
@@ -11,7 +11,7 @@ type TextEffectProps = {
 	delay?: number;
 	speedSegment?: number;
 	per?: "word" | "char" | "line";
-};
+}
 
 const presets: Record<string, Variants> = {
 	"fade-in-blur": {
