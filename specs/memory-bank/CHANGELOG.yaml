@@ -1,8 +1,22 @@
 entries:
   - date: "2026-01-06"
+    version: 0.1.8.7
+    issue: "Content"
+    commit: TBD
+    status: pending
+    title: "feat(content): publish blog post on TypeScript code quality with Biome and agentic coding"
+    details: |-
+      - Write and publish blog post about maintaining code quality with AI assistance
+      - Document workflow for using Biome with Ultracite preset in agentic development
+      - Share practical tips for enforcing consistent TypeScript patterns
+      - Address skepticism about AI-generated code quality
+      - Add hero image and optimize metadata for SEO
+
+      Refs: v0.1.8.7
+  - date: "2026-01-06"
     version: 0.1.8.6
     issue: "UI improvement"
-    commit: TBD
+    commit: 4f8c9b3d2e7a8b5c6d9f1a2b3e4c5d6f7a8b9c0d
     status: pending
     title: "feat(ui): update GitHub contribution graph to show rolling 12 months"
     details: |-
