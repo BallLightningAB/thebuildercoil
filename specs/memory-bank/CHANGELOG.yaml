@@ -1,8 +1,25 @@
 entries:
+  - date: "2026-01-21"
+    version: 0.1.8.8
+    issue: "Documentation"
+    commit: TBD
+    status: pending
+    title: "refactor(docs): update references to shared brand system and reorganize documentation"
+    details: |-
+      - Refactored pdd-thebuildercoil.yaml to use the new shared brand system in combination with the new slim thebuildercoil-pdd.yaml
+      - Update README.md to reference new shared brand system repository
+      - Add dedicated section for shared ecosystem resources with proper links
+      - Update all PDD references from shared-pdd.yaml to shared-ecosystem-pdd.yaml
+      - Fix internal reference paths for PDD and changelog in active-context.yaml
+      - Synchronize PDD version to v0.2 across all documents
+      - Move optional-visual-refresh.yaml to brand-system repository
+      - Reorganize project documentation to clearly separate local and shared resources
+
+      Refs: v0.1.8.8
   - date: "2026-01-06"
     version: 0.1.8.7
     issue: "Content"
-    commit: TBD
+    commit: 6a559ba368fd514eca39ada1c0d5ad9442b936ef
     status: pending
     title: "feat(content): publish blog post on TypeScript code quality with Biome and agentic coding"
     details: |-
@@ -187,7 +204,7 @@ entries:
       - Extend CHANGELOG.yaml Refs: lines with corresponding IxDy IDs for tighter linkage
       - Create memory-bank-usage.yaml documenting workflow, version management, and communication guidelines
       - Add comprehensive commit message and issue update guidelines with IxDy ID references
-      - Update pdd-thebuildercoil.yaml with workflow_guide reference
+      - Update thebuildercoil-pdd.yaml with workflow_guide reference
       - Bump pdd_version to v0.1.2 to reflect documentation improvements
       - Add sub_issues array structure to active-context.yaml for tracking sub-issues under parent issues
       - Add comprehensive sub-issue management section to memory-bank-usage.yaml with lifecycle guidance
@@ -234,7 +251,7 @@ entries:
         without being double-wrapped by AnimatedGroup, while preserving the
         staggered fade-in for the left hero copy.
       - Document the { post, html, codeBlocks } content contract in
-        specs/memory-bank/pdd-thebuildercoil.yaml so Chronomation Phase 2 can
+        specs/memory-bank/thebuildercoil-pdd.yaml so Chronomation Phase 2 can
         mirror the current JSON-based behavior.
       - Mark foundation task 1.4 ("Install Kibo UI theme-switcher component")
         as done and keep the Phase 1 implementation plan aligned with reality.

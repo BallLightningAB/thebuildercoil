@@ -1,10 +1,16 @@
-The Builder Coil is the public builder’s log of Nicolas Brulay/Ball Lightning AB, documenting the journey of this small agentic development studio.
+The Builder Coil is the public builder's log of Nicolas Brulay/Ball Lightning AB, documenting the journey of this small agentic development studio.
 This includes the creation of Chronomation.
 
 🌀 Vision
 Chronomation is a multi-tenant content engine that turns raw work artifacts (commits, notes, emails, etc.) into structured blog posts and social content for SMBs, creators, and influencers.
 
-The Builder Coil (TBC) is the first tenant and public case study: a builder’s log for Ball Lightning AB, powered by Chronomation’s APIs.
+The Builder Coil (TBC) is the first tenant and public case study: a builder's log for Ball Lightning AB, powered by Chronomation's APIs.
+
+📚 Shared Brand System
+This project is part of the Ball Lightning AB ecosystem and shares architecture, policies, and design systems with other projects. See the [Ball Lightning Brand System](https://github.com/BallLightningAB/brand-system) for shared resources:
+- [Shared Ecosystem PDD](https://github.com/BallLightningAB/brand-system/blob/main/shared-ecosystem-pdd.yaml)
+- [Shared Architecture](https://github.com/BallLightningAB/brand-system/blob/main/shared-architecture.yaml)
+- [Shared Design System](https://github.com/BallLightningAB/brand-system/blob/main/shared-design-system.yaml)
 
 🎯 Purpose
 The Builder Coil serves two main goals:
@@ -149,10 +155,25 @@ Same process as blog posts, but place files in `content/news/` and set `type: "n
 
 Phase 2 of the media strategy (Chronomation-managed object storage, shared
 `media.chronomation.com` host, and optional per-tenant vanity media domains)
-is defined in `specs/memory-bank/pdd-thebuildercoil.yaml` under
-`media_hosting_strategy`. When that is implemented, `heroImage` and inline
+is defined in the [Shared Architecture](https://github.com/BallLightningAB/brand-system/blob/main/shared-architecture.yaml) under
+`architecture.media_hosting_strategy`. When that is implemented, `heroImage` and inline
 media URLs will typically point at Chronomation/CDN URLs instead of
 `/media/...`, but the rendering code and content JSON shape remain the same.
+
+## Project Documentation
+
+This project's documentation is organized as follows:
+
+### Core Documents
+- **[The Builder Coil PDD](specs/memory-bank/thebuildercoil-pdd.yaml)** - Project-specific Product Definition Document
+- **[Memory Bank Usage Guide](specs/memory-bank/memory-bank-usage.yaml)** - How to use the memory bank system
+- **[CHANGELOG](specs/memory-bank/CHANGELOG.yaml)** - Version history and release tracking
+- **[Active Context](specs/memory-bank/active-context.yaml)** - Current roadmap and progress tracking
+
+### Shared Ecosystem Resources
+- **[Shared Ecosystem PDD](https://github.com/BallLightningAB/brand-system/blob/main/shared-ecosystem-pdd.yaml)** - Ecosystem-wide product definitions
+- **[Shared Architecture](https://github.com/BallLightningAB/brand-system/blob/main/shared-architecture.yaml)** - Common architecture patterns and policies
+- **[Shared Design System](https://github.com/BallLightningAB/brand-system/blob/main/shared-design-system.yaml)** - Design tokens, components, and guidelines
 
 ---
 

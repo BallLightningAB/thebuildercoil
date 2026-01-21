@@ -1,14 +1,14 @@
 meta:
-  release: 0.1.8.7
+  release: 0.1.8.8
   repo: github.com/BallLightningAB/thebuildercoil
-  pdd_version: "v0.1.2.1"
+  pdd_version: "v0.2"
   current_changes: see specs/current-changes/
 guardrails:
   non_goals: []
   constraints: []
   references:
-    pdd: specs/pdd-thebuildercoil.yaml
-    changelog: specs/CHANGELOG.yaml
+    pdd: specs/memory-bank/thebuildercoil-pdd.yaml
+    changelog: specs/memory-bank/CHANGELOG.yaml
   # Legend:
   # - I{issue}D{n}: deliverable n for GitHub issue #{issue} (e.g. I3D3 = Issue #3 Deliverable 3)
   # - I3Docs / I3UI / I3Fix / I3Test / I3Biome: tags for documentation, UI polish, minor fixes, tests and Biome/tooling work not tied to a single deliverable

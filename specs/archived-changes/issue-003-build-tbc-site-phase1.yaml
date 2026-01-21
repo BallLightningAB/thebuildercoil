@@ -92,7 +92,7 @@ phase_1:
           Replace current shadcn defaults in src/styles.css with The Builder Coil brand colors:
           - Dark mode: void background (#05070A), cream ink (#F5E6D3), teal/violet accents
           - Light mode: cream background (#F5E6D3), dark ink (#111827)
-          See pdd-thebuildercoil.yaml → design.brands.the_builder_coil.scheme
+          See thebuildercoil-pdd.yaml → design.brands.the_builder_coil.scheme
         deliverables:
           - Updated src/styles.css with TBC color palette
           - CSS custom properties for teal (#23F0FF), violet (#8B5CFF), ember (#FFDCA8)
@@ -805,7 +805,7 @@ github_issues:
       - None (Phase 1 is independent)
       
       ## References
-      - PDD: specs/memory-bank/pdd-thebuildercoil.yaml
+      - PDD: specs/memory-bank/thebuildercoil-pdd.yaml
       - Implementation Plan: specs/current-changes/issue-003-build-tbc-site-phase1.yaml
 
   sub_issues:
@@ -872,7 +872,7 @@ github_issues:
 # =============================================================================
 # Environment Variables (Set Up Early)
 # =============================================================================
-# Reference: specs/memory-bank/pdd-thebuildercoil.yaml → env
+# Reference: specs/memory-bank/thebuildercoil-pdd.yaml → env
 
 environment_variables:
   setup_timing: |

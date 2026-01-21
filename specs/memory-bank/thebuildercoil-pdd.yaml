@@ -1,0 +1,54 @@
+pdd:
+  meta:
+    name: "The Builder Coil — PDD"
+    code_name: "thebuildercoil-pdd"
+    version: '0.2'
+    repo: "https://github.com/BallLightningAB/thebuildercoil"
+    purpose: >-
+      This document is the Product Definition Document (PDD) for The Builder
+      Coil, a public builder's log for Ball Lightning AB.
+      It's used in conjunction with the https://github.com/BallLightningAB/brand-system/shared-ecosystem-pdd.yaml,
+      the https://github.com/BallLightningAB/brand-system/shared-architecture.yaml and
+      the https://github.com/BallLightningAB/brand-system/shared-design-system.yaml documents
+      that define the shared architecture, system policies and design system.
+    workflow_guide: "specs/memory-bank/memory-bank-usage.yaml"
+    owner:
+      individual: "Nicolas Brulay"
+      company: "Ball Lightning AB"
+    ecosystem_reference: "shared-ecosystem-pdd.yaml#meta.ecosystem"
+    repos_reference: "shared-ecosystem-pdd.yaml#meta.repos"
+    references:
+      architecture: "shared-architecture.yaml#architecture"
+      techstack: "shared-architecture.yaml#architecture.techstack.thebuildercoil"
+      design_system: "shared-design-system.yaml#design"
+
+  product:
+    vision: |
+      The Builder Coil is a public builder’s log for Ball Lightning AB.
+
+  scope:
+    in_scope_mvp:
+      thebuildercoil:
+        - Frontend-only app that:
+          - Calls Chronomation’s public APIs with tenant/channel slugs.
+          - Renders blog index, blog post, news index/detail.
+          - Renders mini “about” and contact form (Resend).
+        - No booking calendar; refer to balllightning where needed.
+
+  architecture:
+    reference: "shared-architecture.yaml#architecture"
+
+  media_hosting_strategy:
+    reference: "shared-architecture.yaml#architecture.media_hosting_strategy"
+
+  video_strategy:
+    reference: "shared-architecture.yaml#architecture.video_strategy"
+
+  env:
+    tbc_frontend_client:
+      - key: "VITE_APP_NAME"             # "The Builder Coil"
+      - key: "VITE_APP_BASE_URL"         # e.g. https://thebuildercoil.com
+      - key: "VITE_CHRONOMATION_API_URL" # e.g. https://chronomation.com
+      - key: "VITE_TENANT_SLUG"          # "ball-lightning"
+      - key: "VITE_CHANNEL_SLUG"         # "tbc-blog"
+      - key: "VITE_TBC_ENV"              # dev|preview|prod
