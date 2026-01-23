@@ -1,0 +1,84 @@
+visual_refresh_spec:
+  name: "Visual Refresh – TBC / Chronomation / Ball Lightning"
+  audience: "Hubert (LLM dev)"
+  scope: "Visual and layout refresh only. No content, routing, or IA changes."
+
+  status: "implementation-candidate"
+  references:
+    shared_design_system:
+      file: "shared-design-system.yaml"
+      sections:
+        backgrounds_pattern: "brand_system.design.shared.backgrounds.pattern"
+        typography: "brand_system.design.shared.typography"
+        color_schemes: "brand_system.design.shared.color_schemes"
+        layout_patterns: "brand_system.design.shared.layout_patterns"
+        layout_guidelines: "brand_system.design.shared.layout_guidelines"
+        component_guidelines: "brand_system.design.shared.component_guidelines"
+  verification_process:
+    rule: "Treat shared-design-system.yaml as source of truth; treat this file as a plan that must be verified against current app code before implementation."
+    checklist:
+      - "Before implementing, confirm the consuming repo uses the same token names and can map to the semantic tokens."
+      - "Before implementing, confirm the background pattern CSS is applied in the correct layout/root element."
+      - "Before implementing, confirm the hero/news layouts exist in the current pages and can be adjusted without IA changes."
+      - "Before implementing, confirm component library (Shadcn) variants match the guidelines, or record deltas."
+  implementation_plan:
+    tbc:
+      required_changes:
+        - "Apply shared background pattern (see references.shared_design_system.sections.backgrounds_pattern)"
+        - "Implement hero layout pattern (see references.shared_design_system.sections.layout_patterns)"
+        - "Implement blog/news card pattern on the canonical feed surface (see references.shared_design_system.sections.layout_patterns)"
+        - "Wire semantic tokens (--brand-*) and use them in buttons/links/navbar (see references.shared_design_system.sections.component_guidelines)"
+      non_goals:
+        - "No copy changes"
+        - "No routing changes"
+        - "No IA changes"
+
+  goals:
+    - "Keep all existing content and information architecture."
+    - "Move to a single dark-first 'arcane terminal' theme shared across brands."
+    - "Differentiate brands via accent gradients and animations mainly."
+    - "Integrate grid/carbon pattern + gradient background, including animated hover states."
+
+  global_theme:
+    concept: >-
+      Arcane terminal / builder’s grimoire. Calm dark developer UI that feels
+      like a spellbook rendered as a modern code editor.
+    dark_only_initial: true
+    later_light_mode: true
+    shared_foundation:
+      background:
+        ref: "shared-design-system.yaml#brand_system.design.shared.backgrounds.pattern"
+      pattern_hover_behavior: >-
+        On key cards/buttons, use a slightly stronger, animated variant of the
+        grid/carbon pattern: animate background-position slowly and slightly
+        increase opacity on hover.
+    typography:
+      ref: "shared-design-system.yaml#brand_system.design.shared.typography"
+      #6. How to use this
+      notes:
+        - "Alt aesthetic landing page: set font-family to big_shoulders_500 globally and swap to headings_big_shoulders for titles."
+        - "Keep headings mostly uppercase when using Big Shoulders; use the negative tracking there to get that tight, bold look from the deck."
+        - "For long-form posts on TBC, you can use the longform_alt body style to get slightly smaller size but keep the same scale and hierarchy."
+
+    layout_guidelines:
+      ref: "shared-design-system.yaml#brand_system.design.shared.layout_guidelines"
+
+  brands:
+    ref: "shared-design-system.yaml#brand_system.design.shared.color_schemes"
+    note: "Color/usage guidance lives in shared-design-system.yaml.brand_system.design.shared.color_schemes.thebuildercoil.description."
+
+  layout_patterns:
+    ref: "shared-design-system.yaml#brand_system.design.shared.layout_patterns"
+
+  component_guidelines:
+    ref: "shared-design-system.yaml#brand_system.design.shared.component_guidelines"
+    per_brand_implementation:
+      tbc:
+        changes:
+          - "Ensure 'Latest from the Coil' cards use updated card hover + gradient."
+          - "Apply global gradient+grid background to entire site."
+
+  constraints:
+    - "Do not change any textual content, copy, or page routing."
+    - "Keep TanStack Start, Shadcn, and existing component architecture; avoid major rewrites."
+    - "All work is visual and structural within existing pages: backgrounds, patterns, gradients, components, and hero/news layouts."

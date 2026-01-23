@@ -1,8 +1,24 @@
 entries:
+  - date: "2026-01-23"
+    version: 0.1.8.9
+    issue: "Content"
+    commit: TBD
+    status: pending
+    title: "feat(content): add blog post on brand system refactoring and documentation restructuring"
+    details: |-
+      - Write and publish comprehensive blog post covering brand system refactoring work
+      - Document the creation of shared brand system repository with three core documents
+      - Explain the documentation drift problem and solution architecture
+      - Add code examples showing YAML reference patterns
+      - Include PDD vs Architecture vs Design System decision guide
+      - Add public/media/style.md for coherent image generation assistance
+      - Update file structure overview to reflect actual brand-system repository contents
+
+      Refs: v0.1.8.9
   - date: "2026-01-21"
     version: 0.1.8.8
     issue: "Documentation"
-    commit: TBD
+    commit: 69b2189bc8b65eb6e4eb1951dce00337243a6800
     status: pending
     title: "refactor(docs): update references to shared brand system and reorganize documentation"
     details: |-

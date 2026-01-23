@@ -1,0 +1,25 @@
+{
+  "id": "post-007",
+  "slug": "restructuring-documentation-for-a-multi-brand-ecosystem",
+  "title": "Restructuring Documentation for a Multi-Brand Ecosystem",
+  "type": "blog",
+  "summary": "How I refactored scattered documentation into a cohesive brand system repository to prepare for rebuilding my company site while maintaining consistency across three brands.",
+  "body": "# Restructuring Documentation for a Multi-Brand Ecosystem",
+  "bodyFile": "2026-01-22-restructuring-documentation-for-a-multi-brand-ecosystem.md",
+  "bodyIsMarkdown": true,
+  "heroImage": "/media/brand-system-refactor.webp",
+  "heroImageAlt": "Restructuring Documentation for a Multi-Brand Ecosystem",
+  "tags": [
+    "documentation",
+    "architecture",
+    "design-systems",
+    "devlog",
+    "open-source"
+  ],
+  "author": "Nicolas Brulay",
+  "status": "published",
+  "publishedAt": "2026-01-22T18:00:00.000Z",
+  "createdAt": "2026-01-22T18:00:00.000Z",
+  "updatedAt": "2026-01-22T18:00:00.000Z",
+  "readingTime": 8
+}
