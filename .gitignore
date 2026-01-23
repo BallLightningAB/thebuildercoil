@@ -46,4 +46,4 @@ admin/
 content/newsletter/subscribers.json
 
 # Socials
-docs\.socials
+.socials
