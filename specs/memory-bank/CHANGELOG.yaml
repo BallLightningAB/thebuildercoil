@@ -1,5 +1,22 @@
 entries:
   - date: "2026-01-23"
+    version: 0.1.9
+    issue: "#8 https://github.com/BallLightningAB/thebuildercoil/issues/8"
+    commit: TBD
+    status: pending
+    title: "feat(api): add public feed endpoint for Ball Lightning integration"
+    details: |-
+      - Create /api/feed route with GET handler using TanStack Start server routes
+      - Return minimal metadata for blog and news posts (type, title, slug, URL, publishedAt, excerpt, image)
+      - Add cache headers (Cache-Control: public, max-age=300, stale-while-revalidate=600)
+      - Enable CORS with Access-Control-Allow-Origin: * for cross-origin consumption
+      - Create TypeScript types at src/routes/api/feed.types.ts for Ball Lightning integration
+      - Reuse existing loadPostsInternal() function for consistent filtering (published, publishedAt <= now)
+      - Return absolute canonical URLs for all posts and images
+      - Add meta field with item count and generation timestamp
+
+      Refs: v0.1.9 #8 I8D1 I8D2 I8D3 I8D4
+  - date: "2026-01-23"
     version: 0.1.8.9
     issue: "Content"
     commit: TBD

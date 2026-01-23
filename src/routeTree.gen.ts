@@ -19,6 +19,7 @@ import { Route as NewsletterUnsubscribeRouteImport } from './routes/newsletter/u
 import { Route as NewsletterConfirmRouteImport } from './routes/newsletter/confirm'
 import { Route as NewsSlugRouteImport } from './routes/news/$slug'
 import { Route as BlogSlugRouteImport } from './routes/blog/$slug'
+import { Route as ApiFeedRouteImport } from './routes/api/feed'
 
 const ContactRoute = ContactRouteImport.update({
   id: '/contact',
@@ -70,11 +71,17 @@ const BlogSlugRoute = BlogSlugRouteImport.update({
   path: '/blog/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiFeedRoute = ApiFeedRouteImport.update({
+  id: '/api/feed',
+  path: '/api/feed',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
+  '/api/feed': typeof ApiFeedRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/news/$slug': typeof NewsSlugRoute
   '/newsletter/confirm': typeof NewsletterConfirmRoute
@@ -87,6 +94,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
+  '/api/feed': typeof ApiFeedRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/news/$slug': typeof NewsSlugRoute
   '/newsletter/confirm': typeof NewsletterConfirmRoute
@@ -100,6 +108,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
+  '/api/feed': typeof ApiFeedRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/news/$slug': typeof NewsSlugRoute
   '/newsletter/confirm': typeof NewsletterConfirmRoute
@@ -114,6 +123,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/contact'
+    | '/api/feed'
     | '/blog/$slug'
     | '/news/$slug'
     | '/newsletter/confirm'
@@ -126,6 +136,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/contact'
+    | '/api/feed'
     | '/blog/$slug'
     | '/news/$slug'
     | '/newsletter/confirm'
@@ -138,6 +149,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/contact'
+    | '/api/feed'
     | '/blog/$slug'
     | '/news/$slug'
     | '/newsletter/confirm'
@@ -151,6 +163,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   ContactRoute: typeof ContactRoute
+  ApiFeedRoute: typeof ApiFeedRoute
   BlogSlugRoute: typeof BlogSlugRoute
   NewsSlugRoute: typeof NewsSlugRoute
   NewsletterConfirmRoute: typeof NewsletterConfirmRoute
@@ -232,6 +245,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/feed': {
+      id: '/api/feed'
+      path: '/api/feed'
+      fullPath: '/api/feed'
+      preLoaderRoute: typeof ApiFeedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -239,6 +259,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   ContactRoute: ContactRoute,
+  ApiFeedRoute: ApiFeedRoute,
   BlogSlugRoute: BlogSlugRoute,
   NewsSlugRoute: NewsSlugRoute,
   NewsletterConfirmRoute: NewsletterConfirmRoute,

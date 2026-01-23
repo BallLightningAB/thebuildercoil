@@ -1,5 +1,5 @@
 meta:
-  release: 0.1.8.9
+  release: 0.1.9
   repo: github.com/BallLightningAB/thebuildercoil
   pdd_version: "v0.2"
   current_changes: see specs/current-changes/
@@ -38,6 +38,27 @@ guardrails:
         title: "Integrate with Chronomation API (Phase 2)"
         status: planned
     recent_done:
+      - id: balllightning-feed-endpoint
+        issue: "#8"
+        title: "feat(api): add public feed endpoint for Ball Lightning integration"
+        status: done
+        links:
+          issue: https://github.com/BallLightningAB/thebuildercoil/issues/8
+          pr: ""
+        deliverables:
+          - "[I8D1] Create /api/feed route with GET handler"
+          - "[I8D2] Return minimal metadata for blog and news posts"
+          - "[I8D3] Add cache headers and CORS support"
+          - "[I8D4] Create TypeScript types for BL integration"
+        est:
+          dev_h: 2
+          test_h: 0.5
+        sub_issues: []
+        remaining_deliverables: []
+        progress_log:
+          - covers: [I8D1, I8D2] note: "Created /api/feed endpoint using TanStack Start server routes, returning type, title, slug, URL, publishedAt, excerpt, and image metadata."
+          - covers: [I8D3] note: "Added cache headers (max-age=300, stale-while-revalidate=600) and CORS (Access-Control-Allow-Origin: *) for CDN optimization and cross-origin consumption."
+          - covers: [I8D4] note: "Created feed.types.ts with FeedItem and FeedResponse interfaces for type-safe integration in Ball Lightning."
       - id: codeblock-inline-rendering-fix
         issue: "#7"
         title: "fix(content): render fenced code blocks inline with CodeBlock UI"
