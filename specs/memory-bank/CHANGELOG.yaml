@@ -1,9 +1,23 @@
 entries:
   - date: "2026-01-23"
-    version: 0.1.9
+    version: 0.1.9.1
     issue: "#8 https://github.com/BallLightningAB/thebuildercoil/issues/8"
     commit: TBD
     status: pending
+    title: "docs(api): document feed endpoint in README with response format and usage details"
+    details: |-
+      - Add comprehensive documentation for /api/feed endpoint in README.md
+      - Include complete JSON response format with all field types
+      - Document cache headers and CORS configuration
+      - Add usage notes for filtering, sorting, and image handling
+      - Reference TypeScript types location for integration
+
+      Refs: v0.1.9.1 #8
+  - date: "2026-01-23"
+    version: 0.1.9
+    issue: "#8 https://github.com/BallLightningAB/thebuildercoil/issues/8"
+    commit: TBD
+    status: 1cf48fdbb357adce2c7d8cc927eb002072c9a00f
     title: "feat(api): add public feed endpoint for Ball Lightning integration"
     details: |-
       - Create /api/feed route with GET handler using TanStack Start server routes
@@ -19,7 +33,7 @@ entries:
   - date: "2026-01-23"
     version: 0.1.8.9
     issue: "Content"
-    commit: TBD
+    commit: 21a594b07b4b4c3d9975211e6ea4cf1a9c54e83e
     status: pending
     title: "feat(content): add blog post on brand system refactoring and documentation restructuring"
     details: |-

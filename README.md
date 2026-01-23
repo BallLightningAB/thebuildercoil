@@ -160,6 +160,45 @@ is defined in the [Shared Architecture](https://github.com/BallLightningAB/brand
 media URLs will typically point at Chronomation/CDN URLs instead of
 `/media/...`, but the rendering code and content JSON shape remain the same.
 
+### Endpoints
+
+- **Feed API**: `GET /api/feed` - Public endpoint returning minimal metadata for published blog and news posts, designed for Ball Lightning integration.
+
+**Response Format:**
+```json
+{
+  "items": [
+    {
+      "type": "blog" | "news",
+      "title": "Post Title",
+      "slug": "post-slug",
+      "url": "https://thebuildercoil.com/blog/post-slug",
+      "publishedAt": "2026-01-23T18:00:00.000Z",
+      "excerpt": "Brief summary of the post...",
+      "image": {
+        "url": "https://thebuildercoil.com/media/image.webp",
+        "alt": "Image alt text"
+      } | undefined
+    }
+  ],
+  "meta": {
+    "count": 8,
+    "generatedAt": "2026-01-23T20:12:11.610Z"
+  }
+}
+```
+
+**Headers:**
+- `Cache-Control: public, max-age=300, stale-while-revalidate=600`
+- `Access-Control-Allow-Origin: *`
+- `Content-Type: application/json`
+
+**Usage Notes:**
+- Returns only published posts (filtered by `publishedAt <= now`)
+- Sorted by `publishedAt` descending (newest first)
+- Images are absolute URLs and can be displayed directly
+- TypeScript types available at `src/routes/api/feed.types.ts`
+
 ## Project Documentation
 
 This project's documentation is organized as follows:
