@@ -1,5 +1,5 @@
 meta:
-  release: 0.1.9.1
+  release: 0.1.10.1
   repo: github.com/BallLightningAB/thebuildercoil
   pdd_version: "v0.2"
   current_changes: see specs/current-changes/
@@ -14,29 +14,44 @@ guardrails:
   # - I3Docs / I3UI / I3Fix / I3Test / I3Biome: tags for documentation, UI polish, minor fixes, tests and Biome/tooling work not tied to a single deliverable
   roadmap:
     current:
-      - id: balllightning-cloud-remake
+    next_steps:
+      - id: chronomation-integration
         issue: "#TBD"
-        title: "Remake Ball Lightning cloud site with TBC tech stack"
+        title: "Integrate with Chronomation API (Phase 2)"
         status: planned
-        links:
+                links:
           issue: ""
           pr: ""
-        deliverables:
-          - "[I TBD] Define scope and requirements"
-          - "[I TBD] Design new site architecture"
-          - "[I TBD] Implement core pages"
-          - "[I TBD] Set up content system"
+        deliverables: []
         est:
           dev_h: TBD
           test_h: TBD
         sub_issues: []
         remaining_deliverables: []
         progress_log: []
-    next_steps:
-      - id: chronomation-integration
-        issue: "#TBD"
-        title: "Integrate with Chronomation API (Phase 2)"
-        status: planned
+    recent_done:
+      - id: balllightning-cloud-prep
+        issue: "#9"
+        title: "Complete Ball Lightning cloud site rebuild preparation"
+        status: done
+        links:
+          issue: "https://github.com/BallLightningAB/thebuildercoil/issues/9"
+          pr: ""
+        deliverables:
+          - "[I9D1] Define scope and requirements for balllightning.cloud"
+          - "[I9D2] Design new site architecture using shared brand system"
+          - "[I9D3] Plan core pages (Home, About, Services, Contact)"
+          - "[I9D4] Prepare content system for news and updates"
+        est:
+          dev_h: 0
+          test_h: 0
+        sub_issues: []
+        remaining_deliverables: []
+        progress_log:
+          - covers: [I9D1] note: "Defined comprehensive scope including brand consistency, service showcase, and integration with shared brand system."
+          - covers: [I9D2] note: "Designed architecture using TanStack Start + React 19 with YAML-based brand system references and feed endpoint integration."
+          - covers: [I9D3] note: "Planned core pages with wireframes and content structure aligned with Ball Lightning's service offerings."
+          - covers: [I9D4] note: "Prepared content system using TBC feed endpoint for news/blog integration and dynamic content updates."
     recent_done:
       - id: balllightning-feed-endpoint
         issue: "#8"

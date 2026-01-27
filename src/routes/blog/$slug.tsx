@@ -1,5 +1,5 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { ArrowLeft, Calendar, Clock, User } from "lucide-react";
+import { ArrowLeft, Calendar, Clock, RefreshCw, User } from "lucide-react";
 import type { ReactNode } from "react";
 import { BlogPostGrid } from "@/components/blog/BlogPostGrid";
 import {
@@ -184,6 +184,17 @@ function BlogPostPage() {
 		day: "numeric",
 	});
 
+	const formattedUpdatedDate = new Date(post.updatedAt).toLocaleDateString(
+		"en-US",
+		{
+			year: "numeric",
+			month: "long",
+			day: "numeric",
+		}
+	);
+
+	const isUpdated = post.updatedAt !== post.publishedAt;
+
 	return (
 		<article className="py-12 md:py-20">
 			<div className="container mx-auto max-w-4xl px-4">
@@ -228,6 +239,12 @@ function BlogPostPage() {
 							<span className="flex items-center gap-1.5">
 								<Clock className="h-4 w-4" />
 								{post.readingTime} min read
+							</span>
+						)}
+						{isUpdated && (
+							<span className="flex items-center gap-1.5">
+								<RefreshCw className="h-4 w-4" />
+								Updated {formattedUpdatedDate}
 							</span>
 						)}
 					</div>

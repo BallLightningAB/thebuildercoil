@@ -13,13 +13,14 @@
     "documentation",
     "architecture",
     "design-systems",
-    "devlog",
-    "open-source"
+    "brand-system",
+    "open-source",
+    "refactoring"
   ],
   "author": "Nicolas Brulay",
   "status": "published",
   "publishedAt": "2026-01-22T18:00:00.000Z",
   "createdAt": "2026-01-22T18:00:00.000Z",
-  "updatedAt": "2026-01-22T18:00:00.000Z",
+  "updatedAt": "2026-01-27T18:00:00.000Z",
   "readingTime": 8
 }

@@ -177,6 +177,10 @@ Next, I start rebuilding balllightning.cloud using the same TanStack Start + Rea
 
 The builder's log continues. The brand system is ready.
 
+## Related Reading
+
+For a deeper dive into why documentation becomes MORE important with AI assistance, not less, check out my follow-up article: [Documentation: The Unsung Hero of Modern Software Development](/blog/documentation-unsung-hero-modern-software-development). There, I explore how structured documentation serves as the interface between human intent and AI execution, drawing from my experience in Systems Design and IT Project Management.
+
 ## File Structure Overview
 
 For those curious, here's what the brand-system repository structure looks like:

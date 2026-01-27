@@ -1,8 +1,29 @@
 entries:
+  - date: "2026-01-27"
+    version: 0.1.10.1
+    issue: "#9 https://github.com/BallLightningAB/thebuildercoil/issues/9"
+    commit: TBD
+    status: pending
+    title: "feat(content): add documentation-focused blog posts and complete Ball Lightning cloud site preparation"
+    details: |-
+      - Created 'Documentation: The Unsung Hero of Modern Software Development' blog post focusing on AI-assisted development
+      - Added cross-references between documentation refactoring and AI documentation posts
+      - Implemented 'Updated at' date display in blog post cards and detail pages
+      - Optimized blog post tags for better SEO and card preview display
+      - Generated comprehensive social media content for LinkedIn, X, and Instagram/Facebook
+      - Fixed route warning by renaming feed.types.ts to -feed.types.ts
+      - Added LinkedIn article import instructions for proper formatting
+      - Completed Ball Lightning cloud site preparation (issue #9):
+        * Defined scope and requirements for balllightning.cloud
+        * Designed site architecture using shared brand system
+        * Planned core pages (Home, About, Services, Contact)
+        * Prepared content system with TBC feed endpoint integration
+
+      Refs: v0.1.10.1 #9 new-content
   - date: "2026-01-23"
     version: 0.1.9.1
     issue: "#8 https://github.com/BallLightningAB/thebuildercoil/issues/8"
-    commit: TBD
+    commit: 1cf48fdbb357adce2c7d8cc927eb002072c9a00f
     status: pending
     title: "docs(api): document feed endpoint in README with response format and usage details"
     details: |-
@@ -16,7 +37,7 @@ entries:
   - date: "2026-01-23"
     version: 0.1.9
     issue: "#8 https://github.com/BallLightningAB/thebuildercoil/issues/8"
-    commit: TBD
+    commit: 1cf48fdbb357adce2c7d8cc927eb002072c9a00f
     status: 1cf48fdbb357adce2c7d8cc927eb002072c9a00f
     title: "feat(api): add public feed endpoint for Ball Lightning integration"
     details: |-
@@ -129,7 +150,7 @@ entries:
   - date: "2025-12-15"
     version: 0.1.8.3
     issue: "#6 https://github.com/BallLightningAB/thebuildercoil/issues/6; #7 https://github.com/BallLightningAB/thebuildercoil/issues/7"
-    commit: TBD
+    commit: 1cf48fdbb357adce2c7d8cc927eb002072c9a00f
     status: pending
     title: "feat(seo): improve schema markup for AI/SEO and add global entity graph"
     details: |-
@@ -182,7 +203,7 @@ entries:
   - date: "2025-12-03"
     version: 0.1.7
     issue: "#3 https://github.com/BallLightningAB/thebuildercoil/issues/3"
-    commit: TBD
+    commit: 1cf48fdbb357adce2c7d8cc927eb002072c9a00f
     status: pending
     title: "feat(seo): implement SEO meta tags, JSON-LD, sitemap, and robots.txt"
     details: |-
@@ -278,7 +299,7 @@ entries:
   - date: "2025-11-27"
     version: 0.1.3
     issue: "#3 https://github.com/BallLightningAB/thebuildercoil/issues/3"
-    commit: TBD
+    commit: 1cf48fdbb357adce2c7d8cc927eb002072c9a00f
     status: pending
     title: "feat(content): refine hero cards, Kibo theme-switcher, and blog docs"
     details: |-

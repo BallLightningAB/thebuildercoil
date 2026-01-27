@@ -1,0 +1,26 @@
+{
+  "id": "post-008",
+  "slug": "documentation-unsung-hero-modern-software-development",
+  "title": "Documentation: The Unsung Hero of Modern Software Development",
+  "type": "blog",
+  "summary": "Why clear documentation matters MORE in the age of AI-assisted development, not less. Drawing from Systems Design and IT Project Management experience to build better documentation for both humans and AI agents.",
+  "body": "# Documentation: The Unsung Hero of Modern Software Development",
+  "bodyFile": "2026-01-27-documentation-unsung-hero-modern-software-development.md",
+  "bodyIsMarkdown": true,
+  "heroImage": "/media/documentation-hero.webp",
+  "heroImageAlt": "Documentation as the foundation of modern software development",
+  "tags": [
+    "documentation",
+    "ai-development",
+    "systems-design",
+    "project-management",
+    "technical-writing",
+    "agentic-coding"
+  ],
+  "author": "Nicolas Brulay",
+  "status": "published",
+  "publishedAt": "2026-01-27T09:00:00.000Z",
+  "createdAt": "2026-01-27T09:00:00.000Z",
+  "updatedAt": "2026-01-27T09:00:00.000Z",
+  "readingTime": 8
+}
