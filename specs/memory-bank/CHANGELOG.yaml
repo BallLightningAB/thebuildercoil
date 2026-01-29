@@ -1,9 +1,24 @@
 entries:
+  - date: "2026-01-29"
+    version: 0.1.10.2
+    issue: "Content"
+    commit: TBD
+    status: done
+    title: "refactor(content): fix 'Updated' badge logic and standardize blog post schema"
+    details: |-
+      - Fix 'Updated' badge logic to only show when updatedAt is after publishedAt (not merely different)
+      - Convert 2026-01-28 blog JSON to standard post schema (id/slug/type/summary/bodyFile/heroImage/status/createdAt/updatedAt/readingTime)
+      - Generate 3 hero image prompt proposals for 'Building in Public'
+      - Update all social media content to match corrected blog post (yesterday vs today, 75% vs 80%, 4 platforms vs 7)
+      - Rewrite Instagram/Facebook captions to match LinkedIn tone and structure
+      - Fix typo in Instagram carousel: 'conbination' → 'combination'
+
+      Refs: v0.1.10.2 content-fixes schema-compliance socials-update
   - date: "2026-01-27"
     version: 0.1.10.1
     issue: "#9 https://github.com/BallLightningAB/thebuildercoil/issues/9"
-    commit: TBD
-    status: pending
+    commit: 02799a8
+    status: done
     title: "feat(content): add documentation-focused blog posts and complete Ball Lightning cloud site preparation"
     details: |-
       - Created 'Documentation: The Unsung Hero of Modern Software Development' blog post focusing on AI-assisted development
@@ -24,7 +39,7 @@ entries:
     version: 0.1.9.1
     issue: "#8 https://github.com/BallLightningAB/thebuildercoil/issues/8"
     commit: 1cf48fdbb357adce2c7d8cc927eb002072c9a00f
-    status: pending
+    status: done
     title: "docs(api): document feed endpoint in README with response format and usage details"
     details: |-
       - Add comprehensive documentation for /api/feed endpoint in README.md
@@ -55,7 +70,7 @@ entries:
     version: 0.1.8.9
     issue: "Content"
     commit: 21a594b07b4b4c3d9975211e6ea4cf1a9c54e83e
-    status: pending
+    status: done
     title: "feat(content): add blog post on brand system refactoring and documentation restructuring"
     details: |-
       - Write and publish comprehensive blog post covering brand system refactoring work
@@ -71,7 +86,7 @@ entries:
     version: 0.1.8.8
     issue: "Documentation"
     commit: 69b2189bc8b65eb6e4eb1951dce00337243a6800
-    status: pending
+    status: done
     title: "refactor(docs): update references to shared brand system and reorganize documentation"
     details: |-
       - Refactored pdd-thebuildercoil.yaml to use the new shared brand system in combination with the new slim thebuildercoil-pdd.yaml
@@ -88,7 +103,7 @@ entries:
     version: 0.1.8.7
     issue: "Content"
     commit: 6a559ba368fd514eca39ada1c0d5ad9442b936ef
-    status: pending
+    status: done
     title: "feat(content): publish blog post on TypeScript code quality with Biome and agentic coding"
     details: |-
       - Write and publish blog post about maintaining code quality with AI assistance
@@ -102,7 +117,7 @@ entries:
     version: 0.1.8.6
     issue: "UI improvement"
     commit: 4f8c9b3d2e7a8b5c6d9f1a2b3e4c5d6f7a8b9c0d
-    status: pending
+    status: done
     title: "feat(ui): update GitHub contribution graph to show rolling 12 months"
     details: |-
       - Modify GitHub contribution graph to display last 12 months instead of current year only
@@ -117,7 +132,7 @@ entries:
     version: 0.1.8.5
     issue: "Code quality improvements"
     commit: f8942fc6ae6f49cc39f24a5cb9fab8bfc10c5fbe
-    status: pending
+    status: done
     title: "refactor(code): update Biome to latest and enforce consistent type definitions"
     details: |-
       - Update @biomejs/biome from 2.3.7 to 2.3.11 (latest version)
@@ -132,7 +147,7 @@ entries:
     version: 0.1.8.4
     issue: "Security update and dependency upgrades"
     commit: d6d8a178eeb5724a9b0c9508c78ac13dbdbc25cc
-    status: pending
+    status: done
     title: "fix(security): resolve tRPC prototype pollution vulnerability and update dependencies"
     details: |-
       - Update ultracite from 6.3.6 to 7.0.8 to fix tRPC prototype pollution vulnerability (CVE-2025-68130)
@@ -151,7 +166,7 @@ entries:
     version: 0.1.8.3
     issue: "#6 https://github.com/BallLightningAB/thebuildercoil/issues/6; #7 https://github.com/BallLightningAB/thebuildercoil/issues/7"
     commit: 1cf48fdbb357adce2c7d8cc927eb002072c9a00f
-    status: pending
+    status: done
     title: "feat(seo): improve schema markup for AI/SEO and add global entity graph"
     details: |-
       - Add global JSON-LD @graph (Organization + WebSite + Product) to root document head
@@ -170,7 +185,7 @@ entries:
     version: 0.1.8.2
     issue: "Content update"
     commit: aa54e90
-    status: pending
+    status: done
     title: "feat(content): add typography unification blog post and update visual refresh spec"
     details: |-
       - Add new blog post "Unifying Typography for Three Brands" with hero image concepts
@@ -185,7 +200,7 @@ entries:
     version: 0.1.8
     issue: "#5 https://github.com/BallLightningAB/thebuildercoil/issues/5"
     commit: 0b385bc
-    status: pending
+    status: done
     title: "fix(deploy): refactor content loader for Vercel serverless and wire contact form"
     details: |-
       - Refactor loader-server.ts to use Vite import.meta.glob for build-time bundling
@@ -204,7 +219,7 @@ entries:
     version: 0.1.7
     issue: "#3 https://github.com/BallLightningAB/thebuildercoil/issues/3"
     commit: 1cf48fdbb357adce2c7d8cc927eb002072c9a00f
-    status: pending
+    status: done
     title: "feat(seo): implement SEO meta tags, JSON-LD, sitemap, and robots.txt"
     details: |-
       - Add SEO utility functions (src/lib/seo/meta.ts, src/lib/seo/structured-data.ts)
@@ -245,7 +260,7 @@ entries:
     version: 0.1.5.1
     issue: "#3 https://github.com/BallLightningAB/thebuildercoil/issues/3"
     commit: 6943c2b
-    status: pending
+    status: done
     title: "docs(email): refresh email architecture and update newsletter implementation plan"
     details: |-
       - Replace email_infrastructure with email_architecture section in PDD
@@ -263,7 +278,7 @@ entries:
     version: 0.1.5
     issue: "#4 https://github.com/BallLightningAB/thebuildercoil/issues/4"
     commit: 29269cb
-    status: pending
+    status: done
     title: "docs(memory-bank): implement ID-based tracking system and usage guide"
     details: |-
       - Refactor active-context.yaml to use I{issue}D{n} ID scheme for deliverables
@@ -284,7 +299,7 @@ entries:
     version: 0.1.4
     issue: "#3 https://github.com/BallLightningAB/thebuildercoil/issues/3"
     commit: feac6fb
-    status: pending
+    status: done
     title: "fix(typography): resolve dark mode prose colors for TBC brand"
     details: |- 
       - Fix dark mode typography issue where @tailwindcss/typography prose text was white instead of cream
@@ -300,7 +315,7 @@ entries:
     version: 0.1.3
     issue: "#3 https://github.com/BallLightningAB/thebuildercoil/issues/3"
     commit: 1cf48fdbb357adce2c7d8cc927eb002072c9a00f
-    status: pending
+    status: done
     title: "feat(content): refine hero cards, Kibo theme-switcher, and blog docs"
     details: |-
       - Ensure blog and news detail hero images use object-contain so logos
@@ -333,7 +348,7 @@ entries:
     version: 0.1.2
     issue: "#3 https://github.com/BallLightningAB/thebuildercoil/issues/3"
     commit: 3581440
-    status: pending
+    status: done
     title: "docs(changelog): update commit hash for v0.1.x Phase 1 implementation"
     details: |-
       - Adjust specs/memory-bank/CHANGELOG.yaml to point at the actual Phase 1 implementation commit hash.
@@ -345,7 +360,7 @@ entries:
     version: 0.1.1
     issue: "#3 https://github.com/BallLightningAB/thebuildercoil/issues/3"
     commit: 72f4222
-    status: pending
+    status: done
     title: "feat(site): Implement Phase 1 of The Builder Coil site"
     details: |-
       Implementation work (72f4222):
@@ -366,7 +381,7 @@ entries:
     version: 0.1
     issue: "#3 https://github.com/BallLightningAB/thebuildercoil/issues/3"
     commit: 86bb60a
-    status: pending
+    status: done
     title: "docs(specs): finalize implementation plans for TBC site Phase 1"
     details: |-
       Planning work (86bb60a):
@@ -424,7 +439,7 @@ entries:
     version: 0.0.1.5
     issue: "#1 https://github.com/BallLightningAB/thebuildercoil/issues/1"
     commit: 87364a7
-    status: in-progress
+    status: done
     title: "docs(specs): add memory-bank scaffolding and security baseline"
     details: |-
       - Add specs/memory-bank/active-context.yaml describing current roadmap and guardrails
@@ -437,7 +452,7 @@ entries:
     version: 0.0.1.4
     issue: "#1 https://github.com/BallLightningAB/thebuildercoil/issues/1"
     commit: ea82484
-    status: in-progress
+    status: done
     title: "chore(ci): removed args from gitleaks step"
     details: |-
       - chore(ci): removed args from gitleaks step
@@ -448,7 +463,7 @@ entries:
     version: 0.0.1.3
     issue: "#1 https://github.com/BallLightningAB/thebuildercoil/issues/1"
     commit: 8745dd1
-    status: in-progress
+    status: done
     title: "chore(ci): renamed gitleaks.toml and added use instructions to README.md"
     details: |-
       - chore(ci): renamed gitleaks.toml and added use instructions to README.md
@@ -459,7 +474,7 @@ entries:
     version: 0.0.1.2
     issue: "#1 https://github.com/BallLightningAB/thebuildercoil/issues/1"
     commit: 3bd0df6
-    status: in-progress
+    status: done
     title: "chore(security): add Gitleaks secret scanning"
     details: |-
       - Add pre-commit hooks for detect-private-key and gitleaks protect
@@ -472,7 +487,7 @@ entries:
     version: 0.0.1.1
     issue: "#1 https://github.com/BallLightningAB/thebuildercoil/issues/1"
     commit: 281c3d2
-    status: in-progress
+    status: done
     title: "feat: added logos and gh labels"
     details: |-
       - added logos
@@ -484,7 +499,7 @@ entries:
     version: 0.0.1
     issue: "#1 https://github.com/BallLightningAB/thebuildercoil/issues/1"
     commit: 18f98cc
-    status: in-progress
+    status: done
     title: "Initial commit: TanStack Start scaffold"
     details: |-
       - Initial commit: TanStack Start scaffold

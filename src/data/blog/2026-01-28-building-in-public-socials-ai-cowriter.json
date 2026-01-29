@@ -1,0 +1,25 @@
+{
+  "id": "post-009",
+  "slug": "building-in-public-socials-ai-cowriter",
+  "title": "Building in Public: Three blog posts, four social posts and an article - Socials in early 2026 using AI as a co-writer and editor",
+  "type": "blog",
+  "summary": "Even with AI, doing content well is still hard. Here's my actual workflow for creating and distributing content across platforms, the formatting challenges I encountered, and why this matters for Chronomation.",
+  "body": "# Building in Public: Three blog posts, four social posts and an article - Socials in early 2026 using AI as a co-writer and editor",
+  "bodyFile": "2026-01-28-building-in-public-socials-ai-cowriter.md",
+  "bodyIsMarkdown": true,
+  "heroImage": "/media/building-in-public-socials-hero.webp",
+  "heroImageAlt": "Content workflow diagram showing the journey from blog post to multi-platform distribution",
+  "tags": [
+    "Content Creation",
+    "Social Media",
+    "Devlog",
+    "Chronomation",
+    "Workflow"
+  ],
+  "author": "Nicolas Brulay",
+  "status": "published",
+  "publishedAt": "2026-01-28T19:00:00.000Z",
+  "createdAt": "2026-01-28T19:00:00.000Z",
+  "updatedAt": "2026-01-28T19:00:00.000Z",
+  "readingTime": 6
+}

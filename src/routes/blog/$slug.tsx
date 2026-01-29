@@ -193,7 +193,11 @@ function BlogPostPage() {
 		}
 	);
 
-	const isUpdated = post.updatedAt !== post.publishedAt;
+	const publishedTime = new Date(post.publishedAt).getTime();
+	const updatedTime = new Date(post.updatedAt).getTime();
+	const isUpdated =
+		!(Number.isNaN(publishedTime) || Number.isNaN(updatedTime)) &&
+		updatedTime > publishedTime;
 
 	return (
 		<article className="py-12 md:py-20">

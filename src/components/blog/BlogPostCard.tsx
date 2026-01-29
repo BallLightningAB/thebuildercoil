@@ -15,7 +15,11 @@ export function BlogPostCard({ post }: BlogPostCardProps) {
 		day: "numeric",
 	});
 
-	const isUpdated = post.updatedAt !== post.publishedAt;
+	const publishedTime = new Date(post.publishedAt).getTime();
+	const updatedTime = new Date(post.updatedAt).getTime();
+	const isUpdated =
+		!(Number.isNaN(publishedTime) || Number.isNaN(updatedTime)) &&
+		updatedTime > publishedTime;
 
 	const linkPath =
 		post.type === "news" ? `/news/${post.slug}` : `/blog/${post.slug}`;
