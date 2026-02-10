@@ -35,4 +35,4 @@ updates:
     assignees:
       - "BallLightningAB"
     labels:
-      - "dependencies"
+      - "type: dependency"
