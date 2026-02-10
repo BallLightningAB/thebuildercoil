@@ -1,0 +1,27 @@
+{
+  "id": "post-010",
+  "slug": "from-powershell-to-pypi-first-open-source-tool",
+  "title": "From PowerShell Script to PyPI: Building My First Open-Source Tool",
+  "type": "blog",
+  "summary": "How a PowerShell script for managing AI skills became a Python CLI on PyPI in two days — my first open-source release from Ball Lightning AB.",
+  "body": "# From PowerShell Script to PyPI: Building My First Open-Source Tool",
+  "bodyFile": "2026-02-12-from-powershell-to-pypi-first-open-source-tool.md",
+  "bodyIsMarkdown": true,
+  "heroImage": "/media/blog-2026-02-12-powershell-to-pypi.jpg",
+  "heroImageAlt": "Terminal window showing the agent-skills-update CLI in action",
+  "tags": [
+    "Devlog",
+    "Open Source",
+    "agent-skills-updater",
+    "Chronomation",
+    "Python",
+    "Building in Public"
+  ],
+  "author": "Nicolas Brulay",
+  "status": "published",
+  "publishedAt": "2026-02-12T14:00:00.000Z",
+  "createdAt": "2026-02-10T20:00:00.000Z",
+  "updatedAt": "2026-02-10T20:00:00.000Z",
+  "readingTime": 7,
+  "projectSlug": "agent-skills-updater"
+}

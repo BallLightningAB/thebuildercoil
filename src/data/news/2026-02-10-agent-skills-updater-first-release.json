@@ -1,0 +1,26 @@
+{
+  "id": "news-2026-02-10-agent-skills-updater",
+  "slug": "agent-skills-updater-first-release",
+  "title": "Agent Skills Updater: First Open-Source Release",
+  "type": "news",
+  "summary": "Agent Skills Updater is live on PyPI — a cross-platform CLI that keeps AI coding skills in sync across 40+ IDEs. First open-source release from Ball Lightning AB.",
+  "body": "# Agent Skills Updater: First Open-Source Release",
+  "bodyFile": "2026-02-10-agent-skills-updater-first-release.md",
+  "bodyIsMarkdown": true,
+  "heroImage": "/media/news-2026-02-10-agent-skills-updater.jpg",
+  "heroImageAlt": "Agent Skills Updater Screenshot",
+  "tags": [
+    "announcement",
+    "open-source",
+    "release",
+    "agent-skills-updater",
+    "Chronomation"
+  ],
+  "author": "Nicolas Brulay",
+  "status": "published",
+  "publishedAt": "2026-02-10T19:00:00.000Z",
+  "createdAt": "2026-02-10T15:00:00.000Z",
+  "updatedAt": "2026-02-10T15:00:00.000Z",
+  "readingTime": 3,
+  "projectSlug": "agent-skills-updater"
+}

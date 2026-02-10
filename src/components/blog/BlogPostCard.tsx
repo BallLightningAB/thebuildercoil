@@ -37,7 +37,7 @@ export function BlogPostCard({ post }: BlogPostCardProps) {
 					/>
 				</div>
 			)}
-			<CardHeader className="space-y-2">
+			<CardHeader className="mt-auto space-y-2">
 				<div className="flex flex-wrap gap-2">
 					{post.tags.slice(0, 3).map((tag) => (
 						<Badge
@@ -56,7 +56,7 @@ export function BlogPostCard({ post }: BlogPostCardProps) {
 				</Link>
 			</CardHeader>
 			<CardContent className="space-y-4">
-				<p className="line-clamp-2 text-muted-foreground text-sm">
+				<p className="line-clamp-3 text-muted-foreground text-sm">
 					{post.summary}
 				</p>
 				<div className="flex items-center gap-4 text-muted-foreground text-xs">

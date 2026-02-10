@@ -1,8 +1,24 @@
 entries:
+  - date: "2026-02-10"
+    version: 0.1.10.3
+    issue: "Content"
+    commit: TBD
+    status: done
+    title: "feat(content): add agent-skills-updater release content — news post + two blog posts"
+    details: |-
+      - Create news post: Agent Skills Updater First Open-Source Release (2026-02-10)
+      - Create blog post: From PowerShell Script to PyPI (2026-02-12, scheduled)
+      - Create blog post: Designing Agent Skills Updater — Skill Management for SMBs (2026-02-16, scheduled)
+      - Apply copy-editing pass: remove filler words, fix paragraph breaks, clean formatting
+      - SEO pass: tighten meta descriptions to ≤160 chars, remove dead Chronomation links, verify internal cross-links
+      - All posts include projectSlug, feedback CTAs, internal links, and The Upkeep newsletter reference
+      - Fix BlogPostCard: increase summary line-clamp from 2 to 3, add mt-auto to bottom-align text content across cards with varying image/title heights
+
+      Refs: v0.1.10.3 content agent-skills-updater
   - date: "2026-01-29"
     version: 0.1.10.2
     issue: "Content"
-    commit: TBD
+    commit: 516f015
     status: done
     title: "refactor(content): fix 'Updated' badge logic and standardize blog post schema"
     details: |-

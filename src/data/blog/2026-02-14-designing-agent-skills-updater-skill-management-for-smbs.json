@@ -1,0 +1,27 @@
+{
+  "id": "post-011",
+  "slug": "designing-agent-skills-updater-skill-management-for-smbs",
+  "title": "Designing Agent Skills Updater: Why Skill Management Matters for Small Teams",
+  "type": "blog",
+  "summary": "Why AI skill management matters for indie makers and small teams — the design thinking behind Agent Skills Updater and its place in Chronomation.",
+  "body": "# Designing Agent Skills Updater: Why Skill Management Matters for Small Teams",
+  "bodyFile": "2026-02-14-designing-agent-skills-updater-skill-management-for-smbs.md",
+  "bodyIsMarkdown": true,
+  "heroImage": "/media/blog-2026-02-14-skill-management-smbs.jpg",
+  "heroImageAlt": "AI coding assistant with skills files flowing into multiple IDE icons",
+  "tags": [
+    "agent-skills-updater",
+    "Chronomation",
+    "Open Source",
+    "Design",
+    "Product",
+    "Building in Public"
+  ],
+  "author": "Nicolas Brulay",
+  "status": "published",
+  "publishedAt": "2026-02-16T14:00:00.000Z",
+  "createdAt": "2026-02-10T20:00:00.000Z",
+  "updatedAt": "2026-02-10T20:00:00.000Z",
+  "readingTime": 8,
+  "projectSlug": "agent-skills-updater"
+}
