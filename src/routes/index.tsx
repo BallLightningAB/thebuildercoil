@@ -83,8 +83,16 @@ function HomePage() {
 									preset="fade-in-blur"
 								>
 									Devlogs, experiments, and lessons learned from building
-									Chronomation and running Ball Lightning AB. Engineering card
-									advantage in real life.
+									<a
+										className="text-tbc-violet hover:underline"
+										href="https://chronomation.com"
+										rel="noopener noreferrer"
+										target="_blank"
+									>
+										Chronomation
+									</a>{" "}
+									and running Ball Lightning AB. Engineering card advantage in
+									real life.
 								</TextEffect>
 
 								<AnimatedGroup
@@ -253,14 +261,22 @@ function HomePage() {
 			<section className="border-border border-t bg-background py-16 md:py-24">
 				<div className="container mx-auto max-w-6xl px-4">
 					<div className="mx-auto max-w-2xl text-center">
-						<h2 className="mb-4 font-semibold text-3xl">🌀 The Upkeep</h2>
+						<h2 className="mb-4 font-semibold text-3xl"> The Upkeep</h2>
 						<p className="mb-2 font-medium text-lg text-secondary">
 							Engineering card advantage in real life
 						</p>
 						<p className="mb-8 text-muted-foreground">
 							Get devlogs from The Builder Coil sharing progress on
-							Chronomation, real-world agentic building experiments, and lessons
-							learned running Ball Lightning AB.
+							<a
+								className="text-tbc-violet hover:underline"
+								href="https://chronomation.com"
+								rel="noopener noreferrer"
+								target="_blank"
+							>
+								Chronomation
+							</a>
+							, real-world agentic building experiments, and lessons learned
+							running Ball Lightning AB.
 						</p>
 						<Button asChild className="gap-2" size="lg">
 							<Link to="/newsletter">

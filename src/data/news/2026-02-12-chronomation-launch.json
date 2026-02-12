@@ -1,0 +1,20 @@
+{
+  "id": "news-2026-02-12-chronomation-launch",
+  "slug": "chronomation-com-is-live",
+  "title": "Chronomation.com Is Live",
+  "type": "news",
+  "summary": "Chronomation — The Pulse of Productivity — has its first public home. The marketing site at chronomation.com is live, introducing the vision for a module-based productivity platform built for solo-entrepreneurs and small teams.",
+  "body": "# Chronomation.com Is Live",
+  "bodyFile": "2026-02-12-chronomation-launch.md",
+  "bodyIsMarkdown": true,
+  "heroImage": "/media/news-2026-02-12-chronomation-launch.jpg",
+  "heroImageAlt": "Chronomation — The Pulse of Productivity",
+  "tags": ["announcement", "launch", "Chronomation", "Building in Public"],
+  "author": "Nicolas Brulay",
+  "status": "published",
+  "publishedAt": "2026-02-12T16:00:00.000Z",
+  "createdAt": "2026-02-12T10:00:00.000Z",
+  "updatedAt": "2026-02-12T10:00:00.000Z",
+  "readingTime": 3,
+  "projectSlug": "chronomation"
+}

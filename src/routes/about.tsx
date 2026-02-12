@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Codesandbox, Globe, Zap } from "lucide-react";
+import { ArrowRight, Codesandbox, Globe, Linkedin, Zap } from "lucide-react";
 import { AnimatedGroup } from "@/components/motion-primitives/animated-group";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -63,7 +63,15 @@ function AboutPage() {
 					<ul>
 						<li>
 							<strong>Building in public:</strong> Real progress updates on
-							projects like Chronomation
+							projects like{" "}
+							<a
+								className="text-tbc-violet hover:underline"
+								href="https://chronomation.com"
+								rel="noopener noreferrer"
+								target="_blank"
+							>
+								Chronomation
+							</a>
 						</li>
 						<li>
 							<strong>Agentic experiments:</strong> Testing AI-assisted
@@ -102,7 +110,16 @@ function AboutPage() {
 						<Card className="transition-all hover:border-tbc-violet/50">
 							<CardHeader>
 								<Zap className="mb-2 h-8 w-8 text-tbc-violet" />
-								<CardTitle className="font-serif">Chronomation</CardTitle>
+								<CardTitle className="font-serif">
+									<a
+										className="text-tbc-violet hover:underline"
+										href="https://chronomation.com"
+										rel="noopener noreferrer"
+										target="_blank"
+									>
+										Chronomation
+									</a>
+								</CardTitle>
 							</CardHeader>
 							<CardContent>
 								<p className="text-muted-foreground text-sm">
@@ -119,11 +136,86 @@ function AboutPage() {
 							</CardHeader>
 							<CardContent>
 								<p className="text-muted-foreground text-sm">
-									The parent company behind Chronomation and The Builder Coil.
-									Software consulting and product development.
+									The parent company behind{" "}
+									<a
+										className="text-tbc-violet hover:underline"
+										href="https://chronomation.com"
+										rel="noopener noreferrer"
+										target="_blank"
+									>
+										Chronomation
+									</a>{" "}
+									and The Builder Coil. Software consulting and product
+									development.
 								</p>
 							</CardContent>
 						</Card>
+					</div>
+				</div>
+
+				{/* The Builder */}
+				<div className="mb-16">
+					<p className="mb-4 font-mono text-xs uppercase tracking-widest text-tbc-teal">
+						The Builder
+					</p>
+					<h2 className="mb-8 font-serif text-2xl font-semibold md:text-3xl">
+						Built by Nicolas Brulay
+					</h2>
+					<div className="rounded-lg border border-border bg-background p-8">
+						<div className="flex flex-col gap-6 sm:flex-row sm:items-start">
+							<img
+								alt="Nicolas Brulay"
+								className="h-16 w-16 shrink-0 rounded-full object-cover ring-2 ring-tbc-teal/30"
+								height={64}
+								src="/media/face.png"
+								width={64}
+							/>
+							<div>
+								<h3 className="mb-1 font-serif text-xl font-semibold">
+									Nicolas Brulay
+								</h3>
+								<p className="mb-4 text-sm text-muted-foreground">
+									Founder, Ball Lightning AB &middot; Mölndal, Sweden
+								</p>
+								<p className="text-muted-foreground leading-relaxed">
+									Building{" "}
+									<a
+										className="text-tbc-violet hover:underline"
+										href="https://chronomation.com"
+										rel="noopener noreferrer"
+										target="_blank"
+									>
+										Chronomation
+									</a>{" "}
+									in the open — documenting every decision, every experiment,
+									every lesson on The Builder Coil. Background in project
+									management and web development, now channeling it all into a
+									platform that makes the solo builder's life easier.
+								</p>
+								<div className="mt-4 flex gap-3">
+									<Button asChild className="gap-2" size="sm" variant="outline">
+										<a
+											href="https://www.linkedin.com/in/nicolas-brulay-vip/"
+											rel="noopener noreferrer"
+											target="_blank"
+										>
+											<Linkedin className="h-3.5 w-3.5" />
+											LinkedIn
+										</a>
+									</Button>
+									<Button asChild className="gap-2" size="sm" variant="outline">
+										<a
+											href="https://chronomation.com?utm_source=thebuildercoil&utm_medium=website&utm_campaign=about_builder"
+											rel="noopener noreferrer"
+											target="_blank"
+										>
+											<ArrowRight className="h-3.5 w-3.5" />
+											Chronomation
+										</a>
+									</Button>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 

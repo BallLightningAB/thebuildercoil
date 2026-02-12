@@ -29,7 +29,7 @@ const socialLinks = [
 	},
 	{ href: "https://twitter.com/balllightningab", label: "X", icon: Twitter },
 	{
-		href: "https://linkedin.com/company/ball-lightning-ab",
+		href: "https://www.linkedin.com/company/thebuildercoil",
 		label: "LinkedIn",
 		icon: Linkedin,
 	},

@@ -1,8 +1,28 @@
 entries:
+  - date: "2026-02-12"
+    version: 0.1.10.4
+    issue: "Content"
+    commit: TBD
+    status: done
+    title: "feat(content): add Chronomation marketing site launch news post + comprehensive social media content"
+    details: |-
+      - Create news post: Chronomation.com Is Live (2026-02-12, scheduled for 16:00 UTC)
+      - Create comprehensive social media content for Chronomation launch across LinkedIn, X/Twitter, Instagram/Facebook
+      - Create social media content for agent-skills-updater launch (Feb 16) across all platforms excluding Reddit
+      - Blog post angle notes for Chronomation (deferred until agent-skills-updater integration)
+      - All social posts include cross-references between agent-skills-updater and chronomation.com
+      - News post follows TBC style: problem → vision → what shipped → build-in-public → what's next
+      - Scheduled news post to appear after agent-skills-updater blog post (14:00 UTC)
+      - Add "The Builder" section with photo to /about page (adapted from Chronomation builder section)
+      - Add face.png author photo to public/media/
+      - Add Chronomation.com links throughout the site (home, about, newsletter pages, email templates) for better discoverability
+      - Update header LinkedIn link from personal profile to company page (thebuildercoil)
+
+      Refs: v0.1.10.4 content chronomation-launch socials about-page
   - date: "2026-02-10"
     version: 0.1.10.3
     issue: "Content"
-    commit: TBD
+    commit: 7ec9ccbf77410b0308c82367acf9c76609bb8c49
     status: done
     title: "feat(content): add agent-skills-updater release content — news post + two blog posts"
     details: |-

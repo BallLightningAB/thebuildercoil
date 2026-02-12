@@ -66,7 +66,16 @@ export function ConfirmationEmail({
 							What to expect
 						</Heading>
 						<Text style={paragraph}>
-							→ Progress updates on Chronomation development
+							→ Progress updates on{" "}
+							<a
+								href="https://chronomation.com"
+								rel="noopener noreferrer"
+								style={{ color: "#8B5CF6", textDecoration: "underline" }}
+								target="_blank"
+							>
+								Chronomation
+							</a>{" "}
+							development
 							<br />→ Real-world agentic AI building experiments
 							<br />→ Lessons learned running Ball Lightning AB
 							<br />→ Occasional updates, not daily spam

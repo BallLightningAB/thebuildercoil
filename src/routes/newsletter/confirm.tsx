@@ -83,9 +83,16 @@ function SuccessResult({ message }: { message: string }) {
 			<CheckCircle className="mx-auto mb-4 h-12 w-12 text-primary" />
 			<h2 className="mb-2 font-semibold text-2xl">{message}</h2>
 			<p className="mb-6 text-muted-foreground">
-				You'll receive devlogs from The Builder Coil sharing progress on
-				Chronomation, real-world agentic building experiments, and lessons
-				learned.
+				You'll receive devlogs from The Builder Coil sharing progress on{" "}
+				<a
+					className="text-tbc-violet hover:underline"
+					href="https://chronomation.com"
+					rel="noopener noreferrer"
+					target="_blank"
+				>
+					Chronomation
+				</a>
+				, real-world agentic building experiments, and lessons learned.
 			</p>
 			<Button asChild>
 				<Link to="/blog">Explore the Blog</Link>

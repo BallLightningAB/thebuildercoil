@@ -160,9 +160,17 @@ function NewsletterPage() {
 						Engineering card advantage in real life
 					</p>
 					<p className="text-muted-foreground">
-						Get devlogs from The Builder Coil sharing progress on Chronomation,
-						real-world agentic building experiments, and lessons learned running
-						Ball Lightning AB.
+						Get devlogs from The Builder Coil sharing progress on{" "}
+						<a
+							className="text-tbc-violet hover:underline"
+							href="https://chronomation.com"
+							rel="noopener noreferrer"
+							target="_blank"
+						>
+							Chronomation
+						</a>
+						, real-world agentic building experiments, and lessons learned
+						running Ball Lightning AB.
 					</p>
 				</div>
 
@@ -237,7 +245,18 @@ function NewsletterPage() {
 					<ul className="space-y-3 text-muted-foreground">
 						<li className="flex items-start gap-3">
 							<span className="text-tbc-teal">→</span>
-							<span>Progress updates on Chronomation development</span>
+							<span>
+								Progress updates on{" "}
+								<a
+									className="text-tbc-violet hover:underline"
+									href="https://chronomation.com"
+									rel="noopener noreferrer"
+									target="_blank"
+								>
+									Chronomation
+								</a>{" "}
+								development
+							</span>
 						</li>
 						<li className="flex items-start gap-3">
 							<span className="text-tbc-teal">→</span>
