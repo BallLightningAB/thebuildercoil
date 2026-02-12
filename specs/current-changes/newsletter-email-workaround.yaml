@@ -1,0 +1,52 @@
+issue: "BallLightningAB/thebuildercoil#13"
+title: "Newsletter email workaround — send notification instead of file write"
+status: in-progress
+created: "2026-02-12"
+superseded_by: "tbc-newsletter-phase2-client.yaml"
+
+summary: |
+  Replace broken fs/promises storage with a simple Resend email to
+  contact@thebuildercoil.com containing the subscriber's email address.
+  Temporary workaround until Chronomation newsletter API is ready.
+
+root_cause: |
+  src/lib/newsletter/storage.ts uses Node.js fs/promises to write to
+  content/newsletter/subscribers.json. Vercel's serverless filesystem is
+  read-only, causing "Failed to save newsletter data" errors.
+
+changes:
+  - file: src/routes/newsletter/index.tsx
+    action: rewrite
+    details: |
+      Rewrite subscribeToNewsletter server fn:
+      - Remove imports of findByEmail, upsertSignup from storage.ts
+      - Remove import of sendConfirmationEmail from email-service.ts
+      - Validate email + consent
+      - Send admin notification email via Resend to contact@thebuildercoil.com
+        with subscriber email, timestamp, and source path
+      - Return: "Thanks for signing up! We'll get you on the list shortly."
+
+  - file: src/routes/newsletter/confirm.tsx
+    action: rewrite
+    details: |
+      Replace token-based confirmation with static "contact us" message.
+      No server fn needed.
+
+  - file: src/routes/newsletter/unsubscribe.tsx
+    action: rewrite
+    details: |
+      Replace token-based unsubscribe with static "contact us" message.
+      No server fn needed.
+
+env_vars:
+  existing:
+    - CHRONO_RESEND_API_KEY
+    - TBC_RESEND_DEFAULT_FROM
+  new: []
+
+ux_changes:
+  success_message:
+    before: "Check your inbox to confirm your subscription!"
+    after: "Thanks for signing up! We'll get you on the list shortly."
+  confirm_page: "Static contact-us message"
+  unsubscribe_page: "Static contact-us message"

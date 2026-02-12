@@ -1,8 +1,20 @@
 entries:
   - date: "2026-02-12"
+    version: 0.1.11
+    issue: "Chore"
+    commit: TBD
+    status: done
+    title: "chore(specs): move Chronomation schema specs out of TBC repo"
+    details: |-
+      - Remove Chronomation schema plan from TBC repo (moved to Chronomation repo)
+      - Remove Chronomation newsletter module schema from TBC repo (moved to Chronomation repo)
+      - Keep TBC Phase 2 newsletter client plan in this repo
+
+      Refs: v0.1.10.5 chore specs chronomation
+  - date: "2026-02-12"
     version: 0.1.10.4
     issue: "Content"
-    commit: TBD
+    commit: 5652ae24d0b60111c2d21a403b00823106610916
     status: done
     title: "feat(content): add Chronomation marketing site launch news post + comprehensive social media content"
     details: |-

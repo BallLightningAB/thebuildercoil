@@ -1,0 +1,88 @@
+issue: "BallLightningAB/thebuildercoil#14"
+title: "TBC Phase 2 — migrate newsletter to Chronomation API client"
+status: planned
+created: "2026-02-12"
+depends_on: "BallLightningAB/chronomation#18"
+
+summary: |
+  Replace TBC's local newsletter code (file-based storage, email sending)
+  with HTTP calls to Chronomation's public newsletter API. TBC becomes a
+  thin client. Depends on Chronomation newsletter module being deployed.
+
+prerequisites:
+  - "Chronomation newsletter API deployed at https://app.chronomation.com"
+  - "the-builder-coil tenant seeded in Chronomation's Neon DB"
+  - "Env vars configured in TBC (see below)"
+
+changes:
+  - file: src/routes/newsletter/index.tsx
+    action: rewrite-server-fn
+    details: |
+      Remove local token generation and storage calls.
+      Call POST /api/public/v1/newsletter/subscribe on Chronomation.
+      Pass tenantSlug: 'the-builder-coil', channelSlug: 'the-upkeep', email, source, ip, userAgent.
+      Keep same UI/UX.
+
+  - file: src/routes/newsletter/confirm.tsx
+    action: simplify
+    details: |
+      Chronomation redirects here after confirming. Just show success UI.
+      No server fn needed — Chronomation handles token validation.
+
+  - file: src/routes/newsletter/unsubscribe.tsx
+    action: simplify
+    details: |
+      Same pattern as confirm. Chronomation handles logic, TBC shows result.
+
+  - file: src/lib/newsletter/email-service.ts
+    action: remove
+    details: "Chronomation sends emails; TBC no longer needs this."
+
+  - file: src/lib/newsletter/emails/
+    action: remove
+    details: "Email templates move to Chronomation."
+
+  - file: src/lib/newsletter/storage.ts
+    action: remove
+    details: "All storage is handled by Chronomation's Neon DB."
+
+  - file: src/lib/newsletter/schemas.ts
+    action: simplify
+    details: "Keep form validation schemas only. Remove storage schemas."
+
+  - file: src/lib/newsletter/types.ts
+    action: simplify
+    details: "Keep NewsletterSignupResult, TokenValidationResult. Remove SignupRecord."
+
+  - file: content/newsletter/
+    action: remove
+    details: "No longer needed."
+
+env_vars:
+  new:
+    - name: VITE_CHRONOMATION_API_URL
+      value: "https://app.chronomation.com"
+      where: "TBC .env.local + Vercel env vars"
+    - name: VITE_TENANT_SLUG
+      value: "the-builder-coil"
+      where: "TBC .env.local + Vercel env vars"
+    - name: VITE_NEWSLETTER_CHANNEL_SLUG
+      value: "the-upkeep"
+      where: "TBC .env.local + Vercel env vars"
+  removed:
+    - name: CHRONO_RESEND_API_KEY
+      reason: "Email sending moves to Chronomation"
+    - name: TBC_RESEND_DEFAULT_FROM
+      reason: "Email sending moves to Chronomation"
+
+responsibility_matrix:
+  chronomation:
+    - "Neon database + schema"
+    - "Newsletter API endpoints (subscribe, confirm, unsubscribe)"
+    - "Confirmation email sending via Resend"
+    - "Token generation and validation"
+    - "Subscription dedup and status management"
+  tbc:
+    - "Newsletter signup form UI"
+    - "Call Chronomation subscribe endpoint from server fn"
+    - "Render confirmed/unsubscribed landing pages (redirect targets)"

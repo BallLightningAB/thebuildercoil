@@ -2,13 +2,12 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { createServerFn } from "@tanstack/react-start";
 import { ArrowLeft, CheckCircle } from "lucide-react";
 import { useState } from "react";
+import { Resend } from "resend";
 import { AnimatedGroup } from "@/components/motion-primitives/animated-group";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { sendConfirmationEmail } from "@/lib/newsletter/email-service";
-import { findByEmail, upsertSignup } from "@/lib/newsletter/storage";
 import type { NewsletterSignupResult } from "@/lib/newsletter/types";
 
 const subscribeToNewsletter = createServerFn({ method: "POST" })
@@ -28,55 +27,56 @@ const subscribeToNewsletter = createServerFn({ method: "POST" })
 
 		const normalizedEmail = email.toLowerCase().trim();
 
-		// Check for existing subscription
-		const existing = await findByEmail(normalizedEmail);
+		// Workaround: send admin notification email instead of writing to filesystem
+		// This will be replaced by Chronomation API calls in Phase 2 (TBC #14)
+		const resend = new Resend(process.env.CHRONO_RESEND_API_KEY);
+		const toEmail =
+			process.env.TBC_CONTACT_EMAIL || "contact@thebuildercoil.com";
 
-		if (existing?.status === "confirmed") {
+		try {
+			const { error } = await resend.emails.send({
+				from:
+					process.env.TBC_RESEND_DEFAULT_FROM ||
+					"The Builder Coil <noreply@updates.chronomation.com>",
+				to: toEmail,
+				subject: `The Upkeep: New subscriber — ${normalizedEmail}`,
+				html: `
+					<div style="font-family: system-ui, sans-serif; max-width: 600px; margin: 0 auto;">
+						<h2 style="color: #8B5CFF;">New Newsletter Signup</h2>
+						<div style="background: #f5f5f5; padding: 20px; border-radius: 8px; margin: 20px 0;">
+							<p><strong>Email:</strong> <a href="mailto:${normalizedEmail}">${normalizedEmail}</a></p>
+							<p><strong>Source:</strong> ${path || "/newsletter"}</p>
+							<p><strong>Time:</strong> ${new Date().toISOString()}</p>
+						</div>
+						<p style="color: #666; font-size: 12px;">
+							This is a temporary workaround. Add this subscriber manually until
+							Chronomation newsletter module is ready.
+						</p>
+					</div>
+				`,
+			});
+
+			if (error) {
+				console.error("Resend error:", error);
+				return {
+					success: false,
+					message: "Something went wrong. Please try again.",
+					error: "email_failed",
+				};
+			}
+
 			return {
 				success: true,
-				message: "You're already subscribed to The Upkeep!",
+				message: "Thanks for signing up! We'll get you on the list shortly.",
 			};
-		}
-
-		// Generate new tokens
-		const confirmationToken = crypto.randomUUID();
-		const unsubToken = crypto.randomUUID();
-
-		// Upsert the signup record
-		await upsertSignup(normalizedEmail, {
-			status: "pending",
-			confirmationToken,
-			unsubToken,
-			meta: {
-				source: "tbc_newsletter_page",
-				createdFromPath: path || "/newsletter",
-			},
-			createdAt: new Date().toISOString(),
-			confirmedAt: null,
-			unsubscribedAt: null,
-		});
-
-		// Send confirmation email
-		const emailResult = await sendConfirmationEmail({
-			to: normalizedEmail,
-			confirmationToken,
-			unsubToken,
-		});
-
-		if (!emailResult.success) {
-			console.error("Failed to send confirmation email:", emailResult.error);
+		} catch (err) {
+			console.error("Error sending newsletter notification:", err);
 			return {
 				success: false,
-				message:
-					"Something went wrong sending your confirmation email. Please try again.",
+				message: "Something went wrong. Please try again.",
 				error: "email_failed",
 			};
 		}
-
-		return {
-			success: true,
-			message: "Check your inbox to confirm your subscription!",
-		};
 	});
 
 export const Route = createFileRoute("/newsletter/")({
@@ -177,10 +177,12 @@ function NewsletterPage() {
 				{formState === "success" ? (
 					<div className="rounded-lg border border-border bg-muted/50 p-8 text-center">
 						<CheckCircle className="mx-auto mb-4 h-12 w-12 text-primary" />
-						<h2 className="mb-2 font-semibold text-2xl">Check your inbox!</h2>
+						<h2 className="mb-2 font-semibold text-2xl">
+							Thanks for signing up!
+						</h2>
 						<p className="text-muted-foreground">
-							We've sent you a confirmation email. Click the link inside to
-							confirm your subscription.
+							We'll get you on the list shortly. Keep an eye on your inbox for
+							updates from The Upkeep.
 						</p>
 					</div>
 				) : (

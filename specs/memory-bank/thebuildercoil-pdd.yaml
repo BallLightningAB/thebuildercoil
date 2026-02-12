@@ -2,14 +2,14 @@ pdd:
   meta:
     name: "The Builder Coil — PDD"
     code_name: "thebuildercoil-pdd"
-    version: '0.2'
+    version: '0.2.1'
     repo: "https://github.com/BallLightningAB/thebuildercoil"
     purpose: >-
       This document is the Product Definition Document (PDD) for The Builder
       Coil, a public builder's log for Ball Lightning AB.
-      It's used in conjunction with the https://github.com/BallLightningAB/brand-system/shared-ecosystem-pdd.yaml,
-      the https://github.com/BallLightningAB/brand-system/shared-architecture.yaml and
-      the https://github.com/BallLightningAB/brand-system/shared-design-system.yaml documents
+      It's used in conjunction with the https://github.com/BallLightningAB/brand-system/blob/main/shared-ecosystem-pdd.yaml,
+      the https://github.com/BallLightningAB/brand-system/blob/main/shared-architecture.yaml and
+      the https://github.com/BallLightningAB/brand-system/blob/main/shared-design-system.yaml documents
       that define the shared architecture, system policies and design system.
     workflow_guide: "specs/memory-bank/memory-bank-usage.yaml"
     owner:
