@@ -159,6 +159,9 @@ importers:
       '@vitejs/plugin-react':
         specifier: ^5.1.4
         version: 5.1.4(vite@7.3.1(@types/node@25.2.3)(jiti@2.6.1)(lightningcss@1.30.2)(tsx@4.21.0))
+      baseline-browser-mapping:
+        specifier: ^2.9.19
+        version: 2.9.19
       jsdom:
         specifier: ^27.4.0
         version: 27.4.0

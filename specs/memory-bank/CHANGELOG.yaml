@@ -1,5 +1,22 @@
 entries:
   - date: "2026-02-12"
+    version: 0.1.11.1
+    issue: "Chore"
+    commit: TBD
+    status: done
+    title: "chore(deps): update baseline-browser-mapping and refresh dependencies"
+    details: |-
+      - Add baseline-browser-mapping@latest to resolve Vite warning about outdated Baseline data
+      - Update TanStack stack from 1.145.7/1.145.8 to 1.159.5 with latest optimizations
+      - Update React from 19.2.3 to 19.2.4 with bug fixes and memory leak fixes
+      - Update @types/node from 25.0.3 to 25.2.3 for latest Node.js type definitions
+      - Update Vite from 7.3.0 to 7.3.1 with improved CSS handling and HMR
+      - Update @biomejs/biome from 2.3.11 to 2.3.14 (latest version)
+      - Update various dependencies: lucide-react, motion, resend, shiki, zod, jsdom, ultracite, vitest
+      - Install pricing-strategist skill from skills marketplace for future pricing strategy work
+
+      Refs: v0.1.11.1 chore dependencies baseline-browser-mapping
+  - date: "2026-02-12"
     version: 0.1.11
     issue: "Chore"
     commit: TBD
