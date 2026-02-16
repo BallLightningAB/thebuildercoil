@@ -1,8 +1,23 @@
 entries:
+  - date: "2026-02-16"
+    version: 0.1.11.2
+    issue: "Chore"
+    commit: 2b88a6f
+    status: done
+    title: "chore(deps): update TanStack stack to 1.160.0 + Biome 2.4.0"
+    details: |-
+      - Upgrade TanStack Router/Start from 1.159.5 to 1.160.0 with isDangerousProtocol allowlist changes
+      - Upgrade Biome from 2.3.14 to 2.4.0 with new linting rules and formatting improvements  
+      - Update ultracite from 7.2.2 to 7.2.2 (latest)
+      - Verify compatibility: format, lint, and build all pass
+      - Confirm routeTree.gen.ts generation works correctly
+      - No custom external URL handling affected by Router changes
+
+      Refs: v0.1.11.2 chore dependencies tanstack-biome-upgrade
   - date: "2026-02-12"
     version: 0.1.11.1
     issue: "Chore"
-    commit: TBD
+    commit: 5dc27a4
     status: done
     title: "chore(deps): update baseline-browser-mapping and refresh dependencies"
     details: |-
@@ -19,7 +34,7 @@ entries:
   - date: "2026-02-12"
     version: 0.1.11
     issue: "Chore"
-    commit: TBD
+    commit: 72917c5
     status: done
     title: "chore(specs): move Chronomation schema specs out of TBC repo"
     details: |-
