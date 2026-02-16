@@ -86,9 +86,9 @@ export interface FileRoutesByFullPath {
   '/news/$slug': typeof NewsSlugRoute
   '/newsletter/confirm': typeof NewsletterConfirmRoute
   '/newsletter/unsubscribe': typeof NewsletterUnsubscribeRoute
-  '/blog': typeof BlogIndexRoute
-  '/news': typeof NewsIndexRoute
-  '/newsletter': typeof NewsletterIndexRoute
+  '/blog/': typeof BlogIndexRoute
+  '/news/': typeof NewsIndexRoute
+  '/newsletter/': typeof NewsletterIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -128,9 +128,9 @@ export interface FileRouteTypes {
     | '/news/$slug'
     | '/newsletter/confirm'
     | '/newsletter/unsubscribe'
-    | '/blog'
-    | '/news'
-    | '/newsletter'
+    | '/blog/'
+    | '/news/'
+    | '/newsletter/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -199,21 +199,21 @@ declare module '@tanstack/react-router' {
     '/newsletter/': {
       id: '/newsletter/'
       path: '/newsletter'
-      fullPath: '/newsletter'
+      fullPath: '/newsletter/'
       preLoaderRoute: typeof NewsletterIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/news/': {
       id: '/news/'
       path: '/news'
-      fullPath: '/news'
+      fullPath: '/news/'
       preLoaderRoute: typeof NewsIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/blog/': {
       id: '/blog/'
       path: '/blog'
-      fullPath: '/blog'
+      fullPath: '/blog/'
       preLoaderRoute: typeof BlogIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
