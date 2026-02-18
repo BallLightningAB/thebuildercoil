@@ -1,0 +1,27 @@
+{
+  "id": "post-012",
+  "slug": "the-client-quest-facebook-redirects-and-a-bash-script",
+  "title": "The Client Quest: Facebook Posts, Cloudflare Redirects, and a Bash Script That Learned From Its Mistakes",
+  "type": "blog",
+  "summary": "A freelance client engagement told as an RPG quest — from planning in the tavern, to grabbing tools from the merchant, to a multi-day adventure of content, automation, and debugging. Plus: how this becomes a Chronomation workflow.",
+  "body": "# The Client Quest: Facebook Posts, Cloudflare Redirects, and a Bash Script That Learned From Its Mistakes",
+  "bodyFile": "2026-02-18-the-client-quest-facebook-redirects-and-a-bash-script.md",
+  "bodyIsMarkdown": true,
+  "heroImage": "/media/blog-2026-02-18-client-quest.webp",
+  "heroImageAlt": "A map with quest markers, tools, and a glowing terminal window",
+  "tags": [
+    "Freelance",
+    "Marketing Automation",
+    "Building in Public",
+    "Bash",
+    "Cloudflare",
+    "Chronomation",
+    "Workflow"
+  ],
+  "author": "Nicolas Brulay",
+  "status": "published",
+  "publishedAt": "2026-02-18T11:00:00.000Z",
+  "createdAt": "2026-02-18T10:00:00.000Z",
+  "updatedAt": "2026-02-18T11:00:00.000Z",
+  "readingTime": 9
+}

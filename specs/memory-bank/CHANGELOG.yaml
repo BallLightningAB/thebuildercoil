@@ -1,4 +1,18 @@
 entries:
+  - date: "2026-02-18"
+    version: 0.1.11.3
+    issue: "Content"
+    commit: ""
+    status: done
+    title: "feat(blog): add client quest blog post about Facebook content automation"
+    details: |-
+      - Added blog post "The Client Quest: Facebook Posts, Cloudflare Redirects, and a Bash Script That Learned From Its Mistakes"
+      - Written in RPG quest narrative style covering a freelance client engagement
+      - Details content strategy, bash script automation, and Cloudflare redirect debugging
+      - Connects learnings to Chronomation workflow development
+      - Includes hero image and proper metadata (post-012)
+
+      Refs: v0.1.11.3 blog client-quest facebook-automation chronomation-workflow
   - date: "2026-02-16"
     version: 0.1.11.2
     issue: "Chore"
