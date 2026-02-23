@@ -1,0 +1,20 @@
+{
+  "id": "news-2026-02-23-shipper-api-dojo",
+  "slug": "shipper-api-dojo-one-day",
+  "title": "Shipper API Dojo: Built in One Day",
+  "type": "news",
+  "summary": "I planned, built, debugged, and launched the Shipper API Dojo in a single day — an open-source training track for shipping and logistics teams (including sales and implementation) to harden their APIs fast.",
+  "body": "# Shipper API Dojo: Built in One Day",
+  "bodyFile": "2026-02-23-shipper-api-dojo.md",
+  "bodyIsMarkdown": true,
+  "heroImage": "/media/api-trainer-logo.png",
+  "heroImageAlt": "Shipper API Dojo mark",
+  "tags": ["announcement", "API", "shipping", "logistics", "build-in-public"],
+  "author": "Nicolas Brulay",
+  "status": "published",
+  "publishedAt": "2026-02-23T21:00:00.000Z",
+  "createdAt": "2026-02-23T21:00:00.000Z",
+  "updatedAt": "2026-02-23T21:00:00.000Z",
+  "readingTime": 4,
+  "projectSlug": "api-trainer"
+}

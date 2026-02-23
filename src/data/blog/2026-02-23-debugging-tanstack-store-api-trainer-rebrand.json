@@ -1,0 +1,26 @@
+{
+  "id": "post-013",
+  "slug": "debugging-tanstack-store-api-trainer-rebrand",
+  "title": "Debugging TanStack Store: When Your React App Crashes Before It Renders",
+  "type": "blog",
+  "summary": "A TanStack Store implementation that looked correct, compiled without errors, and crashed spectacularly in the browser. The story of fixing `atom?.get is not a function` and learning to read documentation carefully.",
+  "body": "# Debugging TanStack Store: When Your React App Crashes Before It Renders",
+  "bodyFile": "2026-02-23-debugging-tanstack-store-api-trainer-rebrand.md",
+  "bodyIsMarkdown": true,
+  "heroImage": "/media/tanstack-circle-logo.png",
+  "heroImageAlt": "A terminal window showing a stack trace with TanStack Store error, overlaid with code snippets",
+  "tags": [
+    "TanStack Store",
+    "React",
+    "Debugging",
+    "TypeScript",
+    "API Trainer",
+    "Building in Public"
+  ],
+  "author": "Nicolas Brulay",
+  "status": "published",
+  "publishedAt": "2026-02-23T22:00:00.000Z",
+  "createdAt": "2026-02-23T22:00:00.000Z",
+  "updatedAt": "2026-02-23T22:00:00.000Z",
+  "readingTime": 7
+}

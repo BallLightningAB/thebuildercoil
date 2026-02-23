@@ -1,8 +1,19 @@
 entries:
+  - date: "2026-02-23"
+    version: 0.1.11.4
+    issue: "Content + Legal"
+    commit: ""
+    status: done
+    title: "news(blog): Shipper API Dojo launch + hydration bug write-up; switch to PolyForm NC"
+    details: |-
+      - Added news post "Shipper API Dojo: Built in One Day" with PolyForm Noncommercial 1.0.0 licensing note, noncommercial CTA, and LinkedIn feedback ask; hero uses /media/api-trainer-logo.png.
+      - Updated blog post "Debugging TanStack Store" with hydration bug section (progress store overwrite), refreshed publish time/hero, and added doc/debugging tool specifics.
+
+      Refs: v0.1.11.4 content
   - date: "2026-02-18"
     version: 0.1.11.3
     issue: "Content"
-    commit: ""
+    commit: "pending"
     status: done
     title: "feat(blog): add client quest blog post about Facebook content automation"
     details: |-
