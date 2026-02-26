@@ -167,7 +167,7 @@ function AboutPage() {
 								alt="Nicolas Brulay"
 								className="h-16 w-16 shrink-0 rounded-full object-cover ring-2 ring-tbc-teal/30"
 								height={64}
-								src="/media/face.png"
+								src="/media/face-64.svg"
 								width={64}
 							/>
 							<div>
