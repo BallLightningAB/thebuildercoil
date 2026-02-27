@@ -1,4 +1,19 @@
 entries:
+  - date: "2026-02-27"
+    version: 0.1.11.5
+    issue: "Content + SEO"
+    commit: "tbd"
+    status: done
+    title: "feat(blog): rewrite portfolio & technologies posts for conversational tone + SEO optimization"
+    details: |-
+      - Rewrote blog post "Shipping Faster, Loading Faster" to focus on portfolio storytelling rather than technical performance; updated title to "Six New Stories: Why I Expanded the Portfolio Beyond Just Screenshots"
+      - Rewrote blog post "Connecting the Dots" to emphasize clarity and user journey over technical implementation; updated title to "Connecting the Dots: How I Made My Tech Stack Easy to Explore"
+      - Optimized SEO tags for both posts: Portfolio post uses ["Portfolio", "Case Study", "Web Design", "User Experience", "Mobile Design", "Storytelling"]; Technologies post uses ["Technologies", "Web Development", "Technical Communication", "User Journey", "Information Architecture", "Tech Stack"]
+      - Updated hero images: portfolio post uses /media/portfolio-expansion.webp, technologies post uses /media/connecting-technologies-and-performance.webp
+      - Fixed blog post status validation error (changed "scheduled" to "draft")
+      - Created social media content for LinkedIn and Instagram promoting the portfolio expansion and technologies page launch
+
+      Refs: v0.1.11.5 content
   - date: "2026-02-23"
     version: 0.1.11.4
     issue: "Content + Legal"

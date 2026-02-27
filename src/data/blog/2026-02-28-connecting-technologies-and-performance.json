@@ -1,0 +1,26 @@
+{
+  "id": "post-015",
+  "slug": "connecting-technologies-and-performance",
+  "title": "Connecting the Dots: How I Built the Technologies Page and Tightened Performance",
+  "type": "blog",
+  "summary": "How I shipped the new Technologies page, wired services → technologies → portfolio links, and folded in the latest performance audit fixes for Ball Lightning.",
+  "body": "# Connecting the Dots: How I Built the Technologies Page and Tightened Performance",
+  "bodyFile": "2026-02-28-connecting-technologies-and-performance.md",
+  "bodyIsMarkdown": true,
+  "heroImage": "/media/connecting-technologies-and-performance.webp",
+  "heroImageAlt": "Layered cards showing technology stacks connected across projects",
+  "tags": [
+    "Technologies",
+    "Web Development",
+    "Technical Communication",
+    "User Journey",
+    "Information Architecture",
+    "Tech Stack"
+  ],
+  "author": "Nicolas Brulay",
+  "status": "published",
+  "publishedAt": "2026-02-28T09:30:00.000Z",
+  "createdAt": "2026-02-27T14:10:00.000Z",
+  "updatedAt": "2026-02-27T14:10:00.000Z",
+  "readingTime": 6
+}

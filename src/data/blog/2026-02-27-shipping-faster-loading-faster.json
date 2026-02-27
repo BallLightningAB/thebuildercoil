@@ -1,0 +1,26 @@
+{
+  "id": "post-014",
+  "slug": "shipping-faster-loading-faster",
+  "title": "Shipping Faster, Loading Faster: How I Expanded the Portfolio and Improved Mobile Performance",
+  "type": "blog",
+  "summary": "How I launched six portfolio case studies, refined typography, and cut mobile LCP without breaking SSR or fonts.",
+  "body": "# Shipping Faster, Loading Faster: How I Expanded the Portfolio and Improved Mobile Performance",
+  "bodyFile": "2026-02-27-shipping-faster-loading-faster.md",
+  "bodyIsMarkdown": true,
+  "heroImage": "/media/portfolio-expansion.webp",
+  "heroImageAlt": "Portfolio case study pages showing project galleries and navigation",
+  "tags": [
+    "Portfolio",
+    "Case Study",
+    "Web Design",
+    "User Experience",
+    "Mobile Design",
+    "Storytelling"
+  ],
+  "author": "Nicolas Brulay",
+  "status": "published",
+  "publishedAt": "2026-02-27T13:40:00.000Z",
+  "createdAt": "2026-02-27T13:40:00.000Z",
+  "updatedAt": "2026-02-27T13:40:00.000Z",
+  "readingTime": 7
+}
