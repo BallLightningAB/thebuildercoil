@@ -1,4 +1,18 @@
 entries:
+  - date: "2026-03-10"
+    version: 0.1.11.6
+    issue: "Content"
+    commit: "tbd"
+    status: done
+    title: "feat(blog): add skill refresh post about pruning AI skills and aligning Windsurf with Codex"
+    details: |-
+      - Added blog post "Skill Refresh: How I Pruned My AI Skills Stack and Aligned Windsurf with Codex"
+      - Covers reviewing and archiving overlapping AI skills, refreshing keepers, and standardizing workflows
+      - Documents the process of aligning Windsurf and Codex workflows for consistency
+      - Includes hero image and proper metadata (post-016)
+      - Tags: Skills, Codex, Windsurf, Developer Workflow, Building in Public
+
+      Refs: v0.1.11.6 content skill-refresh ai-skills windsurf-codex
   - date: "2026-02-27"
     version: 0.1.11.5
     issue: "Content + SEO"
