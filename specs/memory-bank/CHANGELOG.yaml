@@ -1,8 +1,21 @@
 entries:
+  - date: "2026-03-13"
+    version: 0.1.11.7
+    issue: "Infra"
+    commit: "tbd"
+    status: done
+    title: "fix(infra): pin Nitro Vercel runtime to nodejs24.x"
+    details: |-
+      - Pin Nitro's Vercel function runtime to nodejs24.x in vite.config.ts
+      - Align deployed runtime selection with the repo's Node 24 target in .nvmrc and package.json
+      - Re-validate local build flow under Node 24.12.0 to confirm Nitro reports nodejs24.x
+      - Document the runtime-alignment work in specs/current-changes/vercel-node24-runtime-alignment.yaml
+
+      Refs: v0.1.11.7 infra vercel nitro node24 runtime
   - date: "2026-03-10"
     version: 0.1.11.6
     issue: "Content"
-    commit: "tbd"
+    commit: "c37be7d"
     status: done
     title: "feat(blog): add skill refresh post about pruning AI skills and aligning Windsurf with Codex"
     details: |-

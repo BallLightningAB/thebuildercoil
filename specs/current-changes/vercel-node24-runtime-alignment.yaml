@@ -1,0 +1,30 @@
+issue: "Dependabot preview/runtime alignment"
+title: "Pin Nitro Vercel runtime to nodejs24.x for consistent preview builds"
+status: done
+created: "2026-03-13"
+
+summary: |
+  Align the Vercel Nitro runtime with the repository's Node 24 target so
+  preview deployments and local validation use the same major runtime.
+
+root_cause: |
+  The repo already targeted Node 24 via .nvmrc and package.json engines,
+  but Nitro's Vercel preset was still defaulting to nodejs22.x. That drift
+  created an avoidable mismatch between local verification and deployed
+  server runtime behavior.
+
+changes:
+  - file: vite.config.ts
+    action: update
+    details: |
+      Add nitro.vercel.functions.runtime = "nodejs24.x" under the Vercel
+      preset configuration.
+
+validation:
+  - "Confirmed local nvm-windows setup can switch to Node 24.12.0."
+  - "Ran pnpm build under Node 24.12.0."
+  - "Verified Nitro build output reports 'Using nodejs24.x runtime.'"
+
+notes:
+  - "PR 18 still has a separate react-icons 5.6.0 / SiCss3 issue."
+  - "PR 19 builds cleanly with the runtime aligned."
