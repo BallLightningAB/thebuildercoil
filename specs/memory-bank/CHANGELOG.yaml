@@ -1,4 +1,19 @@
 entries:
+  - date: "2026-03-16"
+    version: 0.1.11.8
+    issue: "Content + UI"
+    commit: "tbd"
+    status: done
+    title: "feat(blog): add Dependabot PRs workflow lessons post + fix code block word wrapping"
+    details: |-
+      - Added blog post "What a Day of Dependabot PRs Taught Me About Hidden State, Codex Sandboxes, and Avoiding User-Specific Installs"
+      - Documents workflow audit experience: lockfile repair, sandbox debugging, MCP memory migration, and repo hygiene improvements
+      - Covers lessons about avoiding user-specific installations and hidden local state
+      - Includes practical examples and takeaways for better repo hygiene
+      - Fixed code block horizontal scrollbars by removing overflow-x-auto and adding word wrapping classes
+      - Applied whitespace-pre-wrap and break-words to CodeBlock component line elements for better responsive behavior
+
+      Refs: v0.1.11.8 content dependabot-workflow codex-sandbox code-block-word-wrap
   - date: "2026-03-13"
     version: 0.1.11.7
     issue: "Infra"

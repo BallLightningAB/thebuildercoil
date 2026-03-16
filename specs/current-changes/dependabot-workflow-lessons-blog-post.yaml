@@ -1,0 +1,35 @@
+issue: "Content"
+title: "Blog post — Dependabot PR lessons from Codex sandbox constraints and repo hygiene"
+status: done
+created: "2026-03-16"
+
+summary: |
+  Draft and then rewrite a new first-person blog post about today's
+  Dependabot-related work and adjacent tooling friction. Keep it broad,
+  include concrete snippets, and center the lesson to avoid user-specific
+  installations and other hidden local state.
+
+sources:
+  - "codex://threads/019cf5c0-07f3-7312-a978-cf4280491864"
+  - "codex://threads/019cf610-c54f-7352-9a84-7943d72aeb31"
+  - "Local Codex rollout transcripts under C:/Users/nicol/.codex/sessions/2026/03/16/"
+  - "Local repo memory-bank and current-changes context"
+
+changes:
+  - file: src/data/blog/2026-03-16-dependabot-prs-codex-sandbox-workflow-lessons.json
+    action: update
+    details: |
+      Update the draft metadata to reflect the thread-backed rewrite, revised
+      summary/title, and broader repo-hygiene framing.
+
+  - file: src/data/blog/2026-03-16-dependabot-prs-codex-sandbox-workflow-lessons.md
+    action: update
+    details: |
+      Rewrite the first-person blog post using the actual Codex thread
+      rollouts: Jorild PR #45's parser alignment, repaired lockfile,
+      Vercel verification, sandbox `spawn EPERM` behavior, and the shared
+      server-memory JSON-to-JSONL migration. Include image-direction options.
+
+notes:
+  - "The Codex deep links were resolved through local session metadata and rollout transcripts."
+  - "The rewritten draft now uses the thread-backed memory migration details instead of relying only on GitHub PR data."

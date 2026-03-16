@@ -255,11 +255,12 @@ const codeBlockClassName = cn(
 	"[&_.shiki]:!bg-transparent",
 	"[&_code]:w-full",
 	"[&_code]:grid",
-	"[&_code]:overflow-x-auto",
 	"[&_code]:bg-transparent",
 	"[&_.line]:px-4",
 	"[&_.line]:w-full",
-	"[&_.line]:relative"
+	"[&_.line]:relative",
+	"[&_.line]:whitespace-pre-wrap",
+	"[&_.line]:break-words"
 );
 
 const highlight = (
