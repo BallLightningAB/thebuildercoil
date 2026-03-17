@@ -1,0 +1,58 @@
+issue: "Content"
+title: "Social pack — Dependabot workflow lessons blog post"
+status: done
+created: "2026-03-16"
+
+summary: |
+  Prepare a multi-platform social pack for the new blog post about
+  Dependabot work, Codex sandbox friction, lockfile repair, and the rule
+  to avoid user-specific installations. Follow the 20260312 social-pack
+  model, but use a shorter TBC LinkedIn post instead of a LinkedIn article.
+
+sources:
+  - "src/data/blog/2026-03-16-dependabot-prs-codex-sandbox-workflow-lessons.md"
+  - ".socials/archived/20260312/*"
+  - "/c/Users/nicol/.codex/AGENTS.md"
+
+changes:
+  - file: .socials/20260316-dependabot-sandbox-lessons/00-overview.md
+    action: create
+    details: |
+      Add the publishing overview, source link, file list, image ideas,
+      and editing notes for the new social pack.
+
+  - file: .socials/20260316-dependabot-sandbox-lessons/instagram-facebook-dependabot-sandbox-lessons.md
+    action: update
+    details: |
+      Rewrite the Instagram/Facebook draft as a single lighter post that
+      focuses on the main takeaway and promoting the blog post, without a
+      carousel structure or separate Facebook variant.
+
+  - file: .socials/20260316-dependabot-sandbox-lessons/linkedin-tbc-post-dependabot-sandbox-lessons.md
+    action: create
+    details: |
+      Add the shorter company LinkedIn post to replace the longer TBC
+      LinkedIn article format used in the previous pack.
+
+  - file: .socials/20260316-dependabot-sandbox-lessons/linkedin-personal-post-dependabot-sandbox-lessons.md
+    action: create
+    details: |
+      Add Nicolas's personal LinkedIn post with a placeholder for the live
+      TBC company-post URL.
+
+  - file: .socials/20260316-dependabot-sandbox-lessons/linkedin-group-post-dependabot-sandbox-lessons.md
+    action: create
+    details: |
+      Add the LinkedIn group discussion post focused on user-specific
+      installations and hidden local state.
+
+  - file: .socials/20260316-dependabot-sandbox-lessons/x-thread-dependabot-sandbox-lessons.md
+    action: create
+    details: |
+      Add the seven-tweet X thread with screenshot recommendations tied to
+      the strongest thread beats.
+
+notes:
+  - "The new pack mirrors the 20260312 structure but uses a standard TBC LinkedIn post instead of an article."
+  - "The personal LinkedIn post includes a placeholder company-post URL to replace once the TBC post is live."
+  - "The Instagram/Facebook draft was simplified on follow-up to be a single post, since Nicolas does not use slides there."

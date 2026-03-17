@@ -1,8 +1,20 @@
 entries:
+  - date: "2026-03-17"
+    version: 0.1.11.9
+    issue: "Content"
+    commit: "tbd"
+    status: done
+    title: "docs(content): record dependabot workflow social pack follow-up"
+    details: |-
+      - Added tracked current-changes artifact for the Dependabot workflow lessons social pack
+      - Documented the follow-up simplification of the Instagram/Facebook version to a single lighter post
+      - Kept release bookkeeping in sync for the content follow-up
+
+      Refs: v0.1.11.9 content dependabot-workflow social-pack
   - date: "2026-03-16"
     version: 0.1.11.8
     issue: "Content + UI"
-    commit: "tbd"
+    commit: "24e1415"
     status: done
     title: "feat(blog): add Dependabot PRs workflow lessons post + fix code block word wrapping"
     details: |-
