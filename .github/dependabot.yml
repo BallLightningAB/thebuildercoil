@@ -13,7 +13,7 @@ updates:
     assignees:
       - "BallLightningAB"
     labels:
-      - "dependencies"
+      - "type: dependency"
 
     # Block major bumps for normal version updates
     ignore:
