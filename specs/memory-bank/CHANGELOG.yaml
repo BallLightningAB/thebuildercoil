@@ -1,4 +1,18 @@
 entries:
+  - date: "2026-03-25"
+    version: 0.1.11.10
+    issue: "Fix + Tooling"
+    commit: "tbd"
+    status: done
+    title: "fix(build): replace SiBiome icon and fix Biome configuration for react-icons v5.6.0 compatibility"
+    details: |-
+      - Fixed deployment failure in PR #19 by replacing SiBiome with SiJavascript icon
+      - SiBiome was removed in react-icons v5.6.0 due to Simple Icons library update from 12.4.0 to 15.16.0
+      - Removed deprecated useConsistentArrowReturn rule from biome.json configuration
+      - Applied Biome import sorting to code-block component
+      - Build now passes successfully with updated dependencies
+
+      Refs: v0.1.11.10 fix react-icons biome deployment
   - date: "2026-03-17"
     version: 0.1.11.9
     issue: "Content"

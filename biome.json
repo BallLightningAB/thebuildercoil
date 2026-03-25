@@ -35,8 +35,7 @@
         "noDangerouslySetInnerHtml": "off"
       },
       "nursery": {
-        "useSortedClasses": "off",
-        "useConsistentArrowReturn": "off"
+        "useSortedClasses": "off"
       },
       "style": {
         "useFilenamingConvention": {
