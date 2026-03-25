@@ -1,5 +1,14 @@
 "use client";
 
+import { Button } from "@/components/ui/button";
+import {
+	Select,
+	SelectContent,
+	SelectItem,
+	SelectTrigger,
+	SelectValue,
+} from "@/components/ui/select";
+import { cn } from "@/lib/utils";
 import { useControllableState } from "@radix-ui/react-use-controllable-state";
 import {
 	transformerNotationDiff,
@@ -25,7 +34,6 @@ import {
 import type { IconType } from "react-icons";
 import {
 	SiAstro,
-	SiBiome,
 	SiBower,
 	SiBun,
 	SiC,
@@ -98,22 +106,13 @@ import {
 	type CodeOptionsMultipleThemes,
 	codeToHtml,
 } from "shiki";
-import { Button } from "@/components/ui/button";
-import {
-	Select,
-	SelectContent,
-	SelectItem,
-	SelectTrigger,
-	SelectValue,
-} from "@/components/ui/select";
-import { cn } from "@/lib/utils";
 
 export type { BundledLanguage } from "shiki";
 
 const filenameIconMap = {
 	".env": SiDotenv,
 	"*.astro": SiAstro,
-	"biome.json": SiBiome,
+	"biome.json": SiJavascript,
 	".bowerrc": SiBower,
 	"bun.lockb": SiBun,
 	"*.c": SiC,
