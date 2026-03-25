@@ -40,6 +40,7 @@ import {
 	SiCircleci,
 	SiCoffeescript,
 	SiCplusplus,
+	SiCss,
 	SiCssmodules,
 	SiDart,
 	SiDocker,
