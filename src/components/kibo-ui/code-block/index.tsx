@@ -1,5 +1,14 @@
 "use client";
 
+import { Button } from "@/components/ui/button";
+import {
+	Select,
+	SelectContent,
+	SelectItem,
+	SelectTrigger,
+	SelectValue,
+} from "@/components/ui/select";
+import { cn } from "@/lib/utils";
 import { useControllableState } from "@radix-ui/react-use-controllable-state";
 import {
 	transformerNotationDiff,
@@ -31,7 +40,6 @@ import {
 	SiCircleci,
 	SiCoffeescript,
 	SiCplusplus,
-	SiCss3,
 	SiCssmodules,
 	SiDart,
 	SiDocker,
@@ -97,15 +105,6 @@ import {
 	type CodeOptionsMultipleThemes,
 	codeToHtml,
 } from "shiki";
-import { Button } from "@/components/ui/button";
-import {
-	Select,
-	SelectContent,
-	SelectItem,
-	SelectTrigger,
-	SelectValue,
-} from "@/components/ui/select";
-import { cn } from "@/lib/utils";
 
 export type { BundledLanguage } from "shiki";
 
@@ -120,7 +119,7 @@ const filenameIconMap = {
 	".circleci/config.yml": SiCircleci,
 	"*.coffee": SiCoffeescript,
 	"*.module.css": SiCssmodules,
-	"*.css": SiCss3,
+	"*.css": SiCss,
 	"*.dart": SiDart,
 	Dockerfile: SiDocker,
 	"docusaurus.config.js": SiDocusaurus,
