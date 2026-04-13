@@ -1,8 +1,37 @@
 entries:
+  - date: "2026-04-13"
+    version: 0.1.11.12
+    issue: "Chore"
+    commit: 4b8e4a66100d060300d655bb6ce1c31cab9a3f9c
+    status: done
+    title: "chore(deps): bump js-minor-and-patch group with 18 updates"
+    details: |-
+      - Bump 18 dependencies in js-minor-and-patch group via Dependabot PR #25
+      - TanStack stack: router 1.168.19, start 1.167.34, devtools 0.10.2, router-devtools 1.166.13, router-ssr-query 1.166.11, router-plugin 1.167.20, start-static-server-functions 1.166.32
+      - React 19.2.5, react-dom 19.2.5
+      - marked 17.0.6, resend 6.10.0, react-hook-form 7.72.1
+      - @biomejs/biome 2.4.11, @types/node 25.6.0, baseline-browser-mapping 2.10.18
+      - ultracite 7.5.6, vitest 4.1.4
+      - Only dependency files changed (package.json, pnpm-lock.yaml)
+
+      Refs: v0.1.11.12 chore dependencies js-minor-patch-group
+  - date: "2026-04-13"
+    version: 0.1.11.11
+    issue: "Chore"
+    commit: bbd9e8660862d2337cd0cfca4bca48057b443100
+    status: done
+    title: "chore(deps): bump vite from 7.3.1 to 7.3.2"
+    details: |-
+      - Bump vite from 7.3.1 to 7.3.2 via Dependabot PR #23
+      - Security fixes: avoid path traversal with optimize deps sourcemap handler
+      - Apply server.fs check to env transport and after stripping query
+      - Only dependency files changed (package.json, pnpm-lock.yaml)
+
+      Refs: v0.1.11.11 chore dependencies vite-security
   - date: "2026-03-25"
     version: 0.1.11.10
     issue: "Fix + Tooling"
-    commit: "tbd"
+    commit: 10edff3
     status: done
     title: "fix(build): replace SiBiome icon and fix Biome configuration for react-icons v5.6.0 compatibility"
     details: |-
