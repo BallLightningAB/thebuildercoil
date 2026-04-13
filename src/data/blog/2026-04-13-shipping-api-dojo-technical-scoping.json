@@ -1,0 +1,26 @@
+{
+  "id": "post-019",
+  "slug": "shipping-api-dojo-technical-scoping",
+  "title": "Technical Scoping: How Shipping API Dojo v2 Designed Its Content-Family Foundation",
+  "type": "blog",
+  "summary": "Before building Shipping API Dojo v2, we needed a complete technical blueprint. Here's how we scoped content families, seeded randomization, auth/billing/email/domain strategy, and the decisions that shaped the architecture.",
+  "body": "# Technical Scoping: How Shipping API Dojo v2 Designed Its Content-Family Foundation",
+  "bodyFile": "2026-04-13-shipping-api-dojo-technical-scoping.md",
+  "bodyIsMarkdown": true,
+  "heroImage": "/media/2026-04-13-shipping-api-dojo-technical-scoping.png",
+  "heroImageAlt": "A technical blueprint document showing content-family data models, seeded randomization strategy, and the auth/billing/email/domain architecture stack",
+  "tags": [
+    "Shipping API Dojo",
+    "Technical Architecture",
+    "Data Modeling",
+    "Better Auth",
+    "Creem",
+    "Building in Public"
+  ],
+  "author": "Nicolas Brulay",
+  "status": "draft",
+  "publishedAt": "2026-04-14T13:00:00.000Z",
+  "createdAt": "2026-04-12T16:00:00.000Z",
+  "updatedAt": "2026-04-14T13:00:00.000Z",
+  "readingTime": 8
+}

@@ -1,5 +1,26 @@
 entries:
   - date: "2026-04-13"
+    version: 0.1.11.13
+    issue: "Content"
+    commit: "pending"
+    status: done
+    title: "feat(content): add Shipping API Dojo v2 blog post series (5 posts)"
+    details: |-
+      - Added 5 blog posts covering Shipping API Dojo v2 development:
+        * post-018: Shipping API Dojo v2 overview (issue #5) - 20/20/20 curriculum, content families, seeded randomization
+        * post-019: Technical scoping (issue #7) - content-family data model, seeded randomization strategy, auth/billing/email/domain architecture
+        * post-020: Auth foundation (issue #11) - Better Auth, Creem billing, Resend email, shipping.apidojo.app domain
+        * post-021: Proof of concept (issue #8) - minimum viable randomization PoC, content-family conversion, SSR-safe validation
+        * post-022: Browser smoke suite (issue #17) - Playwright test suite for cost-efficient route validation
+      - All posts written in devlog style (first-person voice, honest about friction, practical tone)
+      - User edits: added "gamefied" to v2 overview, GitHub issue link, note about avoiding AI costs, changed Enterprise to "→ Enterprise planned"
+      - Updated hero image from .png to .webp for v2 overview
+      - Staggered publish dates: 2026-04-13, 2026-04-14, 2026-04-15 (two posts on 2026-04-15)
+      - Renumbered existing blog post IDs (post-003 → post-001, post-004 → post-003, post-005 → post-004, post-006 → post-005, post-007 → post-006)
+      - Updated browser smoke suite summary to devlog style ("we built" → "I built")
+
+      Refs: v0.1.11.13 content shipping-api-dojo blog-series devlog-style
+  - date: "2026-04-13"
     version: 0.1.11.12
     issue: "Chore"
     commit: 4b8e4a66100d060300d655bb6ce1c31cab9a3f9c

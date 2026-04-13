@@ -1,0 +1,26 @@
+{
+  "id": "post-020",
+  "slug": "shipping-api-dojo-auth-foundation",
+  "title": "Auth Foundation: Building Better Auth, Creem Billing, and Email Infrastructure for Shipping API Dojo v2",
+  "type": "blog",
+  "summary": "Issue #11 completed the auth, entitlements, billing, email, and domain foundation for Shipping API Dojo v2. Here's how Better Auth, Creem, Resend, and the shipping.apidojo.app domain came together.",
+  "body": "# Auth Foundation: Building Better Auth, Creem Billing, and Email Infrastructure for Shipping API Dojo v2",
+  "bodyFile": "2026-04-14-shipping-api-dojo-auth-foundation.md",
+  "bodyIsMarkdown": true,
+  "heroImage": "/media/2026-04-14-shipping-api-dojo-auth-foundation.png",
+  "heroImageAlt": "An infrastructure diagram showing Better Auth integration, Creem billing setup, Resend email configuration, and the shipping.apidojo.app domain foundation",
+  "tags": [
+    "Shipping API Dojo",
+    "Better Auth",
+    "Creem",
+    "Resend",
+    "Infrastructure",
+    "Building in Public"
+  ],
+  "author": "Nicolas Brulay",
+  "status": "draft",
+  "publishedAt": "2026-04-14T13:00:00.000Z",
+  "createdAt": "2026-04-12T16:00:00.000Z",
+  "updatedAt": "2026-04-14T13:00:00.000Z",
+  "readingTime": 7
+}

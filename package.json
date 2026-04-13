@@ -10,6 +10,7 @@
     "build": "vite build",
     "serve": "vite preview",
     "test": "vitest run",
+    "typecheck": "tsc --noEmit",
     "format": "biome format --write",
     "lint": "biome lint",
     "check": "biome check"
