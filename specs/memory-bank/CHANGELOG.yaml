@@ -1,4 +1,20 @@
 entries:
+  - date: "2026-04-17"
+    version: 0.1.11.14
+    issue: "Content"
+    commit: "pending"
+    status: done
+    title: "refactor(content): fix first-person language, remove hype, and secure env vars in Shipping API Dojo posts"
+    details: |-
+      - Fixed first-person language in blog posts (we → I) in technical-scoping, auth-foundation, proof-of-concept, browser-smoke-suite MD and JSON files
+      - Fixed hype/sales language in blog posts: replaced "This is what/Here's how" with genuine devlog phrasing across all 5 posts
+      - Removed actual environment variable names from auth-foundation.md for security (replaced with generic descriptions)
+      - User content edits to technical-scoping.md: added "very high credibility", "Progress now lives on server", "three-day grace period", "Team/Enterprise not at launch", "EUR only", "mirror products consideration", "externally validated using multiple AI models"
+      - User content edits to auth-foundation.md: "enables" instead of "transforms", added Creem integration note, removed pricing model section, added mail.apidojo.app domain
+      - User changed hero image from .png to .webp in auth-foundation.json and technical-scoping.json
+      - User changed auth-foundation.json status from draft to published
+
+      Refs: v0.1.11.14 content devlog-style security env-vars
   - date: "2026-04-13"
     version: 0.1.11.13
     issue: "Content"

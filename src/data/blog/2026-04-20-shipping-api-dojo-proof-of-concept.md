@@ -4,7 +4,7 @@ Before migrating the entire curriculum to the content-family model, I needed to 
 
 Issue #8 was that proof of concept. A narrow slice—minimum viable randomization for MCQ answers, lesson drills, and arena scenarios—implemented to prove the data model and rendering approach before committing to the full migration.
 
-This is what I built, what I validated, and why it matters.
+This is the work I did, what I validated, and the results.
 
 ## The PoC scope: narrow and representative
 

@@ -3,11 +3,11 @@
   "slug": "shipping-api-dojo-browser-smoke-suite",
   "title": "Browser Smoke Suite: Cost-Efficient Route Validation for Shipping API Dojo v2",
   "type": "blog",
-  "summary": "Issue #17 added a minimal Playwright smoke suite to complement unit/integration coverage. Here's how I built a cost-efficient browser test layer for checkpoint validation and future mirror sites.",
+  "summary": "Issue #17 added a minimal Playwright smoke suite to complement unit/integration coverage. I built a cost-efficient browser test layer for checkpoint validation and future mirror sites.",
   "body": "# Browser Smoke Suite: Cost-Efficient Route Validation for Shipping API Dojo v2",
-  "bodyFile": "2026-04-12-shipping-api-dojo-browser-smoke-suite.md",
+  "bodyFile": "2026-04-21-shipping-api-dojo-browser-smoke-suite.md",
   "bodyIsMarkdown": true,
-  "heroImage": "/media/2026-04-12-shipping-api-dojo-browser-smoke-suite.png",
+  "heroImage": "/media/2026-04-21-shipping-api-dojo-browser-smoke-suite.png",
   "heroImageAlt": "A Playwright test runner dashboard showing smoke test results for core routes: home, learn track hubs, lesson flow, arena, wiki, and directory",
   "tags": [
     "Shipping API Dojo",
@@ -19,8 +19,8 @@
   ],
   "author": "Nicolas Brulay",
   "status": "draft",
-  "publishedAt": "2026-04-15T13:00:00.000Z",
+  "publishedAt": "2026-04-21T13:00:00.000Z",
   "createdAt": "2026-04-12T16:00:00.000Z",
-  "updatedAt": "2026-04-15T13:00:00.000Z",
+  "updatedAt": "2026-04-21T13:00:00.000Z",
   "readingTime": 6
 }

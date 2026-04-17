@@ -4,7 +4,7 @@ As issue #9 (full content migration) progressed deeper into the content-family m
 
 Issue #17 added a minimal, cost-efficient browser smoke suite using Playwright Test. The goal: complement existing unit/integration coverage without introducing high maintenance cost or broad CI/runtime expense.
 
-This is how I built a smoke suite that's cheap to run, easy to extend, and reusable for future mirror sites.
+I built a smoke suite that's cheap to run, easy to extend, and reusable for future mirror sites.
 
 ## Why now: the checkpoint validation need
 
@@ -71,7 +71,7 @@ The smoke suite covers six core surfaces:
 
 These six surfaces represent the core user-visible flows. If they work, the site is fundamentally functional. If they don't, the migration has broken something critical.
 
-## Out of scope: what we deliberately avoided
+## Out of scope: what I deliberately avoided
 
 The smoke suite deliberately avoids several things to keep it cost-efficient:
 

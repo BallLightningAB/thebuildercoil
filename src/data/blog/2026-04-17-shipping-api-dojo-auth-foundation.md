@@ -2,9 +2,9 @@
 
 Issue #11 is now complete. The auth, entitlements, billing, email, and domain foundation for Shipping API Dojo v2 is in place on the feature branch codex/issue-11-auth-foundation.
 
-This is the infrastructure that transforms Shipping API Dojo from a public reference site into a real product. Better Auth for authentication. Creem for billing. Resend for email. shipping.apidojo.app as the production domain.
+This is the infrastructure that enables Shipping API Dojo to become a real product. Better Auth for authentication. Creem for billing. Resend for email. shipping.apidojo.app as the production domain.
 
-Here's how I built it.
+This is how the implementation went.
 
 ## Better Auth: authentication and organization management
 
@@ -15,6 +15,7 @@ The authentication layer is built on Better Auth. The decision to use Better Aut
 - Organization/tenant model for multi-product support under the apidojo.app umbrella
 - Magic link tokens for passwordless flows
 - Verification table for email confirmation and other token-based workflows
+- Smooth integration with Creem with great documentation and SDK
 
 Better Auth manages several tables automatically: user, session, account, verification, organization, member, and invitation. I mapped these to custom table names where needed—organization becomes tenants, member becomes tenant_members—to align with the apidojo.app multi-product vision.
 
@@ -27,7 +28,7 @@ This is where the billing integration starts to take shape.
 
 ## Creem: merchant of record for billing
 
-Creem replaces earlier Polar assumptions as the merchant of record. Creem handles invoicing, tax, payments, refunds, and chargebacks. I handle the product logic and entitlement enforcement.
+Creem replaces earlier Polar assumptions as the merchant of record. Creem handles invoicing, tax, payments, refunds, and chargebacks. It's very developer-friendly and has no fixed costs. I handle the product logic and entitlement enforcement.
 
 The billing state lives on the tenant record:
 
@@ -36,25 +37,23 @@ The billing state lives on the tenant record:
 - billing_status: tracks the subscription state (active, past_due, canceled, etc.)
 - current_period_end: when the current billing period ends
 
-We also introduced two new tables for Creem integration:
+I also introduced two new tables for Creem integration:
 
 - creem_products: maps Creem product IDs to internal plan keys and module slugs
 - creem_webhook_events: provides idempotency for webhook processing
 
 The webhook events table is critical. Creem sends webhooks for checkout.completed, subscription lifecycle events, refunds, and disputes. The unique constraint on event_id ensures I process each webhook exactly once, even if Creem retries the delivery.
 
-The pricing model follows the per-seat approach defined in scoping: free (1), pro (1), team (2-7 discounted), enterprise (custom). Modules are add-on subscriptions. Currency is locked per tenant (EUR or USD).
-
 ## Resend: transactional email infrastructure
 
 Transactional email needs a dedicated setup. The foundation includes:
 
 - Dedicated Resend account for API Dojo
-- Verified domain under the apidojo.app umbrella
+- Verified domain under the apidojo.app umbrella, mail.apidojo.app for Resend
 - Multiple sender identities on the verified domain
 - Transactional email architecture for notifications, receipts, and account-related emails
 
-Resend Free allows one verified domain per team with multiple sender identities. That's sufficient for the initial launch and gives me room to grow.
+Resend Free allows one verified domain per team with multiple sender identities. That's sufficient since I use the umbrella domain for all future products.
 
 The email architecture is designed to support:
 
@@ -69,6 +68,7 @@ The domain strategy from scoping is now in foundation:
 
 - apidojo.app is the umbrella/root domain
 - shipping.apidojo.app is the production hostname for this product
+- mail.apidojo.app is the Resend domain
 - DNS configuration for the production hostname
 - SSL certificate setup
 - Proper canonical URLs and redirect handling
@@ -88,14 +88,7 @@ This separation is important. Webhook endpoints from Creem need access to the ra
 
 ## Environment variables and configuration
 
-The foundation includes a complete environment variable checklist:
-
-- BETTER_AUTH_SECRET: for Better Auth session encryption
-- BETTER_AUTH_URL: the base URL for Better Auth callbacks
-- CREEM_API_KEY: for Creem API calls
-- CREEM_WEBHOOK_SECRET: for verifying Creem webhook signatures
-- Resend API key and configuration
-- Database connection strings for Neon Postgres
+The foundation includes a complete environment variable checklist covering authentication session encryption, callback URLs, API keys for billing and email services, webhook signature verification secrets, and database connection strings.
 
 Every external service integration is documented with its required environment variables. That's the handoff checklist from scoping made real.
 

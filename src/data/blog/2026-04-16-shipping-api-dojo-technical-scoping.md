@@ -4,11 +4,11 @@ Before writing a single line of implementation code for Shipping API Dojo v2, I 
 
 Issue #7 was that scoping phase. No implementation—just decisions. Data models, randomization strategy, auth/billing/email/domain architecture, and the handoff checklist that would make the actual build possible.
 
-This is what I decided and why it mattered.
+These are the decisions I made and the reasoning behind them.
 
 ## The content-family data model
 
-The first question was how to structure content for a system that needs both stability and variety.
+The first question was how to structure content for a system that needs both stability and variety in a way that produces very high credibility.
 
 v1 had monolithic lesson files. That worked for reference, but it didn't work for randomized practice. If every drill is a unique file, shuffling them means breaking every reference.
 
@@ -53,13 +53,13 @@ The decisions here:
 - Progress migration from v1's local storage to server-side storage
 - Better Auth's organization model mapped to tenants for future multi-product support
 
-The key principle is server-authoritative data. Progress lives on the server, not in the browser. That means authenticated server functions for signed-in progress and server-only HTTP request handlers for webhook endpoints that require raw-body signature verification.
+The key principle is server-authoritative data. Progress now lives on the server, not in the browser. That means authenticated server functions for signed-in progress and server-only HTTP request handlers for webhook endpoints that require raw-body signature verification.
 
 This also means the platform-neutral constraint: content, scoring, progress, entitlement, and certificate logic must remain platform-neutral so a future native client can reuse the same backend and domain model without re-architecture.
 
 ## Entitlements, billing, and Creem
 
-Shipping API Dojo v2 introduces a freemium model with a flat-fee Pro tier and optional annual billing. No time-limited Pro trial assumption at launch.
+Shipping API Dojo v2 introduces a freemium model with a flat-fee Pro tier and optional annual billing. Paid plans come with a three-day grace period before activation.
 
 The billing stack:
 
@@ -71,7 +71,8 @@ The billing stack:
 
 Creem handles invoicing, tax, payments, refunds, and chargebacks. That's the MoR (merchant of record) model—Creem owns the billing complexity, I own the product logic.
 
-The pricing model follows the per-seat approach defined in scoping: free (1), pro (1), team (2-7 discounted), enterprise (custom). Modules are add-on subscriptions. Currency is locked per tenant (EUR or USD).
+The pricing model follows the per-seat approach defined in scoping: free (1), pro (1), team (2-7 discounted), enterprise (custom). Team and Enterprise plans will not be available at launch.
+Modules are add-on subscriptions. Currency is currently EUR only.
 
 ## Email and domain strategy
 
@@ -82,7 +83,7 @@ Transactional email needs a dedicated setup. The decisions:
 - Dedicated Resend account and domain for transactional email
 - Resend Free allows one verified domain per team with multiple sender identities
 
-The domain cutover is planned as a controlled site move, not an ad hoc rename. That means proper redirects, proper canonical URLs, and proper SEO preservation throughout the transition.
+The domain cutover is planned as a controlled site move, not an ad hoc rename. That means proper redirects, proper canonical URLs, and proper SEO preservation throughout the transition. Considerations were taken to cover adding multiple future new mirror products with their own subdomain, while remaining under the "API Dojo" umbrella.
 
 ## The implementation handoff checklist
 
@@ -109,9 +110,9 @@ The scoping also made the work resumable. If implementation pauses, the blueprin
 
 This scoping phase is what made the proof of concept in issue #8 possible. It's what made the full content migration in issue #9 tractable. It's what made the browser smoke suite in issue #17 necessary but manageable.
 
-The technical foundation for Shipping API Dojo v2 wasn't built by accident. It was designed first, implemented second.
+The technical foundation for Shipping API Dojo v2 wasn't built by accident. It was designed first, externally validated using multiple AI models second, and then implemented third.
 
-That's the difference between a product that grows and a product that drifts.
+This to me is a clear development structure for 2026, regardless of how many people or AI agents are involved in the development.
 
 <!--
 ## Hero Image Ideas
