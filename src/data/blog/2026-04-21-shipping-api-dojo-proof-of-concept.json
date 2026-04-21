@@ -5,9 +5,9 @@
   "type": "blog",
   "summary": "Issue #8 implemented a proof of concept for minimum viable randomization and content families. I validated MCQ shuffling, lesson drill ordering, scenario sequencing, and SSR-safe behavior under TanStack Start.",
   "body": "# Proof of Concept: Validating Seeded Randomization and Content Families in Shipping API Dojo v2",
-  "bodyFile": "2026-04-20-shipping-api-dojo-proof-of-concept.md",
+  "bodyFile": "2026-04-21-shipping-api-dojo-proof-of-concept.md",
   "bodyIsMarkdown": true,
-  "heroImage": "/media/2026-04-20-shipping-api-dojo-proof-of-concept.png",
+  "heroImage": "/media/2026-04-21-shipping-api-dojo-proof-of-concept.webp",
   "heroImageAlt": "A validation dashboard showing deterministic seed behavior, shuffle helpers test results, and the content-family compatibility adapter pattern",
   "tags": [
     "Shipping API Dojo",
@@ -18,9 +18,9 @@
     "Building in Public"
   ],
   "author": "Nicolas Brulay",
-  "status": "draft",
-  "publishedAt": "2026-04-20T13:00:00.000Z",
+  "status": "published",
+  "publishedAt": "2026-04-21T13:00:00.000Z",
   "createdAt": "2026-04-12T16:00:00.000Z",
-  "updatedAt": "2026-04-20T13:00:00.000Z",
+  "updatedAt": "2026-04-21T13:00:00.000Z",
   "readingTime": 6
 }

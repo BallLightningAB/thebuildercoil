@@ -101,6 +101,19 @@ The PoC proved several critical things:
 
 These were the risks that could have blocked the full migration. By validating them in a narrow slice, I reduced the risk profile for the entire content-family migration.
 
+## Security considerations
+
+The PoC validated the technical architecture, but it revealed a security vulnerability that needs to be addressed in the full implementation: seed exposure in URLs.
+
+If the URL exposes the seed value, users can share exact drill URLs to give others the same randomized experience. This defeats the purpose of randomized practice and undermines certificate validity, since multiple users could claim the same "unique" randomized path.
+
+The seeds should not be visible in URLs. Instead, seeds need to be:
+- Generated server-side on first access
+- Stored in user session or database tied to the user's progress record
+- Never exposed to the client or URL
+
+This is a known issue tracked separately in the shipping-api-dojo repository. The PoC focused on validating the randomization mechanics and data model, but the production implementation must address seed security before certificates are issued.
+
 ## What the PoC didn't do
 
 The PoC intentionally avoided:
@@ -109,6 +122,7 @@ The PoC intentionally avoided:
 - Billing, email, or domain infrastructure expansion (those were issue #11)
 - Higher-value randomization features (that's issue #10)
 - Full curriculum expansion to 20/20/20 (that's issue #9)
+- Production-grade seed security implementation
 
 The PoC was focused on validation, not completion. Once the architecture was proven, the full migration could proceed with confidence.
 

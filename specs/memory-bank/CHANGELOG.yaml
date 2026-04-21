@@ -1,4 +1,19 @@
 entries:
+  - date: "2026-04-21"
+    version: 0.1.11.15
+    issue: "Content + Security"
+    commit: "pending"
+    status: done
+    title: "docs(content): add security considerations to proof-of-concept post and track seed exposure vulnerability"
+    details: |-
+      - Added "Security considerations" section to proof-of-concept blog post documenting seed exposure vulnerability
+      - Created GitHub issue #28 in shipping-api-dojo repo: "Security: Seed exposure in URLs undermines randomized practice and certificate validity"
+      - Added issue #28 as sub-issue to #5 (v2 umbrella issue)
+      - Added issue #28 to v2 milestone
+      - User changed hero image from .png to .webp in proof-of-concept.json
+      - User changed proof-of-concept.json status from draft to published
+
+      Refs: v0.1.11.15 content security seed-exposure shipping-api-dojo
   - date: "2026-04-17"
     version: 0.1.11.14
     issue: "Content"
