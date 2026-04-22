@@ -1,4 +1,19 @@
 entries:
+  - date: "2026-04-22"
+    version: 0.1.11.16
+    issue: "Social Media"
+    commit: "pending"
+    status: done
+    title: "refactor(socials): consolidate Shipping API Dojo v2 posts and rewrite for Ball Lightning audience"
+    details: |-
+      - Concatenated 5 Instagram/Facebook posts into one combined business-focused post (single image format, no carousel)
+      - Concatenated 5 X threads into one combined technical-focused thread (13 tweets)
+      - Deleted individual Instagram/Facebook and X thread files
+      - Rewrote both combined posts to introduce Shipping API Dojo premise for Ball Lightning audience
+      - Rewrote LinkedIn browser smoke suite post from article format to shorter post format
+      - Created personal mention LinkedIn post and translated it to Swedish
+
+      Refs: v0.1.11.16 socials consolidation instagram-facebook x-thread linkedin
   - date: "2026-04-21"
     version: 0.1.11.15
     issue: "Content + Security"

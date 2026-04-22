@@ -40,9 +40,11 @@ That's it. No deep auth/billing end-to-end coverage. No full cross-browser matri
 
 The focus is route-level regressions and core user-visible flows. The unit/integration tests cover the logic. The smoke suite covers the routes.
 
+For now I need a base that can be expanded upon later.
+
 ## The Playwright configuration
 
-The implementation uses Playwright Test with a single Chromium project. That's the default—fast, reliable, and sufficient for smoke testing.
+The implementation uses Playwright Test with a single Chromium project. That's the default — fast, reliable, and sufficient for smoke testing.
 
 Key configuration decisions:
 
@@ -50,6 +52,7 @@ Key configuration decisions:
 - Traces/screenshots only on failure: reduces CI storage cost
 - Dedicated `pnpm browser-test` script: makes it easy to run at checkpoints
 - Test structure designed for extension: future mirror sites can add their own smoke tests without cloning a large suite
+- Minimizes LLM token costs
 
 The test structure is modular. Each surface has its own test file. Adding a new surface is a matter of adding a new test file, not rearchitecting the suite.
 
@@ -148,7 +151,7 @@ A more abstract visualization: a layered diagram showing unit tests at the botto
 
 ## Image Prompt
 
-Editorial technology illustration, wide blog hero image, browser smoke suite presented as a clean Playwright test runner dashboard, six test results showing home learn track hubs lesson flow arena wiki directory all passing, small status indicators and pass badges, runtime summary showing fast execution, Scandinavian design sensibility, warm neutrals with teal accents, precise and test-focused, no vendor logos, no gibberish text, test clarity over chaos
+Editorial technology illustration, square blog hero image, browser smoke suite presented as a clean Playwright test runner dashboard, six test results showing home learn track hubs lesson flow arena wiki directory all passing, small status indicators and pass badges, runtime summary showing fast execution, Scandinavian design sensibility, warm neutrals with teal accents, precise and test-focused, no vendor logos, no gibberish text, test clarity over chaos
 
 ## Screenshot Idea
 
