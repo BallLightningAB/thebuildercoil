@@ -1,3 +1,9 @@
+import { Layout } from "@/components/layout/Layout";
+import { ThemeProvider } from "@/components/theme-provider";
+import {
+	generateRootEntityGraphSchema,
+	jsonLdScript,
+} from "@/lib/seo/structured-data";
 import { TanStackDevtools } from "@tanstack/react-devtools";
 import {
 	createRootRoute,
@@ -5,13 +11,6 @@ import {
 	Outlet,
 	Scripts,
 } from "@tanstack/react-router";
-import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
-import { Layout } from "@/components/layout/Layout";
-import { ThemeProvider } from "@/components/theme-provider";
-import {
-	generateRootEntityGraphSchema,
-	jsonLdScript,
-} from "@/lib/seo/structured-data";
 import appCss from "../styles.css?url";
 
 function RootNotFound() {
@@ -118,19 +117,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 			</head>
 			<body className="scroll-smooth">
 				{children}
-				{isDev && (
-					<TanStackDevtools
-						config={{
-							position: "bottom-right",
-						}}
-						plugins={[
-							{
-								name: "Tanstack Router",
-								render: <TanStackRouterDevtoolsPanel />,
-							},
-						]}
-					/>
-				)}
+				{isDev && <TanStackDevtools position="bottom-right" />}
 				<Scripts />
 			</body>
 		</html>
