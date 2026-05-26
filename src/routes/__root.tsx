@@ -4,7 +4,6 @@ import {
 	generateRootEntityGraphSchema,
 	jsonLdScript,
 } from "@/lib/seo/structured-data";
-import { TanStackDevtools } from "@tanstack/react-devtools";
 import {
 	createRootRoute,
 	HeadContent,
@@ -107,8 +106,6 @@ const themeScript = `
 `;
 
 function RootDocument({ children }: { children: React.ReactNode }) {
-	const isDev = import.meta.env.DEV;
-
 	return (
 		<html lang="en" suppressHydrationWarning>
 			<head>
@@ -117,7 +114,6 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 			</head>
 			<body className="scroll-smooth">
 				{children}
-				{isDev && <TanStackDevtools position="bottom-right" />}
 				<Scripts />
 			</body>
 		</html>
