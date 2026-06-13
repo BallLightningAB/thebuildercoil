@@ -39,7 +39,7 @@ export const newsletterSignupFormSchema = z.object({
 		.boolean()
 		.refine(
 			(val) => val === true,
-			"You must agree to receive emails to continue"
+			"You must agree to receive emails to continue",
 		),
 });
 

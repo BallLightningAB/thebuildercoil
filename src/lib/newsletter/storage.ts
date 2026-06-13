@@ -42,7 +42,7 @@ export async function loadNewsletterSignups(): Promise<SignupRecord[]> {
 		if (!result.success) {
 			console.error(
 				"Newsletter storage validation error:",
-				result.error.issues
+				result.error.issues,
 			);
 			return [];
 		}
@@ -58,7 +58,7 @@ export async function loadNewsletterSignups(): Promise<SignupRecord[]> {
  * Atomically write all records back to JSON file
  */
 export async function saveNewsletterSignups(
-	records: SignupRecord[]
+	records: SignupRecord[],
 ): Promise<void> {
 	try {
 		await ensureStorageDir();
@@ -84,7 +84,7 @@ export async function findByEmail(email: string): Promise<SignupRecord | null> {
  */
 export async function findByToken(
 	token: string,
-	type: "confirmation" | "unsub"
+	type: "confirmation" | "unsub",
 ): Promise<SignupRecord | null> {
 	const records = await loadNewsletterSignups();
 
@@ -100,12 +100,12 @@ export async function findByToken(
  */
 export async function upsertSignup(
 	email: string,
-	data: Partial<SignupRecord>
+	data: Partial<SignupRecord>,
 ): Promise<SignupRecord> {
 	const records = await loadNewsletterSignups();
 	const normalizedEmail = email.toLowerCase().trim();
 	const existingIndex = records.findIndex(
-		(r) => r.email.toLowerCase() === normalizedEmail
+		(r) => r.email.toLowerCase() === normalizedEmail,
 	);
 
 	if (existingIndex >= 0) {
@@ -145,14 +145,14 @@ export async function upsertSignup(
 export async function updateStatusByToken(
 	token: string,
 	type: "confirmation" | "unsub",
-	newStatus: SignupRecord["status"]
+	newStatus: SignupRecord["status"],
 ): Promise<SignupRecord | null> {
 	const records = await loadNewsletterSignups();
 
 	const index = records.findIndex((r) =>
 		type === "confirmation"
 			? r.confirmationToken === token
-			: r.unsubToken === token
+			: r.unsubToken === token,
 	);
 
 	if (index === -1) {

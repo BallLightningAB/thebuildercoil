@@ -127,7 +127,7 @@ export function loadPosts(type?: PostType): PostMeta[] {
 		})
 		.sort(
 			(a, b) =>
-				new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
+				new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime(),
 		);
 
 	// Return metadata only (exclude body)
@@ -135,7 +135,7 @@ export function loadPosts(type?: PostType): PostMeta[] {
 		({ body, bodyIsMarkdown, ...meta }): PostMeta => ({
 			...meta,
 			readingTime: meta.readingTime || calculateReadingTime(body),
-		})
+		}),
 	);
 }
 
@@ -145,7 +145,7 @@ export function loadPosts(type?: PostType): PostMeta[] {
 export function loadPaginatedPosts(
 	type?: PostType,
 	page = 1,
-	perPage = 10
+	perPage = 10,
 ): PaginatedPosts {
 	const allPosts = loadPosts(type);
 	const total = allPosts.length;

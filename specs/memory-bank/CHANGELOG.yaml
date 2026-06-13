@@ -1,4 +1,19 @@
 entries:
+  - date: "2026-06-13"
+    version: 0.1.11.17
+    issue: "Chore"
+    commit: "pending"
+    status: done
+    title: "chore(deps): separate major version bumps into individual PRs"
+    details: |-
+      - Merged PR #33: gitleaks action v2→v3 (Node 24 compatibility)
+      - Merged PR #34: js-minor-and-patch group (30 minor/patch updates)
+      - Created PR #35: lucide-react 0.577.0→1.18.0 with custom SVG icon replacements
+      - Created PR #36: typescript 5.9.3→6.0.3 with ignoreDeprecations flag
+      - Created PR #37: shiki 3.23.0→4.2.0 using @shikijs/compat shim
+      - Major bump PRs created separately for review and testing (deployments failed, to be fixed later)
+
+      Refs: v0.1.11.17 chore dependencies major-bumps lucide-react typescript shiki
   - date: "2026-04-22"
     version: 0.1.11.16
     issue: "Social Media"
@@ -585,7 +600,7 @@ entries:
     commit: feac6fb
     status: done
     title: "fix(typography): resolve dark mode prose colors for TBC brand"
-    details: |- 
+    details: |-
       - Fix dark mode typography issue where @tailwindcss/typography prose text was white instead of cream
       - Create custom prose-cream utility class in styles.css using @utility directive
       - Replace dark:prose-invert with dark:prose-cream in blog, news, and about route components

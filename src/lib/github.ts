@@ -21,14 +21,14 @@ export interface GitHubGraphData {
 }
 
 async function fetchGitHubContributions(
-	username: string
+	username: string,
 ): Promise<GitHubGraphData> {
 	const res = await fetch(
 		`https://github-contributions-api.jogruber.de/v4/${username}`,
 		{
 			// Avoid caching too aggressively during development; you can tune this later.
 			cache: "no-store",
-		}
+		},
 	);
 
 	if (!res.ok) {

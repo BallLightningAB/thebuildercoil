@@ -20,7 +20,7 @@ import type { Post, PostCodeBlock, PostMeta, PostType } from "./types";
 // Import all blog JSON files
 const blogJsonModules = import.meta.glob<{ default: unknown }>(
 	"../../data/blog/*.json",
-	{ eager: true }
+	{ eager: true },
 );
 
 // Import all blog markdown files (as raw strings)
@@ -33,7 +33,7 @@ const blogMdModules = import.meta.glob<string>("../../data/blog/*.md", {
 // Import all news JSON files
 const newsJsonModules = import.meta.glob<{ default: unknown }>(
 	"../../data/news/*.json",
-	{ eager: true }
+	{ eager: true },
 );
 
 // Import all news markdown files (as raw strings)
@@ -111,7 +111,7 @@ function getModules(type: PostType) {
 
 function getMarkdownContent(
 	bodyFile: string | undefined,
-	type: PostType
+	type: PostType,
 ): string | undefined {
 	if (!bodyFile) {
 		return;
@@ -129,7 +129,7 @@ function getMarkdownContent(
 
 function buildPost(
 	data: unknown,
-	type: PostType
+	type: PostType,
 ): { post: Post; html: string; codeBlocks: PostCodeBlock[] } | null {
 	const validated = PostSchema.parse(data);
 
@@ -165,7 +165,7 @@ function buildPost(
  */
 export function loadPostInternal(
 	slug: string,
-	type: PostType
+	type: PostType,
 ): { post: Post; html: string; codeBlocks: PostCodeBlock[] } | null {
 	const { json } = getModules(type);
 
@@ -192,7 +192,7 @@ export function loadPostsInternal(type?: PostType): PostMeta[] {
 
 	const loadFromModules = (
 		modules: Record<string, { default: unknown }>,
-		postType: PostType
+		postType: PostType,
 	) => {
 		for (const [, module] of Object.entries(modules)) {
 			try {
@@ -226,13 +226,13 @@ export function loadPostsInternal(type?: PostType): PostMeta[] {
 		})
 		.sort(
 			(a, b) =>
-				new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
+				new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime(),
 		);
 
 	return published.map(
 		({ body, bodyIsMarkdown, ...meta }): PostMeta => ({
 			...meta,
 			readingTime: meta.readingTime || calculateReadingTime(body),
-		})
+		}),
 	);
 }

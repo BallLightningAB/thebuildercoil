@@ -1,8 +1,10 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Codesandbox, Globe, Linkedin, Zap } from "lucide-react";
+import { ArrowRight, Globe, Zap } from "lucide-react";
 import { AnimatedGroup } from "@/components/motion-primitives/animated-group";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { CodesandboxIcon } from "@/components/icons/CodesandboxIcon";
+import { LinkedinIcon } from "@/components/icons/LinkedinIcon";
 
 export const Route = createFileRoute("/about")({
 	component: AboutPage,
@@ -96,7 +98,7 @@ function AboutPage() {
 					<div className="grid gap-6 md:grid-cols-3">
 						<Card className="transition-all hover:border-tbc-teal/50">
 							<CardHeader>
-								<Codesandbox className="mb-2 h-8 w-8 text-tbc-teal" />
+								<CodesandboxIcon className="mb-2 h-8 w-8 text-tbc-teal" />
 								<CardTitle className="font-serif">The Builder Coil</CardTitle>
 							</CardHeader>
 							<CardContent>
@@ -199,7 +201,7 @@ function AboutPage() {
 											rel="noopener noreferrer"
 											target="_blank"
 										>
-											<Linkedin className="h-3.5 w-3.5" />
+											<LinkedinIcon className="h-3.5 w-3.5" />
 											LinkedIn
 										</a>
 									</Button>

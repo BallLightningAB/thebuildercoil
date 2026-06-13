@@ -39,7 +39,7 @@ function ContactPage() {
 			setErrorMessage(
 				err instanceof Error
 					? err.message
-					: "Failed to send message. Please try again."
+					: "Failed to send message. Please try again.",
 			);
 		}
 	};

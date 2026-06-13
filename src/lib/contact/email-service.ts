@@ -23,7 +23,7 @@ export interface SendEmailResult {
  * Send contact form submission to admin email
  */
 export async function sendContactEmail(
-	data: ContactFormData
+	data: ContactFormData,
 ): Promise<SendEmailResult> {
 	const { name, email, message } = data;
 

@@ -12,7 +12,7 @@ import type { NewsletterSignupResult } from "@/lib/newsletter/types";
 
 const subscribeToNewsletter = createServerFn({ method: "POST" })
 	.inputValidator(
-		(data: { email: string; consent: boolean; path?: string }) => data
+		(data: { email: string; consent: boolean; path?: string }) => data,
 	)
 	.handler(async ({ data }): Promise<NewsletterSignupResult> => {
 		const { email, consent, path } = data;

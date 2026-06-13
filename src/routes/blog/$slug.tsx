@@ -97,7 +97,7 @@ const CODE_BLOCK_MARKER_REGEX =
 
 function renderHtmlWithInlineCodeBlocks(
 	html: string,
-	codeBlocks: PostCodeBlock[]
+	codeBlocks: PostCodeBlock[],
 ): ReactNode[] {
 	const nodes: ReactNode[] = [];
 	let lastIndex = 0;
@@ -115,7 +115,7 @@ function renderHtmlWithInlineCodeBlocks(
 					className="contents"
 					dangerouslySetInnerHTML={{ __html: slice }}
 					key={`html-${lastIndex}`}
-				/>
+				/>,
 			);
 		}
 
@@ -153,7 +153,7 @@ function renderHtmlWithInlineCodeBlocks(
 								)}
 							</CodeBlockBody>
 						</CodeBlock>
-					</div>
+					</div>,
 				);
 			}
 		}
@@ -167,7 +167,7 @@ function renderHtmlWithInlineCodeBlocks(
 				className="contents"
 				dangerouslySetInnerHTML={{ __html: html.slice(lastIndex) }}
 				key={`html-${lastIndex}`}
-			/>
+			/>,
 		);
 	}
 
@@ -190,7 +190,7 @@ function BlogPostPage() {
 			year: "numeric",
 			month: "long",
 			day: "numeric",
-		}
+		},
 	);
 
 	const publishedTime = new Date(post.publishedAt).getTime();

@@ -19,7 +19,7 @@ export const getPosts = createServerFn({ method: "GET" })
 // Server function to get related posts
 export const getRelatedPosts = createServerFn({ method: "GET" })
 	.inputValidator(
-		(input: { slug: string; type: PostType; limit?: number }) => input
+		(input: { slug: string; type: PostType; limit?: number }) => input,
 	)
 	.handler(({ data }) => {
 		const { slug, type, limit = 3 } = data;

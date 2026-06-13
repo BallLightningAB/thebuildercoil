@@ -52,7 +52,7 @@ export const ContentManifestSchema = z.object({
 			type: PostTypeSchema,
 			title: z.string(),
 			publishedAt: z.string(),
-		})
+		}),
 	),
 	lastUpdated: z.string().datetime(),
 });
