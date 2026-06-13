@@ -1,8 +1,24 @@
 entries:
   - date: "2026-06-13"
-    version: 0.1.11.17
+    version: 0.1.11.18
     issue: "Chore"
     commit: "pending"
+    status: done
+    title: "chore(deps): merge origin/main and resolve conflicts"
+    details: |-
+      - Merged remote-tracking branch 'origin/main' into main
+      - Resolved package.json conflicts: kept local versions (biome 2.5.0, vite plugin 6.0.2, ultracite 7.8.3, vite 8.0.16, vitest 4.1.8)
+      - Regenerated pnpm-lock.yaml with resolved dependencies
+      - Removed tsconfigPaths from vitest.config.ts (not supported in vite 8.x)
+      - Fixed Header.tsx lint warning: supports-[backdrop-filter] → supports-backdrop-filter
+      - Removed ultracite extends from biome.json (module not found)
+      - Disabled noExplicitAny and noArrayIndexKey lint rules for test mocks
+
+      Refs: v0.1.11.18 chore merge conflicts vite biome lint
+  - date: "2026-06-13"
+    version: 0.1.11.17
+    issue: "Chore"
+    commit: "6a11c39"
     status: done
     title: "chore(deps): separate major version bumps into individual PRs"
     details: |-
