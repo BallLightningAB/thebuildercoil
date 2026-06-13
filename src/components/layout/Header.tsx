@@ -1,8 +1,11 @@
 import { Link } from "@tanstack/react-router";
-import { Github, Linkedin, Menu, Twitter } from "lucide-react";
+import { Menu } from "lucide-react";
 import { useState } from "react";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Button } from "@/components/ui/button";
+import { GithubIcon } from "@/components/icons/GithubIcon";
+import { LinkedinIcon } from "@/components/icons/LinkedinIcon";
+import { TwitterIcon } from "@/components/icons/TwitterIcon";
 import {
 	Sheet,
 	SheetContent,
@@ -25,13 +28,13 @@ const socialLinks = [
 	{
 		href: "https://github.com/BallLightningAB",
 		label: "GitHub",
-		icon: Github,
+		icon: GithubIcon,
 	},
-	{ href: "https://twitter.com/balllightningab", label: "X", icon: Twitter },
+	{ href: "https://twitter.com/balllightningab", label: "X", icon: TwitterIcon },
 	{
 		href: "https://www.linkedin.com/company/thebuildercoil",
 		label: "LinkedIn",
-		icon: Linkedin,
+		icon: LinkedinIcon,
 	},
 ];
 
@@ -116,7 +119,7 @@ export function Header() {
 												: "font-medium text-foreground text-lg transition-colors hover:text-tbc-teal"
 										}
 										key={link.href}
-										onClick={() => setMobileMenuOpen(false)}
+											onClick={() => setMobileMenuOpen(false)}
 										to={link.href}
 									>
 										{link.highlight ? `🌀 ${link.label}` : link.label}
