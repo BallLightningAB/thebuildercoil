@@ -112,7 +112,7 @@ Once the skills were in better shape, the next problem became obvious: the tools
 
 Windsurf and Codex share a lot conceptually, but they do not expose the exact same primitives in the exact same way.
 
-So I standardized the parts that *should* be shared and adapted the parts that should not.
+So I standardized the parts that _should_ be shared and adapted the parts that should not.
 
 ### What I standardized directly
 

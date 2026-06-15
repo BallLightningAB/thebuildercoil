@@ -49,6 +49,7 @@ I get this question. The answer is that a CLI is the right tool for this job.
 Skill management is an infrastructure task, not a creative one. You don't need a visual interface to decide which skills to install — you already know. What you need is something scriptable, schedulable, and pipeable into other workflows.
 
 A CLI means:
+
 - Schedule it with cron or Task Scheduler — fire and forget
 - Run it in CI/CD if you want consistent skills across a team
 - Pipe the output to other tools with `--json` flag
@@ -71,6 +72,7 @@ There's more coming — tools for discovering skills, managing AI configurations
 I built this for people like me: founders, freelancers, and small teams who use AI coding assistants as a core part of their workflow and don't want to waste time on manual skill maintenance.
 
 Specifically:
+
 - **Solo founders** building products with AI assistants and juggling multiple tools
 - **Small dev teams** who want consistent AI capabilities across the team without manual setup on each machine
 - **Freelancers and consultants** who switch between projects and need different skill sets loaded for different clients

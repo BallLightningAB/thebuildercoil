@@ -46,6 +46,7 @@ The YAML config format stayed identical to the PowerShell version, so anyone mig
 This was my first time publishing a package to PyPI, and the modern tooling made it surprisingly smooth.
 
 The setup:
+
 - `pyproject.toml` with all package metadata (no `setup.py` needed)
 - GitHub Actions workflow for CI: testing on Ubuntu, macOS, and Windows across Python 3.12 and 3.13 (six matrix combinations)
 - PyPI trusted publishing — GitHub Actions publishes directly to PyPI on tagged releases without storing API tokens as secrets

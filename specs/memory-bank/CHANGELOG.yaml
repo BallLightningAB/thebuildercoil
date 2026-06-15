@@ -1,8 +1,22 @@
 entries:
+  - date: "2026-06-15"
+    version: 0.1.11.19
+    issue: "Config"
+    commit: "pending"
+    status: done
+    title: "fix(config): revert windsurf→devin directory changes for Devin Desktop compatibility"
+    details: |-
+      - Reverted .windsurf→.devin renames after discovering Devin Desktop still uses .windsurf internally
+      - Restored mcp_config.json from backup (was emptied during migration)
+      - Moved global workflows from .codeium/windsurf/devin/global_workflows to .codeium/windsurf/global_workflows
+      - Reverted AGENTS.md paths from .devin to .windsurf across all repos
+      - Per Devin Desktop docs, ~/.codeium/windsurf/ structure and ~/.windsurf/ extensions remain required
+
+      Refs: v0.1.11.19 config devin-desktop windsurf compatibility rollback
   - date: "2026-06-13"
     version: 0.1.11.18
     issue: "Chore"
-    commit: "pending"
+    commit: "56f22eb"
     status: done
     title: "chore(deps): merge origin/main and resolve conflicts"
     details: |-
@@ -185,15 +199,15 @@ entries:
     issue: "Content"
     commit: "c37be7d"
     status: done
-    title: "feat(blog): add skill refresh post about pruning AI skills and aligning Windsurf with Codex"
+    title: "feat(blog): add skill refresh post about pruning AI skills and aligning Devin with Codex"
     details: |-
-      - Added blog post "Skill Refresh: How I Pruned My AI Skills Stack and Aligned Windsurf with Codex"
+      - Added blog post "Skill Refresh: How I Pruned My AI Skills Stack and Aligned Devin with Codex"
       - Covers reviewing and archiving overlapping AI skills, refreshing keepers, and standardizing workflows
-      - Documents the process of aligning Windsurf and Codex workflows for consistency
+      - Documents the process of aligning Devin and Codex workflows for consistency
       - Includes hero image and proper metadata (post-016)
-      - Tags: Skills, Codex, Windsurf, Developer Workflow, Building in Public
+      - Tags: Skills, Codex, Devin, Developer Workflow, Building in Public
 
-      Refs: v0.1.11.6 content skill-refresh ai-skills windsurf-codex
+      Refs: v0.1.11.6 content skill-refresh ai-skills devin-codex
   - date: "2026-02-27"
     version: 0.1.11.5
     issue: "Content + SEO"
