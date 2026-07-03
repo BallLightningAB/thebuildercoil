@@ -1,8 +1,262 @@
 entries:
+  - date: "2025-12-10"
+    version: 0.1.8.2
+    issue: "Content update"
+    commit: aa54e90
+    status: done
+    title: "feat(content): add typography unification blog post and update visual refresh spec"
+    details: |-
+      - Add new blog post "Unifying Typography for Three Brands" with hero image concepts
+      - Update optional-visual-refresh.yaml with refined typography scale and brand gradients
+      - Fix italic formatting in blog post footnote about X account handle
+      - Document modular type scale (major third, 1.25) and brand-specific color schemes
+      - Add comprehensive layout guidelines for hero patterns and card interactions
+
+      Refs: v0.1.8.2
+
+  - date: "2025-12-03"
+    version: 0.1.8
+    issue: "#5 https://github.com/BallLightningAB/thebuildercoil/issues/5"
+    commit: 0b385bc
+    status: done
+    title: "fix(deploy): refactor content loader for Vercel serverless and wire contact form"
+    details: |-
+      - Refactor loader-server.ts to use Vite import.meta.glob for build-time bundling
+      - Move content from /content/ to /src/data/ for proper Vite bundling
+      - Create contact form email service (src/lib/contact/email-service.ts)
+      - Create contact form server function (src/lib/contact/server.ts)
+      - Wire contact form in contact.tsx to Resend via server function
+      - Update sitemap generation script for new content path
+      - Remove hacky post-build script and Nitro serverAssets config
+      - Remove leftover .github/ISSUE_3_BODY.md file
+      - Create GitHub issue #5 for deployment tracking
+
+      Refs: v0.1.8 #5 I5D1 I5D2
+
+  - date: "2025-12-03"
+    version: 0.1.7
+    issue: "#3 https://github.com/BallLightningAB/thebuildercoil/issues/3"
+    commit: 1cf48fdbb357adce2c7d8cc927eb002072c9a00f
+    status: done
+    title: "feat(seo): implement SEO meta tags, JSON-LD, sitemap, and robots.txt"
+    details: |-
+      - Add SEO utility functions (src/lib/seo/meta.ts, src/lib/seo/structured-data.ts)
+      - Implement generateMeta() for Open Graph and Twitter Card tags
+      - Add JSON-LD structured data (BlogPosting schema) for blog/news posts
+      - Add head() configuration to blog/$slug.tsx and news/$slug.tsx routes
+      - Create static sitemap generation script (scripts/generate-sitemap.ts)
+      - Generate public/sitemap.xml with all static pages and published posts
+      - Update public/robots.txt with sitemap reference
+      - Fix first-person voice in about.tsx ("we" → "I")
+      - Review all markdown content files for narrative voice consistency
+      - Complete Phase 1 deliverable I3D11: SEO & performance tasks
+      - Clean up broken sitemap route artifacts
+
+      Refs: v0.1.7 closes #3 I3D11
+
+  - date: "2025-12-01"
+    version: 0.1.6
+    issue: "#3 https://github.com/BallLightningAB/thebuildercoil/issues/3"
+    commit: 4860109000d79cdc9a1b9f061e9eb24594635b57
+    status: released
+    title: "feat(newsletter): complete Phase 1 implementation of The Upkeep"
+    details: |-
+      - Complete all NL-1.x tasks (NL-1.0 through NL-1.9)
+      - Implement newsletter signup with double opt-in flow
+      - Create confirmation/unsubscribe pages with server functions
+      - Add NewsletterCTA component to footer
+      - Add "🌀 The Upkeep" link to header navigation
+      - Move social icons from footer to header for better UX
+      - Update privacy note with GDPR-compliant language
+      - Add Ball Lightning AB privacy policy link to footer
+      - Fix success message styling to use TBC brand colors
+      - Sync implementation plans with completed work
+
+      Refs: v0.1.6 #3 I3D10
+
+  - date: "2025-12-01"
+    version: 0.1.5.1
+    issue: "#3 https://github.com/BallLightningAB/thebuildercoil/issues/3"
+    commit: 6943c2b
+    status: done
+    title: "docs(email): refresh email architecture and update newsletter implementation plan"
+    details: |-
+      - Replace email_infrastructure with email_architecture section in PDD
+      - Switch to Option 1: single Chronomation-owned sending domain (updates.chronomation.com)
+      - Update The Upkeep from address to "The Upkeep by The Builder Coil <theupkeep@updates.chronomation.com>"
+      - Update newsletter implementation plan to reflect new architecture
+      - Change environment variables from CHRONO_* to TBC_* naming
+      - Completed DNS prerequisite task domain
+      - Add architecture notes about Option 1 active, Option 2 as future work
+      - Update .env.example with correct TBC_* environment variables
+
+      Refs: v0.1.5.1 #3 I3Docs I3D10
+
+  - date: "2025-11-30"
+    version: 0.1.5
+    issue: "#4 https://github.com/BallLightningAB/thebuildercoil/issues/4"
+    commit: 29269cb
+    status: done
+    title: "docs(memory-bank): implement ID-based tracking system and usage guide"
+    details: |-
+      - Refactor active-context.yaml to use I{issue}D{n} ID scheme for deliverables
+      - Add covers: [...] arrays to progress_log entries linking to deliverable IDs
+      - Include remaining_deliverables sections for better progress tracking
+      - Extend CHANGELOG.yaml Refs: lines with corresponding IxDy IDs for tighter linkage
+      - Create memory-bank-usage.yaml documenting workflow, version management, and communication guidelines
+      - Add comprehensive commit message and issue update guidelines with IxDy ID references
+      - Update thebuildercoil-pdd.yaml with workflow_guide reference
+      - Bump pdd_version to v0.1.2 to reflect documentation improvements
+      - Add sub_issues array structure to active-context.yaml for tracking sub-issues under parent issues
+      - Add comprehensive sub-issue management section to memory-bank-usage.yaml with lifecycle guidance
+      - Update previous changelog entry v0.1.4 with actual commit hash feac6fb
+
+      Refs: v0.1.5 #4 I4Docs
+
+  - date: "2025-11-29"
+    version: 0.1.4
+    issue: "#3 https://github.com/BallLightningAB/thebuildercoil/issues/3"
+    commit: feac6fb
+    status: done
+    title: "fix(typography): resolve dark mode prose colors for TBC brand"
+    details: |-
+      - Fix dark mode typography issue where @tailwindcss/typography prose text was white instead of cream
+      - Create custom prose-cream utility class in styles.css using @utility directive
+      - Replace dark:prose-invert with dark:prose-cream in blog, news, and about route components
+      - Ensure all prose elements (headings, body text, links, code) use TBC cream color (#f5e6d3) in dark mode
+      - Follow Tailwind Typography best practices for custom color theming
+      - Verify fix works across all content pages with hot module replacement
+
+      Refs: v0.1.4 #3 I3D1
+
+  - date: "2025-11-27"
+    version: 0.1.3
+    issue: "#3 https://github.com/BallLightningAB/thebuildercoil/issues/3"
+    commit: 1cf48fdbb357adce2c7d8cc927eb002072c9a00f
+    status: done
+    title: "feat(content): refine hero cards, Kibo theme-switcher, and blog docs"
+    details: |-
+      - Ensure blog and news detail hero images use object-contain so logos
+        (for example the welcome-to-the-builder-coil hero) are never cropped.
+      - Update BlogPostCard thumbnails (home "Latest from the Coil" and the
+        blog index) to center hero art inside a 16:9 frame with object-contain,
+        preventing top/bottom cropping while retaining a subtle hover scale.
+      - Fix Kibo CodeBlock duplicate React key warnings by generating unique
+        snippet filenames for fenced code blocks when no explicit filename is
+        provided.
+      - Wire the Kibo UI ThemeSwitcher component into the header by adapting it
+        to the existing ThemeProvider/useTheme context (dark/light/system) and
+        replacing the previous generic icon button.
+      - Refine the home hero animation so the GitHub contribution graph
+        consistently slides in from the right with a blur-to-sharp transition,
+        without being double-wrapped by AnimatedGroup, while preserving the
+        staggered fade-in for the left hero copy.
+      - Document the { post, html, codeBlocks } content contract in
+        specs/memory-bank/thebuildercoil-pdd.yaml so Chronomation Phase 2 can
+        mirror the current JSON-based behavior.
+      - Mark foundation task 1.4 ("Install Kibo UI theme-switcher component")
+        as done and keep the Phase 1 implementation plan aligned with reality.
+      - Reorder specs/memory-bank/CHANGELOG.yaml entries into reverse
+        chronological order (latest version first) without changing the content
+        of the existing entries.
+
+      Refs: v0.1.3 #3 I3D2, I3D3, I3D4, I3D5, I3D6, I3D7, I3D9
+
+  - date: "2025-11-25"
+    version: 0.1.2
+    issue: "#3 https://github.com/BallLightningAB/thebuildercoil/issues/3"
+    commit: 3581440
+    status: done
+    title: "docs(changelog): update commit hash for v0.1.x Phase 1 implementation"
+    details: |-
+      - Adjust specs/memory-bank/CHANGELOG.yaml to point at the actual Phase 1 implementation commit hash.
+      - Keep versioning scheme aligned between active-context and CHANGELOG.
+
+      Refs: v0.1.2 #3
+
+  - date: "2025-11-25"
+    version: 0.1.1
+    issue: "#3 https://github.com/BallLightningAB/thebuildercoil/issues/3"
+    commit: 72f4222
+    status: done
+    title: "feat(site): Implement Phase 1 of The Builder Coil site"
+    details: |-
+      Implementation work (72f4222):
+      - Add .env.example with environment variables documentation
+      - Install dependencies: marked, reading-time, resend, shadcn components
+      - Create theme provider with dark/light/system mode support
+      - Build content system: types, Zod schemas, JSON loaders for blog/news
+      - Create layout components: Header with nav, Footer with links
+      - Build page routes: home, blog (index + detail), news (index + detail), about, contact, newsletter
+      - Add sample content: 3 blog posts, 1 news post
+      - Configure Google Fonts (Montserrat, Lora, JetBrains Mono)
+      - Add @tailwindcss/typography for prose styling
+      - Update root route with SEO meta tags and ThemeProvider
+
+      Refs: v0.1.1 #3 I3D1, I3D2, I3D4, I3D5, I3D6, I3D7, I3D8, I3D9
+
+  - date: "2025-11-25"
+    version: 0.1
+    issue: "#3 https://github.com/BallLightningAB/thebuildercoil/issues/3"
+    commit: 86bb60a
+    status: done
+    title: "docs(specs): finalize implementation plans for TBC site Phase 1"
+    details: |-
+      Planning work (86bb60a):
+      - Create full implementation plan at specs/current-changes/issue-003-build-tbc-site-phase1.yaml
+      - Add separate newsletter implementation plan at specs/current-changes/newsletter-the-upkeep-implementation.yaml
+      - Integrate newsletter (The Upkeep) into Phase 1 plan with JSON-based signup + double opt-in
+      - Add environment_variables section and .env template
+      - Create GitHub Issue #3 plus Phase 1/Phase 2 milestones
+
+      Refs: v0.1 #3 I3Docs
+
+  - date: "2025-11-25"
+    version: 0.0.1.8
+    issue: "#1 https://github.com/BallLightningAB/thebuildercoil/issues/1"
+    commit: e2df4ab
+    status: done
+    title: "chore(workflow): align Biome, Tailwind, and commitprocess pipeline"
+    details: |-
+      - Configure Biome as the primary formatter and linter for JS/TS/JSON/CSS in the workspace
+      - Suppress false-positive CSS at-rule warnings for Tailwind v4 directives in the IDE
+      - Remove unused demo-related dependencies and tidy the Tailwind/TanStack toolchain
+      - Update the commitprocess workflow to run pre-commit, pnpm format, and pnpm lint across the full repo
+
+      Refs: v0.0.1.8 #1 I1D9
+
+  - date: "2025-11-25"
+    version: 0.0.1.7
+    issue: "#1 https://github.com/BallLightningAB/thebuildercoil/issues/1"
+    commit: 7380c8e
+    status: done
+    title: "chore(start): remove TanStack demo and simplify starter shell"
+    details: |-
+      - Remove TanStack Start demo routes, data, and header
+      - Simplify the root index route to a minimal thebuildercoil landing view
+      - Restrict TanStack devtools rendering to the development environment only
+      - Trim unused demo dependencies and align Tailwind/Biome/Vite tooling for the new baseline
+
+      Refs: v0.0.1.7 #1 I1D9
+
+  - date: "2025-11-24"
+    version: 0.0.1.6
+    issue: "#2 https://github.com/BallLightningAB/thebuildercoil/issues/2"
+    commit: ca15bdf
+    status: done
+    title: "chore(deps): install zod + ultracite and refresh tooling stack"
+    details: |-
+      - Install Ultracite and upgrade Biome to 2.3.7
+      - Initialize Ultracite configuration (biome.json, tsconfig, editor/editorconfig)
+      - Add zod as a shared validation dependency and central helper at src/lib/validation/zod.ts
+      - Refresh TanStack, Tailwind, TypeScript, devtools, and related tooling to latest compatible versions
+
+      Refs: v0.0.1.6 #2 I2D3, I2D4, I2D1, I2D2, I2D5, closing #2
+
   - date: "2025-11-24"
     version: 0.0.1.5
     issue: "#1 https://github.com/BallLightningAB/thebuildercoil/issues/1"
-    commit: "tbd"
+    commit: 87364a7
     status: done
     title: "docs(specs): add memory-bank scaffolding and security baseline"
     details: |-
