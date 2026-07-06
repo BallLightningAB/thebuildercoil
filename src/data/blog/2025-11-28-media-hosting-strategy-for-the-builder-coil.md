@@ -117,7 +117,7 @@ ALTER TABLE media_assets
 For The Builder Coil as a tenant in this phase:
 
 - New uploads go to `tenants/the-builder-coil/images/...` in the Chronomation-managed bucket (for example `chronomation-media/tenants/the-builder-coil/images/{uuid}.webp`).
-- By default, `public_url` uses the shared media host, e.g. `https://media.chronomation.com/tenants/the-builder-coil/images/{uuid}.webp`.
+- By default, `public_url` uses the shared media host, e.g. `https://media.<shared-host>/tenants/the-builder-coil/images/{uuid}.webp`.
 - For The Builder Coil specifically, I can also point a vanity domain like `https://media.thebuildercoil.com/` at the same bucket via a CDN. In that case public URLs can be as simple as `https://media.thebuildercoil.com/images/{uuid}.webp` while still mapping internally to `chronomation-media/tenants/the-builder-coil/images/{uuid}.webp`.
 - The The Builder Coil frontend uses `public_url` directly in `<img>` tags.
 

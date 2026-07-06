@@ -150,4 +150,4 @@ The quest is complete. The notes are written. The next quest is already taking s
 
 ---
 
-*If you're building something similar — a content calendar, a redirect management system, or a social media workflow — I'd love to hear how you're approaching it. Drop a message via the [contact page](/contact) or sign up for [The Upkeep](/newsletter) where I share these kinds of build notes more regularly.*
+*If you're building something similar — a content calendar, a redirect management system, or a social media workflow — I'd love to hear how you're approaching it. Drop a message via the [contact page](/contact).*

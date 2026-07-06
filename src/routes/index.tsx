@@ -73,8 +73,8 @@ function HomePage() {
 									className="mb-6 font-bold text-4xl leading-tight md:text-5xl lg:text-6xl"
 									preset="fade-in-blur"
 								>
-									A Builder's Grimoire for{" "}
-									<span className="text-tbc-teal">Modern Development</span>
+									An Occasional Personal Devlog for{" "}
+									<span className="text-tbc-teal">Hobby Projects</span>
 								</TextEffect>
 
 								<TextEffect
@@ -82,17 +82,9 @@ function HomePage() {
 									delay={0.3}
 									preset="fade-in-blur"
 								>
-									Devlogs, experiments, and lessons learned from building
-									<a
-										className="text-tbc-violet hover:underline"
-										href="https://chronomation.com"
-										rel="noopener noreferrer"
-										target="_blank"
-									>
-										Chronomation
-									</a>{" "}
-									and running Ball Lightning AB. Engineering card advantage in
-									real life.
+									Technical experiments, learning notes, and archived project
+									reflections by Nicolas Brulay. Posts are sporadic by design —
+									this is a hobby space, not a product channel.
 								</TextEffect>
 
 								<AnimatedGroup
@@ -128,7 +120,7 @@ function HomePage() {
 										</Link>
 									</Button>
 									<Button asChild size="lg" variant="outline">
-										<Link to="/newsletter">Subscribe to The Upkeep</Link>
+										<Link to="/about">About This Site</Link>
 									</Button>
 								</AnimatedGroup>
 							</div>
@@ -257,30 +249,33 @@ function HomePage() {
 				</AnimatedGroup>
 			</section>
 
-			{/* CTA Section */}
+			{/* Status Section */}
 			<section className="border-border border-t bg-background py-16 md:py-24">
 				<div className="container mx-auto max-w-6xl px-4">
 					<div className="mx-auto max-w-2xl text-center">
-						<h2 className="mb-4 font-semibold text-3xl"> The Upkeep</h2>
-						<p className="mb-2 font-medium text-lg text-secondary">
-							Engineering card advantage in real life
-						</p>
+						<h2 className="mb-4 font-semibold text-3xl">Current Status</h2>
 						<p className="mb-8 text-muted-foreground">
-							Get devlogs from The Builder Coil sharing progress on
+							I work full-time at Hultafors Group as Product &amp; Service Owner
+							— Integrations, focused on integration ownership, modernization,
+							harmonization, strategy, AI, and automation. Ball Lightning AB
+							remains a maintained but mostly passive company presence, and
+							Chronomation is paused and{" "}
 							<a
 								className="text-tbc-violet hover:underline"
-								href="https://chronomation.com"
+								href="https://balllightning.cloud/chronomation"
 								rel="noopener noreferrer"
 								target="_blank"
 							>
-								Chronomation
+								archived under Ball Lightning
 							</a>
-							, real-world agentic building experiments, and lessons learned
-							running Ball Lightning AB.
+							.
 						</p>
-						<Button asChild className="gap-2" size="lg">
-							<Link to="/newsletter">
-								Subscribe to Newsletter
+						<Button asChild className="gap-2" size="lg" variant="outline">
+							<Link
+								to="/news/$slug"
+								params={{ slug: "new-chapter-hultafors-group" }}
+							>
+								Read the full update
 								<ArrowRight className="h-4 w-4" />
 							</Link>
 						</Button>

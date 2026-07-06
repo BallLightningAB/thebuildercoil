@@ -1,10 +1,10 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Globe, Zap } from "lucide-react";
+import { CodesandboxIcon } from "@/components/icons/CodesandboxIcon";
+import { LinkedinIcon } from "@/components/icons/LinkedinIcon";
 import { AnimatedGroup } from "@/components/motion-primitives/animated-group";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { CodesandboxIcon } from "@/components/icons/CodesandboxIcon";
-import { LinkedinIcon } from "@/components/icons/LinkedinIcon";
 
 export const Route = createFileRoute("/about")({
 	component: AboutPage,
@@ -41,7 +41,8 @@ function AboutPage() {
 						About The Builder Coil
 					</h1>
 					<p className="mx-auto max-w-2xl text-lg text-muted-foreground">
-						A builder's grimoire for modern development
+						An occasional personal devlog for hobby projects and technical
+						experiments
 					</p>
 				</div>
 
@@ -49,10 +50,11 @@ function AboutPage() {
 				<div className="prose prose-lg dark:prose-cream mx-auto mb-16 max-w-none prose-headings:font-serif">
 					<h2>What Is The Builder Coil?</h2>
 					<p>
-						The Builder Coil is more than just a blog – it's a living record of
-						building software in public. Here, I document the journey of
-						creating products, experimenting with agentic AI workflows, and
-						sharing the lessons learned along the way.
+						The Builder Coil is an occasional personal devlog. It collects hobby
+						projects, technical experiments, learning notes, and reflections on
+						archived projects. Posts appear when there is something worth
+						writing down — there is no schedule and no product roadmap behind
+						it.
 					</p>
 					<p>
 						The name comes from the intersection of engineering and magic – the
@@ -61,31 +63,38 @@ function AboutPage() {
 						the coil builds on the last.
 					</p>
 
+					<h2>Current Status</h2>
+					<p>
+						I work full-time at Hultafors Group as Product &amp; Service Owner —
+						Integrations. The role covers integration ownership: modernization,
+						harmonization, strategy, AI, automation, and end-to-end technical
+						ownership. Everything published here is personal hobby material and
+						does not represent Hultafors Group.
+					</p>
+					<p>
+						Ball Lightning AB remains open but mostly passive — a company
+						presence, portfolio, and archive. Chronomation is paused and
+						archived under Ball Lightning. This site is not an active product
+						marketing channel and not a consulting channel.
+					</p>
+
 					<h2>What You'll Find Here</h2>
 					<ul>
 						<li>
-							<strong>Building in public:</strong> Real progress updates on
-							projects like{" "}
-							<a
-								className="text-tbc-violet hover:underline"
-								href="https://chronomation.com"
-								rel="noopener noreferrer"
-								target="_blank"
-							>
-								Chronomation
-							</a>
+							<strong>Hobby projects:</strong> Small tools and side builds,
+							shared for the fun of it
 						</li>
 						<li>
 							<strong>Agentic experiments:</strong> Testing AI-assisted
 							development workflows
 						</li>
 						<li>
-							<strong>Engineering decisions:</strong> The reasoning behind
-							technical choices
+							<strong>Learning notes:</strong> The reasoning behind technical
+							choices
 						</li>
 						<li>
-							<strong>Lessons learned:</strong> What works, what doesn't, and
-							why
+							<strong>Archived project reflections:</strong> What worked, what
+							didn't, and why
 						</li>
 					</ul>
 				</div>
@@ -93,7 +102,7 @@ function AboutPage() {
 				{/* Projects Grid */}
 				<div className="mb-16">
 					<h2 className="mb-8 text-center font-semibold font-serif text-2xl">
-						My Projects
+						Projects &amp; Archive
 					</h2>
 					<div className="grid gap-6 md:grid-cols-3">
 						<Card className="transition-all hover:border-tbc-teal/50">
@@ -103,8 +112,8 @@ function AboutPage() {
 							</CardHeader>
 							<CardContent>
 								<p className="text-muted-foreground text-sm">
-									This site – a builder's log and public devlog for Ball
-									Lightning AB.
+									This site – an occasional personal devlog for hobby projects
+									and technical experiments.
 								</p>
 							</CardContent>
 						</Card>
@@ -115,18 +124,18 @@ function AboutPage() {
 								<CardTitle className="font-serif">
 									<a
 										className="text-tbc-violet hover:underline"
-										href="https://chronomation.com"
+										href="https://balllightning.cloud/chronomation"
 										rel="noopener noreferrer"
 										target="_blank"
 									>
-										Chronomation
+										Chronomation (paused)
 									</a>
 								</CardTitle>
 							</CardHeader>
 							<CardContent>
 								<p className="text-muted-foreground text-sm">
-									Multi-tenant content engine that turns work artifacts into
-									blog posts and social content.
+									A productivity platform concept, now paused and archived under
+									Ball Lightning.
 								</p>
 							</CardContent>
 						</Card>
@@ -138,17 +147,9 @@ function AboutPage() {
 							</CardHeader>
 							<CardContent>
 								<p className="text-muted-foreground text-sm">
-									The parent company behind{" "}
-									<a
-										className="text-tbc-violet hover:underline"
-										href="https://chronomation.com"
-										rel="noopener noreferrer"
-										target="_blank"
-									>
-										Chronomation
-									</a>{" "}
-									and The Builder Coil. Software consulting and product
-									development.
+									The company behind The Builder Coil and the Chronomation
+									archive. Maintained but mostly passive — a portfolio and
+									archive presence.
 								</p>
 							</CardContent>
 						</Card>
@@ -177,22 +178,15 @@ function AboutPage() {
 									Nicolas Brulay
 								</h3>
 								<p className="mb-4 text-sm text-muted-foreground">
-									Founder, Ball Lightning AB &middot; Mölndal, Sweden
+									Product &amp; Service Owner — Integrations, Hultafors Group
+									&middot; Mölndal, Sweden
 								</p>
 								<p className="text-muted-foreground leading-relaxed">
-									Building{" "}
-									<a
-										className="text-tbc-violet hover:underline"
-										href="https://chronomation.com"
-										rel="noopener noreferrer"
-										target="_blank"
-									>
-										Chronomation
-									</a>{" "}
-									in the open — documenting every decision, every experiment,
-									every lesson on The Builder Coil. Background in project
-									management and web development, now channeling it all into a
-									platform that makes the solo builder's life easier.
+									Working full-time on integration ownership — modernization,
+									harmonization, strategy, AI, and automation. Outside work, I
+									tinker with hobby projects and write the occasional devlog
+									here. Founder of Ball Lightning AB, which now serves as a
+									passive company presence and archive.
 								</p>
 								<div className="mt-4 flex gap-3">
 									<Button asChild className="gap-2" size="sm" variant="outline">
@@ -207,12 +201,12 @@ function AboutPage() {
 									</Button>
 									<Button asChild className="gap-2" size="sm" variant="outline">
 										<a
-											href="https://chronomation.com?utm_source=thebuildercoil&utm_medium=website&utm_campaign=about_builder"
+											href="https://balllightning.cloud"
 											rel="noopener noreferrer"
 											target="_blank"
 										>
 											<ArrowRight className="h-3.5 w-3.5" />
-											Chronomation
+											Ball Lightning AB
 										</a>
 									</Button>
 								</div>
@@ -221,23 +215,24 @@ function AboutPage() {
 					</div>
 				</div>
 
-				{/* CTA */}
+				{/* Reading pointer */}
 				<div className="rounded-lg border border-border bg-background p-8 text-center">
 					<h2 className="mb-4 font-semibold font-serif text-2xl">
-						Want to stay updated?
+						Want to read more?
 					</h2>
 					<p className="mb-6 text-muted-foreground">
-						Subscribe to The Upkeep newsletter for devlogs and updates.
+						There is no list to join and no schedule — the blog and news archive
+						are the whole site.
 					</p>
 					<div className="flex flex-col justify-center gap-4 sm:flex-row">
 						<Button asChild className="gap-2" size="lg">
-							<Link to="/newsletter">
-								Subscribe to Newsletter
+							<Link to="/blog">
+								Browse the Blog
 								<ArrowRight className="h-4 w-4" />
 							</Link>
 						</Button>
 						<Button asChild size="lg" variant="outline">
-							<Link to="/contact">Get in Touch</Link>
+							<Link to="/contact">Contact</Link>
 						</Button>
 					</div>
 				</div>

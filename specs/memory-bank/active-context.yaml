@@ -1,7 +1,7 @@
 meta:
-  release: 0.1.11.20
+  release: 0.1.12
   repo: github.com/BallLightningAB/thebuildercoil
-  pdd_version: "v0.2.1"
+  pdd_version: "v0.3.0"
   current_changes: see specs/current-changes/
 guardrails:
   non_goals: []
@@ -14,22 +14,33 @@ guardrails:
   # - I3Docs / I3UI / I3Fix / I3Test / I3Biome: tags for documentation, UI polish, minor fixes, tests and Biome/tooling work not tied to a single deliverable
   roadmap:
     current:
-    next_steps:
-      - id: chronomation-integration
-        issue: "#TBD"
-        title: "Integrate with Chronomation API (Phase 2)"
-        status: planned
-                links:
+    next_steps: []
+    # Note: the former "Integrate with Chronomation API (Phase 2)" next step was
+    # retired in v0.1.12 — Chronomation is paused and archived under Ball Lightning.
+    recent_done:
+      - id: ai-renovation-buildercoil
+        issue: "Renovation"
+        title: "AI renovation: reposition The Builder Coil as an occasional personal devlog"
+        status: done
+        links:
           issue: ""
           pr: ""
-        deliverables: []
+        deliverables:
+          - "[RENOD1] Remove newsletter (The Upkeep) routes, components, lib, and env vars"
+          - "[RENOD2] Neutralize contact page (static, no form, no Resend)"
+          - "[RENOD3] Reposition home/about/header/footer/metadata/JSON-LD copy"
+          - "[RENOD4] Archive-frame Chronomation references (balllightning.cloud/chronomation)"
+          - "[RENOD5] Publish status post news/new-chapter-hultafors-group"
+          - "[RENOD6] Edit historical posts to remove newsletter CTAs and live chronomation.com links"
         est:
-          dev_h: TBD
-          test_h: TBD
+          dev_h: 6
+          test_h: 1
         sub_issues: []
         remaining_deliverables: []
-        progress_log: []
-    recent_done:
+        progress_log:
+          - covers: [RENOD1, RENOD2] note: "Deleted src/routes/newsletter, src/components/newsletter, src/lib/newsletter, src/lib/contact; removed resend + @react-email/components deps and newsletter env vars; contact page is now static."
+          - covers: [RENOD3, RENOD4] note: "Repositioned hero/about/footer copy to hobby devlog framing; Chronomation now a CreativeWork (Archived) in root entity graph pointing at balllightning.cloud/chronomation."
+          - covers: [RENOD5, RENOD6] note: "Added 2026-07-03 status post; added archival notes to launch posts; removed The Upkeep CTAs from 7 posts; regenerated sitemap without /newsletter."
       - id: balllightning-cloud-prep
         issue: "#9"
         title: "Complete Ball Lightning cloud site rebuild preparation"
@@ -52,7 +63,6 @@ guardrails:
           - covers: [I9D2] note: "Designed architecture using TanStack Start + React 19 with YAML-based brand system references and feed endpoint integration."
           - covers: [I9D3] note: "Planned core pages with wireframes and content structure aligned with Ball Lightning's service offerings."
           - covers: [I9D4] note: "Prepared content system using TBC feed endpoint for news/blog integration and dynamic content updates."
-    recent_done:
       - id: balllightning-feed-endpoint
         issue: "#8"
         title: "feat(api): add public feed endpoint for Ball Lightning integration"

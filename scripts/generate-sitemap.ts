@@ -18,7 +18,6 @@ const STATIC_PAGES = [
 	{ path: "/news", priority: "0.8", changefreq: "weekly" },
 	{ path: "/about", priority: "0.7", changefreq: "monthly" },
 	{ path: "/contact", priority: "0.6", changefreq: "monthly" },
-	{ path: "/newsletter", priority: "0.7", changefreq: "monthly" },
 ];
 
 function formatDate(date: string): string {

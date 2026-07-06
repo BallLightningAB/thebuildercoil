@@ -41,5 +41,3 @@ Agent Skills Updater is the first publicly available tool in the Chronomation ec
 ## What's Next
 
 I'm actively developing this tool and have a public [project board](https://github.com/users/BallLightningAB/projects/7) tracking what's coming next. If you use AI coding assistants with skills, I'd genuinely like to hear what would make this tool more useful for your workflow. Open an [issue on GitHub](https://github.com/BallLightningAB/agent-skills-updater/issues), or reach out directly.
-
-For updates on this and other Ball Lightning AB projects, subscribe to [The Upkeep](https://thebuildercoil.com/newsletter) newsletter.

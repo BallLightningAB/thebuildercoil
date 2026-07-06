@@ -14,11 +14,10 @@ const SITE_NAME = "The Builder Coil";
 const ORGANIZATION_NAME = "Ball Lightning AB";
 const AUTHOR_NAME = "Nicolas Brulay";
 const BALL_LIGHTNING_URL = "https://balllightning.cloud";
-const CHRONOMATION_URL = "https://chronomation.com";
+const CHRONOMATION_ARCHIVE_URL = `${BALL_LIGHTNING_URL}/chronomation`;
 
 const ORGANIZATION_ID = `${BALL_LIGHTNING_URL}/#organization`;
 const WEBSITE_ID = `${SITE_URL}/#website`;
-const CHRONOMATION_PRODUCT_ID = `${CHRONOMATION_URL}/#product`;
 
 export function generateRootEntityGraphSchema() {
 	return {
@@ -30,7 +29,7 @@ export function generateRootEntityGraphSchema() {
 				name: ORGANIZATION_NAME,
 				url: BALL_LIGHTNING_URL,
 				description:
-					"Software consulting and product development company behind Chronomation and The Builder Coil.",
+					"A maintained but mostly passive company presence, portfolio, and archive behind The Builder Coil and the archived Chronomation concept.",
 				founder: {
 					"@type": "Person",
 					name: AUTHOR_NAME,
@@ -46,7 +45,7 @@ export function generateRootEntityGraphSchema() {
 				"@id": WEBSITE_ID,
 				name: SITE_NAME,
 				description:
-					"A builder's grimoire for modern development. Devlogs, experiments, and lessons from Ball Lightning AB.",
+					"An occasional personal devlog by Nicolas Brulay for hobby projects, technical experiments, learning notes, and archived project reflections.",
 				url: SITE_URL,
 				publisher: {
 					"@id": ORGANIZATION_ID,
@@ -61,13 +60,14 @@ export function generateRootEntityGraphSchema() {
 				},
 			},
 			{
-				"@type": "Product",
-				"@id": CHRONOMATION_PRODUCT_ID,
-				name: "Chronomation",
+				"@type": "CreativeWork",
+				"@id": `${CHRONOMATION_ARCHIVE_URL}/#creativework`,
+				name: "Chronomation (archived)",
 				description:
-					"Multi-tenant content engine that turns work artifacts into narrative blog posts and social content.",
-				url: CHRONOMATION_URL,
-				brand: {
+					"A productivity platform concept, now paused and archived under Ball Lightning AB.",
+				url: CHRONOMATION_ARCHIVE_URL,
+				creativeWorkStatus: "Archived",
+				publisher: {
 					"@id": ORGANIZATION_ID,
 				},
 			},
@@ -85,7 +85,7 @@ export function generateWebSiteSchema() {
 		"@id": WEBSITE_ID,
 		name: SITE_NAME,
 		description:
-			"A builder's grimoire for modern development. Devlogs, experiments, and lessons from Ball Lightning AB.",
+			"An occasional personal devlog by Nicolas Brulay for hobby projects, technical experiments, learning notes, and archived project reflections.",
 		url: SITE_URL,
 		publisher: {
 			"@id": ORGANIZATION_ID,
@@ -113,7 +113,7 @@ export function generateOrganizationSchema() {
 		url: BALL_LIGHTNING_URL,
 		logo: `${SITE_URL}/logo.png`,
 		description:
-			"Software consulting and product development company behind Chronomation and The Builder Coil.",
+			"A maintained but mostly passive company presence, portfolio, and archive behind The Builder Coil and the archived Chronomation concept.",
 		founder: {
 			"@type": "Person",
 			name: AUTHOR_NAME,
@@ -178,7 +178,7 @@ export function generateBlogSchema() {
 		"@type": "Blog",
 		name: `${SITE_NAME} Blog`,
 		description:
-			"Devlogs, experiments, and lessons from building Chronomation and running Ball Lightning AB.",
+			"Occasional devlogs on hobby projects, technical experiments, and learning notes.",
 		url: `${SITE_URL}/blog`,
 		publisher: {
 			"@id": ORGANIZATION_ID,
@@ -192,7 +192,7 @@ export function generateNewsSchema() {
 		"@type": "CollectionPage",
 		name: `${SITE_NAME} News`,
 		description:
-			"Updates, announcements, and press releases from Ball Lightning AB.",
+			"Occasional status updates and announcements from The Builder Coil.",
 		url: `${SITE_URL}/news`,
 		publisher: {
 			"@id": ORGANIZATION_ID,

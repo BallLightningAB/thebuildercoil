@@ -20,7 +20,7 @@ export const Route = createFileRoute("/news/")({
 			...generateMeta({
 				title: "Latest News",
 				description:
-					"Updates, announcements, and press releases from Ball Lightning AB.",
+					"Occasional status updates and announcements from The Builder Coil.",
 				url: `${SITE_URL}/news`,
 				type: "website",
 			}),
@@ -77,7 +77,7 @@ function NewsIndexPage() {
 						delay={0.2}
 						preset="fade-in-blur"
 					>
-						Updates, announcements, and press releases from Ball Lightning AB.
+						Occasional status updates and announcements from The Builder Coil.
 					</TextEffect>
 				</div>
 

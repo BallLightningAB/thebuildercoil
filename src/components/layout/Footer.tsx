@@ -1,5 +1,4 @@
 import { Link } from "@tanstack/react-router";
-import { NewsletterCTA } from "@/components/newsletter/NewsletterCta";
 
 const footerLinks = {
 	site: [
@@ -10,10 +9,14 @@ const footerLinks = {
 		{ href: "/contact", label: "Contact" },
 	],
 	resources: [
-		{ href: "https://chronomation.com", label: "Chronomation", external: true },
 		{
 			href: "https://balllightning.cloud",
 			label: "Ball Lightning AB",
+			external: true,
+		},
+		{
+			href: "https://balllightning.cloud/chronomation",
+			label: "Chronomation (archived)",
 			external: true,
 		},
 		{
@@ -30,7 +33,7 @@ export function Footer() {
 	return (
 		<footer className="border-border border-t bg-background">
 			<div className="container mx-auto max-w-6xl px-4 py-12">
-				<div className="grid gap-8 md:grid-cols-4">
+				<div className="grid gap-8 md:grid-cols-3">
 					{/* Brand */}
 					<div className="md:col-span-1">
 						<Link className="flex items-center gap-2" to="/">
@@ -44,8 +47,9 @@ export function Footer() {
 							<span className="font-semibold text-lg">The Builder Coil</span>
 						</Link>
 						<p className="mt-3 text-muted-foreground text-sm">
-							A builder's grimoire for modern development. Devlogs, experiments,
-							and lessons from Ball Lightning AB.
+							An occasional personal devlog by Nicolas Brulay for hobby
+							projects, technical experiments, learning notes, and archived
+							project reflections.
 						</p>
 					</div>
 
@@ -95,11 +99,6 @@ export function Footer() {
 							))}
 						</ul>
 					</div>
-
-					{/* Newsletter CTA */}
-					<div>
-						<NewsletterCTA compact />
-					</div>
 				</div>
 
 				{/* Bottom */}
@@ -108,15 +107,7 @@ export function Footer() {
 						© {currentYear} Ball Lightning AB. All rights reserved.
 					</p>
 					<p className="text-muted-foreground text-sm">
-						Powered by{" "}
-						<a
-							className="text-tbc-teal hover:underline"
-							href="https://chronomation.com"
-							rel="noopener noreferrer"
-							target="_blank"
-						>
-							Chronomation
-						</a>
+						A personal hobby site — posts are sporadic by design.
 					</p>
 				</div>
 			</div>

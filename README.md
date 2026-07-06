@@ -1,10 +1,7 @@
-The Builder Coil is the public builder's log of Nicolas Brulay/Ball Lightning AB, documenting the journey of this small agentic development studio.
-This includes the creation of Chronomation.
+The Builder Coil is the occasional personal devlog of Nicolas Brulay — hobby projects, technical experiments, learning notes, and archived project reflections.
 
 🌀 Vision
-Chronomation is a multi-tenant content engine that turns raw work artifacts (commits, notes, emails, etc.) into structured blog posts and social content for SMBs, creators, and influencers.
-
-The Builder Coil (TBC) is the first tenant and public case study: a builder's log for Ball Lightning AB, powered by Chronomation's APIs.
+An honest, low-pressure hobby space. Posts appear when there is something worth writing down — no schedule, no funnels, no product roadmap. Earlier posts documenting Chronomation (a productivity platform concept, now paused and archived under Ball Lightning AB) remain online as a historical record.
 
 📚 Shared Brand System
 This project is part of the Ball Lightning AB ecosystem and shares architecture, policies, and design systems with other projects. See the [Ball Lightning Brand System](https://github.com/BallLightningAB/brand-system) for shared resources:
@@ -14,8 +11,8 @@ This project is part of the Ball Lightning AB ecosystem and shares architecture,
 
 🎯 Purpose
 The Builder Coil serves two main goals:
-Transparency & Community – Share the journey of Ball Lightning AB.
-Product Dogfooding – Test and showcase Chronomation in a real-world, production setting.
+Personal record – Keep an honest log of hobby builds and experiments.
+Sharing – Make lessons learned available to anyone who finds them useful.
 
 🧠 Tech Stack
 Tanstack Start, TailwindCSS, Shadcn UI, Biome + Ultracite
@@ -43,7 +40,7 @@ import { z } from "@/lib/validation/zod";
 
 ## Content Management (Phase 1)
 
-In Phase 1, The Builder Coil uses a local JSON-based content system. This will migrate to the Chronomation API in Phase 2.
+The Builder Coil uses a local JSON-based content system. (An earlier Phase 2 plan to migrate to the Chronomation API was retired when Chronomation was paused.)
 
 ### Content Flow
 
@@ -151,12 +148,9 @@ Same process as blog posts, but place files in `content/news/` and set `type: "n
   richer video is to upload to YouTube and embed via URL (see PDD
   `video_strategy.phase_1_tbc_only`).
 
-Phase 2 of the media strategy (Chronomation-managed object storage, shared
-`media.chronomation.com` host, and optional per-tenant vanity media domains)
-is defined in the [Shared Architecture](https://github.com/BallLightningAB/brand-system/blob/main/shared-architecture.yaml) under
-`architecture.media_hosting_strategy`. When that is implemented, `heroImage` and inline
-media URLs will typically point at Chronomation/CDN URLs instead of
-`/media/...`, but the rendering code and content JSON shape remain the same.
+An earlier Phase 2 media strategy (Chronomation-managed object storage with a
+shared media host) was retired when Chronomation was paused; static files under
+`public/media` remain the canonical approach.
 
 ### Endpoints
 
