@@ -1,6 +1,6 @@
 # Builder Coil AI Renovation — Implementation Summary
 
-Date: 2026-07-06 · Branch: `codex/ai-renovation-buildercoil` · Version: v0.1.12
+Date: 2026-07-27 · Branch: `codex/ai-renovation-buildercoil` · Version: v0.1.13
 
 ## Removed
 
@@ -33,6 +33,11 @@ Date: 2026-07-06 · Branch: `codex/ai-renovation-buildercoil` · Version: v0.1.1
 - `active-context.yaml` → release 0.1.12, renovation entry, retired Chronomation next step, fixed duplicate `recent_done` key
 - `CHANGELOG.yaml` → v0.1.12 entry
 - README repositioned; `AGENTS.md` rules path fixed (`.devin/rules`)
+
+## Follow-up Content Refinement
+
+- Rewrote `src/data/news/2026-07-03-new-chapter-hultafors-group.md` in a direct first-person voice, removing generic AI-style framing and announcement language.
+- Updated the matching JSON summary and added `/media/2026-07-03-new-chapter-hultafors-group.jpg` as the hero image with descriptive alt text.
 
 ## Validation
 
