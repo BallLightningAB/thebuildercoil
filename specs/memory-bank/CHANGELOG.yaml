@@ -1,8 +1,20 @@
 entries:
+  - date: "2026-07-27"
+    version: 0.1.13
+    issue: "Content"
+    commit: "pending"
+    status: done
+    title: "fix(content): revise Hultafors status article and add hero image"
+    details: |-
+      - Rewrote the Hultafors Group status article in a direct first-person voice, removing generic AI-style framing and unnecessary announcement language
+      - Added the Hultafors integration image as the article hero image with descriptive alt text
+      - Updated the post summary used by the feed and SEO metadata
+
+      Refs: v0.1.13 hultafors-status content-polish hero-image
   - date: "2026-07-06"
     version: 0.1.12
     issue: "Renovation"
-    commit: "pending"
+    commit: "2e9892a"
     status: done
     title: "feat(site): AI renovation — reposition as occasional personal devlog"
     details: |-

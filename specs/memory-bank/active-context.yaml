@@ -1,5 +1,5 @@
 meta:
-  release: 0.1.12
+  release: 0.1.13
   repo: github.com/BallLightningAB/thebuildercoil
   pdd_version: "v0.3.0"
   current_changes: see specs/current-changes/
@@ -18,6 +18,24 @@ guardrails:
     # Note: the former "Integrate with Chronomation API (Phase 2)" next step was
     # retired in v0.1.12 — Chronomation is paused and archived under Ball Lightning.
     recent_done:
+      - id: hultafors-status-article-polish
+        issue: "Content"
+        title: "Revise Hultafors status article and add hero image"
+        status: done
+        links:
+          issue: ""
+          pr: ""
+        deliverables:
+          - "[HULTAFORSD1] Rewrite status article in direct first-person voice"
+          - "[HULTAFORSD2] Add article hero image and accessible metadata"
+        est:
+          dev_h: 0.5
+          test_h: 0.25
+        sub_issues: []
+        remaining_deliverables: []
+        progress_log:
+          - covers: [HULTAFORSD1] note: "Removed generic AI-style framing and revised the article to use direct, concrete first-person wording."
+          - covers: [HULTAFORSD2] note: "Added the Hultafors integration image as the article hero image with descriptive alt text."
       - id: ai-renovation-buildercoil
         issue: "Renovation"
         title: "AI renovation: reposition The Builder Coil as an occasional personal devlog"
