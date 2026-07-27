@@ -1,11 +1,11 @@
 import { Link } from "@tanstack/react-router";
 import { Menu } from "lucide-react";
 import { useState } from "react";
-import { ThemeToggle } from "@/components/theme-toggle";
-import { Button } from "@/components/ui/button";
 import { GithubIcon } from "@/components/icons/GithubIcon";
 import { LinkedinIcon } from "@/components/icons/LinkedinIcon";
 import { TwitterIcon } from "@/components/icons/TwitterIcon";
+import { ThemeToggle } from "@/components/theme-toggle";
+import { Button } from "@/components/ui/button";
 import {
 	Sheet,
 	SheetContent,
@@ -21,7 +21,6 @@ const navLinks = [
 	{ href: "/news", label: "News" },
 	{ href: "/about", label: "About" },
 	{ href: "/contact", label: "Contact" },
-	{ href: "/newsletter", label: "The Upkeep", highlight: true },
 ];
 
 const socialLinks = [
@@ -66,15 +65,11 @@ export function Header() {
 				<nav className="hidden items-center gap-6 md:flex">
 					{navLinks.map((link) => (
 						<Link
-							className={
-								link.highlight
-									? "font-medium text-primary text-sm transition-colors hover:text-primary/80"
-									: "font-medium text-muted-foreground text-sm transition-colors hover:text-foreground"
-							}
+							className="font-medium text-muted-foreground text-sm transition-colors hover:text-foreground"
 							key={link.href}
 							to={link.href}
 						>
-							{link.highlight ? `🌀 ${link.label}` : link.label}
+							{link.label}
 						</Link>
 					))}
 				</nav>
@@ -117,16 +112,12 @@ export function Header() {
 							<nav className="mt-8 flex flex-col gap-4">
 								{navLinks.map((link) => (
 									<Link
-										className={
-											link.highlight
-												? "font-medium text-primary text-lg transition-colors hover:text-primary/80"
-												: "font-medium text-foreground text-lg transition-colors hover:text-tbc-teal"
-										}
+										className="font-medium text-foreground text-lg transition-colors hover:text-tbc-teal"
 										key={link.href}
 										onClick={() => setMobileMenuOpen(false)}
 										to={link.href}
 									>
-										{link.highlight ? `🌀 ${link.label}` : link.label}
+										{link.label}
 									</Link>
 								))}
 							</nav>

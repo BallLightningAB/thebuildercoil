@@ -2,11 +2,12 @@ pdd:
   meta:
     name: "The Builder Coil — PDD"
     code_name: "thebuildercoil-pdd"
-    version: '0.2.1'
+    version: '0.3.0'
     repo: "https://github.com/BallLightningAB/thebuildercoil"
     purpose: >-
       This document is the Product Definition Document (PDD) for The Builder
-      Coil, a public builder's log for Ball Lightning AB.
+      Coil, an occasional personal devlog by Nicolas Brulay, published under
+      Ball Lightning AB.
       It's used in conjunction with the https://github.com/BallLightningAB/brand-system/blob/main/shared-ecosystem-pdd.yaml,
       the https://github.com/BallLightningAB/brand-system/blob/main/shared-architecture.yaml and
       the https://github.com/BallLightningAB/brand-system/blob/main/shared-design-system.yaml documents
@@ -24,16 +25,25 @@ pdd:
 
   product:
     vision: |
-      The Builder Coil is a public builder’s log for Ball Lightning AB.
+      The Builder Coil is an occasional personal devlog for hobby projects,
+      technical experiments, learning notes, and archived project reflections.
+      It is not a product marketing channel and not a consulting channel.
+      Ball Lightning AB is a maintained but mostly passive company presence;
+      Chronomation is paused and archived under balllightning.cloud/chronomation.
 
   scope:
-    in_scope_mvp:
+    in_scope:
       thebuildercoil:
         - Frontend-only app that:
-          - Calls Chronomation’s public APIs with tenant/channel slugs.
+          - Loads posts from the local JSON/Markdown content system (src/data).
           - Renders blog index, blog post, news index/detail.
-          - Renders mini “about” and contact form (Resend).
+          - Renders a static “about” and a static contact page (email + links).
+        - Public /api/feed endpoint consumed by the Ball Lightning site.
         - No booking calendar; refer to balllightning where needed.
+    retired:
+      - Chronomation API integration (Phase 2) — retired when Chronomation was paused (2026-07).
+      - Newsletter “The Upkeep” signup with double opt-in — removed (2026-07).
+      - Contact form via Resend — replaced by static contact info (2026-07).
 
   architecture:
     reference: "shared-architecture.yaml#architecture"
@@ -48,7 +58,4 @@ pdd:
     tbc_frontend_client:
       - key: "VITE_APP_NAME"             # "The Builder Coil"
       - key: "VITE_APP_BASE_URL"         # e.g. https://thebuildercoil.com
-      - key: "VITE_CHRONOMATION_API_URL" # e.g. https://chronomation.com
-      - key: "VITE_TENANT_SLUG"          # "ball-lightning"
-      - key: "VITE_CHANNEL_SLUG"         # "tbc-blog"
       - key: "VITE_TBC_ENV"              # dev|preview|prod

@@ -1,15 +1,15 @@
-import { Layout } from "@/components/layout/Layout";
-import { ThemeProvider } from "@/components/theme-provider";
-import {
-	generateRootEntityGraphSchema,
-	jsonLdScript,
-} from "@/lib/seo/structured-data";
 import {
 	createRootRoute,
 	HeadContent,
 	Outlet,
 	Scripts,
 } from "@tanstack/react-router";
+import { Layout } from "@/components/layout/Layout";
+import { ThemeProvider } from "@/components/theme-provider";
+import {
+	generateRootEntityGraphSchema,
+	jsonLdScript,
+} from "@/lib/seo/structured-data";
 import appCss from "../styles.css?url";
 
 function RootNotFound() {
@@ -39,12 +39,12 @@ export const Route = createRootRoute({
 				content: "width=device-width, initial-scale=1",
 			},
 			{
-				title: "The Builder Coil | Builder's Grimoire",
+				title: "The Builder Coil | Occasional Personal Devlog",
 			},
 			{
 				name: "description",
 				content:
-					"A builder's grimoire for modern development. Devlogs, experiments, and lessons from Ball Lightning AB.",
+					"An occasional personal devlog by Nicolas Brulay for hobby projects, technical experiments, learning notes, and archived project reflections.",
 			},
 		],
 		links: [

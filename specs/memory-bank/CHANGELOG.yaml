@@ -1,8 +1,25 @@
 entries:
+  - date: "2026-07-06"
+    version: 0.1.12
+    issue: "Renovation"
+    commit: "pending"
+    status: done
+    title: "feat(site): AI renovation — reposition as occasional personal devlog"
+    details: |-
+      - Removed newsletter (The Upkeep): routes (/newsletter, /newsletter/confirm, /newsletter/unsubscribe), NewsletterCta component, src/lib/newsletter, env vars, sitemap entry, and all header/footer/page CTAs
+      - Neutralized contact: static contact page (email + links), deleted src/lib/contact + Resend form flow; dropped resend and @react-email/components dependencies
+      - Repositioned copy sitewide: hero, about (with Hultafors Group status block), footer, blog/news index descriptions, root meta title/description
+      - Archive-framed Chronomation: all chronomation.com links now point to balllightning.cloud/chronomation; root entity graph Product node replaced with CreativeWork (Archived); org description no longer "consulting"
+      - Added status post news/new-chapter-hultafors-group (2026-07-03) covering Hultafors role, Chronomation pause, Ball Lightning passive status, and newsletter/contact-form removal
+      - Edited 9 historical posts: archival notes on launch posts, removed The Upkeep subscribe CTAs, genericized media.chronomation.com example
+      - Updated README, .env.example, generate-sitemap.ts; regenerated sitemap.xml and routeTree.gen.ts
+      - Fixed AGENTS.md rules-path mismatch (.windsurf/rules → .devin/rules; removed nonexistent paraglide.md reference)
+
+      Refs: v0.1.12 renovation devlog repositioning newsletter-removal chronomation-archive hultafors
   - date: "2026-07-03"
     version: 0.1.11.20
     issue: "Chore"
-    commit: "pending"
+    commit: "9db01a7"
     status: done
     title: "chore(deps): merge Dependabot PRs #40 and #41"
     details: |-

@@ -12,11 +12,8 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as NewsletterIndexRouteImport } from './routes/newsletter/index'
 import { Route as NewsIndexRouteImport } from './routes/news/index'
 import { Route as BlogIndexRouteImport } from './routes/blog/index'
-import { Route as NewsletterUnsubscribeRouteImport } from './routes/newsletter/unsubscribe'
-import { Route as NewsletterConfirmRouteImport } from './routes/newsletter/confirm'
 import { Route as NewsSlugRouteImport } from './routes/news/$slug'
 import { Route as BlogSlugRouteImport } from './routes/blog/$slug'
 import { Route as ApiFeedRouteImport } from './routes/api/feed'
@@ -36,11 +33,6 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const NewsletterIndexRoute = NewsletterIndexRouteImport.update({
-  id: '/newsletter/',
-  path: '/newsletter/',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const NewsIndexRoute = NewsIndexRouteImport.update({
   id: '/news/',
   path: '/news/',
@@ -49,16 +41,6 @@ const NewsIndexRoute = NewsIndexRouteImport.update({
 const BlogIndexRoute = BlogIndexRouteImport.update({
   id: '/blog/',
   path: '/blog/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const NewsletterUnsubscribeRoute = NewsletterUnsubscribeRouteImport.update({
-  id: '/newsletter/unsubscribe',
-  path: '/newsletter/unsubscribe',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const NewsletterConfirmRoute = NewsletterConfirmRouteImport.update({
-  id: '/newsletter/confirm',
-  path: '/newsletter/confirm',
   getParentRoute: () => rootRouteImport,
 } as any)
 const NewsSlugRoute = NewsSlugRouteImport.update({
@@ -84,11 +66,8 @@ export interface FileRoutesByFullPath {
   '/api/feed': typeof ApiFeedRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/news/$slug': typeof NewsSlugRoute
-  '/newsletter/confirm': typeof NewsletterConfirmRoute
-  '/newsletter/unsubscribe': typeof NewsletterUnsubscribeRoute
   '/blog/': typeof BlogIndexRoute
   '/news/': typeof NewsIndexRoute
-  '/newsletter/': typeof NewsletterIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -97,11 +76,8 @@ export interface FileRoutesByTo {
   '/api/feed': typeof ApiFeedRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/news/$slug': typeof NewsSlugRoute
-  '/newsletter/confirm': typeof NewsletterConfirmRoute
-  '/newsletter/unsubscribe': typeof NewsletterUnsubscribeRoute
   '/blog': typeof BlogIndexRoute
   '/news': typeof NewsIndexRoute
-  '/newsletter': typeof NewsletterIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -111,11 +87,8 @@ export interface FileRoutesById {
   '/api/feed': typeof ApiFeedRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/news/$slug': typeof NewsSlugRoute
-  '/newsletter/confirm': typeof NewsletterConfirmRoute
-  '/newsletter/unsubscribe': typeof NewsletterUnsubscribeRoute
   '/blog/': typeof BlogIndexRoute
   '/news/': typeof NewsIndexRoute
-  '/newsletter/': typeof NewsletterIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -126,11 +99,8 @@ export interface FileRouteTypes {
     | '/api/feed'
     | '/blog/$slug'
     | '/news/$slug'
-    | '/newsletter/confirm'
-    | '/newsletter/unsubscribe'
     | '/blog/'
     | '/news/'
-    | '/newsletter/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -139,11 +109,8 @@ export interface FileRouteTypes {
     | '/api/feed'
     | '/blog/$slug'
     | '/news/$slug'
-    | '/newsletter/confirm'
-    | '/newsletter/unsubscribe'
     | '/blog'
     | '/news'
-    | '/newsletter'
   id:
     | '__root__'
     | '/'
@@ -152,11 +119,8 @@ export interface FileRouteTypes {
     | '/api/feed'
     | '/blog/$slug'
     | '/news/$slug'
-    | '/newsletter/confirm'
-    | '/newsletter/unsubscribe'
     | '/blog/'
     | '/news/'
-    | '/newsletter/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -166,11 +130,8 @@ export interface RootRouteChildren {
   ApiFeedRoute: typeof ApiFeedRoute
   BlogSlugRoute: typeof BlogSlugRoute
   NewsSlugRoute: typeof NewsSlugRoute
-  NewsletterConfirmRoute: typeof NewsletterConfirmRoute
-  NewsletterUnsubscribeRoute: typeof NewsletterUnsubscribeRoute
   BlogIndexRoute: typeof BlogIndexRoute
   NewsIndexRoute: typeof NewsIndexRoute
-  NewsletterIndexRoute: typeof NewsletterIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -196,13 +157,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/newsletter/': {
-      id: '/newsletter/'
-      path: '/newsletter'
-      fullPath: '/newsletter/'
-      preLoaderRoute: typeof NewsletterIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/news/': {
       id: '/news/'
       path: '/news'
@@ -215,20 +169,6 @@ declare module '@tanstack/react-router' {
       path: '/blog'
       fullPath: '/blog/'
       preLoaderRoute: typeof BlogIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/newsletter/unsubscribe': {
-      id: '/newsletter/unsubscribe'
-      path: '/newsletter/unsubscribe'
-      fullPath: '/newsletter/unsubscribe'
-      preLoaderRoute: typeof NewsletterUnsubscribeRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/newsletter/confirm': {
-      id: '/newsletter/confirm'
-      path: '/newsletter/confirm'
-      fullPath: '/newsletter/confirm'
-      preLoaderRoute: typeof NewsletterConfirmRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/news/$slug': {
@@ -262,11 +202,8 @@ const rootRouteChildren: RootRouteChildren = {
   ApiFeedRoute: ApiFeedRoute,
   BlogSlugRoute: BlogSlugRoute,
   NewsSlugRoute: NewsSlugRoute,
-  NewsletterConfirmRoute: NewsletterConfirmRoute,
-  NewsletterUnsubscribeRoute: NewsletterUnsubscribeRoute,
   BlogIndexRoute: BlogIndexRoute,
   NewsIndexRoute: NewsIndexRoute,
-  NewsletterIndexRoute: NewsletterIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

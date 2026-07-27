@@ -54,7 +54,7 @@ Here's how I turned those 39 errors into zero while maintaining productivity:
 Together with my AI assistant (Hubert) I have implemented features across my codebase, including:
 - Contact form types
 - GitHub API interfaces
-- Newsletter service definitions
+- Email service definitions
 - UI component props
 
 ### 2. Biome Validates and Reports

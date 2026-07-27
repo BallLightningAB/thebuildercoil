@@ -1,6 +1,8 @@
 # Chronomation.com Is Live
 
-[Chronomation](https://chronomation.com) has a home. The marketing site is live — the first public face of a module-based productivity platform being built for solo-entrepreneurs and small teams.
+> **Archived (July 2026):** Chronomation has since been paused, and its story is preserved in the [Chronomation archive on Ball Lightning](https://balllightning.cloud/chronomation). This post is kept as a historical record of the launch — see [the status update](/news/new-chapter-hultafors-group) for the full context.
+
+[Chronomation](https://balllightning.cloud/chronomation) has a home. The marketing site is live — the first public face of a module-based productivity platform being built for solo-entrepreneurs and small teams.
 
 ## The Problem Chronomation Solves
 
@@ -41,11 +43,9 @@ The full platform is in active development. Near-term priorities:
 - Building the content engine that will eventually power The Builder Coil itself
 - Expanding the site as the platform takes shape
 
-For updates on Chronomation and the Ball Lightning AB ecosystem, subscribe to [The Upkeep](https://thebuildercoil.com/newsletter) newsletter.
-
 ## Links
 
-- **Chronomation**: [chronomation.com](https://chronomation.com)
+- **Chronomation archive**: [balllightning.cloud/chronomation](https://balllightning.cloud/chronomation)
 - **The Builder Coil**: [thebuildercoil.com](https://thebuildercoil.com)
 - **LinkedIn**: [Nicolas Brulay](https://www.linkedin.com/in/nicolas-brulay-vip/)
 - **GitHub**: [BallLightningAB](https://github.com/BallLightningAB)

@@ -93,4 +93,4 @@ But what I'm most interested in is hearing from other people who use AI coding a
 
 If you have thoughts, open an [issue on GitHub](https://github.com/BallLightningAB/agent-skills-updater/issues) or reach out directly — I read everything.
 
-For updates on this and other projects, subscribe to [The Upkeep](https://thebuildercoil.com/newsletter) newsletter. And if you missed the release announcement, it's [here](/news/agent-skills-updater-first-release).
+If you missed the release announcement, it's [here](/news/agent-skills-updater-first-release).

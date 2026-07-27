@@ -26,13 +26,14 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://thebuildercoil.com/newsletter</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://thebuildercoil.com/blog/chronomation-architecture-decisions</loc>
     <lastmod>2025-11-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://thebuildercoil.com/blog/building-with-tanstack-start</loc>
+    <lastmod>2025-11-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -43,8 +44,146 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://thebuildercoil.com/blog/unifying-typography-for-three-brands</loc>
+    <lastmod>2025-12-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://thebuildercoil.com/blog/memory-bank-theory-and-practice</loc>
+    <lastmod>2025-12-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://thebuildercoil.com/blog/typescript-biome-code-quality</loc>
+    <lastmod>2026-01-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://thebuildercoil.com/blog/restructuring-documentation-for-a-multi-brand-ecosystem</loc>
+    <lastmod>2026-01-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://thebuildercoil.com/blog/documentation-unsung-hero-modern-software-development</loc>
+    <lastmod>2026-01-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://thebuildercoil.com/blog/building-in-public-socials-ai-cowriter</loc>
+    <lastmod>2026-01-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://thebuildercoil.com/blog/from-powershell-to-pypi-first-open-source-tool</loc>
+    <lastmod>2026-02-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://thebuildercoil.com/blog/designing-agent-skills-updater-skill-management-for-smbs</loc>
+    <lastmod>2026-02-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://thebuildercoil.com/blog/the-client-quest-facebook-redirects-and-a-bash-script</loc>
+    <lastmod>2026-02-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://thebuildercoil.com/blog/debugging-tanstack-store-api-trainer-rebrand</loc>
+    <lastmod>2026-02-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://thebuildercoil.com/blog/shipping-faster-loading-faster</loc>
+    <lastmod>2026-02-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://thebuildercoil.com/blog/connecting-technologies-and-performance</loc>
+    <lastmod>2026-02-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://thebuildercoil.com/blog/skill-refresh-pruning-ai-skills-aligning-devin-codex</loc>
+    <lastmod>2026-03-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://thebuildercoil.com/blog/dependabot-prs-codex-sandbox-workflow-lessons</loc>
+    <lastmod>2026-03-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://thebuildercoil.com/blog/shipping-api-dojo-v2-overview</loc>
+    <lastmod>2026-04-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://thebuildercoil.com/blog/shipping-api-dojo-technical-scoping</loc>
+    <lastmod>2026-04-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://thebuildercoil.com/blog/shipping-api-dojo-auth-foundation</loc>
+    <lastmod>2026-04-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://thebuildercoil.com/blog/shipping-api-dojo-proof-of-concept</loc>
+    <lastmod>2026-04-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://thebuildercoil.com/blog/shipping-api-dojo-browser-smoke-suite</loc>
+    <lastmod>2026-04-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://thebuildercoil.com/news/the-builder-coil-is-live</loc>
     <lastmod>2025-11-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://thebuildercoil.com/news/agent-skills-updater-first-release</loc>
+    <lastmod>2026-02-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://thebuildercoil.com/news/chronomation-com-is-live</loc>
+    <lastmod>2026-02-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://thebuildercoil.com/news/shipper-api-dojo-one-day</loc>
+    <lastmod>2026-02-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://thebuildercoil.com/news/new-chapter-hultafors-group</loc>
+    <lastmod>2026-07-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>

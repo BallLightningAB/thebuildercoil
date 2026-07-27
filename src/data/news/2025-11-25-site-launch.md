@@ -28,12 +28,13 @@ A fully featured blog with:
 
 ### Newsletter – *The Upkeep*
 
-You can subscribe to **The Upkeep** to get new posts and progress updates straight to your inbox. The signup uses a GDPR-compliant double opt-in flow.
-I expect the newsletter to get up and running in the next few weeks. For now sign-up to not miss out.
+*Historical note (July 2026): The Upkeep was retired before it ever sent an issue, and the signup flow has been removed — see [the status update](/news/new-chapter-hultafors-group). This section is kept as part of the original launch announcement.*
+
+The original launch plan included **The Upkeep**, an email digest with a GDPR-compliant double opt-in flow.
 
 ### About & Contact
 
-There’s an **About** section where you can read more about Ball Lightning AB and the projects I’m working on, plus a **contact form** (to be enabled on Monday) if you want to get in touch about collaborations or client work. In the mean time, please simply email me=)
+There’s an **About** section where you can read more about Ball Lightning AB and the projects I’m working on, plus a **contact page** if you want to get in touch. *(2026 note: the contact form was later replaced with plain email links.)*
 
 ## Under the Hood
 
@@ -42,7 +43,7 @@ For those who like to peek behind the curtain, the site currently runs on:
 - **Framework:** [TanStack Start](https://tanstack.com/start) – see also [Building with TanStack Start: First Impressions](/blog/building-with-tanstack-start)  
 - **Styling:** Tailwind CSS + shadcn/ui with a combination of premade, customized and tailored blocks/components
 - **Content:** Local JSON in Phase 1, moving to Chronomation API in Phase 2 – see also [Chronomation: Key Architecture Decisions](/blog/chronomation-architecture-decisions)  
-- **Email:** [Resend](https://resend.com) for transactional and newsletter emails  
+- **Email:** [Resend](https://resend.com) for transactional emails  
 
 ## Why “The Builder Coil”?
 
@@ -67,7 +68,7 @@ On the product side, **Phase 2** of The Builder Coil will be tightly integrated 
 
 ## Stay Updated
 
-If you want to follow along as The Builder Coil and Chronomation evolve, subscribe to [**The Upkeep**](/newsletter) and keep an eye on the blog.
+If you want to follow along as The Builder Coil evolves, keep an eye on the blog.
 
 Thanks for being here at the beginning.  
 Let’s build something great together. 🌀

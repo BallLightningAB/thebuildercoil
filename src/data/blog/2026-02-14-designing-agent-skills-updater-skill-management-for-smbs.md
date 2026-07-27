@@ -65,7 +65,7 @@ The thesis behind Chronomation is that AI coding assistants are becoming central
 
 Agent Skills Updater addresses one piece of that: keeping your AI assistants equipped with current, relevant knowledge. It's the plumbing. It's not glamorous, but it's the kind of thing that quietly makes everything else work better.
 
-There's more coming — tools for discovering skills, managing AI configurations across teams, and integrating AI-assisted workflows into the development lifecycle. If that sounds relevant to what you're building, [The Upkeep](https://thebuildercoil.com/newsletter) newsletter is where I share updates.
+There's more coming — tools for discovering skills, managing AI configurations across teams, and integrating AI-assisted workflows into the development lifecycle. Updates land here on the blog when there's something worth sharing.
 
 ## Who This Is For
 
@@ -108,4 +108,4 @@ Open an [issue on GitHub](https://github.com/BallLightningAB/agent-skills-update
 
 ---
 
-If you're new to Agent Skills Updater, start with the [release announcement](/news/agent-skills-updater-first-release) or the [build story](/blog/from-powershell-to-pypi-first-open-source-tool) for the full backstory. And subscribe to [The Upkeep](https://thebuildercoil.com/newsletter) for updates on this and other Ball Lightning AB projects.
+If you're new to Agent Skills Updater, start with the [release announcement](/news/agent-skills-updater-first-release) or the [build story](/blog/from-powershell-to-pypi-first-open-source-tool) for the full backstory.

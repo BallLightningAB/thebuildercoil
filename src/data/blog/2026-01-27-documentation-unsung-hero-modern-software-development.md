@@ -119,5 +119,3 @@ Want to see the full implementation of this refactoring process? I wrote a detai
 ## What's Next?
 
 What documentation practices have you found essential in your work? I'm especially curious about how you're handling documentation with AI assistants or mostly human teams.
-
-P.S. I'm launching "The Upkeep" soon - a weekly newsletter about building in public and agentic development, including more documentation deep-dives like this one. [Sign up here](/newsletter) 📧

@@ -30,7 +30,7 @@ const SITE_NAME = "The Builder Coil";
 const SITE_URL = "https://thebuildercoil.com";
 const DEFAULT_IMAGE = `${SITE_URL}/logo.png`;
 const DEFAULT_DESCRIPTION =
-	"A builder's grimoire for modern development. Devlogs, experiments, and lessons from Ball Lightning AB.";
+	"An occasional personal devlog by Nicolas Brulay for hobby projects, technical experiments, learning notes, and archived project reflections.";
 const TWITTER_HANDLE = "@balllightningab";
 
 interface MetaTag {
@@ -126,4 +126,4 @@ export function generateCanonical(path: string) {
 	return { rel: "canonical", href: url };
 }
 
-export { SITE_NAME, SITE_URL, DEFAULT_IMAGE, DEFAULT_DESCRIPTION };
+export { DEFAULT_DESCRIPTION, DEFAULT_IMAGE, SITE_NAME, SITE_URL };

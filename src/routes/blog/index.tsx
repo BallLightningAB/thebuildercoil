@@ -20,7 +20,7 @@ export const Route = createFileRoute("/blog/")({
 			...generateMeta({
 				title: "The Builder's Log",
 				description:
-					"Devlogs, technical deep-dives, and lessons learned from building software and running Ball Lightning AB.",
+					"Occasional devlogs on hobby projects, technical experiments, and learning notes.",
 				url: `${SITE_URL}/blog`,
 				type: "website",
 			}),
@@ -77,8 +77,8 @@ function BlogIndexPage() {
 						delay={0.2}
 						preset="fade-in-blur"
 					>
-						Devlogs, technical deep-dives, and lessons learned from building
-						software and running Ball Lightning AB.
+						Occasional devlogs on hobby projects, technical experiments, and
+						learning notes.
 					</TextEffect>
 				</div>
 
