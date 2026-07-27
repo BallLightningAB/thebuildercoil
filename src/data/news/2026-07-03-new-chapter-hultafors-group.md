@@ -1,33 +1,30 @@
 # A New Chapter: Full-Time at Hultafors Group
 
-Since June 2025 I work full-time at [Hultafors Group](https://www.hultaforsgroup.com) as **Product & Service Owner — Integrations**. The role covers integration ownership end to end: modernization, harmonization, strategy, AI, automation, and technical ownership of the integration landscape. It's meaningful work with real scale, and it has my full professional focus.
+Since May 2026, I have been working full-time at [Hultafors Group](https://www.hultaforsgroup.com) as **Product & IT Service Owner — Integration**. My work covers integration ownership, modernization, harmonization, strategy, AI, automation, and the technical ownership of the integration landscape.
 
-That changes what this site is — so here's the honest update.
+That role takes up most of my professional time, so I have changed the scope of the projects I run outside work.
 
-## What Happens to Chronomation
+## Chronomation
 
-Chronomation is **paused**. Not failed, not sold — paused. The concept, the writing, and the lessons from building it are [archived under Ball Lightning](https://balllightning.cloud/chronomation), where they'll stay available for anyone curious about the journey.
+Chronomation is paused. I am no longer actively developing the platform, and I have moved the concept, the writing, and the lessons from building it to the [Ball Lightning archive](https://balllightning.cloud/chronomation).
 
-Building a product platform solo while holding a demanding full-time role isn't something I can do honestly. Rather than let Chronomation drift into vaporware territory, I'd rather park it cleanly and keep the record intact.
+Trying to build a product platform alone alongside a demanding full-time role was not a realistic long-term plan. Pausing it means I can leave the work in a usable state instead of continuing to announce plans I do not have the time to deliver.
 
-## What Happens to Ball Lightning AB
+## Ball Lightning AB
 
-Ball Lightning AB stays open, but as a **maintained, mostly passive company presence** — a portfolio and archive rather than an active operation. It is not a consulting channel, and I'm not taking client work through it.
+Ball Lightning AB remains open as a company presence, portfolio, and archive. I am not using it as a consulting channel or taking client work through it.
 
-## What Happens to The Builder Coil
+## The Builder Coil
 
-This site becomes what it arguably always wanted to be: an **occasional personal devlog**. Hobby projects, technical experiments, learning notes, and reflections on archived projects — published when there's something worth writing down, on no schedule at all.
+The Builder Coil is now an occasional personal devlog. I will use it for hobby projects, technical experiments, learning notes, and reflections on archived projects. There is no publishing schedule.
 
-A few practical changes shipped alongside this post:
+The change also removes a few parts of the old setup:
 
-- **The Upkeep newsletter is retired.** The signup flow has been removed, and no mailing list is kept. If you subscribed during the early days: thank you — your data is no longer used.
-- **The contact form is gone.** Plain email and GitHub remain the best ways to reach me.
-- **Product marketing copy is gone.** No CTAs, no funnels — just posts.
+- The Upkeep newsletter has been retired. The signup flow is gone, and no mailing list is being maintained.
+- The contact form has been removed. Email and GitHub are still available for getting in touch.
+- The product-marketing copy and related calls to action have been removed.
 
-## Why Write This Down
+The older Chronomation, Agent Skills Updater, and TanStack Start posts will remain online as a record of what I was working on at the time.
+I will also now and then publish updates about projects I'm working on.
 
-Building in public also means winding down in public. The devlogs about Chronomation, agent-skills-updater, and the TanStack Start experiments stay up as an honest record. New posts will show up when hobby tinkering produces something interesting.
-
-Everything here is personal hobby material and does not represent Hultafors Group.
-
-Thanks for reading along. 🌀
+Everything published here is personal material and does not represent Hultafors Group.
