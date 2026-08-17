@@ -1,8 +1,21 @@
 entries:
+  - date: "2026-08-17"
+    version: 0.1.14
+    issue: "Tech"
+    commit: "pending"
+    status: done
+    title: "chore(deps): upgrade TypeScript 7 and migrate deprecated TanStack Start validator API"
+    details: |-
+      - Upgraded `typescript` from 5.9.3 to 7.0.2
+      - Removed deprecated `baseUrl` from `tsconfig.json` (kept relative `paths` mapping)
+      - Replaced `createServerFn().inputValidator()` with `.validator()` in `src/lib/github.ts` and `src/lib/content/server.ts`
+      - Verified `pnpm run typecheck` and `pnpm run dev` pass on TS 7
+
+      Refs: v0.1.14 ts7 tanstack-start validator deprecation tsconfig
   - date: "2026-07-27"
     version: 0.1.13
     issue: "Content"
-    commit: "pending"
+    commit: "c193a0b"
     status: done
     title: "fix(content): revise Hultafors status article and add hero image"
     details: |-

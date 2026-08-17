@@ -4,23 +4,21 @@ import type { PostType } from "./types";
 
 // Server function to load a single post
 export const getPost = createServerFn({ method: "GET" })
-	.inputValidator((input: { slug: string; type: PostType }) => input)
+	.validator((input: { slug: string; type: PostType }) => input)
 	.handler(({ data }) => {
 		return loadPostInternal(data.slug, data.type);
 	});
 
 // Server function to load all posts
 export const getPosts = createServerFn({ method: "GET" })
-	.inputValidator((input: { type?: PostType }) => input)
+	.validator((input: { type?: PostType }) => input)
 	.handler(({ data }) => {
 		return loadPostsInternal(data.type);
 	});
 
 // Server function to get related posts
 export const getRelatedPosts = createServerFn({ method: "GET" })
-	.inputValidator(
-		(input: { slug: string; type: PostType; limit?: number }) => input,
-	)
+	.validator((input: { slug: string; type: PostType; limit?: number }) => input)
 	.handler(({ data }) => {
 		const { slug, type, limit = 3 } = data;
 		const postResult = loadPostInternal(slug, type);
@@ -45,7 +43,7 @@ export const getRelatedPosts = createServerFn({ method: "GET" })
 
 // Server function to get featured posts
 export const getFeaturedPosts = createServerFn({ method: "GET" })
-	.inputValidator((input: { limit?: number }) => input)
+	.validator((input: { limit?: number }) => input)
 	.handler(({ data }) => {
 		const { limit = 6 } = data;
 		const posts = loadPostsInternal();

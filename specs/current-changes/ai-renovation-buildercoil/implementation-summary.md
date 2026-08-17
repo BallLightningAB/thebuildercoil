@@ -44,3 +44,9 @@ Date: 2026-07-27 · Branch: `codex/ai-renovation-buildercoil` · Version: v0.1.1
 See `final-validation-report.md` — typecheck/lint/build pass, source + built-output
 sweeps clean (allowlisted exceptions documented), rendered smoke checks pass,
 `/newsletter` returns 404, feed sanitized.
+
+## Post-release tooling follow-up
+
+- Upgraded `typescript` to 7.0.2 and removed the deprecated `baseUrl` option from `tsconfig.json`
+- Migrated `createServerFn().inputValidator()` to `.validator()` in `src/lib/github.ts` and `src/lib/content/server.ts`
+- Verified dev server still starts and serves on port 3000 after the TS 7 upgrade

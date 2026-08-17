@@ -67,7 +67,7 @@
     "@vitejs/plugin-react": "^6.0.3",
     "baseline-browser-mapping": "^2.10.40",
     "jsdom": "^27.4.0",
-    "typescript": "^5.9.3",
+    "typescript": "^7.0.2",
     "ultracite": "7.8.3",
     "vite": "^8.1.0",
     "vitest": "^4.1.9",

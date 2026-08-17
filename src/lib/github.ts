@@ -68,7 +68,7 @@ async function fetchGitHubContributions(
 }
 
 export const getGitHubContributions = createServerFn({ method: "GET" })
-	.inputValidator((input: { username: string }) => input)
+	.validator((input: { username: string }) => input)
 	.handler(async ({ data }) => {
 		try {
 			return await fetchGitHubContributions(data.username);
