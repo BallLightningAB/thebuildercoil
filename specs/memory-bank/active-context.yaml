@@ -31,9 +31,12 @@ guardrails:
           - "[I3Fix] Repair Shiki and Lucide upgrades with current lockfiles"
         remaining_deliverables: []
         progress_log:
-          - covers: [I3Fix] note: "PR #57 patches Start to 1.168.61/server-core 1.169.40 and refreshes vulnerable transitives. Original 13 Dependabot alerts cleared; unpatched braces in Ultracite development tooling remains documented."
-          - covers: [I3Test] note: "Added Node 24 CI, blocking secret scans and eight regression tests covering real content, English dates, publication filtering, code annotations, light/dark highlighting and HTML escaping."
-          - covers: [I3Fix] note: "PR #37 replaces the invalid Shiki alias with matching v4.5.0 packages; PR #35 preserves existing icons/page structure during rebase and refreshes Lucide's lockfile. #55/#56 closed as superseded by #57."
+          - covers: [I3Fix]
+            note: "PR #57 patches Start to 1.168.61/server-core 1.169.40 and refreshes vulnerable transitives. Original 13 Dependabot alerts cleared; unpatched braces in Ultracite development tooling remains documented."
+          - covers: [I3Test]
+            note: "Added Node 24 CI, blocking secret scans and eight regression tests covering real content, English dates, publication filtering, code annotations, light/dark highlighting and HTML escaping."
+          - covers: [I3Fix]
+            note: "PR #37 replaces the invalid Shiki alias with matching v4.5.0 packages; PR #35 preserves existing icons/page structure during rebase and refreshes Lucide's lockfile. #55/#56 closed as superseded by #57."
       - id: hultafors-status-article-polish
         issue: "Content"
         title: "Revise Hultafors status article and add hero image"
@@ -50,8 +53,10 @@ guardrails:
         sub_issues: []
         remaining_deliverables: []
         progress_log:
-          - covers: [HULTAFORSD1] note: "Removed generic AI-style framing and revised the article to use direct, concrete first-person wording."
-          - covers: [HULTAFORSD2] note: "Added the Hultafors integration image as the article hero image with descriptive alt text."
+          - covers: [HULTAFORSD1]
+            note: "Removed generic AI-style framing and revised the article to use direct, concrete first-person wording."
+          - covers: [HULTAFORSD2]
+            note: "Added the Hultafors integration image as the article hero image with descriptive alt text."
       - id: ai-renovation-buildercoil
         issue: "Renovation"
         title: "AI renovation: reposition The Builder Coil as an occasional personal devlog"
@@ -72,9 +77,12 @@ guardrails:
         sub_issues: []
         remaining_deliverables: []
         progress_log:
-          - covers: [RENOD1, RENOD2] note: "Deleted src/routes/newsletter, src/components/newsletter, src/lib/newsletter, src/lib/contact; removed resend + @react-email/components deps and newsletter env vars; contact page is now static."
-          - covers: [RENOD3, RENOD4] note: "Repositioned hero/about/footer copy to hobby devlog framing; Chronomation now a CreativeWork (Archived) in root entity graph pointing at balllightning.cloud/chronomation."
-          - covers: [RENOD5, RENOD6] note: "Added 2026-07-03 status post; added archival notes to launch posts; removed The Upkeep CTAs from 7 posts; regenerated sitemap without /newsletter."
+          - covers: [RENOD1, RENOD2]
+            note: "Deleted src/routes/newsletter, src/components/newsletter, src/lib/newsletter, src/lib/contact; removed resend + @react-email/components deps and newsletter env vars; contact page is now static."
+          - covers: [RENOD3, RENOD4]
+            note: "Repositioned hero/about/footer copy to hobby devlog framing; Chronomation now a CreativeWork (Archived) in root entity graph pointing at balllightning.cloud/chronomation."
+          - covers: [RENOD5, RENOD6]
+            note: "Added 2026-07-03 status post; added archival notes to launch posts; removed The Upkeep CTAs from 7 posts; regenerated sitemap without /newsletter."
       - id: balllightning-cloud-prep
         issue: "#9"
         title: "Complete Ball Lightning cloud site rebuild preparation"
@@ -93,10 +101,14 @@ guardrails:
         sub_issues: []
         remaining_deliverables: []
         progress_log:
-          - covers: [I9D1] note: "Defined comprehensive scope including brand consistency, service showcase, and integration with shared brand system."
-          - covers: [I9D2] note: "Designed architecture using TanStack Start + React 19 with YAML-based brand system references and feed endpoint integration."
-          - covers: [I9D3] note: "Planned core pages with wireframes and content structure aligned with Ball Lightning's service offerings."
-          - covers: [I9D4] note: "Prepared content system using TBC feed endpoint for news/blog integration and dynamic content updates."
+          - covers: [I9D1]
+            note: "Defined comprehensive scope including brand consistency, service showcase, and integration with shared brand system."
+          - covers: [I9D2]
+            note: "Designed architecture using TanStack Start + React 19 with YAML-based brand system references and feed endpoint integration."
+          - covers: [I9D3]
+            note: "Planned core pages with wireframes and content structure aligned with Ball Lightning's service offerings."
+          - covers: [I9D4]
+            note: "Prepared content system using TBC feed endpoint for news/blog integration and dynamic content updates."
       - id: balllightning-feed-endpoint
         issue: "#8"
         title: "feat(api): add public feed endpoint for Ball Lightning integration"
@@ -115,9 +127,12 @@ guardrails:
         sub_issues: []
         remaining_deliverables: []
         progress_log:
-          - covers: [I8D1, I8D2] note: "Created /api/feed endpoint using TanStack Start server routes, returning type, title, slug, URL, publishedAt, excerpt, and image metadata."
-          - covers: [I8D3] note: "Added cache headers (max-age=300, stale-while-revalidate=600) and CORS (Access-Control-Allow-Origin: *) for CDN optimization and cross-origin consumption."
-          - covers: [I8D4] note: "Created feed.types.ts with FeedItem and FeedResponse interfaces for type-safe integration in Ball Lightning."
+          - covers: [I8D1, I8D2]
+            note: "Created /api/feed endpoint using TanStack Start server routes, returning type, title, slug, URL, publishedAt, excerpt, and image metadata."
+          - covers: [I8D3]
+            note: "Added cache headers (max-age=300, stale-while-revalidate=600) and CORS (Access-Control-Allow-Origin: *) for CDN optimization and cross-origin consumption."
+          - covers: [I8D4]
+            note: "Created feed.types.ts with FeedItem and FeedResponse interfaces for type-safe integration in Ball Lightning."
       - id: codeblock-inline-rendering-fix
         issue: "#7"
         title: "fix(content): render fenced code blocks inline with CodeBlock UI"
@@ -133,7 +148,8 @@ guardrails:
         sub_issues: []
         remaining_deliverables: []
         progress_log:
-          - covers: [I3Fix] note: "Changed markdown rendering to emit data-post-code-block markers and render Kibo CodeBlock inline on blog/news detail pages (header + copy), removing the duplicate 'Code samples' section."
+          - covers: [I3Fix]
+            note: "Changed markdown rendering to emit data-post-code-block markers and render Kibo CodeBlock inline on blog/news detail pages (header + copy), removing the duplicate 'Code samples' section."
       - id: schema-markup-improvements
         issue: "#6"
         title: "feat(seo): schema markup improvements (root entity graph + blog/news indexes)"
@@ -151,9 +167,12 @@ guardrails:
         sub_issues: []
         remaining_deliverables: []
         progress_log:
-          - covers: [I6D1] note: "Added global JSON-LD @graph (Organization + WebSite + Product) and emitted it via src/routes/__root.tsx head()."
-          - covers: [I6D2] note: "Added head() metadata + canonical + JSON-LD to src/routes/blog/index.tsx and src/routes/news/index.tsx."
-          - covers: [I6D3] note: "Switched src/routes/news/$slug.tsx structured data to NewsArticle for semantic accuracy."
+          - covers: [I6D1]
+            note: "Added global JSON-LD @graph (Organization + WebSite + Product) and emitted it via src/routes/__root.tsx head()."
+          - covers: [I6D2]
+            note: "Added head() metadata + canonical + JSON-LD to src/routes/blog/index.tsx and src/routes/news/index.tsx."
+          - covers: [I6D3]
+            note: "Switched src/routes/news/$slug.tsx structured data to NewsArticle for semantic accuracy."
       - id: fix-vercel-deployment
         issue: "#5"
         title: "Fix Vercel deployment: content loading, missing images, and initial deploy concerns"
@@ -171,9 +190,12 @@ guardrails:
         sub_issues: []
         remaining_deliverables: []
         progress_log:
-          - covers: [I5D1] note: "Refactored loader-server.ts to use import.meta.glob, moved content to src/data/"
-          - covers: [I5D2] note: "Created contact email service and server function, wired contact form"
-          - covers: [I5D3] note: "Verified deployment and fixed missing images"
+          - covers: [I5D1]
+            note: "Refactored loader-server.ts to use import.meta.glob, moved content to src/data/"
+          - covers: [I5D2]
+            note: "Created contact email service and server function, wired contact form"
+          - covers: [I5D3]
+            note: "Verified deployment and fixed missing images"
       - id: build-tbc-site-phase1
         issue: "#3"
         title: "Build The Builder Coil Site – Phase 1 (Manual Blog)"
@@ -205,15 +227,24 @@ guardrails:
               issue: https://github.com/BallLightningAB/thebuildercoil/issues/4
         remaining_deliverables: []
         progress_log:
-          - covers: [I3Docs] note: "Created Phase 1 implementation plan and The Upkeep newsletter sub-plan."
-          - covers: [I3D1, I3D2, I3D3, I3D4] note: "Set up TBC theming: styles.css colors, theme provider, Kibo switcher, and shared layout."
-          - covers: [I3D5, I3D6, I3D7, I3D8, I3D9] note: "Implemented core pages (home/blog/news/about/contact) backed by the local JSON content system."
-          - covers: [I3D5, I3D6, I3D7] note: "Refined hero and card presentation: contribution graph, safer hero images, BlogPostCard thumbnails."
-          - covers: [I3D2, I3D3, I3D4, I3D6, I3D7] note: "Integrated Kibo ThemeSwitcher and CodeBlock, fixed duplicate keys, documented { post, html, codeBlocks } contract."
-          - covers: [I3Biome] note: "Resolved remaining Biome lint issues and unified dark/light card and tag styling."
-          - covers: [I3D1] note: "Fixed dark mode prose: TBC cream (#f5e6d3) via prose-cream utility and route updates."
-          - covers: [I3D10] note: "Implemented newsletter signup with double opt-in (The Upkeep) and completed Newsletter Phase 1 (v0.1.6)."
-          - covers: [I3D11] note: "Configured SEO: meta/OG tags, JSON-LD structured data, sitemap.xml, robots.txt. Phase 1 complete (v0.1.7)."
+          - covers: [I3Docs]
+            note: "Created Phase 1 implementation plan and The Upkeep newsletter sub-plan."
+          - covers: [I3D1, I3D2, I3D3, I3D4]
+            note: "Set up TBC theming: styles.css colors, theme provider, Kibo switcher, and shared layout."
+          - covers: [I3D5, I3D6, I3D7, I3D8, I3D9]
+            note: "Implemented core pages (home/blog/news/about/contact) backed by the local JSON content system."
+          - covers: [I3D5, I3D6, I3D7]
+            note: "Refined hero and card presentation: contribution graph, safer hero images, BlogPostCard thumbnails."
+          - covers: [I3D2, I3D3, I3D4, I3D6, I3D7]
+            note: "Integrated Kibo ThemeSwitcher and CodeBlock, fixed duplicate keys, documented { post, html, codeBlocks } contract."
+          - covers: [I3Biome]
+            note: "Resolved remaining Biome lint issues and unified dark/light card and tag styling."
+          - covers: [I3D1]
+            note: "Fixed dark mode prose: TBC cream (#f5e6d3) via prose-cream utility and route updates."
+          - covers: [I3D10]
+            note: "Implemented newsletter signup with double opt-in (The Upkeep) and completed Newsletter Phase 1 (v0.1.6)."
+          - covers: [I3D11]
+            note: "Configured SEO: meta/OG tags, JSON-LD structured data, sitemap.xml, robots.txt. Phase 1 complete (v0.1.7)."
       - id: Project initialization using the Tanstack Start Builder
         issue: "#1"
         title: Project initialization using the Tanstack Start Builder
@@ -235,14 +266,22 @@ guardrails:
           dev_h: 8
           test_h: 0
         progress_log:
-          - covers: [I1D1] note: "Initialized the project using the Tanstack Start Builder"
-          - covers: [I1D2] note: "Designed a new logo"
-          - covers: [I1D3] note: "Adapted the current color scheme to match the new logo in dark and light mode"
-          - covers: [I1D4, I1D5] note: "Created a gh project and repurposed gh labels [concatenated]"
-          - covers: [I1D6] note: "Added the logos + favicon to /public"
-          - covers: [I1D7] note: "Repurpose the secrets-scan pre-commit and workflow for the blightfell-web3-integration project"
-          - covers: [I1D8] note: "Repurpose the memorybank/changelog automation from the blightfell-web3-integration project"
-          - covers: [I1D9] note: "Remove Tanstack Demo components etc"
+          - covers: [I1D1]
+            note: "Initialized the project using the Tanstack Start Builder"
+          - covers: [I1D2]
+            note: "Designed a new logo"
+          - covers: [I1D3]
+            note: "Adapted the current color scheme to match the new logo in dark and light mode"
+          - covers: [I1D4, I1D5]
+            note: "Created a gh project and repurposed gh labels [concatenated]"
+          - covers: [I1D6]
+            note: "Added the logos + favicon to /public"
+          - covers: [I1D7]
+            note: "Repurpose the secrets-scan pre-commit and workflow for the blightfell-web3-integration project"
+          - covers: [I1D8]
+            note: "Repurpose the memorybank/changelog automation from the blightfell-web3-integration project"
+          - covers: [I1D9]
+            note: "Remove Tanstack Demo components etc"
       - id: Install dependencies
         issue: "#2"
         title: Install dependencies
@@ -260,6 +299,9 @@ guardrails:
           dev_h: 4
           test_h: 0
         progress_log:
-          - covers: [I2D3, I2D4] note: "Installed Ultracite and upgraded Biome to 2.3.7 using pnpm, then initialized Ultracite configuration (biome.json, tsconfig, editor/editorconfig settings). [concatenated]"
-          - covers: [I2D1, I2D2] note: "Installed zod as a shared validation dependency and added central zod helper at src/lib/validation/zod.ts. [concatenated]"
-          - covers: [I2D5] note: "Completed initial dependency upgrade pass for TanStack, Tailwind, TypeScript, devtools, and related tooling"
+          - covers: [I2D3, I2D4]
+            note: "Installed Ultracite and upgraded Biome to 2.3.7 using pnpm, then initialized Ultracite configuration (biome.json, tsconfig, editor/editorconfig settings). [concatenated]"
+          - covers: [I2D1, I2D2]
+            note: "Installed zod as a shared validation dependency and added central zod helper at src/lib/validation/zod.ts. [concatenated]"
+          - covers: [I2D5]
+            note: "Completed initial dependency upgrade pass for TanStack, Tailwind, TypeScript, devtools, and related tooling"
