@@ -55,6 +55,12 @@
     "tailwindcss": "^4.3.3",
     "zod": "^4.6.5"
   },
+  "pnpm": {
+    "overrides": {
+      "esbuild@<0.28.1": "^0.28.1",
+      "postcss-selector-parser@<7.1.6": "^7.1.6"
+    }
+  },
   "devDependencies": {
     "@biomejs/biome": "2.5.14",
     "@tanstack/devtools-vite": "^0.8.5",
