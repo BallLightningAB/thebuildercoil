@@ -14,4 +14,10 @@ Sequence: #57 (grouped security updates), #55/#56 (verify superseded fixes), #37
 - No application translations, published copy or retired newsletter functionality are reintroduced.
 - Vercel blocked the first updated deployment for CVE-2026-102989, which was absent from the registry audit. Upgraded React Start to 1.168.61 and verified start-server-core resolves to 1.169.40 (patched minimum 1.169.39). Aligned Router packages to avoid duplicate incompatible route types. Source: https://tanstack.com/blog/tanstack-start-security-update-cve-2026-102989.
 
-Subsequent PR outcomes and deployment verification will be recorded as they complete.
+## PRs #55 and #56
+
+Closed as superseded after #57 merged: Vitest 4.1.11 and baseline-browser-mapping 2.11.25 are installed and tested. All 13 original GitHub Dependabot alerts cleared after the merge. #57 preview and production deployments passed; production feed returns 27 items.
+
+## PR #37
+
+Rebased onto the verified #57 merge, removed the invalid compatibility alias, and installed matching shiki/@shikijs/transformers 4.5.0 with the updated lockfile. Added three tests covering client highlighting, light/dark themes, diff/highlight annotations, server highlighting and script-text escaping. Typecheck, lint, all eight tests and production build pass locally. Audit still has only the unpatched development-tooling braces finding described above.
