@@ -1,4 +1,20 @@
 entries:
+  - date: "2026-10-10"
+    version: 0.1.15
+    issue: "Security / dependency maintenance"
+    commit: "pending"
+    status: done
+    title: "fix(deps): patch security advisories and repair pending major upgrades"
+    details: |-
+      - PR #57 updates grouped dependencies, patches TanStack Start reflected XSS (CVE-2026-102989), aligns Router packages and refreshes vulnerable transitive dependencies.
+      - Added bounded overrides for patched esbuild and postcss-selector-parser versions constrained by parent packages.
+      - Added Node 24 validation CI and made secret-scan failures blocking.
+      - Added eight regression tests for real content, English dates, publication filtering, code highlighting and HTML escaping; typecheck, lint and production builds verified.
+      - PR #37 upgrades matching Shiki/transformers to 4.5.0 with a regenerated lockfile; PR #35 rebases Lucide v1 without reverting current icons, page structure or devlog copy.
+      - Closed #55/#56 as superseded by the validated grouped update. All 13 original Dependabot alerts cleared.
+      - One unpatched high braces advisory remains in Ultracite development tooling; exposure and upstream follow-up documented without suppression.
+
+      Refs: v0.1.15 I3Fix I3Test dependency-security-review-2026-10-10
   - date: "2026-08-17"
     version: 0.1.14
     issue: "Tech"

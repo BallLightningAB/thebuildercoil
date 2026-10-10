@@ -1,5 +1,5 @@
 meta:
-  release: 0.1.14
+  release: 0.1.15
   repo: github.com/BallLightningAB/thebuildercoil
   pdd_version: "v0.3.0"
   current_changes: see specs/current-changes/
@@ -18,6 +18,22 @@ guardrails:
     # Note: the former "Integrate with Chronomation API (Phase 2)" next step was
     # retired in v0.1.12 — Chronomation is paused and archived under Ball Lightning.
     recent_done:
+      - id: dependency-security-review-2026-10-10
+        issue: "Security / dependency maintenance"
+        title: "Review dependency PRs and patch vulnerable packages"
+        status: done
+        links:
+          issue: ""
+          pr: "https://github.com/BallLightningAB/thebuildercoil/pull/35"
+        deliverables:
+          - "[I3Fix] Patch TanStack Start reflected XSS and vulnerable transitives"
+          - "[I3Test] Add content, English-date and highlighting regression coverage"
+          - "[I3Fix] Repair Shiki and Lucide upgrades with current lockfiles"
+        remaining_deliverables: []
+        progress_log:
+          - covers: [I3Fix] note: "PR #57 patches Start to 1.168.61/server-core 1.169.40 and refreshes vulnerable transitives. Original 13 Dependabot alerts cleared; unpatched braces in Ultracite development tooling remains documented."
+          - covers: [I3Test] note: "Added Node 24 CI, blocking secret scans and eight regression tests covering real content, English dates, publication filtering, code annotations, light/dark highlighting and HTML escaping."
+          - covers: [I3Fix] note: "PR #37 replaces the invalid Shiki alias with matching v4.5.0 packages; PR #35 preserves existing icons/page structure during rebase and refreshes Lucide's lockfile. #55/#56 closed as superseded by #57."
       - id: hultafors-status-article-polish
         issue: "Content"
         title: "Revise Hultafors status article and add hero image"
