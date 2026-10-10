@@ -12,5 +12,6 @@ Sequence: #57 (grouped security updates), #55/#56 (verify superseded fixes), #37
 - Localization scope: the site is English-only (`en-US` dates); no Paraglide, locale routing or translations exist.
 - Audit: zero critical, moderate or low findings; one high finding remains in `braces@3.0.3` through Ultracite -> fast-glob -> micromatch. GHSA-vfj7-8cjw-p6xm has no patched release. This is development tooling over repository-controlled paths, with no request-time use. Avoid untrusted glob patterns; revisit when upstream publishes a fix. Not dismissed or suppressed.
 - No application translations, published copy or retired newsletter functionality are reintroduced.
+- Vercel blocked the first updated deployment for CVE-2026-102989, which was absent from the registry audit. Upgraded React Start to 1.168.61 and verified start-server-core resolves to 1.169.40 (patched minimum 1.169.39). Aligned Router packages to avoid duplicate incompatible route types. Source: https://tanstack.com/blog/tanstack-start-security-update-cve-2026-102989.
 
 Subsequent PR outcomes and deployment verification will be recorded as they complete.
