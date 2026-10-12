@@ -1,5 +1,5 @@
 meta:
-  release: 0.1.15
+  release: 0.1.15.1
   repo: github.com/BallLightningAB/thebuildercoil
   pdd_version: "v0.3.0"
   current_changes: see specs/current-changes/
@@ -31,6 +31,8 @@ guardrails:
           - "[I3Fix] Repair Shiki and Lucide upgrades with current lockfiles"
         remaining_deliverables: []
         progress_log:
+          - covers: [I3Fix, I3Test]
+            note: "2026-10-12: verified Lucide in production; repaired new grouped PR #58's omitted lockfile security overrides and added Radix Sheet dismissal/focus regression coverage (10 tests total)."
           - covers: [I3Fix]
             note: "PR #57 patches Start to 1.168.61/server-core 1.169.40 and refreshes vulnerable transitives. Original 13 Dependabot alerts cleared; unpatched braces in Ultracite development tooling remains documented."
           - covers: [I3Test]
