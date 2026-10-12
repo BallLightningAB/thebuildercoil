@@ -1,4 +1,17 @@
 entries:
+  - date: "2026-10-12"
+    version: 0.1.15.1
+    issue: "Dependency maintenance"
+    commit: "pending"
+    status: done
+    title: "fix(deps): preserve security overrides in grouped update #58"
+    details: |-
+      - Reviewed 18 minor/patch updates and repaired the missing lockfile overrides that broke frozen installation in GitHub Actions and Vercel.
+      - Rebased after Lucide's verified production deployment and preserved patched transitive dependencies.
+      - Added Radix Sheet regression tests for accessible labels, Escape/Close dismissal and focus restoration; 10 tests total.
+      - Validated frozen install, typecheck, lint and dependency audit; the existing unpatched braces development-tooling advisory remains documented.
+
+      Refs: v0.1.15.1 I3Fix I3Test PR-58
   - date: "2026-10-10"
     version: 0.1.15
     issue: "Security / dependency maintenance"
