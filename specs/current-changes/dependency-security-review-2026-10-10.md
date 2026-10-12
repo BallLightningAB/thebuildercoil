@@ -21,3 +21,13 @@ Closed as superseded after #57 merged: Vitest 4.1.11 and baseline-browser-mappin
 ## PR #37
 
 Rebased onto the verified #57 merge, removed the invalid compatibility alias, and installed matching shiki/@shikijs/transformers 4.5.0 with the updated lockfile. Added three tests covering client highlighting, light/dark themes, diff/highlight annotations, server highlighting and script-text escaping. Typecheck, lint, all eight tests and production build pass locally. Audit still has only the unpatched development-tooling braces finding described above.
+
+Fresh GitHub validation, secret scanning, Vercel preview and production deployments passed. Waited for main checks and production deployment to complete before rebasing #35. Correction: direct preview HTTP requests followed redirects to Vercel authentication; their 200 responses did not verify application content. Local built-site checks verified application routes; production checks verify deployed content separately.
+
+## PR #35
+
+Rebased onto the verified #37 merge. Current main already contains the custom brand icons, so retained main's Header/About implementations and resolved away the stale closing-tag deletion and old copy. The application code diff is empty; only the Lucide dependency/lockfile changes remain. Lucide resolves to 1.55.0. Typecheck, lint, eight regression tests and production build pass locally. Updated memory-bank release tracking to 0.1.15.
+
+## Continuation — 2026-10-12
+
+Lucide's validation, secret scan and Vercel preview deployment passed on the final code. Preview page requests require Vercel authentication; direct preview page-content checks are not counted as application verification. GitHub currently reports zero open Dependabot alerts. A new grouped update, #58, opened during the interval and is queued after #35.
