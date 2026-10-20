@@ -1,9 +1,22 @@
 entries:
   - date: "2026-10-20"
+    version: 0.1.15.3
+    issue: "Security / Dependabot alert #66"
+    commit: "pending"
+    status: done
+    title: "fix(security): patch launch-editor Windows command injection"
+    details: |-
+      - Update transitive launch-editor from 2.14.1 to patched 2.14.2 for GHSA-698v-4r3x-3vcv / CVE-2026-112943 after Dependabot failed to open a PR.
+      - Preserve security overrides and verify frozen install, formatting, lint, typecheck and all 10 regression tests; production audit remains clean.
+      - Record successful PR #59 and main CI, preview/production deployment and live-route checks before the security follow-up.
+      - Rotate the changelog below 600 lines while preserving all archived entries.
+
+      Refs: v0.1.15.3 I3Fix I3Test I3Docs alert-66
+  - date: "2026-10-20"
     version: 0.1.15.2
     issue: "Dependency maintenance / PR #59"
-    commit: "pending"
-    status: in-progress
+    commit: "f34cc4efc512f01d188ac0598159763916fb4f2b"
+    status: done
     title: "fix(deps): restore security overrides in grouped update #59"
     details: |-
       - Reviewed the only open PR and restored lockfile overrides required by frozen installation in CI and Vercel.
@@ -570,41 +583,3 @@ entries:
       - Enforce using interface for objects and type for unions/utilities/primitives
 
       Refs: v0.1.8.5
-  - date: "2026-01-06"
-    version: 0.1.8.4
-    issue: "Security update and dependency upgrades"
-    commit: d6d8a178eeb5724a9b0c9508c78ac13dbdbc25cc
-    status: done
-    title: "fix(security): resolve tRPC prototype pollution vulnerability and update dependencies"
-    details: |-
-      - Update ultracite from 6.3.6 to 7.0.8 to fix tRPC prototype pollution vulnerability (CVE-2025-68130)
-      - Remove .node-version file and add Node.js 24.x to package.json engines field for Vercel
-      - Create .nvmrc file for local Node.js version management
-      - Update TanStack stack from 1.139.3 to 1.145.7/1.145.8 with performance optimizations
-      - Update @types/node from 22.10.2 to 25.0.3 for latest Node.js type definitions
-      - Update vite from 7.1.7 to 7.3.0 with improved CSS handling and HMR
-      - Update React from 19.2.0 to 19.2.3 with bug fixes and memory leak fixes
-      - Update zod from 4.1.13 to 4.3.5 with new brand() and pipe() utilities
-      - Configure TanStack Router with defaultStructuralSharing and defaultPreload: 'intent'
-      - Add superjson package for future serialization needs
-
-      Refs: v0.1.8.4
-  - date: "2025-12-15"
-    version: 0.1.8.3
-    issue: "#6 https://github.com/BallLightningAB/thebuildercoil/issues/6; #7 https://github.com/BallLightningAB/thebuildercoil/issues/7"
-    commit: 1cf48fdbb357adce2c7d8cc927eb002072c9a00f
-    status: done
-    title: "feat(seo): improve schema markup for AI/SEO and add global entity graph"
-    details: |-
-      - Add global JSON-LD @graph (Organization + WebSite + Product) to root document head
-      - Add head() metadata + canonical + JSON-LD to /blog and /news index pages
-      - Use NewsArticle JSON-LD on /news/:slug pages
-      - Link The Builder Coil GitHub Project in the PDD
-      - Reconcile memory-bank tracking for Issue #5: mark I5D3 done and move issue to recent_done
-      - Fix duplicate code rendering on blog/news detail pages (inline + bottom "Code samples")
-      - Render fenced code blocks once, in-place, using the Kibo CodeBlock UI (header + copy)
-      - Update markdown rendering to emit data-post-code-block markers and collect codeBlocks
-      - Inline-render CodeBlock components by splitting the HTML on marker divs
-
-      Refs: v0.1.8.3 closes #6 closes #7
-

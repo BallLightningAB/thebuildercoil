@@ -36,3 +36,11 @@
 Proposed commit: `fix(deps): restore security overrides for PR #59 (I3Fix I3Test I3Docs)`
 
 Refs: v0.1.15.2 I3Fix I3Test I3Docs PR-59
+
+## Verified merge and security follow-up
+
+- PR #59 merged as f34cc4efc512f01d188ac0598159763916fb4f2b after Validate, Gitleaks and Vercel preview passed on 4f6de3062412c5ca677aa30eda7b8741d1b53237. Linux production packaging passed. Preview requests return Vercel SSO redirects.
+- Main Validate run 39483910235 and Gitleaks run 39483910096 passed; Vercel production deployment completed successfully. Live home, About, contact, blog/news indexes/details and English language content verified; feed has 27 items and newsletter returns 404.
+- Only after those gates completed, branched from current main for newly reported alert #66: launch-editor <=2.14.1, patched by 2.14.2 (GHSA-698v-4r3x-3vcv / CVE-2026-112943). This is a Windows command-injection issue through TanStack development tooling. Dependabot job 39483931133 failed to open a PR, so prepared the narrow four-line lockfile replacement manually.
+- Security follow-up: frozen install, Ultracite fix/format, lint, typecheck and all 10 tests pass; production audit clean, full audit retains only the unpatched braces development-tooling advisory. Fresh Linux CI, Gitleaks and Vercel deployment must pass before merge; verify main checks and production again afterward. GitHub records those checks against each final commit.
+- Completed review tracking in active-context; release 0.1.15.3. The active changelog exceeded 600 lines on this follow-up. scripts/rotate-changelog.sh is absent, so performed the equivalent bounded rotation: moved the two oldest entries to the existing archive, preserving every version and reducing active length below 600.

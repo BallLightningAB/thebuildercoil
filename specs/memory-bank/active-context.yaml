@@ -1,5 +1,5 @@
 meta:
-  release: 0.1.15.2
+  release: 0.1.15.3
   repo: github.com/BallLightningAB/thebuildercoil
   pdd_version: "v0.3.0"
   current_changes: see specs/current-changes/
@@ -14,27 +14,26 @@ guardrails:
   # - I3Docs / I3UI / I3Fix / I3Test / I3Biome: tags for documentation, UI polish, minor fixes, tests and Biome/tooling work not tied to a single deliverable
   roadmap:
     current:
+    next_steps: []
+    # Note: the former "Integrate with Chronomation API (Phase 2)" next step was
+    # retired in v0.1.12 — Chronomation is paused and archived under Ball Lightning.
+    recent_done:
       - id: dependency-security-review-2026-10-20
-        issue: "Dependency maintenance / PR #59"
-        title: "Review grouped dependency update and preserve security fixes"
-        status: in-progress
+        issue: "Dependency maintenance / PR #59 / alert #66"
+        title: "Review dependency PRs and patch Windows editor command injection"
+        status: done
         links:
           pr: "https://github.com/BallLightningAB/thebuildercoil/pull/59"
         deliverables:
           - "[I3Fix] Restore security overrides in the generated lockfile"
           - "[I3Test] Validate English dates, content, highlighting, navigation and built routes"
           - "[I3Docs] Record security review, pre-commit checks and deployment gates"
-        remaining_deliverables:
-          - "Verify production packaging in Linux CI; local Nitro packaging still fails with the existing Windows EPERM asset-copy error."
-          - "User authorized commit/push/merge on 2026-10-20; wait for fresh CI and Vercel checks before merging."
-          - "Verify main CI and production deployment before processing any later PR."
+        remaining_deliverables: []
         progress_log:
           - covers: [I3Fix, I3Test, I3Docs]
+            note: "PR #59 merged as f34cc4efc512f01d188ac0598159763916fb4f2b after fresh Validate/Gitleaks/Vercel success. Main CI and production deployment passed; live routes, English content, 27-item feed and retired newsletter 404 verified before the next branch. Patched newly reported alert #66 via launch-editor 2.14.2; frozen install, formatting, lint, typecheck and all 10 tests pass. Follow-up merges require fresh CI and deployment gates recorded on GitHub."
+          - covers: [I3Fix, I3Test, I3Docs]
             note: "2026-10-20: only #59 is open. Branch already based on latest main. Restored bounded overrides; frozen install, typecheck, lint, 10 regression tests and secret scans pass. Production audit clean; full audit retains the unpatched braces development-tooling advisory. See current-changes/dependency-security-review-2026-10-20.md for final validation and deployment status."
-    next_steps: []
-    # Note: the former "Integrate with Chronomation API (Phase 2)" next step was
-    # retired in v0.1.12 — Chronomation is paused and archived under Ball Lightning.
-    recent_done:
       - id: dependency-security-review-2026-10-10
         issue: "Security / dependency maintenance"
         title: "Review dependency PRs and patch vulnerable packages"
