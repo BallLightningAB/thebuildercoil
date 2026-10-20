@@ -1,4 +1,4 @@
-import { render, RenderOptions } from "@testing-library/react";
+import { RenderOptions, render } from "@testing-library/react";
 import { ReactElement } from "react";
 import { vi } from "vitest";
 
