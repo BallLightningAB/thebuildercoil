@@ -1,8 +1,21 @@
 entries:
+  - date: "2026-10-20"
+    version: 0.1.15.2
+    issue: "Dependency maintenance / PR #59"
+    commit: "pending"
+    status: in-progress
+    title: "fix(deps): restore security overrides in grouped update #59"
+    details: |-
+      - Reviewed the only open PR and restored lockfile overrides required by frozen installation in CI and Vercel.
+      - Retained patched esbuild 0.28.2, postcss-selector-parser 7.1.7 and TanStack start-server-core 1.169.43.
+      - Ran the regression suite, production/full audits and required pre-commit checks; full audit retains the unpatched braces development-tooling advisory.
+      - Applied Ultracite import/export ordering fixes; tracked remaining deployment gates in the current-changes review report.
+
+      Refs: v0.1.15.2 I3Fix I3Test I3Docs PR-59
   - date: "2026-10-12"
     version: 0.1.15.1
     issue: "Dependency maintenance"
-    commit: "pending"
+    commit: "ad4f76eef2b10416e88ed412ef095effdc168103"
     status: done
     title: "fix(deps): preserve security overrides in grouped update #58"
     details: |-
