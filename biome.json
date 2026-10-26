@@ -21,6 +21,11 @@
 		"enabled": true,
 		"indentStyle": "tab"
 	},
+	"markdown": {
+		"formatter": {
+			"enabled": false
+		}
+	},
 	"assist": {
 		"actions": {
 			"source": {
@@ -31,12 +36,12 @@
 	"linter": {
 		"enabled": true,
 		"rules": {
-			"recommended": true,
+			"preset": "recommended",
 			"security": {
 				"noDangerouslySetInnerHtml": "off"
 			},
 			"nursery": {
-				"useSortedClasses": "off"
+				"useTailwindSortedClasses": "off"
 			},
 			"style": {
 				"useFilenamingConvention": {
