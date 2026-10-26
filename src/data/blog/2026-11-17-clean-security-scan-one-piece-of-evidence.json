@@ -1,0 +1,16 @@
+{
+	"id": "post-026",
+	"slug": "clean-security-scan-one-piece-of-evidence",
+	"title": "A Clean Security Scan Is One Piece of Evidence",
+	"type": "blog",
+	"summary": "October's dependency reviews showed me why clean audits, passing checks, and confident AI reviews still need context I can verify.",
+	"body": "# A Clean Security Scan Is One Piece of Evidence",
+	"bodyFile": "2026-11-17-clean-security-scan-one-piece-of-evidence.md",
+	"bodyIsMarkdown": true,
+	"tags": ["Security", "AI", "Dependencies", "Testing", "Developer Workflow"],
+	"author": "Nicolas Brulay",
+	"status": "draft",
+	"publishedAt": "2026-11-17T09:00:00.000Z",
+	"createdAt": "2026-10-26T08:30:00.000Z",
+	"updatedAt": "2026-10-26T08:30:00.000Z"
+}

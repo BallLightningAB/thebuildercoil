@@ -1,12 +1,12 @@
 import { createServerFn } from "@tanstack/react-start";
-import { loadPostInternal, loadPostsInternal } from "./loader-server";
+import { loadPostsInternal, loadPublishedPostInternal } from "./loader-server";
 import type { PostType } from "./types";
 
 // Server function to load a single post
 export const getPost = createServerFn({ method: "GET" })
 	.validator((input: { slug: string; type: PostType }) => input)
 	.handler(({ data }) => {
-		return loadPostInternal(data.slug, data.type);
+		return loadPublishedPostInternal(data.slug, data.type);
 	});
 
 // Server function to load all posts
@@ -21,7 +21,7 @@ export const getRelatedPosts = createServerFn({ method: "GET" })
 	.validator((input: { slug: string; type: PostType; limit?: number }) => input)
 	.handler(({ data }) => {
 		const { slug, type, limit = 3 } = data;
-		const postResult = loadPostInternal(slug, type);
+		const postResult = loadPublishedPostInternal(slug, type);
 		if (!postResult) {
 			return [];
 		}

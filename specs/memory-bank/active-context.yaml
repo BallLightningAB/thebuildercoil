@@ -1,5 +1,5 @@
 meta:
-  release: 0.1.15.4
+  release: 0.1.16
   repo: github.com/BallLightningAB/thebuildercoil
   pdd_version: "v0.3.0"
   current_changes: see specs/current-changes/
@@ -14,6 +14,22 @@ guardrails:
   # - I3Docs / I3UI / I3Fix / I3Test / I3Biome: tags for documentation, UI polish, minor fixes, tests and Biome/tooling work not tied to a single deliverable
   roadmap:
     current:
+      - id: ai-security-blog-series
+        issue: "Content"
+        title: "Review four personal AI and security blog drafts"
+        status: in-progress
+        deliverables:
+          - "[I3Docs] Draft four posts about maintenance capacity, agent access, removing features and security evidence"
+          - "[I3Docs] Record proposed Tuesday publication dates at 10:00 CET"
+        remaining_deliverables:
+          - "Nicolas's editorial review of the remaining three articles and LinkedIn proposals before publication"
+        progress_log:
+          - covers: [I3Docs, I3Fix, I3Test]
+            note: "2026-10-26: user authorized commit and deployment; following global commitprocess workflow. Prepared release 0.1.16, public single-post/related-post date and status guards, and regression coverage for the exact October 27 10:00 CET boundary and three unapproved drafts. Nicolas scheduled the TBC LinkedIn post and tagged himself, so no separate personal promotion is needed. Deployment/check results are tracked in the series report."
+          - covers: [I3Docs]
+            note: "2026-10-26: Nicolas approved the first article as written. Set its status to the schema's lowercase published value and retained October 27 at 09:00 UTC (10:00 CET); approved Markdown unchanged. Other three posts remain drafts. Prepared separate TBC LinkedIn copy and quiet personal repost under .socials/20261027-ai-security-maintenance. No commit, deployment, LinkedIn post or automation performed."
+          - covers: [I3Docs]
+            note: "2026-10-26: prepared four first-person review drafts with paired JSON metadata, primary-source links and planned dates October 27 / November 3 / November 10 / November 17 at 09:00 UTC (10:00 CET). All remain drafts. User explicitly requested review before queueing; no publication automation or deployment enabled. See current-changes/ai-security-blog-series.md."
     next_steps: []
     # Note: the former "Integrate with Chronomation API (Phase 2)" next step was
     # retired in v0.1.12 — Chronomation is paused and archived under Ball Lightning.

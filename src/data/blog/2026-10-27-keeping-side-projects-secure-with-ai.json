@@ -1,0 +1,22 @@
+{
+	"id": "post-023",
+	"slug": "keeping-side-projects-secure-with-ai",
+	"title": "Keeping My Side Projects Secure as AI Speeds Everything Up",
+	"type": "blog",
+	"summary": "AI helps me build more in my spare time. October's security updates made me think harder about how much I can realistically keep running.",
+	"body": "# Keeping My Side Projects Secure as AI Speeds Everything Up",
+	"bodyFile": "2026-10-27-keeping-side-projects-secure-with-ai.md",
+	"bodyIsMarkdown": true,
+	"tags": [
+		"AI",
+		"Security",
+		"Solo Development",
+		"Side Projects",
+		"Maintenance"
+	],
+	"author": "Nicolas Brulay",
+	"status": "published",
+	"publishedAt": "2026-10-27T09:00:00.000Z",
+	"createdAt": "2026-10-26T08:30:00.000Z",
+	"updatedAt": "2026-10-26T08:39:45.000Z"
+}

@@ -1,8 +1,22 @@
 entries:
   - date: "2026-10-26"
+    version: 0.1.16
+    issue: "Content / scheduled publication"
+    commit: "pending"
+    status: done
+    title: "feat(content): schedule approved AI maintenance post and protect review drafts"
+    details: |-
+      - Add four first-person AI/security articles with paired metadata; only the first is approved and marked published for October 27 at 10:00 CET.
+      - Keep the November 3/10/17 articles as unapproved drafts and preserve the approved article text.
+      - Apply the same status/date rules to public single-post and related-post requests as indexes/feed, preventing early direct-link access and draft exposure.
+      - Add regression coverage at the exact release boundary and for drafts after their proposed dates.
+      - Record Nicolas's scheduled TBC LinkedIn post with personal tag; no separate social publishing action is needed.
+
+      Refs: v0.1.16 I3Docs I3Fix I3Test ai-security-blog-series
+  - date: "2026-10-26"
     version: 0.1.15.4
     issue: "Dependency maintenance / PR #61"
-    commit: "pending"
+    commit: "d68965f96f6e038887cbcfdd3390fb445a37673d"
     status: done
     title: "fix(deps): repair grouped update and migrate Biome 2.6 configuration"
     details: |-

@@ -184,6 +184,21 @@ export function loadPostInternal(
 	return null;
 }
 
+function isPublished(post: Post, now: number): boolean {
+	const publishedTime = Date.parse(post.publishedAt);
+	return (
+		post.status === "published" &&
+		!Number.isNaN(publishedTime) &&
+		publishedTime <= now
+	);
+}
+
+/** Load a post for public requests, respecting draft status and release time. */
+export function loadPublishedPostInternal(slug: string, type: PostType) {
+	const result = loadPostInternal(slug, type);
+	return result && isPublished(result.post, Date.now()) ? result : null;
+}
+
 /**
  * Load all posts, optionally filtered by type
  */
@@ -217,13 +232,7 @@ export function loadPostsInternal(type?: PostType): PostMeta[] {
 
 	const now = Date.now();
 	const published = posts
-		.filter((p) => {
-			if (p.status !== "published") {
-				return false;
-			}
-			const publishedTime = new Date(p.publishedAt).getTime();
-			return !Number.isNaN(publishedTime) && publishedTime <= now;
-		})
+		.filter((p) => isPublished(p, now))
 		.sort(
 			(a, b) =>
 				new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime(),
