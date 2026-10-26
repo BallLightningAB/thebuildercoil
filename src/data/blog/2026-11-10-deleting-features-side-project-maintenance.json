@@ -1,0 +1,22 @@
+{
+	"id": "post-025",
+	"slug": "deleting-features-side-project-maintenance",
+	"title": "Deleting Features Is Part of How I Keep a Side Project Maintainable",
+	"type": "blog",
+	"summary": "Removing my newsletter and contact form reduced the work behind the site. AI makes adding features easy; I still need reasons to keep them.",
+	"body": "# Deleting Features Is Part of How I Keep a Side Project Maintainable",
+	"bodyFile": "2026-11-10-deleting-features-side-project-maintenance.md",
+	"bodyIsMarkdown": true,
+	"tags": [
+		"AI",
+		"Side Projects",
+		"Maintenance",
+		"Security",
+		"Solo Development"
+	],
+	"author": "Nicolas Brulay",
+	"status": "draft",
+	"publishedAt": "2026-11-10T09:00:00.000Z",
+	"createdAt": "2026-10-26T08:30:00.000Z",
+	"updatedAt": "2026-10-26T08:30:00.000Z"
+}

@@ -1,0 +1,22 @@
+{
+	"id": "post-024",
+	"slug": "ai-agent-access-needs-maintenance",
+	"title": "AI Helps Me Maintain My Projects. Its Access Needs Maintenance Too.",
+	"type": "blog",
+	"summary": "My AI tools can do more for me, but their connections and permissions need attention too. A practical look at access when building alone.",
+	"body": "# AI Helps Me Maintain My Projects. Its Access Needs Maintenance Too.",
+	"bodyFile": "2026-11-03-ai-agent-access-needs-maintenance.md",
+	"bodyIsMarkdown": true,
+	"tags": [
+		"AI",
+		"Security",
+		"Developer Workflow",
+		"Permissions",
+		"Solo Development"
+	],
+	"author": "Nicolas Brulay",
+	"status": "draft",
+	"publishedAt": "2026-11-03T09:00:00.000Z",
+	"createdAt": "2026-10-26T08:30:00.000Z",
+	"updatedAt": "2026-10-26T08:30:00.000Z"
+}
