@@ -1,5 +1,5 @@
 meta:
-  release: 0.1.15.3
+  release: 0.1.15.4
   repo: github.com/BallLightningAB/thebuildercoil
   pdd_version: "v0.3.0"
   current_changes: see specs/current-changes/
@@ -18,6 +18,21 @@ guardrails:
     # Note: the former "Integrate with Chronomation API (Phase 2)" next step was
     # retired in v0.1.12 — Chronomation is paused and archived under Ball Lightning.
     recent_done:
+      - id: dependency-security-review-2026-10-26
+        issue: "Dependency maintenance / PR #61"
+        title: "Repair grouped dependency update and migrate Biome 2.6 configuration"
+        status: done
+        links:
+          pr: "https://github.com/BallLightningAB/thebuildercoil/pull/61"
+        deliverables:
+          - "[I3Fix] Preserve patched dependencies and repair frozen installation"
+          - "[I3Biome] Migrate Biome configuration while preserving authored Markdown"
+          - "[I3Test] Validate English dates, content, navigation, highlighting and production build"
+          - "[I3Docs] Record security review and release bookkeeping"
+        remaining_deliverables: []
+        progress_log:
+          - covers: [I3Fix, I3Biome, I3Test, I3Docs]
+            note: "2026-10-26: reviewed the only open PR (#61, nine updates); branch already based on latest main. Restored omitted lockfile security overrides; migrated renamed Biome rule/recommended preset and disabled newly introduced Markdown autoformatting. Frozen install, format, lint, typecheck, all 10 tests and production build pass. Built-site routes, English dates, 27-item feed and newsletter 404 verified. Full and production audits are clean; historical braces advisory was withdrawn upstream on October 23. Fresh GitHub/Vercel checks and production verification gate the merge and subsequent PR work; see the dated current-changes report."
       - id: dependency-security-review-2026-10-20
         issue: "Dependency maintenance / PR #59 / alert #66"
         title: "Review dependency PRs and patch Windows editor command injection"

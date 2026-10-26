@@ -1,8 +1,21 @@
 entries:
+  - date: "2026-10-26"
+    version: 0.1.15.4
+    issue: "Dependency maintenance / PR #61"
+    commit: "pending"
+    status: done
+    title: "fix(deps): repair grouped update and migrate Biome 2.6 configuration"
+    details: |-
+      - Review nine updates and restore omitted lockfile overrides without reverting security patches.
+      - Migrate Biome recommended preset and renamed Tailwind rule; preserve authored Markdown by disabling automatic Markdown formatting.
+      - Verify frozen installation, formatting, lint, typecheck, 10 regression tests, production build and built-site English content/feed/routes.
+      - Confirm full/production audits are clean; the previously tracked braces advisory was withdrawn upstream on October 23.
+
+      Refs: v0.1.15.4 I3Fix I3Biome I3Test I3Docs PR-61
   - date: "2026-10-20"
     version: 0.1.15.3
     issue: "Security / Dependabot alert #66"
-    commit: "pending"
+    commit: "ea2e55234c36b3959a7f369bdf38efb503cb2627"
     status: done
     title: "fix(security): patch launch-editor Windows command injection"
     details: |-
