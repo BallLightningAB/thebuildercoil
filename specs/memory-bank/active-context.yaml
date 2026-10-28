@@ -1,5 +1,5 @@
 meta:
-  release: 0.1.16
+  release: 0.1.16.1
   repo: github.com/BallLightningAB/thebuildercoil
   pdd_version: "v0.3.0"
   current_changes: see specs/current-changes/
@@ -24,6 +24,8 @@ guardrails:
         remaining_deliverables:
           - "Nicolas's editorial review of the remaining three articles and LinkedIn proposals before publication"
         progress_log:
+          - covers: [I3Docs, I3UI]
+            note: "2026-10-28: prepared a square TBC-style hero for the published maintenance article and a fuller personal LinkedIn repost with one lightly attributed connection to Ulf Ödesjö's Lindholmen Software Development Day cybersecurity discussion. Article text and publication time preserved; remaining three articles stay drafts. Repost is proposed copy only. See current-changes/ai-maintenance-hero-2026-10-28.md."
           - covers: [I3Docs, I3Fix, I3Test]
             note: "2026-10-26: user authorized commit and deployment; following global commitprocess workflow. Prepared release 0.1.16, public single-post/related-post date and status guards, and regression coverage for the exact October 27 10:00 CET boundary and three unapproved drafts. Nicolas scheduled the TBC LinkedIn post and tagged himself, so no separate personal promotion is needed. Deployment/check results are tracked in the series report."
           - covers: [I3Docs]

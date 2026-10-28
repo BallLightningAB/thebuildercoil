@@ -7,6 +7,8 @@
 	"body": "# Keeping My Side Projects Secure as AI Speeds Everything Up",
 	"bodyFile": "2026-10-27-keeping-side-projects-secure-with-ai.md",
 	"bodyIsMarkdown": true,
+	"heroImage": "/media/2026-10-27-keeping-side-projects-secure-with-ai.webp",
+	"heroImageAlt": "Teal software modules linked by dependency paths and a maintenance loop on an off-white blueprint background, with an orange circle",
 	"tags": [
 		"AI",
 		"Security",
@@ -18,5 +20,5 @@
 	"status": "published",
 	"publishedAt": "2026-10-27T09:00:00.000Z",
 	"createdAt": "2026-10-26T08:30:00.000Z",
-	"updatedAt": "2026-10-26T08:39:45.000Z"
+	"updatedAt": "2026-10-28T19:44:19.000Z"
 }

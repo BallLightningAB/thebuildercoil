@@ -1,8 +1,21 @@
 entries:
+  - date: "2026-10-28"
+    version: 0.1.16.1
+    issue: "Content / blog hero follow-up"
+    commit: "pending"
+    status: done
+    title: "fix(content): add square hero to AI maintenance article"
+    details: |-
+      - Add a square generated hero in TBC's blueprint palette, with descriptive alt text, to the published October 27 article.
+      - Preserve the approved article text and publication timestamp; keep the three later articles as drafts.
+      - Prepare personal LinkedIn repost copy with a light, sourced reference to Ulf Ödesjö's cybersecurity discussion at Lindholmen Software Development Day.
+      - Rotate the oldest changelog entry into the existing archive before adding this release.
+
+      Refs: v0.1.16.1 I3UI I3Docs ai-maintenance-hero
   - date: "2026-10-26"
     version: 0.1.16
     issue: "Content / scheduled publication"
-    commit: "pending"
+    commit: "5542c6556199e855d648a2d970628d334eb638c6"
     status: done
     title: "feat(content): schedule approved AI maintenance post and protect review drafts"
     details: |-
@@ -595,18 +608,3 @@ entries:
       - Fix IDE lint errors caused by checking dependency type definitions
 
       Refs: v0.1.8.6
-  - date: "2026-01-06"
-    version: 0.1.8.5
-    issue: "Code quality improvements"
-    commit: f8942fc6ae6f49cc39f24a5cb9fab8bfc10c5fbe
-    status: done
-    title: "refactor(code): update Biome to latest and enforce consistent type definitions"
-    details: |-
-      - Update @biomejs/biome from 2.3.7 to 2.3.11 (latest version)
-      - Install Biome globally for better IDE integration
-      - Fix all useConsistentTypeDefinitions lint violations (39 errors)
-      - Convert 19 type definitions from 'type' to 'interface' for object shapes
-      - Add coding standard for type definitions in .windsurf/rules/ultracite.md
-      - Enforce using interface for objects and type for unions/utilities/primitives
-
-      Refs: v0.1.8.5
